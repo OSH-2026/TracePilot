@@ -10,7 +10,7 @@
 
 ## 环境要求
 - **构建环境**: WSL2 / Linux
-- **交叉编译工具链**: Android NDK (Clang)
+- **交叉编译工具链**: Android NDK (Clang) ,交叉编译的环境目前网络上没有配好的，本次实验所需编译环境已经放在https://github.com/OSH-2026/TracePilot/blob/main/ebpf/pixel6a-bpf.zip，注意要在wsl等linux环境下解压缩，否则会丢包。
 - **目标设备**: 已 Root 的 Android 真机 (ARM64)
 
 ## 快速开始(To do)
