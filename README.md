@@ -32,7 +32,7 @@
 | **决策** | **GBDT**（LightGBM/XGBoost）输出关键线程评分与策略候选；可选 **Bandit** 在线优化 |
 | **执行** | 用户态策略注入（亲和、优先级、uclamp 等，受白名单与安全约束） |
 | **评估** | 与 **默认 / 传统图算法 / 随机策略** 对照，报告效果与开销 |
-
+注：本项目以数据观测和处理为重点，决策及执行阶段不作为重点
 ---
 
 ## 技术要点
@@ -71,6 +71,6 @@
 | **选题调研** | 4/6 ~ 4/12（第六周） | 老师基本认可了在安卓系统的方案，但是数据来源有问题，虚拟环境体现不了真实用户数据，需要改为实体真机 | 李松茂，杨子皓：数据集调研 潘智勇，贺小轩：手机型号选择调研 |
 | **立项** | 4/13 ~ 4/19（第七周） | 与老师对齐实验设备：pixel 6A(安卓16，root用magisk）并完成可行性报告。会议记录：https://github.com/OSH-2026/TracePilot/blob/main/minutes%20of%20meetings/4-13%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95.md | 潘智勇：购买真机并进行真机测试 邵晨轩，杨子皓：eBPF采集技术可行性报告 贺小轩：模型可行性报告 李松茂：将决策建议写入内核可行性报告 |
 | **准备汇报** | 4/20 ~ 4/26（第八周） | 准备可行性汇报。会议记录：https://github.com/OSH-2026/TracePilot/blob/main/doc/minutes%20of%20meetings/4-21%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95.md | 调研：李松茂，贺小轩 实现一个特定场景下的数据采集和处理：邵晨轩，潘智勇，杨子皓 交叉编译环境的配置：潘智勇 |
-| **初步工作** | 4/27 ~ 5/1（第九周） |完成交叉编译环境的搭建和对三个常见的场景进行eBPF信息采集和处理。页面切换场景：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/page_turning ，对应数据处理报告： | 中期汇报：潘智勇 |
+| **初步工作** | 4/27 ~ 5/1（第九周） |完成交叉编译环境的搭建和对三个常见的场景进行eBPF信息采集和处理。页面切换场景：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/page_turning ，对应数据处理报告：https://github.com/OSH-2026/TracePilot/blob/main/doc/report/behavior_analysis_report.md | 中期汇报：潘智勇 |
 
 ---
