@@ -1,0 +1,34 @@
+behavior_features 分析报告
+源文件: c:\Users\潘智勇\behavior_features.csv
+总行数: 578
+
+=== QQ 主包 com.tencent.mobileqq ===
+时间窗数量: 127
+event_cnt 中位数: 3
+event_cnt P90 阈值(突发): 36
+突发窗数量(burst=1): 12
+前5个突发窗:
+  window=1777046648 event_cnt=170 uniq_comm=32 uniq_tgid=2 uniq_cpu=8
+  window=1777046677 event_cnt=142 uniq_comm=20 uniq_tgid=1 uniq_cpu=8
+  window=1777046649 event_cnt=125 uniq_comm=22 uniq_tgid=1 uniq_cpu=8
+  window=1777046678 event_cnt=95 uniq_comm=18 uniq_tgid=1 uniq_cpu=8
+  window=1777046788 event_cnt=88 uniq_comm=13 uniq_tgid=1 uniq_cpu=8
+
+解读提示:
+- burst 窗通常对应打开/切页/重交互阶段（需与你的操作时间对齐）。
+- uniq_comm 高说明该秒内线程/命令名种类多，进程内活动复杂。
+- uniq_tgid>1 说明同包多进程协作明显（如主进程+子进程）。
+
+=== 事件量 Top 包（辅助判断系统侧干扰）===
+  com.tencent.mobileqq                               sum=1839 max=170 win=127
+  com.android.systemui                               sum=1719 max=159 win=59
+  com.google.android.apps.nexuslauncher              sum=1550 max=182 win=40
+  com.tencent.mobileqq:MSF                           sum=895 max=105 win=70
+  com.tencent.mobileqq:tool                          sum=314 max=57 win=26
+  com.ss.android.ugc.aweme                           sum=227 max=85 win=12
+  com.google.android.gms.persistent                  sum=196 max=30 win=21
+  com.tencent.mm                                     sum=174 max=92 win=9
+  com.google.android.inputmethod.latin               sum=150 max=54 win=17
+  com.tencent.mm:push                                sum=133 max=80 win=9
+
+输出: behavior_analysis_qq.csv, behavior_analysis_top_packages.csv
