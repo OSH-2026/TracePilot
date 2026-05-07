@@ -22,7 +22,11 @@
 移动端卡顿、响应变慢等问题与 CPU 调度及线程间唤醒、Binder、锁等待等关系紧密。传统依赖人工调参或静态规则，难以随场景自适应。本项目走**数据驱动**路线：先可观测，再决策，最后执行与评估。
 
 ---
-## 本项目原始数据和处理后的数据：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/eBPF%E6%95%B0%E6%8D%AE
+## 本项目原始数据和处理后的数据
+
+- 页面切换场景数据：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/QQ%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2%E5%9C%BA%E6%99%AF
+- 信息流滚动场景数据：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll
+- 信息流滚动场景数据处理报告：https://github.com/OSH-2026/TracePilot/blob/main/doc/report/feed_scroll_analysis_report.md
 
 ---
 ## 目标（做什么）
@@ -73,6 +77,6 @@
 | **选题调研** | 4/6 ~ 4/12（第六周） | 老师基本认可了在安卓系统的方案，但是数据来源有问题，虚拟环境体现不了真实用户数据，需要改为实体真机 | 李松茂，杨子皓：数据集调研 潘智勇，贺小轩：手机型号选择调研 |
 | **立项** | 4/13 ~ 4/19（第七周） | 与老师对齐实验设备：pixel 6A(安卓16，root用magisk）并完成可行性报告。会议记录：https://github.com/OSH-2026/TracePilot/blob/main/minutes%20of%20meetings/4-13%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95.md | 潘智勇：购买真机并进行真机测试 邵晨轩，杨子皓：eBPF采集技术可行性报告 贺小轩：模型可行性报告 李松茂：将决策建议写入内核可行性报告 |
 | **准备汇报** | 4/20 ~ 4/26（第八周） | 准备可行性汇报。会议记录：https://github.com/OSH-2026/TracePilot/blob/main/doc/minutes%20of%20meetings/4-21%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95.md | 调研：李松茂，贺小轩 实现一个特定场景下的数据采集和处理：邵晨轩，潘智勇，杨子皓 交叉编译环境的配置：潘智勇 |
-| **初步工作** | 4/27 ~ 5/1（第九周） |完成交叉编译环境的搭建和对三个常见的场景进行eBPF信息采集和处理。页面切换场景：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/page_turning ，对应数据处理报告：https://github.com/OSH-2026/TracePilot/blob/main/doc/report/behavior_analysis_report.md | 中期汇报：潘智勇 |
+| **初步工作** | 4/27 ~ 5/1（第九周） |完成交叉编译环境的搭建和对三个常见的场景进行eBPF信息采集和处理。页面切换场景：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/page_turning ，对应数据处理报告：https://github.com/OSH-2026/TracePilot/blob/main/doc/report/behavior_analysis_report.md ；信息流滚动场景数据：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll ，对应数据处理报告：https://github.com/OSH-2026/TracePilot/blob/main/doc/report/feed_scroll_analysis_report.md | 中期汇报：潘智勇 |
 | **数据进一步采集与处理** | 5/4 ~ 5/10（第十周） |对中期汇报得到的反馈进行调研和进一步工作，会议记录：https://github.com/OSH-2026/TracePilot/blob/main/doc/minutes%20of%20meetings/5-6%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95.md | 调研：李松茂，贺小轩 实现观测和处理：潘智勇，邵晨轩，杨子皓 |
 ---
