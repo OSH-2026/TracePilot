@@ -46,11 +46,12 @@
 
 ## eBPF 探针
 
-探针源码位于 `ebpf/src/page_turning/`，当前覆盖：
+探针源码位于 [ebpf/src/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src)，当前覆盖：
 
 - `sched_switch` — 跟踪线程切换与运行时长
 - Binder 相关 kprobe — 跟踪跨进程通信链路
 - 锁竞争事件 — 识别等待与唤醒延迟
+- 页面切换场景 eBPF 程序 — 位于 `page_turning/` 子目录
 
 ---
 
