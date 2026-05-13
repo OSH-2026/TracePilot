@@ -28,10 +28,12 @@
 
 | 场景 | 数据路径 | 说明 |
 |------|----------|------|
-| 页面切换（QQ） | `ebpf/ebpf_data/QQ页面切换场景/` | QQ 聊天界面滑动、页面跳转等操作下的调度与帧数据 |
-| 页面切换（基础版） | `ebpf/ebpf_data/页面切换-基础版数据/` | 基础页面切换场景的 perfetto trace 与事件记录 |
-| 信息流滚动 | `ebpf/ebpf_data/feed_scroll/` | Chrome 信息流滚动场景的帧统计与线程分析 |
-| 相机 | `ebpf/ebpf_data/camera/` | 相机启动与预览场景的行为特征 |
+| 场景 | 数据路径 | 说明 |
+|------|----------|------|
+| 页面切换（QQ） | [ebpf/ebpf_data/QQ页面切换场景/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/QQ%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2%E5%9C%BA%E6%99%AF) | QQ 聊天界面滑动、页面跳转等操作下的调度与帧数据 |
+| 页面切换（基础版） | [ebpf/ebpf_data/页面切换-基础版数据/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88%E6%95%B0%E6%8D%AE) | 基础页面切换场景的 perfetto trace 与事件记录 |
+| 信息流滚动 | [ebpf/ebpf_data/feed_scroll/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll) | Chrome 信息流滚动场景的帧统计与线程分析 |
+| 相机 | [ebpf/ebpf_data/camera/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/camera) | 相机启动与预览场景的行为特征 |
 
 ### 各场景数据类型
 
