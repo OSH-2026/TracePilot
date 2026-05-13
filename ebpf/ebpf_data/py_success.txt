@@ -1,0 +1,24 @@
+OK: 230 frames, 220 jank, 20 top threads
+Total sys overhead: 3371.926ms
+Total unique threads: 8042
+
+  #1: tid=12649 comm='single-pool-def' score=0.3692 frames=48/220 sys_oh=1063.1ms
+  #2: tid=2035 comm='SystemUIBg-5' score=0.2943 frames=3/220 sys_oh=58.7ms
+  #3: tid=192 comm='thermal_BIG' score=0.1418 frames=178/220 sys_oh=2938.9ms
+  #4: tid=537 comm='prng_seeder' score=0.1351 frames=56/220 sys_oh=1238.0ms
+  #5: tid=70 comm='ksoftirqd/7' score=0.1126 frames=129/220 sys_oh=2335.3ms
+  #6: tid=556 comm='sugov:4' score=0.1052 frames=159/220 sys_oh=2082.7ms
+  #7: tid=15458 comm='thread_sp_norma' score=0.0995 frames=42/220 sys_oh=659.1ms
+  #8: tid=551 comm='logd.writer' score=0.0933 frames=177/220 sys_oh=2913.7ms
+  #9: tid=19046 comm='RenderThread' score=0.0925 frames=220/220 sys_oh=3371.9ms
+  #10: tid=7769 comm='Reade2-V15' score=0.0918 frames=220/220 sys_oh=3371.9ms
+  #11: tid=699 comm='surfaceflinger' score=0.0917 frames=181/220 sys_oh=2968.8ms
+  #12: tid=15754 comm='t.mobileqq:tool' score=0.0913 frames=11/220 sys_oh=156.5ms
+  #13: tid=2546 comm='android.hardwar' score=0.0892 frames=55/220 sys_oh=805.7ms
+  #14: tid=1815 comm='android.imms' score=0.0884 frames=12/220 sys_oh=249.7ms
+  #15: tid=678 comm='mali-cmar-backe' score=0.0848 frames=123/220 sys_oh=2052.8ms
+  #16: tid=656 comm='binder:605_2' score=0.0831 frames=151/220 sys_oh=2402.8ms
+  #17: tid=2284 comm='s.nexuslauncher' score=0.0825 frames=134/220 sys_oh=2232.6ms
+  #18: tid=961 comm='android.hardwar' score=0.0818 frames=16/220 sys_oh=294.9ms
+  #19: tid=12625 comm='ReferenceQueueD' score=0.0760 frames=2/220 sys_oh=38.0ms
+  #20: tid=12635 comm='internal_handle' score=0.0755 frames=54/220 sys_oh=1231.9ms

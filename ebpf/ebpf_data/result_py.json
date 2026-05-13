@@ -1,0 +1,227 @@
+{
+  "total_frames": 230,
+  "jank_frames": 220,
+  "jank_system_overhead_ns": 3371925849,
+  "top_k_threads": [
+    {
+      "rank": 1,
+      "tid": 12649,
+      "pid": 0,
+      "comm": "single-pool-def",
+      "package": "",
+      "score": 0.3692,
+      "runnable_delay_p95_ns": 1382163045,
+      "wakeup_latency_p95_ns": 1382280884,
+      "system_overhead_ns": 1063077117
+    },
+    {
+      "rank": 2,
+      "tid": 2035,
+      "pid": 0,
+      "comm": "SystemUIBg-5",
+      "package": "",
+      "score": 0.2943,
+      "runnable_delay_p95_ns": 354993816,
+      "wakeup_latency_p95_ns": 355669516,
+      "system_overhead_ns": 58672529
+    },
+    {
+      "rank": 3,
+      "tid": 192,
+      "pid": 0,
+      "comm": "thermal_BIG",
+      "package": "",
+      "score": 0.1418,
+      "runnable_delay_p95_ns": 8624349,
+      "wakeup_latency_p95_ns": 8784750,
+      "system_overhead_ns": 2938918463
+    },
+    {
+      "rank": 4,
+      "tid": 537,
+      "pid": 0,
+      "comm": "prng_seeder",
+      "package": "",
+      "score": 0.1351,
+      "runnable_delay_p95_ns": 10796915,
+      "wakeup_latency_p95_ns": 13189616,
+      "system_overhead_ns": 1237995510
+    },
+    {
+      "rank": 5,
+      "tid": 70,
+      "pid": 0,
+      "comm": "ksoftirqd/7",
+      "package": "",
+      "score": 0.1126,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 462723917,
+      "system_overhead_ns": 2335283729
+    },
+    {
+      "rank": 6,
+      "tid": 556,
+      "pid": 0,
+      "comm": "sugov:4",
+      "package": "",
+      "score": 0.1052,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 3897461,
+      "system_overhead_ns": 2082677150
+    },
+    {
+      "rank": 7,
+      "tid": 15458,
+      "pid": 0,
+      "comm": "thread_sp_norma",
+      "package": "",
+      "score": 0.0995,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 485333781,
+      "system_overhead_ns": 659106909
+    },
+    {
+      "rank": 8,
+      "tid": 551,
+      "pid": 0,
+      "comm": "logd.writer",
+      "package": "",
+      "score": 0.0933,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 75797526,
+      "system_overhead_ns": 2913660703
+    },
+    {
+      "rank": 9,
+      "tid": 19046,
+      "pid": 0,
+      "comm": "RenderThread",
+      "package": "",
+      "score": 0.0925,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 16058472,
+      "system_overhead_ns": 3371925849
+    },
+    {
+      "rank": 10,
+      "tid": 7769,
+      "pid": 0,
+      "comm": "Reade2-V15",
+      "package": "",
+      "score": 0.0918,
+      "runnable_delay_p95_ns": 4067749,
+      "wakeup_latency_p95_ns": 0,
+      "system_overhead_ns": 3371925849
+    },
+    {
+      "rank": 11,
+      "tid": 699,
+      "pid": 0,
+      "comm": "surfaceflinger",
+      "package": "",
+      "score": 0.0917,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 65062215,
+      "system_overhead_ns": 2968837408
+    },
+    {
+      "rank": 12,
+      "tid": 15754,
+      "pid": 0,
+      "comm": "t.mobileqq:tool",
+      "package": "",
+      "score": 0.0913,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 56250610,
+      "system_overhead_ns": 156536365
+    },
+    {
+      "rank": 13,
+      "tid": 2546,
+      "pid": 0,
+      "comm": "android.hardwar",
+      "package": "",
+      "score": 0.0892,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 74890177,
+      "system_overhead_ns": 805739351
+    },
+    {
+      "rank": 14,
+      "tid": 1815,
+      "pid": 0,
+      "comm": "android.imms",
+      "package": "",
+      "score": 0.0884,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 318115438,
+      "system_overhead_ns": 249744686
+    },
+    {
+      "rank": 15,
+      "tid": 678,
+      "pid": 0,
+      "comm": "mali-cmar-backe",
+      "package": "",
+      "score": 0.0848,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 76358724,
+      "system_overhead_ns": 2052807781
+    },
+    {
+      "rank": 16,
+      "tid": 656,
+      "pid": 0,
+      "comm": "binder:605_2",
+      "package": "",
+      "score": 0.0831,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 50173014,
+      "system_overhead_ns": 2402791129
+    },
+    {
+      "rank": 17,
+      "tid": 2284,
+      "pid": 0,
+      "comm": "s.nexuslauncher",
+      "package": "",
+      "score": 0.0825,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 58054688,
+      "system_overhead_ns": 2232601022
+    },
+    {
+      "rank": 18,
+      "tid": 961,
+      "pid": 0,
+      "comm": "android.hardwar",
+      "package": "",
+      "score": 0.0818,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 196647909,
+      "system_overhead_ns": 294855896
+    },
+    {
+      "rank": 19,
+      "tid": 12625,
+      "pid": 0,
+      "comm": "ReferenceQueueD",
+      "package": "",
+      "score": 0.076,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 154519409,
+      "system_overhead_ns": 38040631
+    },
+    {
+      "rank": 20,
+      "tid": 12635,
+      "pid": 0,
+      "comm": "internal_handle",
+      "package": "",
+      "score": 0.0755,
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 85313191,
+      "system_overhead_ns": 1231912353
+    }
+  ]
+}
