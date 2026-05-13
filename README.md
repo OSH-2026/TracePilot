@@ -27,6 +27,7 @@
 - 页面切换场景数据：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/QQ%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2%E5%9C%BA%E6%99%AF
 - 信息流滚动场景数据：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll
 - 信息流滚动场景数据处理报告：https://github.com/OSH-2026/TracePilot/blob/main/doc/report/feed_scroll_analysis_report.md
+- 页面切换-基础版数据：https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88%E6%95%B0%E6%8D%AE
 
 ---
 ## 目标（做什么）
