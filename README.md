@@ -1,4 +1,6 @@
-# TracePilot — 基于 eBPF 的 Android 行为分析平台
+# TracePilot — Frame-Centric 的 Android 调度辅助系统
+
+**Frame-aligned, dependency-aware scheduling assistant for Android interaction workloads**
 
 ## 团队信息
 
@@ -10,24 +12,91 @@
   - 贺小轩
   - 杨子皓
 
-## 项目一句话
+## 项目定位
 
-在 **Google Pixel 6a** 真机上，通过 **eBPF** 采集调度与进程间依赖相关事件，覆盖页面切换、信息流滚动、相机等多场景，经处理与分析提取用户及系统行为特征，为后续调度优化提供数据支撑。
+TracePilot 是一个面向 Android 交互负载的、**以帧为对齐单位、具备依赖感知能力**的调度辅助系统。
+
+核心路径：在 Pixel 6a 设备上，通过 **eBPF** 采集调度与进程间依赖事件，利用 **Perfetto FrameTimeline** 作为 ground truth，在帧窗口内构建依赖关键路径图，识别影响用户体验的关键线程，最终通过安全的用户态 hint 进行受控干预。
 
 ---
 
-## 背景与动机
+## 核心设计理念：从 PID-Centric 到 Frame-Centric
 
-移动端卡顿、响应慢等问题与 CPU 调度、线程唤醒、Binder 通信、锁等待等紧密相关。传统依赖人工调参或静态规则，难以随场景自适应。本项目走 **数据驱动** 路线：先可观测，再理解，后决策。
+### 为什么 PID-Centric 不可行
 
-当前工作重点聚焦于 **观测与理解** 层——基于多场景的 eBPF 数据采集与行为分析。
+1. **PID 不稳定**：同一 App 每次启动 PID 不同，一个 App 可能有多个进程，PID 还会被系统复用
+2. **卡顿不是单个 PID 的问题**：Android jank 的根因通常是 UI thread、RenderThread、Binder、system_server、SurfaceFlinger 之间的等待链
+3. **eBPF 只能观测内核事件**，无法直接回答"用户在经历什么"
+
+### 正确路径：Frame-Centric + Dependency-Centric
+
+```
+FrameTimeline 定义问题 → eBPF 提供原因 → Graph 找关键路径 → Hint Engine 做受控干预
+```
+
+---
+
+## 系统架构
+
+```
++--------------------------------------------------+
+| Ground Truth Layer                                |
+| Perfetto FrameTimeline / jank / frame token       |
++--------------------------+-----------------------+
+                           |
+                           v
++--------------------------------------------------+
+| Semantic Identity Layer                           |
+| package / UID / session / process instance / role |
++--------------------------+-----------------------+
+                           |
+                           v
++--------------------------------------------------+
+| eBPF Evidence Layer                               |
+| sched / wakeup / binder / futex / freq / reclaim  |
++--------------------------+-----------------------+
+                           |
+                           v
++--------------------------------------------------+
+| Critical Path Graph Builder                       |
+| frame-window dependency graph                     |
+| UI / Render / Binder / SurfaceFlinger / Resource  |
++--------------------------+-----------------------+
+                           |
+                           v
++--------------------------------------------------+
+| ML / Heuristic Ranking Layer                      |
+| critical thread score / jank cause classification |
++--------------------------+-----------------------+
+                           |
+                           v
++--------------------------------------------------+
+| Safe Hint Engine                                  |
+| whitelist / TTL / rollback / budget / audit       |
++--------------------------+-----------------------+
+                           |
+                           v
++--------------------------------------------------+
+| User-space Actuator                               |
+| uclamp / affinity / cgroup / priority hint        |
++--------------------------------------------------+
+```
+
+### 身份模型层次
+
+```
+User Interaction
+  -> App package / UID
+    -> App Session / Activity / Window
+      -> Frame token
+        -> Process instance
+          -> PID / TID
+```
 
 ---
 
 ## 采集场景与数据集
 
-| 场景 | 数据路径 | 说明 |
-|------|----------|------|
 | 场景 | 数据路径 | 说明 |
 |------|----------|------|
 | 页面切换（QQ） | [ebpf/ebpf_data/QQ页面切换场景/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/QQ%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2%E5%9C%BA%E6%99%AF) | QQ 聊天界面滑动、页面跳转等操作下的调度与帧数据 |
@@ -44,27 +113,98 @@
 
 ---
 
-## eBPF 探针
+## eBPF 探针与采集内容
 
-探针源码位于 [ebpf/src/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src)，当前覆盖：
+探针源码位于 [ebpf/src/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src)
 
-- `sched_switch` — 跟踪线程切换与运行时长
-- Binder 相关 kprobe — 跟踪跨进程通信链路
-- 锁竞争事件 — 识别等待与唤醒延迟
+### 基础观察（Step 1）
+
+- `sched_switch` / `sched_wakeup` — wakeup-to-run latency、runnable delay
+- `binder_transaction` / `binder_transaction_received` — Binder 通信延迟
+- `futex` wait / wake — 锁等待分析
+- `cpu_frequency` — CPU 频率与大中小核信息
+
+### 增强观察（Step 2，后续）
+
+- memory reclaim（`mm_vmscan_direct_reclaim_begin/end`）
+- page fault、block I/O、thermal throttling
+- SurfaceFlinger / RenderEngine 调度
+
+### 项目源码
+
 - 页面切换场景 eBPF 程序 — 位于 `page_turning/` 子目录
-- **页面切换-基础版** 完整项目 — `页面切换-基础版.zip`，包含 eBPF 探针源码（`tracepilot.bpf.c`）、C 加载器、Perfetto 工具链、Python 分析脚本（行为分析、特征提取）、原始采集事件及分析报告
+- **页面切换-基础版** 完整项目 — `页面切换-基础版.zip`，包含 eBPF 探针源码（`tracepilot.bpf.c`）、C 加载器、Perfetto 工具链、Python 分析脚本、原始采集事件及分析报告
 
 ---
 
-## 目标（做什么）
+## 交互关键路径图（Interaction Critical Path Graph）
+
+### 图节点
+
+`Frame node` → `UI thread` → `RenderThread` → `Binder client/server` → `system_server` → `SurfaceFlinger` → `futex wait` → `CPU resource` → `memory reclaim` → `I/O wait`
+
+### 边类型与权重
+
+| 边类型 | 含义 |
+|--------|------|
+| WAKEUP | 线程唤醒关系 |
+| RUNNABLE_WAIT | 就绪但未分配到 CPU |
+| BINDER_CALL | Binder 跨进程调用 |
+| FUTEX_WAIT | 锁等待 |
+| CPU_RUN | 在 CPU 上运行 |
+| PREEMPTED_BY | 被抢占 |
+| FRAME_DEPENDENCY | 帧依赖关系 |
+| RESOURCE_STALL | 资源瓶颈 |
+
+### 关键线程评分模型
+
+```
+CriticalScore(tid) =
+    a × frame_window_overlap
+  + b × runnable_delay_p95
+  + c × binder_dependency_centrality
+  + d × futex_wait_contribution
+  + e × render_path_proximity
+  + f × repeated_jank_cooccurrence
+  - g × background_penalty
+```
+
+---
+
+## 目标与实施路线
 
 | 层级 | 内容 | 状态 |
 |------|------|------|
-| **观测** | eBPF 探针采集多场景调度与通信事件 | ✅ 已完成 |
-| **理解（工作重点）** | 数据处理、行为分析、特征提取、报告生成 | ✅ 进行中 |
-| **决策** | GBDT / Bandit 输出关键线程评分与策略候选 | 📅 后续 |
-| **执行** | 用户态策略注入（亲和、优先级、uclamp 等） | 📅 后续 |
-| **评估** | 与默认/传统策略对照，报告效果与开销 | 📅 后续 |
+| **Step 1：基础管线** | eBPF 采集 + Perfetto ground truth + frame window 聚合 + 角色识别 + 临时 hint | ✅ 进行中 |
+| **Step 2：增强** | Binder/futex 依赖图 + CPU 频率分析 + jank 分类 + 对比实验 | 📅 后续 |
+| **Step 3：前沿** | inference-aware 调度 + memory/I/O/thermal + 多窗口竞争 + bandit 策略 | 📅 后续 |
+
+### 当前已完成的 Step 1 子任务
+
+- ✅ eBPF 探针采集 sched_switch / sched_wakeup
+- ✅ Perfetto FrameTimeline 采集 jank ground truth
+- ✅ 多场景数据采集（页面切换、信息流、相机）
+- ✅ 行为特征提取与数据分析报告
+
+---
+
+## 安全 Hint 引擎
+
+### Hint 类型
+
+| 类型 | 说明 |
+|------|------|
+| BOOST_THREAD | 提升线程优先级 |
+| PIN_TO_BIG_CORE_SHORT | 短暂固定到大核 |
+| PROTECT_UI_CHAIN | 保护 UI 依赖链 |
+| LOWER_BACKGROUND_COMPETITOR | 降低后台竞争 |
+| UCLAMP_MIN_TEMPORARY | 临时 uclamp 下限 |
+
+### 安全边界
+
+**允许：** 前台 App UID、RenderThread/UI thread/确认的 Binder 依赖链、带 TTL、可回滚、记录审计日志
+
+**禁止：** 直呼 PID boost、无 TTL hint、模糊/无差别调度、直接杀进程、修改 system_server 全局参数
 
 ---
 
@@ -72,8 +212,8 @@
 
 - **实验机**：Pixel 6a（解锁 + root，支持自定义 eBPF 加载）
 - **主数据流**：eBPF → ringbuf → 落盘 → 离线处理 → 特征工程 → 行为分析
-- **辅助工具**：Perfetto 用于帧/jank 对齐与对照验证
-- **分析框架**：Python 数据处理 + 行为特征提取 + 统计分析
+- **辅助工具**：Perfetto FrameTimeline 用于 ground truth 标定
+- **分析框架**：Python 数据处理 + 依赖图构建 + 关键线程评分
 
 ---
 
@@ -82,6 +222,7 @@
 - eBPF 探针源码与采集配置说明
 - 多场景数据集（原始事件 + 特征表 + 分析报告）
 - 行为分析工具链与报告生成脚本
+- 依赖关键路径图构建与评分工具
 - 实验报告：场景分析、特征重要性、优化建议
 
 ---
