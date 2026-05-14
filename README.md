@@ -36,7 +36,121 @@ FrameTimeline 定义问题 → eBPF 提供原因 → Graph 找关键路径 → H
 
 ---
 
-## 系统架构
+## 核心技术简介
+
+### eBPF（Extended Berkeley Packet Filter）
+
+eBPF 是 Linux 内核的一项沙箱技术，允许用户在不修改内核源码或加载内核模块的情况下，安全高效地注入自定义程序来观测和控制内核行为。
+
+**在本项目中的角色：** TracePilot 在 Pixel 6a（Android 16，已 root）上加载 eBPF 探针，通过 kprobe 和 tracepoint 挂载点采集内核调度与进程间通信事件：
+
+| 探针类型 | 采集事件 | 用途 |
+|----------|----------|------|
+| `sched_switch` | 线程切换（prev/next TID、运行时长、runnable delay） | 计算线程就绪等待延迟 |
+| `sched_wakeup` | 线程唤醒延迟 | 计算 wakeup-to-run latency |
+| `binder_transaction` kprobe | Binder 跨进程调用 | 分析进程间依赖与通信瓶颈 |
+| `futex` wait/wake | 锁等待 | 识别锁竞争导致的阻塞 |
+| `cpu_frequency` | CPU 频率与核调度 | 分析大小核负载均衡 |
+
+探针源码位于 `ebpf/src/page_turning/page_turning.bpf.c`，使用 C 编写，通过 clang 交叉编译为 BPF 字节码（`.bpf.o`），再由用户态加载器（`page_turning.c`）通过 `bpf()` 系统调用加载到内核。采集的原始事件经 ringbuf 输出到文件（`events.bin`），供离线分析。
+
+---
+
+### Perfetto
+
+Perfetto 是 Google 开发的 Android/Linux 平台高性能用户态与内核态追踪工具栈，是 Systrace 的继任者。
+
+**在本项目中的角色：** Perfetto 作为 **ground truth（基准事实）** 层，用于标定帧边界和识别 jank（掉帧）。
+
+**采集配置：**
+- 以后台守护进程模式运行：`perfetto --background`
+- 128MB ring buffer
+- 启用 atrace categories：`gfx`、`view`、`am`、`wm`、`res`、`dalvik`
+- 启用 ftrace events：`sched_switch`、`sched_wakeup`、`irq`、`softirq`
+- 采集结束后通过 `adb pull` 拉取 `.perfetto-trace` 文件
+
+**帧提取：**
+使用 Perfetto 提供的 `trace_processor_shell`（预编译的 Linux x86_64 二进制，位于 `ebpf/交叉编译环境/perfetto编译工具linux-amd64/`）执行 SQL 查询从 trace 中提取帧信息：
+- `beginFrame N vsyncIn Xms` → 帧号 N，期望 VSYNC 时间
+- `presentFrameAndReleaseLayers` → 实际显示时间
+- `incrementJankyFrames` → 标记 jank 帧
+
+查询结果输出为 `frames.txt`，包含每帧的帧号、期望 VSYNC 时间、实际显示时间和 jank 标志。
+
+---
+
+### 交叉编译技术
+
+由于 eBPF 探针在 **Pixel 6a（ARM64 架构，Android 16）** 上运行，而开发环境为 **Windows + WSL（x86_64）**，无法直接在目标机上编译，因此采用交叉编译。
+
+**工具链：**
+- **编译器**：Android NDK r26b + clang（target `aarch64-linux-android`）
+- **构建目标**：
+  - `make bpf` → `tracepilot.bpf.o`（eBPF 字节码）
+  - `make android` → `tracepilot-aarch64`（ARM64 用户态加载器）
+- **部署**：`adb push tracepilot-aarch64 /data/local/tmp/` + `adb push tracepilot.bpf.o /data/local/tmp/`
+
+**Perfetto 工具链交叉编译：**
+Perfetto 官方提供预编译的 Linux 工具链二进制（位于 `ebpf/交叉编译环境/perfetto编译工具linux-amd64/`），包括：
+- `trace_processor_shell` — SQL 查询引擎
+- `traced` / `traced_probes` — 追踪守护进程
+- `tracebox` — 一站式追踪工具
+- `traceconv` — 格式转换工具
+
+此外，`ebpf/交叉编译环境/pixel6a-bpf.zip` 中包含预编译的 Pixel 6a BPF 相关工具。
+
+**工作流：**
+```
+开发机 (x86_64, WSL) 
+  → NDK clang 交叉编译 
+  → 生成 ARM64 二进制 
+  → adb push 到 Pixel 6a (/data/local/tmp/) 
+  → 加载 eBPF 探针并采集事件
+```
+
+---
+
+### 帧对齐技术（Frame Alignment）
+
+帧对齐是 TracePilot 的核心技术，用于将 **eBPF 采集的内核调度事件** 与 **Perfetto 采集的用户态帧信息** 在时间上精确匹配，从而回答"哪些线程导致了哪一帧卡顿"。
+
+**对齐流程（三步）：**
+
+**Step 1 — 时间域对齐**
+eBPF 事件和 Perfetto 帧数据的时间戳均使用设备上的 `CLOCK_MONOTONIC`，因此两个数据源天然在同一时间域内，无需跨域转换。
+
+**Step 2 — 帧窗口匹配**
+对 Perfetto 提取的每一帧，定义时间窗口：
+```
+Frame Window = [expected_VSYNC, actual_presentation_time]
+```
+将所有落在此窗口内的 eBPF 调度事件（sched_switch、sched_wakeup）归因到该帧。帧窗口的跨度反映了该帧从期望显示到实际显示的延迟。
+
+**Step 3 — 线程聚合与评分**
+对每帧窗口内的线程，聚合以下指标并打分：
+
+```
+base_score = 0.35 × J + 0.35 × log1p(rd_ms) + 0.15 × log1p(wl_ms) + 0.15 × UI
+```
+
+| 指标 | 含义 |
+|------|------|
+| `J` = jank_frame_count / num_jank | 该线程参与的 jank 帧占比 |
+| `rd_ms` = runnable_delay_p95 | 就绪等待延迟（p95，毫秒） |
+| `wl_ms` = wakeup_latency_p95 | 唤醒延迟（p95，毫秒） |
+| `UI` | 是否为 RenderThread 或 UI thread |
+
+然后扣除系统开销折扣：
+```
+最终得分 = base_score × (1.0 - min(sys_overhead_ratio, 0.9))
+```
+
+**噪声过滤：**
+自动排除 eBPF 采集器自身（`tracepilot`）、ADB 进程（`adbd`、`shell svc`）等无关线程。
+
+**核心优势：** 传统的 PID-Centric 分析无法将内核事件与用户体验关联。帧对齐技术使得 TracePilot 能够回答"哪个线程、在多长时间窗口内、对哪一帧的卡顿负责"，实现从内核观测到用户体验的语义映射。
+
+---
 
 ```
 +--------------------------------------------------+
