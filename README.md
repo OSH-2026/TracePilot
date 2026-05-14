@@ -111,6 +111,14 @@ User Interaction
 - **行为特征**：经聚合与特征工程提取的 CSV 特征表
 - **分析报告**：场景级的行为分析、线程重要性排序、优化建议
 
+### 数据报告
+
+| 报告 | 路径 |
+|------|------|
+| 页面切换场景数据分析报告 | [behavior_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/behavior_analysis_report.md) |
+| 页面切换-基础版数据分析报告 | [页面切换-基础版数据分析报告.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.md) |
+| 信息流滚动场景数据分析报告 | [feed_scroll_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/feed_scroll_analysis_report.md) |
+
 ---
 
 ## eBPF 探针与采集内容
