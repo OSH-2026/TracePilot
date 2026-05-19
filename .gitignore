@@ -1,1 +1,5 @@
 .vscode/
+*Zone.Identifier
+*.pyc
+__pycache__/
+*.csv
