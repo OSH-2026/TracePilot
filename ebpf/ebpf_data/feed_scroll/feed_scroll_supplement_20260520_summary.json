@@ -1,0 +1,122 @@
+﻿{
+  "duration_s": 39.664,
+  "event_counts": {
+    "sched_switch": 572666,
+    "sched_waking": 305378,
+    "sched_wakeup": 305376,
+    "cpu_frequency": 20991
+  },
+  "target_thread_count": 17,
+  "target_on_cpu_ms": 24011.299,
+  "wakeup_to_run_count": 25336,
+  "wakeup_to_run_p95_ms": 0.39,
+  "wakeup_to_run_p99_ms": 0.669,
+  "runnable_delay_count": 248,
+  "runnable_delay_p95_ms": 0.373,
+  "runnable_delay_p99_ms": 1.229,
+  "migration_count": 9263,
+  "top_threads_by_on_cpu_ms": [
+    {
+      "tid": 25167,
+      "comm": "RenderThread",
+      "on_cpu_ms": 11078.226,
+      "migrations": 3030
+    },
+    {
+      "tid": 600,
+      "comm": "surfaceflinger",
+      "on_cpu_ms": 6250.098,
+      "migrations": 1520
+    },
+    {
+      "tid": 25132,
+      "comm": ".android.chrome",
+      "on_cpu_ms": 5031.003,
+      "migrations": 3139
+    },
+    {
+      "tid": 649,
+      "comm": "RenderEngine",
+      "on_cpu_ms": 1417.18,
+      "migrations": 657
+    },
+    {
+      "tid": 2067,
+      "comm": "RenderThread",
+      "on_cpu_ms": 115.032,
+      "migrations": 77
+    },
+    {
+      "tid": 702,
+      "comm": "surfaceflinger",
+      "on_cpu_ms": 57.855,
+      "migrations": 725
+    },
+    {
+      "tid": 1216,
+      "comm": "system_server",
+      "on_cpu_ms": 35.24,
+      "migrations": 68
+    },
+    {
+      "tid": 1312,
+      "comm": "system_server",
+      "on_cpu_ms": 9.841,
+      "migrations": 33
+    },
+    {
+      "tid": 25252,
+      "comm": "CrGpuMain",
+      "on_cpu_ms": 5.875,
+      "migrations": 2
+    },
+    {
+      "tid": 25212,
+      "comm": "CrRendererMain",
+      "on_cpu_ms": 3.214,
+      "migrations": 1
+    },
+    {
+      "tid": 25218,
+      "comm": "Chrome_IOThread",
+      "on_cpu_ms": 3.213,
+      "migrations": 6
+    },
+    {
+      "tid": 25272,
+      "comm": "Chrome_ChildIOT",
+      "on_cpu_ms": 1.419,
+      "migrations": 2
+    },
+    {
+      "tid": 25311,
+      "comm": "GpuWatchdog_Com",
+      "on_cpu_ms": 1.031,
+      "migrations": 1
+    },
+    {
+      "tid": 25635,
+      "comm": "allocateBuffers",
+      "on_cpu_ms": 0.842,
+      "migrations": 0
+    },
+    {
+      "tid": 25169,
+      "comm": "Chrome_ProcessL",
+      "on_cpu_ms": 0.616,
+      "migrations": 0
+    },
+    {
+      "tid": 2221,
+      "comm": "ScreenDecoratio",
+      "on_cpu_ms": 0.32,
+      "migrations": 1
+    },
+    {
+      "tid": 25257,
+      "comm": "GpuWatchdog",
+      "on_cpu_ms": 0.293,
+      "migrations": 1
+    }
+  ]
+}
