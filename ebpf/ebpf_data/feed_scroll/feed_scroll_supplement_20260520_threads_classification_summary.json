@@ -1,0 +1,32 @@
+{
+  "input": "TracePilot_work\\data\\raw\\feed_scroll_supplement_20260520\\feed_scroll_threads_summary.csv",
+  "output": "TracePilot_work\\data\\raw\\feed_scroll_supplement_20260520\\feed_scroll_threads_classified.csv",
+  "thread_count_by_class": {
+    "key": 9,
+    "non_key": 8
+  },
+  "on_cpu_ms_by_class": {
+    "key": 23961.696,
+    "non_key": 49.602
+  },
+  "wakeup_to_run_count_by_class": {
+    "key": 25157.0,
+    "non_key": 179.0
+  },
+  "migration_count_by_class": {
+    "key": 9157.0,
+    "non_key": 106.0
+  },
+  "rule": {
+    "key": [
+      "name matches Chrome rendering/compositor pipeline",
+      "or on_cpu_ms >= 100",
+      "or wakeup_to_run_count >= 500",
+      "or migration_count >= 100"
+    ],
+    "non_key": [
+      "auxiliary/background names such as watchdog/conscrypt/asynctask",
+      "or low activity/unknown role"
+    ]
+  }
+}
