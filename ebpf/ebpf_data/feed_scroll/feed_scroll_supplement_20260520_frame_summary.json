@@ -1,0 +1,29 @@
+{
+  "framestats": "TracePilot_work\\data\\raw\\feed_scroll_supplement_20260520\\feed_scroll_supplement_20260520_framestats.txt",
+  "frame_count": 118,
+  "janky_frame_count_16_6ms": 118,
+  "jank_rate_16_6ms": 1.0,
+  "deadline_missed_count": 0,
+  "deadline_missed_rate": 0.0,
+  "frame_time_avg_ms": 34.629,
+  "frame_time_p50_ms": 34.559,
+  "frame_time_p95_ms": 35.411,
+  "frame_time_p99_ms": 35.604,
+  "input_to_complete_p95_ms": 0.0,
+  "draw_phase_p95_ms": 2.341,
+  "budget_ms": 16.666,
+  "reported_gfxinfo_summary": {
+    "reported_total_frames": 5507,
+    "reported_janky_frames": 1,
+    "reported_jank_rate": 0.0002,
+    "reported_frame_p50_ms": 28,
+    "reported_frame_p90_ms": 30,
+    "reported_frame_p95_ms": 31,
+    "reported_frame_p99_ms": 32,
+    "reported_missed_vsync": 0,
+    "reported_slow_ui_thread": 0,
+    "reported_slow_issue_draw_commands": 1,
+    "reported_frame_deadline_missed": 1
+  },
+  "frames_csv": "TracePilot_work\\data\\raw\\feed_scroll_supplement_20260520\\feed_scroll_supplement_20260520_frames.csv"
+}

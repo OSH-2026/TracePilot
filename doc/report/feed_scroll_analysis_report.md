@@ -207,3 +207,111 @@ CPU migration count = 14,250
 5. **CSV 特征表便于后续扩展**：`feed_scroll_events_by_second.csv` 可用于观察秒级负载变化，`feed_scroll_threads_summary.csv` 可用于区分关键/非关键线程并做重载/非重载对比。
 
 ---
+
+## 八、补充采集：帧级 ground truth、Binder/ftrace 与关键线程评分
+
+为对齐后续参考文档中提出的 frame-centric / dependency-centric 目标，在 2026-05-20 对同一 Chrome 信息流滚动场景做了一轮补充采集。补充数据仍放在同一数据目录 `ebpf/ebpf_data/feed_scroll/` 下，文件名前缀为 `feed_scroll_supplement_20260520`。
+
+### 8.1 补充数据文件
+
+原始数据：
+
+- `feed_scroll_supplement_20260520.jsonl.gz`：eBPF 原始调度事件。
+- `feed_scroll_supplement_20260520_ftrace.txt`：同一时间窗口内的 ftrace 原始事件，包含 Binder、dma_fence、block I/O 等事件。
+- `feed_scroll_supplement_20260520_framestats.txt`：Chrome `dumpsys gfxinfo framestats` 原始输出。
+
+处理后数据：
+
+- `feed_scroll_supplement_20260520_summary.json`：eBPF 调度汇总。
+- `feed_scroll_supplement_20260520_events_by_second.csv`：秒级事件聚合。
+- `feed_scroll_supplement_20260520_threads_summary.csv`：线程级调度指标。
+- `feed_scroll_supplement_20260520_threads_classified.csv`：关键/非关键线程分类。
+- `feed_scroll_supplement_20260520_threads_scored.csv`：CriticalScore 关键线程评分。
+- `feed_scroll_supplement_20260520_ftrace_summary.json`：ftrace/Binder 系统依赖事件摘要。
+- `feed_scroll_supplement_20260520_frame_summary.json`：帧级 ground truth 摘要。
+- `feed_scroll_supplement_20260520_frames.csv`：逐帧解析结果。
+
+### 8.2 eBPF 调度补充结果
+
+| 指标 | 数值 |
+|------|------|
+| 采集时长 | 39.664 s |
+| eBPF 原始事件 | 1,204,411 |
+| `sched_switch` | 572,666 |
+| `sched_waking` | 305,378 |
+| `sched_wakeup` | 305,376 |
+| `cpu_frequency` | 20,991 |
+| 相关线程数 | 17 |
+| wakeup-to-run P95 / P99 | 0.390 / 0.669 ms |
+| runnable delay P95 / P99 | 0.373 / 1.229 ms |
+| CPU migration count | 9,263 |
+
+### 8.3 帧级 ground truth
+
+`gfxinfo` 原始摘要显示：
+
+| 指标 | 数值 |
+|------|------|
+| Total frames rendered | 5,507 |
+| Janky frames | 1 |
+| Jank rate | 0.02% |
+| Frame time P50 / P90 / P95 / P99 | 28 / 30 / 31 / 32 ms |
+| Missed Vsync | 0 |
+| Frame deadline missed | 1 |
+| Slow UI thread | 0 |
+| Slow issue draw commands | 1 |
+
+逐帧表中解析到近期 118 行 frame 记录，`frame_time_p95_ms` 为 35.411 ms，`frame_time_p99_ms` 为 35.604 ms。需要注意的是，Android 16 的 `FrameTimeline` 中还包含 `FrameDeadline` 字段，因此单纯用 `FrameCompleted - IntendedVsync > 16.6 ms` 会偏保守；后续更适合以 `deadline_missed` 和 `gfxinfo` reported jank 作为 frame-centric ground truth。
+
+### 8.4 Binder / 系统依赖证据
+
+本轮同窗口 ftrace 共采集到 1,818 条系统事件：
+
+| 事件 | 数量 |
+|------|------|
+| `binder_wait_for_work` | 799 |
+| `binder_transaction` | 425 |
+| `binder_transaction_received` | 335 |
+| `dma_fence_wait_start/end` | 103 / 104 |
+| `block_rq_issue/complete` | 30 / 22 |
+
+Binder 相关 top comm 包括 `.android.chrome`、`HwBinder:604_2`、`surfaceflinger`、`binder:600_1`、`RenderThread` 和 `binder:25132_3`。这说明信息流滚动期间，Chrome 主进程、RenderThread、SurfaceFlinger 与 Binder 线程之间存在可观测的系统服务依赖。当前数据已经能作为依赖证据，但还没有进一步重建完整 Binder client-server 调用链。
+
+### 8.5 CriticalScore 关键线程评分
+
+在原有关键/非关键分类基础上，本轮加入 CriticalScore 排名：
+
+```text
+score =
+  render_path_role
++ wakeup_to_run_p95
++ runnable_delay_p95
++ log(on_cpu_ms)
++ log(migration_count)
++ log(wakeup_count)
+- background_penalty
+```
+
+Top critical threads 如下：
+
+| Rank | TID | comm | score | on-CPU ms | wakeup P95 ms | runnable P95 ms | migrations |
+|---:|---:|---|---:|---:|---:|---:|---:|
+| 1 | 25167 | RenderThread | 100.736 | 11078.226 | 0.454 | 0.263 | 3030 |
+| 2 | 649 | RenderEngine | 93.999 | 1417.180 | 0.153 | 0.998 | 657 |
+| 3 | 25132 | .android.chrome | 89.972 | 5031.003 | 0.573 | 0.348 | 3139 |
+| 4 | 600 | surfaceflinger | 79.927 | 6250.098 | 0.253 | 0.115 | 1520 |
+| 5 | 2067 | RenderThread | 77.240 | 115.032 | 0.325 | 0.234 | 77 |
+| 6 | 702 | surfaceflinger | 72.289 | 57.855 | 0.777 | 0.302 | 725 |
+| 7 | 1216 | system_server | 65.476 | 35.240 | 0.592 | 1.264 | 68 |
+
+关键线程分类结果为：关键线程 9 个，非关键线程 8 个。关键线程承担了绝大多数调度负载，on-CPU 时间为 23,961.696 ms，非关键线程 on-CPU 时间为 49.602 ms。
+
+### 8.6 仍需继续完善的部分
+
+- futex：当前设备的 `available_events` 中未发现标准 futex tracepoint，本轮未采集 futex wait/wake 事件。
+- Binder 调用链：已采到 Binder transaction/received/wait 事件，但尚未根据 transaction id 重建完整 client-server 调用链。
+- Frame window join：已有 frame table、eBPF 事件和 ftrace 事件，但还没有按每个 frame window 将调度事件和 Binder 事件逐帧关联。
+
+本轮补充采集后，信息流滚动场景已经从单纯线程调度统计推进到“帧级 ground truth + Binder/ftrace 依赖证据 + CriticalScore 关键线程排名”。后续最值得继续做的是将 frame window 与 eBPF/ftrace 事件按时间戳对齐，输出每个 frame 的 top blocking threads 和系统依赖链。
+
+---
