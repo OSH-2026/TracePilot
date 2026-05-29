@@ -1,0 +1,32 @@
+# Exclude large binary data files
+events.bin
+*.perfetto-trace
+tracepilot_events.zip
+*.csv
+*.jsonl.gz
+
+# Exclude build artifacts (rebuilt in Docker)
+*.o
+*.skel.h
+*-android
+tracepilot
+libbpf.a
+__pycache__/
+*.pyc
+
+# Exclude OS metadata
+*Zone.Identifier
+.DS_Store
+Thumbs.db
+.vscode/
+.git/
+
+# Keep Makefiles, source code, and dependencies
+!**/*.c
+!**/*.h
+!**/Makefile
+!**/*.py
+!**/*.sh
+!**/*.md
+!**/*.pbtx
+!**/*.sql

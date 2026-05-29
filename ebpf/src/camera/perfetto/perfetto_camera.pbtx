@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 duration_ms: 30000
 buffers: {
     size_kb: 131072
@@ -60,3 +61,67 @@ data_sources: {
         name: "android.surfaceflinger.frametimeline"
     }
 }
+=======
+duration_ms: 30000
+buffers: {
+    size_kb: 131072
+    fill_policy: RING_BUFFER
+}
+data_sources: {
+    config {
+        name: "linux.process_stats"
+        target_buffer: 0
+        process_stats_config {
+            scan_all_processes_on_start: true
+        }
+    }
+}
+data_sources: {
+    config {
+        name: "linux.sys_stats"
+        target_buffer: 0
+        sys_stats_config {
+            cpufreq_period_ms: 10
+        }
+    }
+}
+data_sources: {
+    config {
+        name: "linux.ftrace"
+        target_buffer: 0
+        ftrace_config {
+            ftrace_events: "sched/sched_switch"
+            ftrace_events: "sched/sched_process_exit"
+            ftrace_events: "sched/sched_process_free"
+            ftrace_events: "task/task_newtask"
+            ftrace_events: "task/task_rename"
+            ftrace_events: "sched/sched_wakeup"
+            ftrace_events: "sched/sched_wakeup_new"
+            ftrace_events: "sched/sched_waking"
+            ftrace_events: "power/cpu_frequency"
+            ftrace_events: "power/cpu_idle"
+            ftrace_events: "binder/binder_transaction"
+            ftrace_events: "binder/binder_transaction_received"
+            
+            # 针对相机与相册场景的核心类别
+            atrace_categories: "gfx"          # 图形渲染
+            atrace_categories: "view"         # 视图系统
+            atrace_categories: "camera"       # 相机HAL层
+            atrace_categories: "hal"          # 硬件抽象层
+            atrace_categories: "binder_driver"# Binder驱动
+            atrace_categories: "sched"        # 调度
+            atrace_categories: "freq"         # CPU频率
+            atrace_categories: "wm"           # 窗口管理
+            atrace_categories: "res"          # 资源
+            
+            atrace_apps: "*"                  # 可以指定具体的包名如 "com.google.android.GoogleCamera"
+        }
+    }
+}
+# 捕获 SurfaceFlinger 和 FrameTimeline 真实帧数据
+data_sources: {
+    config {
+        name: "android.surfaceflinger.frametimeline"
+    }
+}
+>>>>>>> e021c6bfb877fb5165df1fee7abfb3908cb1bfd0

@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 perfetto
 pandas
+=======
+perfetto
+pandas
+>>>>>>> e021c6bfb877fb5165df1fee7abfb3908cb1bfd0

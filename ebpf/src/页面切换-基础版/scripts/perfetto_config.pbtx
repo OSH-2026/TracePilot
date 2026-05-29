@@ -1,0 +1,66 @@
+# Perfetto config for TracePilot Step 1
+# Captures: sched events + gfx/view atrace + FrameTimeline
+#
+# Usage on device:
+#   perfetto --txt -c /data/local/tmp/perfetto_config.pbtx -o /sdcard/perfetto_trace.perfetto-trace
+
+buffers {
+  size_kb: 131072
+  fill_policy: RING_BUFFER
+}
+
+data_sources {
+  config {
+    name: "linux.ftrace"
+    ftrace_config {
+      ftrace_events: "sched/sched_switch"
+      ftrace_events: "sched/sched_wakeup"
+      ftrace_events: "sched/sched_wakeup_new"
+      ftrace_events: "irq/irq_handler_entry"
+      ftrace_events: "irq/irq_handler_exit"
+      ftrace_events: "softirq/softirq_entry"
+      ftrace_events: "softirq/softirq_exit"
+      # block I/O tracing
+      ftrace_events: "f2fs/f2fs_sync_file_enter"
+      ftrace_events: "f2fs/f2fs_sync_file_exit"
+      ftrace_events: "block/block_rq_issue"
+      ftrace_events: "block/block_rq_complete"
+      # Mali GPU tracing
+      ftrace_events: "gpu/gpu_work_period"
+      ftrace_events: "gpu/gpu_frequency"
+      atrace_categories: "gfx"
+      atrace_categories: "view"
+      atrace_categories: "am"
+      atrace_categories: "wm"
+      atrace_categories: "res"
+      atrace_categories: "dalvik"
+      # Replace <PKG> with ONE target app package per run
+      # (avoid "*" — it causes buffer contention)
+      atrace_apps: "<PKG>"
+    }
+  }
+}
+
+data_sources {
+  config {
+    name: "linux.process_stats"
+    target_buffer: 0
+    process_stats_config {
+      scan_all_processes_on_start: true
+      proc_stats_poll_ms: 1000
+    }
+  }
+}
+
+data_sources {
+  config {
+    name: "linux.sys_stats"
+    sys_stats_config {
+      stat_period_ms: 500
+      stat_counters: STAT_CPU_TIMES
+      stat_counters: STAT_FORK_COUNT
+    }
+  }
+}
+
+duration_ms: 60000
