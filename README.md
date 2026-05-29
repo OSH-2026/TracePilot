@@ -70,7 +70,7 @@ Perfetto 是 Google 开发的 Android/Linux 平台高性能用户态与内核态
 - 采集结束后通过 `adb pull` 拉取 `.perfetto-trace` 文件
 
 **帧提取：**
-使用 Perfetto 提供的 `trace_processor_shell`（预编译的 Linux x86_64 二进制，位于 `ebpf/交叉编译环境/perfetto编译工具linux-amd64/`）执行 SQL 查询从 trace 中提取帧信息：
+使用 Perfetto 提供的 `trace_processor_shell`（预编译的 Linux x86_64 二进制，位于 `ebpf/dependencies/perfetto编译工具linux-amd64/`）执行 SQL 查询从 trace 中提取帧信息：
 - `beginFrame N vsyncIn Xms` → 帧号 N，期望 VSYNC 时间
 - `presentFrameAndReleaseLayers` → 实际显示时间
 - `incrementJankyFrames` → 标记 jank 帧
@@ -81,7 +81,30 @@ Perfetto 是 Google 开发的 Android/Linux 平台高性能用户态与内核态
 
 ### 交叉编译技术
 
-由于 eBPF 探针在 **Pixel 6a（ARM64 架构，Android 14）** 上运行，而开发环境为 **Windows + WSL（x86_64）**，无法直接在目标机上编译，因此采用交叉编译。
+由于 eBPF 探针在 **Pixel 6a（ARM64 架构，Android 14）** 上运行，开发环境通常为 **x86_64**，因此采用交叉编译。
+
+**方式一：Docker 构建（推荐）**
+
+所有编译环境已封装在 Docker 镜像中，无需手动安装 NDK/libbpf：
+
+```bash
+docker build -t tracepilot-builder .
+
+# 编译全部场景（页面切换、page_turning、camera）
+docker run --rm -v .:/workspace tracepilot-builder
+
+# 或只编译特定场景：
+docker run --rm -v .:/workspace tracepilot-builder make -C ebpf/src/页面切换-基础版 bpf
+```
+
+Docker 镜像包含：
+- **Ubuntu 22.04** + clang/LLVM/gcc/make
+- **Android NDK r26b** — 交叉编译 aarch64 loader
+- **libbpf v1.4.7** — 为 aarch64 预编译 `libbpf.a`
+- **elfutils 0.191** — 为 aarch64 预编译 `libelf.a`
+- **bpftool** — 生成 BPF skeleton
+
+**方式二：手动编译（WSL/Ubuntu，不依赖 Docker）**
 
 **工具链：**
 - **编译器**：Android NDK r26b + clang（target `aarch64-linux-android`）
@@ -90,16 +113,12 @@ Perfetto 是 Google 开发的 Android/Linux 平台高性能用户态与内核态
   - `make android` → `tracepilot-aarch64`（ARM64 用户态加载器）
 - **部署**：`adb push tracepilot-aarch64 /data/local/tmp/` + `adb push tracepilot.bpf.o /data/local/tmp/`
 
-**Perfetto 工具链交叉编译：**
-Perfetto 官方提供预编译的 Linux 工具链二进制（位于 `ebpf/交叉编译环境/perfetto编译工具linux-amd64/`），包括：
+**Perfetto 工具链：**
+Perfetto 官方提供预编译的 Linux 工具链二进制（位于 `ebpf/dependencies/perfetto编译工具linux-amd64/`），包括：
 - `trace_processor_shell` — SQL 查询引擎
 - `traced` / `traced_probes` — 追踪守护进程
 - `tracebox` — 一站式追踪工具
 - `traceconv` — 格式转换工具
-
-此外，`ebpf/交叉编译环境/pixel6a-bpf.zip` 中包含预编译的 Pixel 6a BPF 相关工具。
-
-**工作流：**
 ```
 开发机 (x86_64, WSL) 
   → NDK clang 交叉编译 
@@ -255,7 +274,7 @@ User Interaction
 ### 项目源码
 
 - 页面切换场景 eBPF 程序 — 位于 `page_turning/` 子目录
-- **页面切换-基础版** 完整项目 — `页面切换-基础版.zip`，包含 eBPF 探针源码（`tracepilot.bpf.c`）、C 加载器、Perfetto 工具链、Python 分析脚本、原始采集事件及分析报告
+- **页面切换-基础版** 完整项目 — [`ebpf/src/页面切换-基础版/`](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88)，包含 eBPF 探针源码（`tracepilot.bpf.c`）、C 加载器、Python 分析脚本、原始采集事件及分析报告
 
 ---
 
