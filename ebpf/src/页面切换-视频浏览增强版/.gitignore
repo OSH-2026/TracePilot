@@ -1,0 +1,29 @@
+# Binaries
+output/tracepilot
+output/tracepilot-aarch64
+output/tracepilot.bpf.o
+output/tracepilot.skel.h
+eu_stub_aarch64.o
+
+# Vendor
+libbpf/
+bpf/vmlinux.h
+
+# Data
+*.bin
+*.perfetto-trace
+events.bin
+output/*.bin
+output/*.txt
+output/*.json
+output/linux-amd64/
+
+# OS
+.DS_Store
+Thumbs.db
+*.pyc
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
