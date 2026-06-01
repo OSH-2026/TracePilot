@@ -23,7 +23,11 @@
 #include <pthread.h>
 #include <sys/resource.h>
 
-#include "libbpf/src/libbpf.h"
+#ifdef __ANDROID__
+#include <libbpf.h>
+#else
+#include <bpf/libbpf.h>
+#endif
 #include "frame_aggregator.h"
 #include "resolver.h"
 #include "../bpf/tracepilot.bpf.h"
