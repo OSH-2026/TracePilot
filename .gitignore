@@ -4,3 +4,5 @@
 __pycache__/
 *.csv
 !ebpf/ebpf_data/feed_scroll/*.csv
+!ebpf/ebpf_data/game_sgame/*.csv
+ebpf/ebpf_data/game_sgame/*.jsonl.gz

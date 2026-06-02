@@ -1,0 +1,8 @@
+package=com.tencent.tmgp.sgame
+duration_s=60
+started_at=2026-06-01T12:08:26+0800
+  mCurrentFocus=Window{69ba494 u0 com.tencent.tmgp.sgame/com.tencent.tmgp.sgame.SGameActivity}
+  mFocusedApp=ActivityRecord{158257637 u0 com.tencent.tmgp.sgame/.SGameActivity t242}
+finished_at=2026-06-01T12:09:26+0800
+  mCurrentFocus=Window{69ba494 u0 com.tencent.tmgp.sgame/com.tencent.tmgp.sgame.SGameActivity}
+  mFocusedApp=ActivityRecord{158257637 u0 com.tencent.tmgp.sgame/.SGameActivity t242}
