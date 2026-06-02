@@ -1,0 +1,2 @@
+﻿frame_index,intended_vsync_ns,frame_deadline_ns,frame_completed_ns,frame_time_ms,janky_16_6ms,deadline_missed,flags
+0,7441543213335,7441559813335,7441546629854,3.417,False,False,0

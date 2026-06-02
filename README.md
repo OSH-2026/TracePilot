@@ -215,13 +215,13 @@ User Interaction
 |------|----------|------|
 | 页面切换（QQ） | [ebpf/ebpf_data/QQ页面切换场景/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/QQ%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2%E5%9C%BA%E6%99%AF) | QQ 聊天界面滑动、页面跳转等操作下的调度与帧数据 |
 | 页面切换（基础版） | [ebpf/ebpf_data/页面切换-基础版数据/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88%E6%95%B0%E6%8D%AE) | 基础页面切换场景的 perfetto trace 与事件记录 |
-| 信息流滚动 | [ebpf/ebpf_data/feed_scroll/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll) | Chrome 信息流滚动场景的帧统计、线程分析、Binder/ftrace 补充数据与 CriticalScore 评分 |
+| 信息流滚动 | [ebpf/ebpf_data/feed_scroll/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll) | Chrome 信息流滚动场景的线程分析、Binder/ftrace、SurfaceFlinger 帧窗口、CPU cluster 归因与 CriticalScore 评分 |
 | 相机 | [ebpf/ebpf_data/camera/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/camera) | 相机启动与预览场景的行为特征 |
 
 ### 各场景数据类型
 
 - **eBPF 原始事件**：sched_switch、Binder 事务、锁竞争等 ringbuf 输出
-- **Perfetto trace**：用于帧边界对齐与 jank 标定
+- **帧级证据**：Perfetto FrameTimeline 或 SurfaceFlinger 呈现窗口，用于帧边界对齐与 jank 分析
 - **行为特征**：经聚合与特征工程提取的 CSV 特征表
 - **分析报告**：场景级的行为分析、线程重要性排序、优化建议
 
@@ -246,11 +246,11 @@ User Interaction
 - `futex` wait / wake — 锁等待分析
 - `cpu_frequency` — CPU 频率与大中小核信息
 
-### 增强观察（Step 2，后续）
+### 增强观察（Step 2）
 
-- memory reclaim（`mm_vmscan_direct_reclaim_begin/end`）
-- page fault、block I/O、thermal throttling
-- SurfaceFlinger / RenderEngine 调度
+- 信息流滚动已完成 Binder dependency 边表、CPU frequency / big-little 归因、SurfaceFlinger 呈现窗口与规则分类、离线候选线程策略对比
+- 当前设备内核未暴露标准 futex wait/wake tracepoint，信息流场景将该项记录为观测限制
+- memory reclaim、page fault、block I/O、thermal throttling 与实际调度 hint 效果实验仍待扩展
 
 ### 项目源码
 
@@ -298,7 +298,7 @@ CriticalScore(tid) =
 | 层级 | 内容 | 状态 |
 |------|------|------|
 | **Step 1：基础管线** | eBPF 采集 + Perfetto ground truth + frame window 聚合 + 角色识别 + 临时 hint | ✅ 进行中 |
-| **Step 2：增强** | Binder/futex 依赖图 + CPU 频率分析 + jank 分类 + 对比实验 | 📅 后续 |
+| **Step 2：增强** | Binder/futex 依赖图 + CPU 频率分析 + jank 分类 + 对比实验 | 🔄 信息流部分完成 |
 | **Step 3：前沿** | inference-aware 调度 + memory/I/O/thermal + 多窗口竞争 + bandit 策略 | 📅 后续 |
 
 ### 当前已完成的 Step 1 子任务

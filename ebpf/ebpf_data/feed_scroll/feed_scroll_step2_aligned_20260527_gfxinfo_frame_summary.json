@@ -1,0 +1,29 @@
+{
+  "framestats": "TracePilot\\ebpf\\ebpf_data\\feed_scroll\\feed_scroll_step2_aligned_20260527_framestats.txt",
+  "frame_count": 1,
+  "janky_frame_count_16_6ms": 0,
+  "jank_rate_16_6ms": 0.0,
+  "deadline_missed_count": 0,
+  "deadline_missed_rate": 0.0,
+  "frame_time_avg_ms": 3.417,
+  "frame_time_p50_ms": 3.417,
+  "frame_time_p95_ms": 3.417,
+  "frame_time_p99_ms": 3.417,
+  "input_to_complete_p95_ms": 0.0,
+  "draw_phase_p95_ms": 0.027,
+  "budget_ms": 16.666,
+  "reported_gfxinfo_summary": {
+    "reported_total_frames": 1,
+    "reported_janky_frames": 0,
+    "reported_jank_rate": 0.0,
+    "reported_frame_p50_ms": 5,
+    "reported_frame_p90_ms": 5,
+    "reported_frame_p95_ms": 5,
+    "reported_frame_p99_ms": 5,
+    "reported_missed_vsync": 0,
+    "reported_slow_ui_thread": 0,
+    "reported_slow_issue_draw_commands": 0,
+    "reported_frame_deadline_missed": 0
+  },
+  "frames_csv": "TracePilot\\ebpf\\ebpf_data\\feed_scroll\\feed_scroll_step2_aligned_20260527_gfxinfo_frames.csv"
+}
