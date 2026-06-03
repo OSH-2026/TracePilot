@@ -60,7 +60,7 @@ LIBBPF_LIBS := -lbpf
 endif
 
 # ── libbpf (Android/NDK, static) ──────────────────────────────────────
-ANDROID_LIBBPF_DIR  ?= $(HOME)/pixel6a-bpf/页面切换-基础版/libbpf
+ANDROID_LIBBPF_DIR  ?= $(HOME)/pixel6a-bpf/页面切换-增强版/libbpf
 ANDROID_LIBBPF_SRC  ?= $(ANDROID_LIBBPF_DIR)/src
 ANDROID_LIBBPF_A    ?= $(ANDROID_LIBBPF_SRC)/libbpf.a
 
