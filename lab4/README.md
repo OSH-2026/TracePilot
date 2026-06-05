@@ -31,6 +31,7 @@ lab4/
     ├── rpc_server_win_forward.log
     ├── concurrent_stress_test.txt
     ├── heterogeneous_analysis.txt
+    ├── load_balance_result.txt
     ├── temp_comparison.txt
     └── screenshots/           # 结果截图
 ```
