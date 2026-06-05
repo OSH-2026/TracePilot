@@ -1,0 +1,37 @@
+=== Ray 异构节点分析 ===
+日期: 2026-06-05
+测试环境: Mac M5 Metal (server1) + Legion RTX 4060 CUDA (server2)
+  server1: http://127.0.0.1:8080 (Mac M5 Metal)
+  server2: http://100.69.233.118:8080 (Legion RTX 4060 CUDA via Tailscale)
+模型: Qwen2.5-1.5B-Instruct-Q4_K_M
+Prompt 数: 20 个, max_tokens=128
+
+=== 策略1: 轮询 (round-robin, 1:1) ===
+总耗时: 1.2s
+吞吐: 16.46 req/s
+生成速度: 1925.93 t/s
+server1 请求数: 10
+server2 请求数: 10
+server1 平均延迟: 1.102s, 平均速度: 106.91 t/s
+server2 平均延迟: 0.716s, 平均速度: 162.22 t/s
+
+=== 策略2: 按能力分配 (2:3) ===
+总耗时: 1.2s
+吞吐: 16.21 req/s
+生成速度: 1875.20 t/s
+P95延迟: 1.23s
+server1 请求数: 8
+server2 请求数: 12
+server1 平均延迟: 0.948s, 平均速度: 106.85 t/s
+server2 平均延迟: 0.782s, 平均速度: 160.36 t/s
+
+=== 节点性能差异 ===
+server1 (Mac M5 Metal): 平均速度 106.85 t/s, 平均延迟 0.948s
+server2 (Legion RTX 4060 CUDA): 平均速度 160.36 t/s, 平均延迟 0.782s
+server2 比 server1 快约 50%
+
+=== 分析 ===
+两种策略性能接近 (1.2s), 因为请求量小且两节点性能差异不大
+按能力分配让更快的 server2 处理更多请求 (12 vs 8), 但总耗时与轮询一致
+在更大规模场景下, 按能力分配会更有优势
+异构环境下轮询策略已足够好, 因为 Ray 的任务调度本身就能处理速度差异

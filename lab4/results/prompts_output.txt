@@ -1,0 +1,231 @@
+
+========================================
+Prompt 1: 请介绍一下大语言模型(LLM)的原理和应用。...
+========================================
+
+Loading model... |-\|/ 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9433-2d9b7c8e9
+model      : qwen2.5-1.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> <|im_start|>user
+请介绍一下大语言模型(LLM)的原理和应用。<|im_end|>
+<|im_start|>assistant
+
+| 大语言模型（Large Language Model，简称LLM）是一种人工智能模型，其主要功能是理解自然语言并生成文本。它是通过深度学习技术训练而成的，可以模拟人类语言的使用方式，用于各种自然语言处理任务，如机器翻译、文本生成、问答系统等。
+
+大语言模型的工作原理主要包括以下几个步骤：
+1. 数据准备：收集并整理大量的文本数据，这些数据可以是文本文件、网页、书籍、文章等。
+2. 训练：使用深度学习模型，如Transformer模型，将这些数据进行训练，使其能够理解和生成自然语言。
+3. 测试：通过测试数据对模型进行评估，以确定其性能。
+4. 优化：根据测试结果进行优化，以改进模型的性能。
+
+大语言模型的应用非常广泛。例如，它们可以用于：
+1. 机器翻译：将一种语言自动翻译成另一种语言。
+2. 自动摘要：从大量文本中提取关键
+
+[ Prompt: 1193.4 t/s | Generation: 98.6 t/s ]
+
+Exiting...
+
+
+========================================
+Prompt 2: 请用一句话总结以下内容:Transformer 架构由 Vaswani 等人在 ...
+========================================
+
+Loading model... |-\| 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9433-2d9b7c8e9
+model      : qwen2.5-1.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> <|im_start|>user
+请用一句话总结以下内容:Transformer 架构由 Vaswani 等人在 2017 年提出，它完全基于注意力机制，摒弃了循环和卷积结构。<|im_end|>
+<|im_start|>assistant
+
+| Transformer架构是2017年Vaswani等人提出的，完全基于注意力机制，摒弃了循环和卷积结构。
+
+[ Prompt: 897.4 t/s | Generation: 98.0 t/s ]
+
+Exiting...
+
+
+========================================
+Prompt 3: 请解释以下 Python 代码的功能：\ndef fibonacci(n):\n...
+========================================
+
+Loading model... |-\| 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9433-2d9b7c8e9
+model      : qwen2.5-1.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> <|im_start|>user
+请解释以下 Python 代码的功能：
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a<|im_end|>
+<|im_start|>assistant
+
+| 这段 Python 代码定义了一个名为 `fibonacci` 的函数，该函数接收一个整数 `n` 作为参数。函数的功能是计算斐波那契数列的第 `n` 个数。
+
+斐波那契数列是一个数学序列，其中每个数字是前两个数字的和。序列通常表示为：0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+
+在这个函数中，我们首先初始化两个变量 `a` 和 `b`，分别赋值为0和1，这是斐波那契数列的前两个数。
+
+接下来，我们使用一个 for 循环，循环执行 `n` 次。在每次循环中，我们首先将 `a` 和 `b` 的值交换，即将 `b` 的值赋给 `a`，同时将 `a` 和 `b`
+
+[ Prompt: 1502.3 t/s | Generation: 94.2 t/s ]
+
+Exiting...
+
+
+========================================
+Prompt 4: 如果 3 只猫 3 分钟捉 3 只老鼠，那么 100 只猫捉 100 只老鼠需要...
+========================================
+
+Loading model... |-\| 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9433-2d9b7c8e9
+model      : qwen2.5-1.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> <|im_start|>user
+如果 3 只猫 3 分钟捉 3 只老鼠，那么 100 只猫捉 100 只老鼠需要多少分钟？<|im_end|>
+<|im_start|>assistant
+
+| 这个问题可以通过简单的比例关系来解答。
+
+首先，我们知道 3 只猫在 3 分钟内捉到了 3 只老鼠。那么，每只猫捕捉老鼠的效率是恒定的。
+
+现在有 100 只猫，它们需要捕捉 100 只老鼠。由于每只猫捕捉老鼠的效率相同，因此总共需要的时间也是恒定的。
+
+所以，100 只猫在 3 分钟内能捉到 100 只老鼠。因此，100 只猫捕捉 100 只老鼠所需的时间也是 3 分钟。
+
+答案是：100 只猫捉 100 只老鼠需要 3 分钟。
+
+[ Prompt: 1612.5 t/s | Generation: 91.9 t/s ]
+
+Exiting...
+
+
+========================================
+Prompt 5: 在操作系统中，什么是上下文切换？它为什么会带来性能开销？...
+========================================
+
+Loading model... |-\| 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b9433-2d9b7c8e9
+model      : qwen2.5-1.5b-instruct-q4_k_m.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> <|im_start|>user
+在操作系统中，什么是上下文切换？它为什么会带来性能开销？<|im_end|>
+<|im_start|>assistant
+
+| 上下文切换在操作系统中是一个核心概念，它指的是从一个进程的状态转移到另一个进程的状态的过程。在现代操作系统中，进程通常是指正在执行的程序，而线程则是进程内的并发执行的子程序。
+
+上下文切换涉及到多个方面，包括处理器状态的切换、程序计数器的更新、栈的切换等。具体来说，上下文切换包含以下几步：
+
+1. 从当前进程的处理器状态中取出所需的信息，如寄存器状态、内存地址等。
+
+2. 将这些信息复制到新进程的上下文中，以便新的进程可以使用。
+
+3. 从当前进程的程序计数器中取出指令地址，然后转移到新进程的程序计数器中。
+
+4. 更新栈指针，使其指向新进程的栈。
+
+上下文切换可能需要花费一些时间，因为它涉及到对处理器状态的大量读写操作。这可能会导致性能开销。例如，当多个进程并发
+
+[ Prompt: 1261.6 t/s | Generation: 110.3 t/s ]
+
+Exiting...
+

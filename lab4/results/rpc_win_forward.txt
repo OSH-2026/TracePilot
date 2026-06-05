@@ -1,0 +1,24 @@
+=== RPC 分布式推理测试 (Windows Tailscale → WSL2 转发) ===
+日期: 2026-06-05
+架构: Mac(M5 Metal) → Windows Tailscale(100.69.233.118) → WSL2 rpc-server(CUDA)
+延迟: Mac→Windows ~10ms (Tailscale直连), Windows→WSL2 ~1ms (本地转发)
+
+=== 测试1: 短推理 ===
+Prompt: "What is 2+2?"
+Response: "2 + 2 equals 4."
+Prompt tokens: 36, Completion tokens: 9
+Prompt processing: 20.18 t/s
+Text generation: 9.85 t/s
+
+=== 测试2: 长推理 ===
+Prompt: "Explain the concept of virtual memory in operating systems..."
+Response: 生成了完整的虚拟内存解释（100 tokens）
+Prompt tokens: 65 (41 after cache), Completion tokens: 100
+Prompt processing: 40.55 t/s
+Text generation: 14.20 t/s
+
+=== 对比 ===
+| 配置 | PP (t/s) | TG (t/s) |
+|------|----------|----------|
+| 单机 M5 Metal | 2735.20 | 102.45 |
+| RPC (Win转发) | 40.55 | 14.20 |

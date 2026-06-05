@@ -1,0 +1,54 @@
+0.00.124.427 I log_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.124.430 I device_info:
+0.00.124.441 I   - MTL0    : Apple M5 (12124 MiB, 12123 MiB free)
+0.00.124.442 I   - BLAS    : Accelerate (0 MiB, 0 MiB free)
+0.00.124.451 I   - CPU     : Apple M5 (16384 MiB, 16384 MiB free)
+0.00.158.701 I   - RPC0    : 100.69.233.118:50052 (8187 MiB, 7099 MiB free)
+0.00.158.758 I system_info: n_threads = 4 (n_threads_batch = 4) / 10 | MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | MATMUL_INT8 = 1 | DOTPROD = 1 | SME = 1 | ACCELERATE = 1 | REPACK = 1 | 
+0.00.158.759 I srv  llama_server: n_parallel is set to auto, using n_parallel = 4 and kv_unified = true
+0.00.158.834 I srv          init: using 9 threads for HTTP server
+0.00.158.912 I srv         start: binding port with default address family
+0.00.160.271 I srv  llama_server: loading model
+0.00.160.281 I srv    load_model: loading model '/Users/pzy/osh-llama/models/qwen2.5-1.5b-instruct-q4_k_m.gguf'
+0.00.160.313 I common_init_result: fitting params to device memory ...
+0.00.160.314 I common_init_result: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+0.06.011.929 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+1.05.628.414 I common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+1.06.591.479 I srv    load_model: initializing slots, n_slots = 4
+1.06.829.446 W common_speculative_init: no implementations specified for speculative decoding
+1.06.829.454 I slot   load_model: id  0 | task -1 | new slot, n_ctx = 32768
+1.06.829.457 I slot   load_model: id  1 | task -1 | new slot, n_ctx = 32768
+1.06.829.458 I slot   load_model: id  2 | task -1 | new slot, n_ctx = 32768
+1.06.829.458 I slot   load_model: id  3 | task -1 | new slot, n_ctx = 32768
+1.06.829.512 I srv    load_model: prompt cache is enabled, size limit: 8192 MiB
+1.06.829.512 I srv    load_model: use `--cache-ram 0` to disable the prompt cache
+1.06.829.513 I srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+1.06.829.514 I srv    load_model: context checkpoints enabled, max = 32, min spacing = 256
+1.06.829.574 I srv          init: idle slots will be saved to prompt cache and cleared upon starting a new task
+1.06.834.320 I init: chat template, example_format: '<|im_start|>system
+You are a helpful assistant<|im_end|>
+<|im_start|>user
+Hello<|im_end|>
+<|im_start|>assistant
+Hi there<|im_end|>
+<|im_start|>user
+How are you?<|im_end|>
+<|im_start|>assistant
+'
+1.06.836.673 I srv          init: init: chat template, thinking = 0
+1.06.836.692 I srv  llama_server: model loaded
+1.06.836.696 I srv  llama_server: server is listening on http://0.0.0.0:8083
+1.06.836.702 I srv  update_slots: all slots are idle
+1.15.048.333 I srv  params_from_: Chat format: peg-native
+1.15.048.400 I slot get_availabl: id  3 | task -1 | selected slot by LRU, t_last = -1
+1.15.048.402 I srv  get_availabl: updating prompt cache
+1.15.048.406 I srv          load:  - looking for better prompt, base f_keep = -1.000, sim = 0.000
+1.15.048.408 I srv        update:  - cache state: 0 prompts, 0.000 MiB (limits: 8192.000 MiB, 32768 tokens, 8589934592 est)
+1.15.048.408 I srv  get_availabl: prompt cache update took 0.01 ms
+1.15.048.444 I slot launch_slot_: id  3 | task 0 | processing task, is_child = 0
+1.17.746.147 I slot print_timing: id  3 | task 0 | prompt eval time =    1784.24 ms /    36 tokens (   49.56 ms per token,    20.18 tokens per second)
+1.17.746.151 I slot print_timing: id  3 | task 0 |        eval time =     913.45 ms /     9 tokens (  101.49 ms per token,     9.85 tokens per second)
+1.17.746.152 I slot print_timing: id  3 | task 0 |       total time =    2697.69 ms /    45 tokens
+1.17.746.152 I slot print_timing: id  3 | task 0 |    graphs reused =          8
+1.17.746.228 I slot      release: id  3 | task 0 | stop processing: n_tokens = 44, truncated = 0
+1.17.746.234 I srv  update_slots: all slots are idle
