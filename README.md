@@ -322,7 +322,7 @@ CriticalScore(tid) =
 |------|------|------|
 | **Step 1：基础管线** | eBPF 采集 + Perfetto ground truth + frame window 聚合 + 角色识别 + 临时 hint | ✅ 已完成 |
 | **Step 2：增强** | Binder/futex 依赖图 + CPU 频率分析 + jank 分类 + 对比实验 | ✅ 已完成 |
-| **Step 3：前沿** | Thermal 深化 + Inference 证据链融合 + 多会话对比 | ✅ 核心已完成 |
+| **Step 3：前沿** | Thermal 深化 + Inference 证据链融合 + 多会话对比 + Learned policy | ✅ 已完成 |
 
 ### 当前已完成的 Step 1 子任务
 
@@ -344,7 +344,8 @@ CriticalScore(tid) =
 - ✅ Thermal 深化（温控曲线提取、jank 窗口温升、throttle_score）
 - ✅ Inference-aware 证据链融合（多信号加权 → hypothesis + confidence）
 - ✅ Multi-session 多场景对比（jank 率、主因、Top-1 重叠矩阵）
-- ⏸ Learned policy / Cuttlefish / sched_ext（留作 future work）
+- ✅ Learned policy（DecisionTree 模型训练 + C 头文件导出）
+- ⏸ Cuttlefish / sched_ext（留作 future work）
 
 ---
 

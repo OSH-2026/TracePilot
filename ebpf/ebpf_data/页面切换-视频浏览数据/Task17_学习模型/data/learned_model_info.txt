@@ -1,0 +1,28 @@
+=== TracePilot Task 17 — Learned Policy Model ===
+
+训练样本数: 96
+特征维度: 6
+特征列表: ['runnable_delay', 'binder_centrality', 'futex_wait', 'thermal_throttle', 'decode_late', 'system_irq']
+类别数: 10
+
+交叉验证准确率: 1.0000 ± 0.0000
+
+分类报告（训练集）:
+                  precision    recall  f1-score   support
+
+  RUNNABLE_DELAY       1.00      1.00      1.00        32
+THERMAL_THROTTLE       1.00      1.00      1.00        64
+
+        accuracy                           1.00        96
+       macro avg       1.00      1.00      1.00        96
+    weighted avg       1.00      1.00      1.00        96
+
+混淆矩阵:
+[[32  0]
+ [ 0 64]]
+
+决策树结构:
+|--- runnable_delay <= 12.13
+|   |--- class: 0
+|--- runnable_delay >  12.13
+|   |--- class: 3
