@@ -52,7 +52,11 @@ eBPF 是 Linux 内核的一项沙箱技术，允许用户在不修改内核源�
 | `futex` wait/wake | 锁等待 | 识别锁竞争导致的阻塞 |
 | `cpu_frequency` | CPU 频率与核调度 | 分析大小核负载均衡 |
 
-探针源码位于 `ebpf/src/page_turning/page_turning.bpf.c`，使用 C 编写，通过 clang 交叉编译为 BPF 字节码（`.bpf.o`），再由用户态加载器（`page_turning.c`）通过 `bpf()` 系统调用加载到内核。采集的原始事件经 ringbuf 输出到文件（`events.bin`），供离线分析。
+探针源码位于 `ebpf/src/` 目录下，包含多个场景版本：
+- **页面切换-基础版**：`ebpf/src/页面切换-基础版/bpf/tracepilot.bpf.c`
+- **页面切换-视频浏览增强版**：`ebpf/src/页面切换-视频浏览增强版/bpf/tracepilot.bpf.c`
+
+探针使用 C 编写，通过 clang 交叉编译为 BPF 字节码（`.bpf.o`），再由用户态加载器通过 `bpf()` 系统调用加载到内核。采集的原始事件经 ringbuf 输出到文件（`events.bin`），供离线分析。
 
 ---
 
@@ -263,26 +267,28 @@ User Interaction
 
 探针源码位于 [ebpf/src/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src)
 
-### 基础观察（Step 1）
+### 基础探针（Step 1）
 
-- `sched_switch` / `sched_wakeup` — wakeup-to-run latency、runnable delay
-- `binder_transaction` / `binder_transaction_received` — Binder 通信延迟
-- `futex` wait / wake — 锁等待分析
-- `cpu_frequency` — CPU 频率与大中小核信息
+| 探针 | 采集内容 |
+|------|----------|
+| `sched_switch` / `sched_wakeup` | 线程调度事件，计算 wakeup-to-run latency、runnable delay |
+| `binder_transaction` / `binder_transaction_received` | Binder 跨进程调用，分析通信延迟 |
+| `futex` wait / wake | 锁等待/唤醒，识别锁竞争阻塞 |
+| `cpu_frequency` | CPU 频率变化，分析大小核负载 |
 
-### 增强观察（Step 2，已完成）
+### 增强分析（Step 2，已完成）
 
-- Binder 事务/回复依赖图（`binder_transaction` / `binder_transaction_received`）
-- Futex 等待/唤醒图（`futex_wait` / `futex_wake`）
-- CPU 频率追踪（`cpu_frequency`，大小核归因）
-- 温控降频检测（`thermal_temperature` counter）
+- **Binder 依赖图**：构建跨进程调用链，计算 binder_dependency_centrality
+- **Futex 等待图**：追踪锁等待关系，量化 futex_wait_contribution
+- **CPU 频率归因**：区分大小核运行，计算 freq_throttle_ratio
+- **Jank 根因分类器**：基于图拓扑自动分类卡顿原因
 
-### 前沿观察（Step 3，已完成）
+### 前沿分析（Step 3，已完成）
 
-- Thermal 深化（温控曲线提取、jank 窗口温升、throttle_score）
-- Inference 证据链融合（多信号加权 → hypothesis + confidence）
-- 多会话对比（jank 率、主因、Top-1 重叠矩阵）
-- Learned policy（DecisionTree 模型训练 + C 头文件导出）
+- **Thermal 深化**：温控曲线提取、jank 窗口温升、throttle_score
+- **Inference 证据链融合**：多信号加权 → hypothesis + confidence
+- **多会话对比**：jank 率、主因、Top-1 重叠矩阵
+- **Learned policy**：DecisionTree 模型训练 + C 头文件导出
 
 ### 项目源码
 
@@ -310,6 +316,10 @@ User Interaction
 | PREEMPTED_BY | 被抢占 |
 | FRAME_DEPENDENCY | 帧依赖关系 |
 | RESOURCE_STALL | 资源瓶颈 |
+| DECODE_DEPENDENCY | 视频解码依赖 |
+| BUFFER_QUEUE | 缓冲区队列等待 |
+| THERMAL_STALL | 温控导致的停滞 |
+| NETWORK_WAIT | 网络等待 |
 
 ### 关键线程评分模型
 
