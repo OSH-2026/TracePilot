@@ -171,6 +171,8 @@ base_score = 0.35 × J + 0.35 × log1p(rd_ms) + 0.15 × log1p(wl_ms) + 0.15 × U
 
 ---
 
+### 系统架构
+
 ```
 +--------------------------------------------------+
 | Ground Truth Layer                                |
@@ -268,11 +270,19 @@ User Interaction
 - `futex` wait / wake — 锁等待分析
 - `cpu_frequency` — CPU 频率与大中小核信息
 
-### 增强观察（Step 2，后续）
+### 增强观察（Step 2，已完成）
 
-- memory reclaim（`mm_vmscan_direct_reclaim_begin/end`）
-- page fault、block I/O、thermal throttling
-- SurfaceFlinger / RenderEngine 调度
+- Binder 事务/回复依赖图（`binder_transaction` / `binder_transaction_received`）
+- Futex 等待/唤醒图（`futex_wait` / `futex_wake`）
+- CPU 频率追踪（`cpu_frequency`，大小核归因）
+- 温控降频检测（`thermal_temperature` counter）
+
+### 前沿观察（Step 3，已完成）
+
+- Thermal 深化（温控曲线提取、jank 窗口温升、throttle_score）
+- Inference 证据链融合（多信号加权 → hypothesis + confidence）
+- 多会话对比（jank 率、主因、Top-1 重叠矩阵）
+- Learned policy（DecisionTree 模型训练 + C 头文件导出）
 
 ### 项目源码
 
@@ -303,15 +313,32 @@ User Interaction
 
 ### 关键线程评分模型
 
+**通用公式：**
+
 ```
 CriticalScore(tid) =
     a × frame_window_overlap
-  + b × runnable_delay_p95
+  + b × log1p(runnable_delay_p95)
   + c × binder_dependency_centrality
   + d × futex_wait_contribution
   + e × render_path_proximity
   + f × repeated_jank_cooccurrence
   - g × background_penalty
+```
+
+**页面切换场景权重：**
+
+```
+CriticalScore = 0.30×overlap + 0.10×log1p(rd) + 0.25×binder
+              + 0.10×futex + 0.20×render - 0.05×bg
+```
+
+**视频浏览场景权重：**
+
+```
+CriticalScore = 0.15×overlap + 0.10×log1p(rd) + 0.15×binder
+              + 0.05×futex + 0.10×render - 0.05×bg
+              + 0.20×decode + 0.10×thermal + 0.15×buffer - 0.05×net
 ```
 
 ---
@@ -384,6 +411,7 @@ CriticalScore(tid) =
 - 多场景数据集（原始事件 + 特征表 + 分析报告）
 - 行为分析工具链与报告生成脚本
 - 依赖关键路径图构建与评分工具
+- Learned Policy 决策树模型（`learned_model.h`，可嵌入 loader）
 - 实验报告：场景分析、特征重要性、优化建议
 
 ---
@@ -412,4 +440,4 @@ CriticalScore(tid) =
 | **初步工作** | 4/27 ~ 5/1（第九周） |完成交叉编译环境的搭建和对三个常见的场景进行eBPF信息采集和处理。页面切换场景：[ebpf/src/page_turning](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/page_turning)，对应数据处理报告：[behavior_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/behavior_analysis_report.md)；信息流滚动场景数据：[ebpf/ebpf_data/feed_scroll](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll)，对应数据处理报告：[feed_scroll_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/feed_scroll_analysis_report.md) | 中期汇报：潘智勇 |
 | **数据进一步采集与处理** | 5/4 ~ 5/10（第十周） |对中期汇报得到的反馈进行调研和进一步工作，[会议记录](https://github.com/OSH-2026/TracePilot/blob/main/doc/minutes%20of%20meetings/5-6%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95.md) | 调研：李松茂，贺小轩 实现观测和处理：潘智勇，邵晨轩，杨子皓 |
 | **场景拓展与增强** | 5/11 ~ 5/24（第十一至十二周） | 完成**页面切换、拍照、浏览器**三个场景的基础部分（eBPF 采集 + Perfetto 配置 + 分析工具 + 多 App 测试）；推进**支付、游戏、视频**三个拓展场景的基础部分；并行进行页面切换、拍照、浏览器的增强部分（深度帧分析、系统开销归因、评分模型优化） | 潘智勇，邵晨轩，杨子皓 |
-| **页面切换-视频浏览增强版** | 5/25 ~ 6/8（第十三至十四周） | 完成 eBPF + Perfetto 的交互关键路径图（ICPG）双场景分析系统：Binder/Futex 依赖图、CPU 频率归因、Jank 分类器、Thermal 深化、Inference 证据链融合、多会话对比；在 Pixel 6a 上完成页面切换与视频浏览两个场景的采集与分析，输出技术报告与综合分析报告 | 潘智勇 |
+| **页面切换-视频浏览增强版** | 5/25 ~ 6/8（第十三至十四周） | 完成 eBPF + Perfetto 的交互关键路径图（ICPG）双场景分析系统：Binder/Futex 依赖图、CPU 频率归因、Jank 分类器、Thermal 深化、Inference 证据链融合、多会话对比、Learned Policy 决策树模型；在 Pixel 6a 上完成页面切换与视频浏览两个场景的采集与分析，输出技术报告与综合分析报告 | 潘智勇 |
