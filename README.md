@@ -320,9 +320,9 @@ CriticalScore(tid) =
 
 | 层级 | 内容 | 状态 |
 |------|------|------|
-| **Step 1：基础管线** | eBPF 采集 + Perfetto ground truth + frame window 聚合 + 角色识别 + 临时 hint | ✅ 进行中 |
-| **Step 2：增强** | Binder/futex 依赖图 + CPU 频率分析 + jank 分类 + 对比实验 | 📅 后续 |
-| **Step 3：前沿** | inference-aware 调度 + memory/I/O/thermal + 多窗口竞争 + bandit 策略 | 📅 后续 |
+| **Step 1：基础管线** | eBPF 采集 + Perfetto ground truth + frame window 聚合 + 角色识别 + 临时 hint | ✅ 已完成 |
+| **Step 2：增强** | Binder/futex 依赖图 + CPU 频率分析 + jank 分类 + 对比实验 | ✅ 已完成 |
+| **Step 3：前沿** | Thermal 深化 + Inference 证据链融合 + 多会话对比 | ✅ 核心已完成 |
 
 ### 当前已完成的 Step 1 子任务
 
@@ -330,6 +330,21 @@ CriticalScore(tid) =
 - ✅ Perfetto FrameTimeline 采集 jank ground truth
 - ✅ 多场景数据采集（页面切换、信息流、相机）
 - ✅ 行为特征提取与数据分析报告
+
+### 已完成的 Step 2 子任务
+
+- ✅ Binder 事务/回复依赖图追踪
+- ✅ Futex 等待/唤醒图追踪
+- ✅ CPU 频率追踪（大小核归因）
+- ✅ Jank 根因分类器
+- ✅ 启发式策略对比
+
+### 已完成的 Step 3 子任务
+
+- ✅ Thermal 深化（温控曲线提取、jank 窗口温升、throttle_score）
+- ✅ Inference-aware 证据链融合（多信号加权 → hypothesis + confidence）
+- ✅ Multi-session 多场景对比（jank 率、主因、Top-1 重叠矩阵）
+- ⏸ Learned policy / Cuttlefish / sched_ext（留作 future work）
 
 ---
 
