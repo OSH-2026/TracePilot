@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="940" viewBox="0 0 500 940">
+<rect width="100%" height="100%" fill="#fafafa"/>
+<text x="250" y="24" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold">Step 2 · 关键路径子图（Top 节点 + 2-hop）</text>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#555"/></marker></defs>
+<rect x="25.0" y="89.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="106.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">UI_THREAD&#10;TID 103</text>
+<text x="80.0" y="122.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.735</text>
+<rect x="25.0" y="159.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="176.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">rcuop/6&#10;TID 66</text>
+<text x="80.0" y="192.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.571</text>
+<rect x="25.0" y="229.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">rcuop/4&#10;TID 52</text>
+<text x="80.0" y="262.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.568</text>
+<rect x="25.0" y="299.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">UI_THREAD&#10;TID 51</text>
+<text x="80.0" y="332.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.471</text>
+<rect x="25.0" y="369.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">UI_THREAD&#10;TID 48</text>
+<text x="80.0" y="402.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.350</text>
+<rect x="25.0" y="439.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="456.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">UI_THREAD&#10;TID 70</text>
+<text x="80.0" y="472.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.331</text>
+<rect x="25.0" y="509.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="526.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">droid.ugc.awe…&#10;TID 25483</text>
+<text x="80.0" y="542.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.232</text>
+<rect x="25.0" y="579.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="596.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">BckgrndExec HP&#10;TID 707</text>
+<text x="80.0" y="612.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.185</text>
+<rect x="25.0" y="649.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="666.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">#tp-io-14&#10;TID 25528</text>
+<text x="80.0" y="682.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.083</text>
+<rect x="25.0" y="719.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="736.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">android.hardw…&#10;TID 2531</text>
+<text x="80.0" y="752.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.055</text>
+<rect x="25.0" y="789.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="806.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">#NPTH-AnrInfo…&#10;TID 25526</text>
+<text x="80.0" y="822.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.046</text>
+<rect x="245.0" y="439.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="456.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">network&#10;TID -5</text>
+<line x1="80.0" y1="320.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT 17.53ms</text>
+<line x1="80.0" y1="250.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="351.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT x20 867.82ms</text>
+<line x1="80.0" y1="180.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT x2 307.44ms</text>
+<line x1="80.0" y1="530.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="491.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT 7.60ms</text>
+<line x1="80.0" y1="600.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="526.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT 208.34ms</text>
+<line x1="80.0" y1="460.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="456.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT 5.30ms</text>
+<line x1="80.0" y1="670.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="561.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT 5.85ms</text>
+<line x1="80.0" y1="740.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="596.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT 288.39ms</text>
+<line x1="80.0" y1="810.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="631.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT 5.62ms</text>
+<line x1="80.0" y1="110.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="281.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">NETWORK_WAIT x5 2910.86ms</text>
+</svg>

@@ -321,6 +321,22 @@ User Interaction
 | THERMAL_STALL | 温控导致的停滞 |
 | NETWORK_WAIT | 网络等待 |
 
+### 实验结果可视化
+
+**页面切换场景 — 关键路径图：**
+
+![页面切换关键路径图](doc/images/page_switch_critical.svg)
+
+**页面切换场景 — Binder 依赖图：**
+
+![页面切换 Binder 依赖图](doc/images/page_switch_binder.svg)
+
+**视频浏览场景 — 关键路径图：**
+
+![视频浏览关键路径图](doc/images/video_critical.svg)
+
+> 更多图例见 [`doc/report/`](doc/report/) 目录下的分析报告。
+
 ### 关键线程评分模型
 
 **通用公式：**

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="730" viewBox="0 0 720 730">
+<rect width="100%" height="100%" fill="#fafafa"/>
+<text x="360" y="24" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold">Step 2 · Binder 依赖图</text>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#555"/></marker></defs>
+<rect x="25.0" y="89.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="106.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">main&#10;TID 16238</text>
+<text x="80.0" y="122.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.301</text>
+<rect x="25.0" y="159.0" width="110" height="42" rx="6" fill="#4c78a8" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="176.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">RenderThread&#10;TID 2044</text>
+<text x="80.0" y="192.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.289</text>
+<rect x="25.0" y="229.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">BckgrndExec HP&#10;TID 707</text>
+<text x="80.0" y="262.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.184</text>
+<rect x="25.0" y="299.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">PowerManagerS…&#10;TID 1523</text>
+<text x="80.0" y="332.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.150</text>
+<rect x="25.0" y="369.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">PhotonicModul…&#10;TID 1964</text>
+<text x="80.0" y="402.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.110</text>
+<rect x="25.0" y="439.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="456.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:1209_10&#10;TID 2875</text>
+<text x="80.0" y="472.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.094</text>
+<rect x="25.0" y="509.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="526.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">android.anim&#10;TID 1407</text>
+<text x="80.0" y="542.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.082</text>
+<rect x="25.0" y="579.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="596.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">android.hardw…&#10;TID 711</text>
+<text x="80.0" y="612.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.037</text>
+<rect x="245.0" y="89.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="106.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:600_5&#10;TID 2576</text>
+<text x="300.0" y="122.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.202</text>
+<rect x="245.0" y="159.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="176.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:600_2&#10;TID 650</text>
+<text x="300.0" y="192.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.142</text>
+<rect x="245.0" y="229.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:600_3&#10;TID 1965</text>
+<text x="300.0" y="262.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.138</text>
+<rect x="245.0" y="299.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:600_1&#10;TID 649</text>
+<text x="300.0" y="332.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.121</text>
+<rect x="245.0" y="369.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:600_4&#10;TID 2427</text>
+<text x="300.0" y="402.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.096</text>
+<rect x="245.0" y="439.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="456.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:1209_1E&#10;TID 4276</text>
+<text x="300.0" y="472.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.067</text>
+<rect x="245.0" y="509.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="526.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:8252_2&#10;TID 8286</text>
+<text x="300.0" y="542.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.051</text>
+<rect x="245.0" y="579.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="596.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:1209_3&#10;TID 1720</text>
+<text x="300.0" y="612.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.034</text>
+<rect x="465.0" y="299.0" width="110" height="42" rx="6" fill="#e45756" stroke="#333" stroke-width="1"/>
+<text x="520.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">surfaceflinger&#10;TID 600</text>
+<text x="520.0" y="332.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.381</text>
+<rect x="465.0" y="369.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="520.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">HwBinder:602_1&#10;TID 653</text>
+<text x="520.0" y="402.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.206</text>
+<line x1="520.0" y1="320.0" x2="520.0" y2="390.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="520.0" y="351.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL x2 0.14ms</text>
+<line x1="80.0" y1="530.0" x2="300.0" y2="320.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="421.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.05ms</text>
+<line x1="80.0" y1="250.0" x2="300.0" y2="600.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="421.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.23ms</text>
+<line x1="520.0" y1="390.0" x2="300.0" y2="180.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="281.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.08ms</text>
+<line x1="520.0" y1="390.0" x2="520.0" y2="320.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="520.0" y="351.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.05ms</text>
+<line x1="80.0" y1="600.0" x2="300.0" y2="460.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="526.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.02ms</text>
+<line x1="80.0" y1="320.0" x2="300.0" y2="110.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="211.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.07ms</text>
+<line x1="80.0" y1="180.0" x2="300.0" y2="320.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.05ms</text>
+<line x1="80.0" y1="180.0" x2="300.0" y2="110.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="141.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.03ms</text>
+<line x1="80.0" y1="460.0" x2="300.0" y2="320.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.02ms</text>
+<line x1="80.0" y1="110.0" x2="300.0" y2="530.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.96ms</text>
+<line x1="80.0" y1="110.0" x2="300.0" y2="250.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="176.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.05ms</text>
+<line x1="80.0" y1="110.0" x2="300.0" y2="110.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="106.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL x2 0.12ms</text>
+<line x1="80.0" y1="390.0" x2="300.0" y2="390.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.00ms</text>
+<line x1="80.0" y1="390.0" x2="300.0" y2="180.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="281.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.08ms</text>
+</svg>
