@@ -95,11 +95,11 @@ WORKDIR /workspace
 CMD ["sh", "-c", "\
     echo '=== Building all scenarios ===' && \
     echo '--- 页面切换-基础版 ---' && \
-    make -C ebpf/src/页面切换-基础版 bpf 2>/dev/null && \
+    make -C ebpf/src/页面切换-基础版 bpf && \
+    echo '--- 页面切换-视频浏览增强版 ---' && \
+    make -C ebpf/src/页面切换-视频浏览增强版 bpf && \
     echo '--- page_turning ---' && \
-    make -C ebpf/src/page_turning 2>/dev/null || \
-    echo '(page_turning Makefile may need creation)' && \
+    make -C ebpf/src/page_turning 2>/dev/null || true && \
     echo '--- camera ---' && \
-    make -C ebpf/src/camera/ebpf 2>/dev/null || \
-    echo '(camera needs libbpf/src in its directory)' && \
+    make -C ebpf/src/camera/ebpf 2>/dev/null || true && \
     echo '=== Build complete ==='"]
