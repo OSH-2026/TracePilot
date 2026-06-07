@@ -1,0 +1,56 @@
+{
+  "compare_mode": "multi_session_step3",
+  "session_count": 3,
+  "sessions": [
+    {
+      "label": "page_switch",
+      "path": "/mnt/d/osh大作业/页面切换-视频浏览/output/page_switch/result.json",
+      "scenario": "graph_based_critical_path",
+      "package": "com.tencent.mm:push",
+      "session_id": "93d39f8a-fe0f-47d5-b5eb-65d85ca86a20-106833",
+      "total_frames": 1271,
+      "jank_frames": 1228,
+      "jank_ratio": 0.9662,
+      "primary_cause": "RUNNABLE_DELAY",
+      "top_tid": 16945,
+      "top_comm": "emitExt_tracker",
+      "top_critical_score": 0.8563,
+      "graph_precision_at_k": 0.7000
+    },
+    {
+      "label": "page_switch",
+      "path": "/mnt/d/osh大作业/页面切换-视频浏览/output/page_switch_run1/result.json",
+      "scenario": "video",
+      "package": "unknown",
+      "session_id": "6edbc3e2-c29d-470e-90e7-014568bf7365-104731",
+      "total_frames": 2171,
+      "jank_frames": 1575,
+      "jank_ratio": 0.7255,
+      "primary_cause": "RUNNABLE_DELAY",
+      "top_tid": 103,
+      "top_comm": "",
+      "top_critical_score": 0.8247,
+      "graph_precision_at_k": 0.5000
+    },
+    {
+      "label": "video",
+      "path": "/mnt/d/osh大作业/页面切换-视频浏览/output/video/result.json",
+      "scenario": "video",
+      "package": "com.ss.android.ugc.aweme",
+      "session_id": "93d39f8a-fe0f-47d5-b5eb-65d85ca86a20-107983",
+      "total_frames": 2141,
+      "jank_frames": 1524,
+      "jank_ratio": 0.7118,
+      "primary_cause": "RUNNABLE_DELAY",
+      "top_tid": 103,
+      "top_comm": "",
+      "top_critical_score": 0.7350,
+      "graph_precision_at_k": 0.7000
+    }
+  ],
+  "top1_overlap_matrix": [
+    [1, 0, 0],
+    [0, 1, 1],
+    [0, 1, 1]
+  ]
+}

@@ -1,0 +1,5031 @@
+{
+  "format": "tracepilot_subgraph_v1",
+  "directed": true,
+  "top_k": 10,
+  "selected_nodes": 250,
+  "nodes": [
+    {
+      "id": 9,
+      "type": "UI_THREAD",
+      "tid": 25697,
+      "pid": 25697,
+      "comm": "",
+      "critical_score": 0.2040,
+      "frame_window_overlap": 0.8392,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 37,
+      "type": "UI_THREAD",
+      "tid": 51,
+      "pid": 51,
+      "comm": "",
+      "critical_score": 0.4820,
+      "frame_window_overlap": 0.7001,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 43,
+      "type": "UI_THREAD",
+      "tid": 52,
+      "pid": 52,
+      "comm": "rcuop/4",
+      "critical_score": 0.5788,
+      "frame_window_overlap": 0.5814,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 45,
+      "type": "UI_THREAD",
+      "tid": 66,
+      "pid": 66,
+      "comm": "rcuop/6",
+      "critical_score": 0.5816,
+      "frame_window_overlap": 0.0741,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 47,
+      "type": "UI_THREAD",
+      "tid": 48,
+      "pid": 48,
+      "comm": "",
+      "critical_score": 0.3500,
+      "frame_window_overlap": 0.8570,
+      "render_path_proximity": 0.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 0,
+      "in_degree": 0
+    },
+    {
+      "id": 52,
+      "type": "UI_THREAD",
+      "tid": 552,
+      "pid": 552,
+      "comm": "logd.writer",
+      "critical_score": 0.0857,
+      "frame_window_overlap": 0.5131,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 81,
+      "type": "UI_THREAD",
+      "tid": 1277,
+      "pid": 1277,
+      "comm": "main",
+      "critical_score": 0.1084,
+      "frame_window_overlap": 0.3615,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 100,
+      "type": "UI_THREAD",
+      "tid": 25534,
+      "pid": 25534,
+      "comm": "#RxSchedulerPur",
+      "critical_score": 0.0457,
+      "frame_window_overlap": 0.0164,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 103,
+      "type": "UI_THREAD",
+      "tid": 25962,
+      "pid": 25962,
+      "comm": "#tp-scheduled-1",
+      "critical_score": 0.0350,
+      "frame_window_overlap": 0.0144,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 107,
+      "type": "UI_THREAD",
+      "tid": 25533,
+      "pid": 25533,
+      "comm": "#RxCachedWorker",
+      "critical_score": 0.0326,
+      "frame_window_overlap": 0.0144,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 116,
+      "type": "UI_THREAD",
+      "tid": 8085,
+      "pid": 8085,
+      "comm": "RxSchedulerPurg",
+      "critical_score": 0.0310,
+      "frame_window_overlap": 0.0164,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 139,
+      "type": "UI_THREAD",
+      "tid": 25698,
+      "pid": 25698,
+      "comm": "#RxComputationT",
+      "critical_score": 0.0292,
+      "frame_window_overlap": 0.0164,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 147,
+      "type": "UI_THREAD",
+      "tid": 70,
+      "pid": 70,
+      "comm": "",
+      "critical_score": 0.3422,
+      "frame_window_overlap": 0.5407,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 161,
+      "type": "UI_THREAD",
+      "tid": 1770,
+      "pid": 1770,
+      "comm": "eduling.default",
+      "critical_score": 0.0534,
+      "frame_window_overlap": 0.0171,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 186,
+      "type": "UI_THREAD",
+      "tid": 555,
+      "pid": 555,
+      "comm": "logd.auditd",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0282,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 224,
+      "type": "UI_THREAD",
+      "tid": 25531,
+      "pid": 25531,
+      "comm": "#APM6-LIGHT_WEI",
+      "critical_score": 0.0267,
+      "frame_window_overlap": 0.0118,
+      "render_path_proximity": 0.0556,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 250,
+      "type": "UI_THREAD",
+      "tid": 16842,
+      "pid": 16842,
+      "comm": "LongMsgDispatch",
+      "critical_score": 0.0898,
+      "frame_window_overlap": 0.3346,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0556,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 252,
+      "type": "UI_THREAD",
+      "tid": 16714,
+      "pid": 16714,
+      "comm": "Thread-19",
+      "critical_score": 0.0280,
+      "frame_window_overlap": 0.0223,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 253,
+      "type": "UI_THREAD",
+      "tid": 26148,
+      "pid": 26148,
+      "comm": "pool-350-thread",
+      "critical_score": 0.0230,
+      "frame_window_overlap": 0.0007,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0556,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 262,
+      "type": "UI_THREAD",
+      "tid": 17401,
+      "pid": 17401,
+      "comm": "RxSchedulerPurg",
+      "critical_score": 0.0273,
+      "frame_window_overlap": 0.0151,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 269,
+      "type": "SYSTEM_SERVER",
+      "tid": 1209,
+      "pid": 1209,
+      "comm": "system_server",
+      "critical_score": 0.0606,
+      "frame_window_overlap": 0.1706,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 276,
+      "type": "BINDER_SERVER",
+      "tid": 26104,
+      "pid": 26104,
+      "comm": "binder:25483_8",
+      "critical_score": 0.1485,
+      "frame_window_overlap": 0.3051,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.1250,
+      "out_degree": 2,
+      "in_degree": 2
+    },
+    {
+      "id": 280,
+      "type": "UI_THREAD",
+      "tid": 25629,
+      "pid": 25629,
+      "comm": "LocationWorker",
+      "critical_score": 0.0314,
+      "frame_window_overlap": 0.0046,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 295,
+      "type": "UI_THREAD",
+      "tid": 25529,
+      "pid": 25529,
+      "comm": "#tp-scheduled-6",
+      "critical_score": 0.0568,
+      "frame_window_overlap": 0.1089,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 298,
+      "type": "UI_THREAD",
+      "tid": 25569,
+      "pid": 25569,
+      "comm": "ledThreadPool-2",
+      "critical_score": 0.0310,
+      "frame_window_overlap": 0.0164,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 312,
+      "type": "UI_THREAD",
+      "tid": 16975,
+      "pid": 16975,
+      "comm": "DNSThread",
+      "critical_score": 0.0285,
+      "frame_window_overlap": 0.0131,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 319,
+      "type": "UI_THREAD",
+      "tid": 16313,
+      "pid": 16313,
+      "comm": "RxSchedulerPurg",
+      "critical_score": 0.0257,
+      "frame_window_overlap": 0.0138,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0556,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 321,
+      "type": "UI_THREAD",
+      "tid": 25564,
+      "pid": 25564,
+      "comm": "#tp-scheduled-1",
+      "critical_score": 0.0244,
+      "frame_window_overlap": 0.0138,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0526,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 322,
+      "type": "UI_THREAD",
+      "tid": 25554,
+      "pid": 25554,
+      "comm": "#tp-scheduled-1",
+      "critical_score": 0.0235,
+      "frame_window_overlap": 0.0131,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0500,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 329,
+      "type": "UI_THREAD",
+      "tid": 25536,
+      "pid": 25536,
+      "comm": "#APM6-CPU",
+      "critical_score": 0.0249,
+      "frame_window_overlap": 0.0144,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0526,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 333,
+      "type": "UI_THREAD",
+      "tid": 25911,
+      "pid": 25911,
+      "comm": "pcdnio-1",
+      "critical_score": 0.0348,
+      "frame_window_overlap": 0.0499,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 337,
+      "type": "UI_THREAD",
+      "tid": 16971,
+      "pid": 16971,
+      "comm": "DNSThread",
+      "critical_score": 0.0260,
+      "frame_window_overlap": 0.0131,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0556,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 342,
+      "type": "UI_THREAD",
+      "tid": 25685,
+      "pid": 25685,
+      "comm": "#tp-scheduled-2",
+      "critical_score": 0.0274,
+      "frame_window_overlap": 0.0131,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 350,
+      "type": "UI_THREAD",
+      "tid": 25676,
+      "pid": 25676,
+      "comm": "PlayerCommon",
+      "critical_score": 0.0606,
+      "frame_window_overlap": 0.1115,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 392,
+      "type": "UI_THREAD",
+      "tid": 25631,
+      "pid": 25631,
+      "comm": "helios.monitor",
+      "critical_score": 0.0375,
+      "frame_window_overlap": 0.0492,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 465,
+      "type": "BINDER_SERVER",
+      "tid": 1303,
+      "pid": 1303,
+      "comm": "binder:1209_1",
+      "critical_score": 0.0500,
+      "frame_window_overlap": 0.0512,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 1
+    },
+    {
+      "id": 485,
+      "type": "UI_THREAD",
+      "tid": 25814,
+      "pid": 25814,
+      "comm": "#RxComputationT",
+      "critical_score": 0.0538,
+      "frame_window_overlap": 0.0190,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 492,
+      "type": "UI_THREAD",
+      "tid": 25537,
+      "pid": 25537,
+      "comm": "#tp-scheduled-2",
+      "critical_score": 0.0543,
+      "frame_window_overlap": 0.1109,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 508,
+      "type": "UI_THREAD",
+      "tid": 25711,
+      "pid": 25711,
+      "comm": "mdl.log",
+      "critical_score": 0.0367,
+      "frame_window_overlap": 0.0617,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0556,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 546,
+      "type": "UI_THREAD",
+      "tid": 25894,
+      "pid": 25894,
+      "comm": "mali-mem-purge",
+      "critical_score": 0.0589,
+      "frame_window_overlap": 0.1339,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 550,
+      "type": "UI_THREAD",
+      "tid": 26294,
+      "pid": 26294,
+      "comm": "Looper-V2",
+      "critical_score": 0.0793,
+      "frame_window_overlap": 0.2579,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 562,
+      "type": "VIDEO_DECODER",
+      "tid": 26295,
+      "pid": 26295,
+      "comm": "Looper-V2",
+      "critical_score": 0.3407,
+      "frame_window_overlap": 0.0367,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 1.0000,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 569,
+      "type": "UI_THREAD",
+      "tid": 26296,
+      "pid": 26296,
+      "comm": "Reade2-L2",
+      "critical_score": 0.0362,
+      "frame_window_overlap": 0.0322,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 587,
+      "type": "UI_THREAD",
+      "tid": 25679,
+      "pid": 25679,
+      "comm": "hwuiTask1",
+      "critical_score": 0.0352,
+      "frame_window_overlap": 0.0466,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 597,
+      "type": "UI_THREAD",
+      "tid": 17161,
+      "pid": 17161,
+      "comm": "Skynet-schedule",
+      "critical_score": 0.0378,
+      "frame_window_overlap": 0.0322,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 598,
+      "type": "UI_THREAD",
+      "tid": 26298,
+      "pid": 26298,
+      "comm": "CodecLooper",
+      "critical_score": 0.0936,
+      "frame_window_overlap": 0.0098,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.2500,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 600,
+      "type": "UI_THREAD",
+      "tid": 26299,
+      "pid": 26299,
+      "comm": "mdl.eq",
+      "critical_score": 0.0325,
+      "frame_window_overlap": 0.0138,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 603,
+      "type": "UI_THREAD",
+      "tid": 26301,
+      "pid": 26301,
+      "comm": "Dns_117_10277",
+      "critical_score": 0.0261,
+      "frame_window_overlap": 0.0013,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 604,
+      "type": "UI_THREAD",
+      "tid": 26302,
+      "pid": 26302,
+      "comm": "Dns_117_10277",
+      "critical_score": 0.0261,
+      "frame_window_overlap": 0.0013,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 605,
+      "type": "UI_THREAD",
+      "tid": 26303,
+      "pid": 26303,
+      "comm": "Dns_117_10277",
+      "critical_score": 0.0279,
+      "frame_window_overlap": 0.0013,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 614,
+      "type": "UI_THREAD",
+      "tid": 26304,
+      "pid": 26304,
+      "comm": "CodecLooper",
+      "critical_score": 0.0748,
+      "frame_window_overlap": 0.0026,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.2000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 615,
+      "type": "UI_THREAD",
+      "tid": 26305,
+      "pid": 26305,
+      "comm": "CodecLooper",
+      "critical_score": 0.0390,
+      "frame_window_overlap": 0.0144,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 616,
+      "type": "UI_THREAD",
+      "tid": 25600,
+      "pid": 25600,
+      "comm": "scroll-bg-task",
+      "critical_score": 0.0263,
+      "frame_window_overlap": 0.0098,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 618,
+      "type": "UI_THREAD",
+      "tid": 25680,
+      "pid": 25680,
+      "comm": "#WorkerSchedule",
+      "critical_score": 0.0662,
+      "frame_window_overlap": 0.0184,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.1667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 619,
+      "type": "UI_THREAD",
+      "tid": 25682,
+      "pid": 25682,
+      "comm": "#WorkerSchedule",
+      "critical_score": 0.0512,
+      "frame_window_overlap": 0.0184,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.1250,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 620,
+      "type": "UI_THREAD",
+      "tid": 25860,
+      "pid": 25860,
+      "comm": "ransmitThread",
+      "critical_score": 0.0386,
+      "frame_window_overlap": 0.0184,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 621,
+      "type": "UI_THREAD",
+      "tid": 25603,
+      "pid": 25603,
+      "comm": "DefaultDispatch",
+      "critical_score": 0.0653,
+      "frame_window_overlap": 0.0564,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.1429,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 622,
+      "type": "UI_THREAD",
+      "tid": 25601,
+      "pid": 25601,
+      "comm": "DefaultDispatch",
+      "critical_score": 0.0461,
+      "frame_window_overlap": 0.0387,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 623,
+      "type": "UI_THREAD",
+      "tid": 25844,
+      "pid": 25844,
+      "comm": "ransmitThread",
+      "critical_score": 0.0544,
+      "frame_window_overlap": 0.0597,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 636,
+      "type": "BINDER_SERVER",
+      "tid": 26306,
+      "pid": 26306,
+      "comm": "binder:965_3",
+      "critical_score": 0.0323,
+      "frame_window_overlap": 0.0105,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 638,
+      "type": "BINDER_SERVER",
+      "tid": 26307,
+      "pid": 26307,
+      "comm": "binder:965_3",
+      "critical_score": 0.0345,
+      "frame_window_overlap": 0.0092,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 639,
+      "type": "BINDER_SERVER",
+      "tid": 26308,
+      "pid": 26308,
+      "comm": "binder:965_3",
+      "critical_score": 0.0375,
+      "frame_window_overlap": 0.0013,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 643,
+      "type": "UI_THREAD",
+      "tid": 26310,
+      "pid": 26310,
+      "comm": "droid.ugc.aweme",
+      "critical_score": 0.0395,
+      "frame_window_overlap": 0.0591,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 644,
+      "type": "BINDER_SERVER",
+      "tid": 2186,
+      "pid": 2186,
+      "comm": "binder:965_6",
+      "critical_score": 0.0360,
+      "frame_window_overlap": 0.0144,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 645,
+      "type": "UI_THREAD",
+      "tid": 26309,
+      "pid": 26309,
+      "comm": "play_thread_1_N",
+      "critical_score": 0.0393,
+      "frame_window_overlap": 0.0479,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 648,
+      "type": "BINDER_SERVER",
+      "tid": 4529,
+      "pid": 4529,
+      "comm": "binder:965_A",
+      "critical_score": 0.0380,
+      "frame_window_overlap": 0.0118,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 658,
+      "type": "UI_THREAD",
+      "tid": 26311,
+      "pid": 26311,
+      "comm": "Looper-V3",
+      "critical_score": 0.0496,
+      "frame_window_overlap": 0.1266,
+      "render_path_proximity": 0.0556,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 660,
+      "type": "UI_THREAD",
+      "tid": 26312,
+      "pid": 26312,
+      "comm": "Looper-V3",
+      "critical_score": 0.0552,
+      "frame_window_overlap": 0.1581,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 661,
+      "type": "UI_THREAD",
+      "tid": 26313,
+      "pid": 26313,
+      "comm": "Looper-V2",
+      "critical_score": 0.0242,
+      "frame_window_overlap": 0.0066,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0556,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 664,
+      "type": "UI_THREAD",
+      "tid": 25710,
+      "pid": 25710,
+      "comm": "#mdl_log_handle",
+      "critical_score": 0.0570,
+      "frame_window_overlap": 0.0486,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 665,
+      "type": "UI_THREAD",
+      "tid": 26164,
+      "pid": 26164,
+      "comm": "OkHttp Connecti",
+      "critical_score": 0.0237,
+      "frame_window_overlap": 0.0007,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 669,
+      "type": "UI_THREAD",
+      "tid": 26316,
+      "pid": 26316,
+      "comm": "AOutle2-V3",
+      "critical_score": 0.0493,
+      "frame_window_overlap": 0.1155,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 670,
+      "type": "UI_THREAD",
+      "tid": 26315,
+      "pid": 26315,
+      "comm": "Looper-V3",
+      "critical_score": 0.1328,
+      "frame_window_overlap": 0.4442,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 671,
+      "type": "UI_THREAD",
+      "tid": 26314,
+      "pid": 26314,
+      "comm": "VDecod2-V3",
+      "critical_score": 0.0441,
+      "frame_window_overlap": 0.0971,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 672,
+      "type": "UI_THREAD",
+      "tid": 25614,
+      "pid": 25614,
+      "comm": "TTNet-Fg-W",
+      "critical_score": 0.0314,
+      "frame_window_overlap": 0.0164,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 676,
+      "type": "UI_THREAD",
+      "tid": 26317,
+      "pid": 26317,
+      "comm": "CodecLooper",
+      "critical_score": 0.0511,
+      "frame_window_overlap": 0.0748,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 678,
+      "type": "UI_THREAD",
+      "tid": 4075,
+      "pid": 4075,
+      "comm": "[GT]TP#Internal",
+      "critical_score": 0.0501,
+      "frame_window_overlap": 0.0131,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.1250,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 686,
+      "type": "BINDER_SERVER",
+      "tid": 26318,
+      "pid": 26318,
+      "comm": "binder:965_3",
+      "critical_score": 0.0525,
+      "frame_window_overlap": 0.0262,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 687,
+      "type": "BINDER_SERVER",
+      "tid": 26319,
+      "pid": 26319,
+      "comm": "binder:965_3",
+      "critical_score": 0.0410,
+      "frame_window_overlap": 0.0085,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 688,
+      "type": "BINDER_SERVER",
+      "tid": 26320,
+      "pid": 26320,
+      "comm": "binder:965_3",
+      "critical_score": 0.0339,
+      "frame_window_overlap": 0.0066,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 689,
+      "type": "BINDER_SERVER",
+      "tid": 26321,
+      "pid": 26321,
+      "comm": "binder:965_3",
+      "critical_score": 0.0585,
+      "frame_window_overlap": 0.0427,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 1
+    },
+    {
+      "id": 695,
+      "type": "UI_THREAD",
+      "tid": 26322,
+      "pid": 26322,
+      "comm": "VDecod2-L2",
+      "critical_score": 0.0623,
+      "frame_window_overlap": 0.1490,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 697,
+      "type": "UI_THREAD",
+      "tid": 26323,
+      "pid": 26323,
+      "comm": "ADecod2-L2",
+      "critical_score": 0.0442,
+      "frame_window_overlap": 0.0709,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 698,
+      "type": "UI_THREAD",
+      "tid": 26325,
+      "pid": 26325,
+      "comm": "VOutle2-L2",
+      "critical_score": 0.0650,
+      "frame_window_overlap": 0.1726,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 699,
+      "type": "UI_THREAD",
+      "tid": 26326,
+      "pid": 26326,
+      "comm": "AOutle2-L2",
+      "critical_score": 0.0537,
+      "frame_window_overlap": 0.0906,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 700,
+      "type": "UI_THREAD",
+      "tid": 26324,
+      "pid": 26324,
+      "comm": "AGrap2-L2",
+      "critical_score": 0.0906,
+      "frame_window_overlap": 0.3136,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 702,
+      "type": "UI_THREAD",
+      "tid": 26327,
+      "pid": 26327,
+      "comm": "Playe2-L2",
+      "critical_score": 0.0492,
+      "frame_window_overlap": 0.1161,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 704,
+      "type": "UI_THREAD",
+      "tid": 8325,
+      "pid": 8325,
+      "comm": "Okio Watchdog",
+      "critical_score": 0.0287,
+      "frame_window_overlap": 0.0020,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 714,
+      "type": "UI_THREAD",
+      "tid": 103,
+      "pid": 103,
+      "comm": "",
+      "critical_score": 0.7461,
+      "frame_window_overlap": 0.0486,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 720,
+      "type": "BINDER_SERVER",
+      "tid": 17414,
+      "pid": 17414,
+      "comm": "binder:4325_A",
+      "critical_score": 0.0283,
+      "frame_window_overlap": 0.0118,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 743,
+      "type": "UI_THREAD",
+      "tid": 28133,
+      "pid": 28133,
+      "comm": "writer",
+      "critical_score": 0.2395,
+      "frame_window_overlap": 0.9475,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 744,
+      "type": "BINDER_SERVER",
+      "tid": 2853,
+      "pid": 2853,
+      "comm": "binder:2732_1",
+      "critical_score": 0.0419,
+      "frame_window_overlap": 0.0013,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 745,
+      "type": "BINDER_SERVER",
+      "tid": 1570,
+      "pid": 1570,
+      "comm": "HwBinder:910_2",
+      "critical_score": 0.0397,
+      "frame_window_overlap": 0.0020,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 753,
+      "type": "BINDER_SERVER",
+      "tid": 1024,
+      "pid": 1024,
+      "comm": "binder:981_1",
+      "critical_score": 0.0316,
+      "frame_window_overlap": 0.0079,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 754,
+      "type": "BINDER_SERVER",
+      "tid": 26043,
+      "pid": 26043,
+      "comm": "binder:25483_5",
+      "critical_score": 0.0560,
+      "frame_window_overlap": 0.0879,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 755,
+      "type": "AUDIO_THREAD",
+      "tid": 26328,
+      "pid": 26328,
+      "comm": "AudioTrack",
+      "critical_score": 0.0281,
+      "frame_window_overlap": 0.0013,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 756,
+      "type": "BINDER_SERVER",
+      "tid": 1556,
+      "pid": 1556,
+      "comm": "HwBinder:910_2",
+      "critical_score": 0.0260,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 757,
+      "type": "BINDER_SERVER",
+      "tid": 3150,
+      "pid": 3150,
+      "comm": "binder:965_1",
+      "critical_score": 0.0336,
+      "frame_window_overlap": 0.0295,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 758,
+      "type": "UI_THREAD",
+      "tid": 1683,
+      "pid": 1683,
+      "comm": "FastMixer",
+      "critical_score": 0.2158,
+      "frame_window_overlap": 0.9469,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 763,
+      "type": "BINDER_SERVER",
+      "tid": 21592,
+      "pid": 21592,
+      "comm": "binder:981_9",
+      "critical_score": 0.0302,
+      "frame_window_overlap": 0.0020,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 764,
+      "type": "AUDIO_THREAD",
+      "tid": 1688,
+      "pid": 1688,
+      "comm": "AudioOut_15",
+      "critical_score": 0.1858,
+      "frame_window_overlap": 0.7684,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 765,
+      "type": "AUDIO_THREAD",
+      "tid": 1703,
+      "pid": 1703,
+      "comm": "AudioOut_25",
+      "critical_score": 0.1116,
+      "frame_window_overlap": 0.3661,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 766,
+      "type": "AUDIO_THREAD",
+      "tid": 1717,
+      "pid": 1717,
+      "comm": "AudioOut_2D",
+      "critical_score": 0.1081,
+      "frame_window_overlap": 0.3655,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 767,
+      "type": "AUDIO_THREAD",
+      "tid": 1724,
+      "pid": 1724,
+      "comm": "AudioOut_35",
+      "critical_score": 0.1054,
+      "frame_window_overlap": 0.3661,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 768,
+      "type": "AUDIO_THREAD",
+      "tid": 1726,
+      "pid": 1726,
+      "comm": "AudioOut_3D",
+      "critical_score": 0.1009,
+      "frame_window_overlap": 0.3661,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 769,
+      "type": "AUDIO_THREAD",
+      "tid": 1734,
+      "pid": 1734,
+      "comm": "AudioOut_45",
+      "critical_score": 0.1030,
+      "frame_window_overlap": 0.3661,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 770,
+      "type": "UI_THREAD",
+      "tid": 26529,
+      "pid": 26529,
+      "comm": "writer",
+      "critical_score": 0.1769,
+      "frame_window_overlap": 0.7093,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 776,
+      "type": "BINDER_SERVER",
+      "tid": 26052,
+      "pid": 26052,
+      "comm": "binder:25483_6",
+      "critical_score": 0.0458,
+      "frame_window_overlap": 0.0997,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 1
+    },
+    {
+      "id": 777,
+      "type": "BINDER_SERVER",
+      "tid": 25740,
+      "pid": 25740,
+      "comm": "binder:25483_4",
+      "critical_score": 0.0809,
+      "frame_window_overlap": 0.1339,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.1250,
+      "out_degree": 2,
+      "in_degree": 1
+    },
+    {
+      "id": 779,
+      "type": "UI_THREAD",
+      "tid": 4329,
+      "pid": 4329,
+      "comm": "HeapTaskDaemon",
+      "critical_score": 0.0343,
+      "frame_window_overlap": 0.0079,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 784,
+      "type": "UI_THREAD",
+      "tid": 2403,
+      "pid": 2403,
+      "comm": "launcher-loader",
+      "critical_score": 0.0266,
+      "frame_window_overlap": 0.0007,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 788,
+      "type": "UI_THREAD",
+      "tid": 25903,
+      "pid": 25903,
+      "comm": "mali-cmar-backe",
+      "critical_score": 0.0840,
+      "frame_window_overlap": 0.2782,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 791,
+      "type": "UI_THREAD",
+      "tid": 25751,
+      "pid": 25751,
+      "comm": "ythia.scheduler",
+      "critical_score": 0.0344,
+      "frame_window_overlap": 0.0066,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 813,
+      "type": "UI_THREAD",
+      "tid": 25597,
+      "pid": 25597,
+      "comm": "#tp-io-36",
+      "critical_score": 0.0321,
+      "frame_window_overlap": 0.0079,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 821,
+      "type": "UI_THREAD",
+      "tid": 25828,
+      "pid": 25828,
+      "comm": "#timer_thread",
+      "critical_score": 0.0268,
+      "frame_window_overlap": 0.0046,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 831,
+      "type": "UI_THREAD",
+      "tid": 703,
+      "pid": 703,
+      "comm": "f2fs_ckpt-254:5",
+      "critical_score": 0.0419,
+      "frame_window_overlap": 0.0177,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 843,
+      "type": "UI_THREAD",
+      "tid": 4330,
+      "pid": 4330,
+      "comm": "ReferenceQueueD",
+      "critical_score": 0.0267,
+      "frame_window_overlap": 0.0013,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 844,
+      "type": "UI_THREAD",
+      "tid": 4332,
+      "pid": 4332,
+      "comm": "FinalizerWatchd",
+      "critical_score": 0.0287,
+      "frame_window_overlap": 0.0020,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 849,
+      "type": "UI_THREAD",
+      "tid": 4331,
+      "pid": 4331,
+      "comm": "FinalizerDaemon",
+      "critical_score": 0.0332,
+      "frame_window_overlap": 0.0007,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 850,
+      "type": "UI_THREAD",
+      "tid": 25491,
+      "pid": 25491,
+      "comm": "FinalizerWatchd",
+      "critical_score": 0.0366,
+      "frame_window_overlap": 0.0026,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 851,
+      "type": "UI_THREAD",
+      "tid": 20367,
+      "pid": 20367,
+      "comm": "[GT]TP#Internal",
+      "critical_score": 0.0356,
+      "frame_window_overlap": 0.0125,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 855,
+      "type": "UI_THREAD",
+      "tid": 25587,
+      "pid": 25587,
+      "comm": "PushThreadHandl",
+      "critical_score": 0.0289,
+      "frame_window_overlap": 0.0026,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 1701,
+      "type": "VIDEO_DECODER",
+      "tid": 26507,
+      "pid": 26507,
+      "comm": "Looper-V8",
+      "critical_score": 0.3391,
+      "frame_window_overlap": 0.0289,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 1.0000,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 1873,
+      "type": "VIDEO_DECODER",
+      "tid": 26561,
+      "pid": 26561,
+      "comm": "Looper-V11",
+      "critical_score": 0.3388,
+      "frame_window_overlap": 0.0276,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 1.0000,
+      "out_degree": 3,
+      "in_degree": 0
+    },
+    {
+      "id": 1881,
+      "type": "BINDER_SERVER",
+      "tid": 15140,
+      "pid": 15140,
+      "comm": "binder:965_7",
+      "critical_score": 0.1755,
+      "frame_window_overlap": 0.0026,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.5000,
+      "out_degree": 1,
+      "in_degree": 1
+    },
+    {
+      "id": 2128,
+      "type": "VIDEO_DECODER",
+      "tid": 26743,
+      "pid": 26743,
+      "comm": "MediaCodec_loop",
+      "critical_score": 0.3362,
+      "frame_window_overlap": 0.0144,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 1.0000,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 4146,
+      "type": "FUTEX_WAIT",
+      "tid": -17716,
+      "pid": -1,
+      "comm": "futex_16716",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.3333,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4147,
+      "type": "FUTEX_WAIT",
+      "tid": -27295,
+      "pid": -1,
+      "comm": "futex_26295",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.5000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4148,
+      "type": "FUTEX_WAIT",
+      "tid": -27298,
+      "pid": -1,
+      "comm": "futex_26298",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.3333,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4149,
+      "type": "FUTEX_WAIT",
+      "tid": -27304,
+      "pid": -1,
+      "comm": "futex_26304",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.2500,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4150,
+      "type": "FUTEX_WAIT",
+      "tid": -26680,
+      "pid": -1,
+      "comm": "futex_25680",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.2000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4151,
+      "type": "FUTEX_WAIT",
+      "tid": -26603,
+      "pid": -1,
+      "comm": "futex_25603",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.1667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4152,
+      "type": "FUTEX_WAIT",
+      "tid": -26682,
+      "pid": -1,
+      "comm": "futex_25682",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.1429,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4153,
+      "type": "FUTEX_WAIT",
+      "tid": -26844,
+      "pid": -1,
+      "comm": "futex_25844",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.1250,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4154,
+      "type": "FUTEX_WAIT",
+      "tid": -26601,
+      "pid": -1,
+      "comm": "futex_25601",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4155,
+      "type": "FUTEX_WAIT",
+      "tid": -26860,
+      "pid": -1,
+      "comm": "futex_25860",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4156,
+      "type": "FUTEX_WAIT",
+      "tid": -26894,
+      "pid": -1,
+      "comm": "futex_25894",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4157,
+      "type": "FUTEX_WAIT",
+      "tid": -27296,
+      "pid": -1,
+      "comm": "futex_26296",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4158,
+      "type": "FUTEX_WAIT",
+      "tid": -27294,
+      "pid": -1,
+      "comm": "futex_26294",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4159,
+      "type": "FUTEX_WAIT",
+      "tid": -27302,
+      "pid": -1,
+      "comm": "futex_26302",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4160,
+      "type": "FUTEX_WAIT",
+      "tid": -27301,
+      "pid": -1,
+      "comm": "futex_26301",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4161,
+      "type": "FUTEX_WAIT",
+      "tid": -27303,
+      "pid": -1,
+      "comm": "futex_26303",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4162,
+      "type": "FUTEX_WAIT",
+      "tid": -27299,
+      "pid": -1,
+      "comm": "futex_26299",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4163,
+      "type": "FUTEX_WAIT",
+      "tid": -26676,
+      "pid": -1,
+      "comm": "futex_25676",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4164,
+      "type": "FUTEX_WAIT",
+      "tid": -27309,
+      "pid": -1,
+      "comm": "futex_26309",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4165,
+      "type": "FUTEX_WAIT",
+      "tid": -27310,
+      "pid": -1,
+      "comm": "futex_26310",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4166,
+      "type": "FUTEX_WAIT",
+      "tid": -26679,
+      "pid": -1,
+      "comm": "futex_25679",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4167,
+      "type": "FUTEX_WAIT",
+      "tid": -27311,
+      "pid": -1,
+      "comm": "futex_26311",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4168,
+      "type": "FUTEX_WAIT",
+      "tid": -27312,
+      "pid": -1,
+      "comm": "futex_26312",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4169,
+      "type": "FUTEX_WAIT",
+      "tid": -27313,
+      "pid": -1,
+      "comm": "futex_26313",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4170,
+      "type": "FUTEX_WAIT",
+      "tid": -26711,
+      "pid": -1,
+      "comm": "futex_25711",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0556,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4171,
+      "type": "FUTEX_WAIT",
+      "tid": -27148,
+      "pid": -1,
+      "comm": "futex_26148",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4172,
+      "type": "FUTEX_WAIT",
+      "tid": -27164,
+      "pid": -1,
+      "comm": "futex_26164",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4173,
+      "type": "FUTEX_WAIT",
+      "tid": -27314,
+      "pid": -1,
+      "comm": "futex_26314",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4174,
+      "type": "FUTEX_WAIT",
+      "tid": -27316,
+      "pid": -1,
+      "comm": "futex_26316",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4175,
+      "type": "FUTEX_WAIT",
+      "tid": -26614,
+      "pid": -1,
+      "comm": "futex_25614",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4176,
+      "type": "FUTEX_WAIT",
+      "tid": -27306,
+      "pid": -1,
+      "comm": "futex_26306",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4177,
+      "type": "FUTEX_WAIT",
+      "tid": -27307,
+      "pid": -1,
+      "comm": "futex_26307",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4178,
+      "type": "FUTEX_WAIT",
+      "tid": -5529,
+      "pid": -1,
+      "comm": "futex_4529",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4179,
+      "type": "FUTEX_WAIT",
+      "tid": -5075,
+      "pid": -1,
+      "comm": "futex_4075",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4180,
+      "type": "FUTEX_WAIT",
+      "tid": -27308,
+      "pid": -1,
+      "comm": "futex_26308",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4181,
+      "type": "FUTEX_WAIT",
+      "tid": -27305,
+      "pid": -1,
+      "comm": "futex_26305",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4182,
+      "type": "FUTEX_WAIT",
+      "tid": -27315,
+      "pid": -1,
+      "comm": "futex_26315",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4183,
+      "type": "FUTEX_WAIT",
+      "tid": -27322,
+      "pid": -1,
+      "comm": "futex_26322",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4184,
+      "type": "FUTEX_WAIT",
+      "tid": -27323,
+      "pid": -1,
+      "comm": "futex_26323",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4185,
+      "type": "FUTEX_WAIT",
+      "tid": -27324,
+      "pid": -1,
+      "comm": "futex_26324",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4186,
+      "type": "FUTEX_WAIT",
+      "tid": -27327,
+      "pid": -1,
+      "comm": "futex_26327",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4187,
+      "type": "FUTEX_WAIT",
+      "tid": -2209,
+      "pid": -1,
+      "comm": "futex_1209",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4188,
+      "type": "FUTEX_WAIT",
+      "tid": -9325,
+      "pid": -1,
+      "comm": "futex_8325",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4189,
+      "type": "FUTEX_WAIT",
+      "tid": -27325,
+      "pid": -1,
+      "comm": "futex_26325",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4190,
+      "type": "FUTEX_WAIT",
+      "tid": -3186,
+      "pid": -1,
+      "comm": "futex_2186",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4191,
+      "type": "FUTEX_WAIT",
+      "tid": -2303,
+      "pid": -1,
+      "comm": "futex_1303",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4192,
+      "type": "FUTEX_WAIT",
+      "tid": -29133,
+      "pid": -1,
+      "comm": "futex_28133",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4193,
+      "type": "FUTEX_WAIT",
+      "tid": -2570,
+      "pid": -1,
+      "comm": "futex_1570",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4194,
+      "type": "FUTEX_WAIT",
+      "tid": -3853,
+      "pid": -1,
+      "comm": "futex_2853",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4195,
+      "type": "FUTEX_WAIT",
+      "tid": -26710,
+      "pid": -1,
+      "comm": "futex_25710",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4196,
+      "type": "FUTEX_WAIT",
+      "tid": -27104,
+      "pid": -1,
+      "comm": "futex_26104",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4197,
+      "type": "FUTEX_WAIT",
+      "tid": -27318,
+      "pid": -1,
+      "comm": "futex_26318",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4198,
+      "type": "FUTEX_WAIT",
+      "tid": -27321,
+      "pid": -1,
+      "comm": "futex_26321",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4199,
+      "type": "FUTEX_WAIT",
+      "tid": -27319,
+      "pid": -1,
+      "comm": "futex_26319",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4200,
+      "type": "FUTEX_WAIT",
+      "tid": -27326,
+      "pid": -1,
+      "comm": "futex_26326",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4201,
+      "type": "FUTEX_WAIT",
+      "tid": -27320,
+      "pid": -1,
+      "comm": "futex_26320",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4202,
+      "type": "FUTEX_WAIT",
+      "tid": -2024,
+      "pid": -1,
+      "comm": "futex_1024",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4203,
+      "type": "FUTEX_WAIT",
+      "tid": -27328,
+      "pid": -1,
+      "comm": "futex_26328",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4204,
+      "type": "FUTEX_WAIT",
+      "tid": -2556,
+      "pid": -1,
+      "comm": "futex_1556",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4205,
+      "type": "FUTEX_WAIT",
+      "tid": -2683,
+      "pid": -1,
+      "comm": "futex_1683",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4206,
+      "type": "FUTEX_WAIT",
+      "tid": -4150,
+      "pid": -1,
+      "comm": "futex_3150",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4207,
+      "type": "FUTEX_WAIT",
+      "tid": -22592,
+      "pid": -1,
+      "comm": "futex_21592",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4208,
+      "type": "FUTEX_WAIT",
+      "tid": -2688,
+      "pid": -1,
+      "comm": "futex_1688",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4209,
+      "type": "FUTEX_WAIT",
+      "tid": -27529,
+      "pid": -1,
+      "comm": "futex_26529",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 3
+    },
+    {
+      "id": 4210,
+      "type": "FUTEX_WAIT",
+      "tid": -27043,
+      "pid": -1,
+      "comm": "futex_26043",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4211,
+      "type": "FUTEX_WAIT",
+      "tid": -26740,
+      "pid": -1,
+      "comm": "futex_25740",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.1111,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4212,
+      "type": "FUTEX_WAIT",
+      "tid": -2703,
+      "pid": -1,
+      "comm": "futex_1703",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 3
+    },
+    {
+      "id": 4213,
+      "type": "FUTEX_WAIT",
+      "tid": -2717,
+      "pid": -1,
+      "comm": "futex_1717",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4214,
+      "type": "FUTEX_WAIT",
+      "tid": -2724,
+      "pid": -1,
+      "comm": "futex_1724",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4215,
+      "type": "FUTEX_WAIT",
+      "tid": -2734,
+      "pid": -1,
+      "comm": "futex_1734",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4216,
+      "type": "FUTEX_WAIT",
+      "tid": -2726,
+      "pid": -1,
+      "comm": "futex_1726",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4217,
+      "type": "FUTEX_WAIT",
+      "tid": -18414,
+      "pid": -1,
+      "comm": "futex_17414",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4218,
+      "type": "FUTEX_WAIT",
+      "tid": -27052,
+      "pid": -1,
+      "comm": "futex_26052",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4219,
+      "type": "FUTEX_WAIT",
+      "tid": -26911,
+      "pid": -1,
+      "comm": "futex_25911",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4220,
+      "type": "FUTEX_WAIT",
+      "tid": -3403,
+      "pid": -1,
+      "comm": "futex_2403",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4221,
+      "type": "FUTEX_WAIT",
+      "tid": -26903,
+      "pid": -1,
+      "comm": "futex_25903",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4222,
+      "type": "FUTEX_WAIT",
+      "tid": -1552,
+      "pid": -1,
+      "comm": "futex_552",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4223,
+      "type": "FUTEX_WAIT",
+      "tid": -1555,
+      "pid": -1,
+      "comm": "futex_555",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4224,
+      "type": "FUTEX_WAIT",
+      "tid": -2277,
+      "pid": -1,
+      "comm": "futex_1277",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4225,
+      "type": "FUTEX_WAIT",
+      "tid": -2770,
+      "pid": -1,
+      "comm": "futex_1770",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4226,
+      "type": "FUTEX_WAIT",
+      "tid": -27317,
+      "pid": -1,
+      "comm": "futex_26317",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4227,
+      "type": "FUTEX_WAIT",
+      "tid": -26751,
+      "pid": -1,
+      "comm": "futex_25751",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4228,
+      "type": "FUTEX_WAIT",
+      "tid": -26629,
+      "pid": -1,
+      "comm": "futex_25629",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4229,
+      "type": "FUTEX_WAIT",
+      "tid": -18161,
+      "pid": -1,
+      "comm": "futex_17161",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4230,
+      "type": "FUTEX_WAIT",
+      "tid": -5329,
+      "pid": -1,
+      "comm": "futex_4329",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4231,
+      "type": "FUTEX_WAIT",
+      "tid": -26534,
+      "pid": -1,
+      "comm": "futex_25534",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4232,
+      "type": "FUTEX_WAIT",
+      "tid": -26962,
+      "pid": -1,
+      "comm": "futex_25962",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4233,
+      "type": "FUTEX_WAIT",
+      "tid": -26533,
+      "pid": -1,
+      "comm": "futex_25533",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4234,
+      "type": "FUTEX_WAIT",
+      "tid": -9085,
+      "pid": -1,
+      "comm": "futex_8085",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4235,
+      "type": "FUTEX_WAIT",
+      "tid": -26698,
+      "pid": -1,
+      "comm": "futex_25698",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4236,
+      "type": "FUTEX_WAIT",
+      "tid": -26531,
+      "pid": -1,
+      "comm": "futex_25531",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0588,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4237,
+      "type": "FUTEX_WAIT",
+      "tid": -17714,
+      "pid": -1,
+      "comm": "futex_16714",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4238,
+      "type": "FUTEX_WAIT",
+      "tid": -17842,
+      "pid": -1,
+      "comm": "futex_16842",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4239,
+      "type": "FUTEX_WAIT",
+      "tid": -18401,
+      "pid": -1,
+      "comm": "futex_17401",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4240,
+      "type": "FUTEX_WAIT",
+      "tid": -26828,
+      "pid": -1,
+      "comm": "futex_25828",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4241,
+      "type": "FUTEX_WAIT",
+      "tid": -26631,
+      "pid": -1,
+      "comm": "futex_25631",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4242,
+      "type": "FUTEX_WAIT",
+      "tid": -26529,
+      "pid": -1,
+      "comm": "futex_25529",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4243,
+      "type": "FUTEX_WAIT",
+      "tid": -26569,
+      "pid": -1,
+      "comm": "futex_25569",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4244,
+      "type": "FUTEX_WAIT",
+      "tid": -17975,
+      "pid": -1,
+      "comm": "futex_16975",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4245,
+      "type": "FUTEX_WAIT",
+      "tid": -26600,
+      "pid": -1,
+      "comm": "futex_25600",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4246,
+      "type": "FUTEX_WAIT",
+      "tid": -17313,
+      "pid": -1,
+      "comm": "futex_16313",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4247,
+      "type": "FUTEX_WAIT",
+      "tid": -26564,
+      "pid": -1,
+      "comm": "futex_25564",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0556,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4248,
+      "type": "FUTEX_WAIT",
+      "tid": -26554,
+      "pid": -1,
+      "comm": "futex_25554",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0625,
+      "decode_path_proximity": 0.0526,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4249,
+      "type": "FUTEX_WAIT",
+      "tid": -26536,
+      "pid": -1,
+      "comm": "futex_25536",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0556,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4250,
+      "type": "FUTEX_WAIT",
+      "tid": -17971,
+      "pid": -1,
+      "comm": "futex_16971",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0588,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4251,
+      "type": "FUTEX_WAIT",
+      "tid": -26685,
+      "pid": -1,
+      "comm": "futex_25685",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4252,
+      "type": "FUTEX_WAIT",
+      "tid": -5330,
+      "pid": -1,
+      "comm": "futex_4330",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4253,
+      "type": "FUTEX_WAIT",
+      "tid": -5332,
+      "pid": -1,
+      "comm": "futex_4332",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4254,
+      "type": "FUTEX_WAIT",
+      "tid": -26597,
+      "pid": -1,
+      "comm": "futex_25597",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4255,
+      "type": "FUTEX_WAIT",
+      "tid": -5331,
+      "pid": -1,
+      "comm": "futex_4331",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4256,
+      "type": "FUTEX_WAIT",
+      "tid": -26491,
+      "pid": -1,
+      "comm": "futex_25491",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4257,
+      "type": "FUTEX_WAIT",
+      "tid": -26814,
+      "pid": -1,
+      "comm": "futex_25814",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.1000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4258,
+      "type": "FUTEX_WAIT",
+      "tid": -26697,
+      "pid": -1,
+      "comm": "futex_25697",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0909,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4259,
+      "type": "FUTEX_WAIT",
+      "tid": -21367,
+      "pid": -1,
+      "comm": "futex_20367",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0833,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4260,
+      "type": "FUTEX_WAIT",
+      "tid": -26537,
+      "pid": -1,
+      "comm": "futex_25537",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0769,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4261,
+      "type": "FUTEX_WAIT",
+      "tid": -26587,
+      "pid": -1,
+      "comm": "futex_25587",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0714,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4262,
+      "type": "FUTEX_WAIT",
+      "tid": -18289,
+      "pid": -1,
+      "comm": "futex_17289",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0667,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4263,
+      "type": "FUTEX_WAIT",
+      "tid": -17966,
+      "pid": -1,
+      "comm": "futex_16966",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0625,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4602,
+      "type": "FUTEX_WAIT",
+      "tid": -27507,
+      "pid": -1,
+      "comm": "futex_26507",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.5000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4670,
+      "type": "FUTEX_WAIT",
+      "tid": -27561,
+      "pid": -1,
+      "comm": "futex_26561",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.5000,
+      "out_degree": 1,
+      "in_degree": 3
+    },
+    {
+      "id": 4683,
+      "type": "FUTEX_WAIT",
+      "tid": -16140,
+      "pid": -1,
+      "comm": "futex_15140",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.3333,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4858,
+      "type": "FUTEX_WAIT",
+      "tid": -27743,
+      "pid": -1,
+      "comm": "futex_26743",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.5000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 6058,
+      "type": "NETWORK",
+      "tid": -5,
+      "pid": -1,
+      "comm": "network",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.1250,
+      "out_degree": 0,
+      "in_degree": 25
+    },
+    {
+      "id": 6060,
+      "type": "BUFFER_QUEUE",
+      "tid": -7,
+      "pid": -1,
+      "comm": "buffer_queue",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.5000,
+      "out_degree": 1,
+      "in_degree": 11
+    }
+  ],
+  "edges": [
+    {
+      "from": 9,
+      "to": 4258,
+      "type": "FUTEX_WAIT",
+      "count": 56,
+      "duration_ns": 28292773699
+    },
+    {
+      "from": 37,
+      "to": 6058,
+      "type": "NETWORK_WAIT",
+      "count": 1,
+      "duration_ns": 17533772
+    },
+    {
+      "from": 43,
+      "to": 6058,
+      "type": "NETWORK_WAIT",
+      "count": 20,
+      "duration_ns": 867818565
+    },
+    {
+      "from": 45,
+      "to": 6058,
+      "type": "NETWORK_WAIT",
+      "count": 2,
+      "duration_ns": 307441081
+    },
+    {
+      "from": 52,
+      "to": 4222,
+      "type": "FUTEX_WAIT",
+      "count": 8,
+      "duration_ns": 9164876
+    },
+    {
+      "from": 81,
+      "to": 4224,
+      "type": "FUTEX_WAIT",
+      "count": 22,
+      "duration_ns": 730673
+    },
+    {
+      "from": 100,
+      "to": 4231,
+      "type": "FUTEX_WAIT",
+      "count": 31,
+      "duration_ns": 29974093724
+    },
+    {
+      "from": 103,
+      "to": 4232,
+      "type": "FUTEX_WAIT",
+      "count": 30,
+      "duration_ns": 29004277845
+    },
+    {
+      "from": 107,
+      "to": 4233,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 29003286147
+    },
+    {
+      "from": 116,
+      "to": 4234,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 28990209160
+    },
+    {
+      "from": 139,
+      "to": 4235,
+      "type": "FUTEX_WAIT",
+      "count": 40,
+      "duration_ns": 29845078100
+    },
+    {
+      "from": 147,
+      "to": 6058,
+      "type": "NETWORK_WAIT",
+      "count": 1,
+      "duration_ns": 5299276
+    },
+    {
+      "from": 161,
+      "to": 6058,
+      "type": "NETWORK_WAIT",
+      "count": 1,
+      "duration_ns": 70315512
+    },
+    {
+      "from": 161,
+      "to": 4225,
+      "type": "FUTEX_WAIT",
+      "count": 26,
+      "duration_ns": 7029051
+    },
+    {
+      "from": 186,
+      "to": 4223,
+      "type": "FUTEX_WAIT",
+      "count": 9,
+      "duration_ns": 677028889
+    },
+    {
+      "from": 224,
+      "to": 4236,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 29010045953
+    },
+    {
+      "from": 250,
+      "to": 4238,
+      "type": "FUTEX_WAIT",
+      "count": 85,
+      "duration_ns": 24397300
+    },
+    {
+      "from": 252,
+      "to": 4237,
+      "type": "FUTEX_WAIT",
+      "count": 33,
+      "duration_ns": 29381566912
+    },
+    {
+      "from": 253,
+      "to": 4171,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 19703770355
+    },
+    {
+      "from": 262,
+      "to": 4239,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 28993611260
+    },
+    {
+      "from": 269,
+      "to": 4187,
+      "type": "FUTEX_WAIT",
+      "count": 46,
+      "duration_ns": 26292725
+    },
+    {
+      "from": 276,
+      "to": 4196,
+      "type": "FUTEX_WAIT",
+      "count": 701,
+      "duration_ns": 35521901
+    },
+    {
+      "from": 280,
+      "to": 4228,
+      "type": "FUTEX_WAIT",
+      "count": 9,
+      "duration_ns": 120238
+    },
+    {
+      "from": 295,
+      "to": 4209,
+      "type": "RESOURCE_STALL",
+      "count": 11,
+      "duration_ns": 5500000
+    },
+    {
+      "from": 295,
+      "to": 4242,
+      "type": "FUTEX_WAIT",
+      "count": 1482,
+      "duration_ns": 28172814907
+    },
+    {
+      "from": 298,
+      "to": 4243,
+      "type": "FUTEX_WAIT",
+      "count": 32,
+      "duration_ns": 28995895685
+    },
+    {
+      "from": 312,
+      "to": 4244,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 29007896944
+    },
+    {
+      "from": 319,
+      "to": 4246,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 28996115283
+    },
+    {
+      "from": 321,
+      "to": 4247,
+      "type": "FUTEX_WAIT",
+      "count": 30,
+      "duration_ns": 28987425633
+    },
+    {
+      "from": 322,
+      "to": 4248,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 28998554948
+    },
+    {
+      "from": 329,
+      "to": 4249,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 29009500580
+    },
+    {
+      "from": 333,
+      "to": 4219,
+      "type": "FUTEX_WAIT",
+      "count": 188,
+      "duration_ns": 4226914
+    },
+    {
+      "from": 337,
+      "to": 4250,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 29011135597
+    },
+    {
+      "from": 342,
+      "to": 4251,
+      "type": "FUTEX_WAIT",
+      "count": 29,
+      "duration_ns": 29006283301
+    },
+    {
+      "from": 350,
+      "to": 4163,
+      "type": "FUTEX_WAIT",
+      "count": 34,
+      "duration_ns": 5815023
+    },
+    {
+      "from": 392,
+      "to": 4241,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 74421
+    },
+    {
+      "from": 465,
+      "to": 4191,
+      "type": "FUTEX_WAIT",
+      "count": 44,
+      "duration_ns": 5599040
+    },
+    {
+      "from": 485,
+      "to": 6058,
+      "type": "NETWORK_WAIT",
+      "count": 1,
+      "duration_ns": 398907145
+    },
+    {
+      "from": 485,
+      "to": 4257,
+      "type": "FUTEX_WAIT",
+      "count": 37,
+      "duration_ns": 28691426163
+    },
+    {
+      "from": 492,
+      "to": 4260,
+      "type": "FUTEX_WAIT",
+      "count": 566,
+      "duration_ns": 29064772729
+    },
+    {
+      "from": 508,
+      "to": 4170,
+      "type": "FUTEX_WAIT",
+      "count": 320,
+      "duration_ns": 29321021739
+    },
+    {
+      "from": 546,
+      "to": 4156,
+      "type": "FUTEX_WAIT",
+      "count": 249,
+      "duration_ns": 28435107442
+    },
+    {
+      "from": 550,
+      "to": 4158,
+      "type": "FUTEX_WAIT",
+      "count": 827,
+      "duration_ns": 29099618190
+    },
+    {
+      "from": 562,
+      "to": 6060,
+      "type": "BUFFER_QUEUE",
+      "count": 1,
+      "duration_ns": 5000000
+    },
+    {
+      "from": 562,
+      "to": 4147,
+      "type": "FUTEX_WAIT",
+      "count": 655,
+      "duration_ns": 3077727953
+    },
+    {
+      "from": 569,
+      "to": 4157,
+      "type": "FUTEX_WAIT",
+      "count": 17,
+      "duration_ns": 12638018
+    },
+    {
+      "from": 587,
+      "to": 4166,
+      "type": "FUTEX_WAIT",
+      "count": 90,
+      "duration_ns": 28753317648
+    },
+    {
+      "from": 597,
+      "to": 4229,
+      "type": "FUTEX_WAIT",
+      "count": 59,
+      "duration_ns": 28690059954
+    },
+    {
+      "from": 598,
+      "to": 4148,
+      "type": "FUTEX_WAIT",
+      "count": 262,
+      "duration_ns": 3060379806
+    },
+    {
+      "from": 600,
+      "to": 4162,
+      "type": "FUTEX_WAIT",
+      "count": 130,
+      "duration_ns": 7849156421
+    },
+    {
+      "from": 603,
+      "to": 4160,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 39659994
+    },
+    {
+      "from": 604,
+      "to": 4159,
+      "type": "FUTEX_WAIT",
+      "count": 1,
+      "duration_ns": 9481
+    },
+    {
+      "from": 605,
+      "to": 4161,
+      "type": "FUTEX_WAIT",
+      "count": 1,
+      "duration_ns": 12045
+    },
+    {
+      "from": 614,
+      "to": 4149,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 18125515104
+    },
+    {
+      "from": 615,
+      "to": 4181,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 2394255983
+    },
+    {
+      "from": 616,
+      "to": 4245,
+      "type": "FUTEX_WAIT",
+      "count": 144,
+      "duration_ns": 5600877
+    },
+    {
+      "from": 618,
+      "to": 4150,
+      "type": "FUTEX_WAIT",
+      "count": 70,
+      "duration_ns": 29004987160
+    },
+    {
+      "from": 619,
+      "to": 4152,
+      "type": "FUTEX_WAIT",
+      "count": 80,
+      "duration_ns": 29006836483
+    },
+    {
+      "from": 620,
+      "to": 4155,
+      "type": "FUTEX_WAIT",
+      "count": 202,
+      "duration_ns": 27211732184
+    },
+    {
+      "from": 621,
+      "to": 4151,
+      "type": "FUTEX_WAIT",
+      "count": 407,
+      "duration_ns": 27026290091
+    },
+    {
+      "from": 622,
+      "to": 4154,
+      "type": "FUTEX_WAIT",
+      "count": 247,
+      "duration_ns": 26099808415
+    },
+    {
+      "from": 623,
+      "to": 4153,
+      "type": "FUTEX_WAIT",
+      "count": 432,
+      "duration_ns": 28406079638
+    },
+    {
+      "from": 636,
+      "to": 4176,
+      "type": "FUTEX_WAIT",
+      "count": 406,
+      "duration_ns": 3068906451
+    },
+    {
+      "from": 638,
+      "to": 4177,
+      "type": "FUTEX_WAIT",
+      "count": 350,
+      "duration_ns": 3080114948
+    },
+    {
+      "from": 639,
+      "to": 4180,
+      "type": "FUTEX_WAIT",
+      "count": 11,
+      "duration_ns": 3129504678
+    },
+    {
+      "from": 643,
+      "to": 4165,
+      "type": "FUTEX_WAIT",
+      "count": 103,
+      "duration_ns": 67139034
+    },
+    {
+      "from": 644,
+      "to": 4190,
+      "type": "FUTEX_WAIT",
+      "count": 90,
+      "duration_ns": 7532266
+    },
+    {
+      "from": 645,
+      "to": 4164,
+      "type": "FUTEX_WAIT",
+      "count": 109,
+      "duration_ns": 108741617
+    },
+    {
+      "from": 648,
+      "to": 4178,
+      "type": "FUTEX_WAIT",
+      "count": 62,
+      "duration_ns": 38306641
+    },
+    {
+      "from": 658,
+      "to": 4167,
+      "type": "FUTEX_WAIT",
+      "count": 555,
+      "duration_ns": 29169307908
+    },
+    {
+      "from": 660,
+      "to": 4168,
+      "type": "FUTEX_WAIT",
+      "count": 535,
+      "duration_ns": 26909732503
+    },
+    {
+      "from": 661,
+      "to": 4169,
+      "type": "FUTEX_WAIT",
+      "count": 41,
+      "duration_ns": 3052042
+    },
+    {
+      "from": 664,
+      "to": 4195,
+      "type": "FUTEX_WAIT",
+      "count": 81,
+      "duration_ns": 8338338
+    },
+    {
+      "from": 665,
+      "to": 4172,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 862763672
+    },
+    {
+      "from": 669,
+      "to": 4174,
+      "type": "FUTEX_WAIT",
+      "count": 319,
+      "duration_ns": 28804630955
+    },
+    {
+      "from": 670,
+      "to": 4182,
+      "type": "FUTEX_WAIT",
+      "count": 1192,
+      "duration_ns": 29007548192
+    },
+    {
+      "from": 671,
+      "to": 4173,
+      "type": "FUTEX_WAIT",
+      "count": 321,
+      "duration_ns": 18224957039
+    },
+    {
+      "from": 672,
+      "to": 4175,
+      "type": "FUTEX_WAIT",
+      "count": 33,
+      "duration_ns": 28317981378
+    },
+    {
+      "from": 676,
+      "to": 4226,
+      "type": "FUTEX_WAIT",
+      "count": 219,
+      "duration_ns": 18023657981
+    },
+    {
+      "from": 678,
+      "to": 4179,
+      "type": "FUTEX_WAIT",
+      "count": 23,
+      "duration_ns": 1508705
+    },
+    {
+      "from": 686,
+      "to": 4197,
+      "type": "FUTEX_WAIT",
+      "count": 321,
+      "duration_ns": 3009742676
+    },
+    {
+      "from": 687,
+      "to": 4199,
+      "type": "FUTEX_WAIT",
+      "count": 111,
+      "duration_ns": 2870575684
+    },
+    {
+      "from": 688,
+      "to": 4201,
+      "type": "FUTEX_WAIT",
+      "count": 103,
+      "duration_ns": 45783739
+    },
+    {
+      "from": 689,
+      "to": 4198,
+      "type": "FUTEX_WAIT",
+      "count": 232,
+      "duration_ns": 87155722
+    },
+    {
+      "from": 695,
+      "to": 4183,
+      "type": "FUTEX_WAIT",
+      "count": 669,
+      "duration_ns": 18527674121
+    },
+    {
+      "from": 697,
+      "to": 4184,
+      "type": "FUTEX_WAIT",
+      "count": 517,
+      "duration_ns": 18703881386
+    },
+    {
+      "from": 698,
+      "to": 4189,
+      "type": "FUTEX_WAIT",
+      "count": 1075,
+      "duration_ns": 17917859590
+    },
+    {
+      "from": 699,
+      "to": 4200,
+      "type": "FUTEX_WAIT",
+      "count": 347,
+      "duration_ns": 25498959201
+    },
+    {
+      "from": 700,
+      "to": 4185,
+      "type": "FUTEX_WAIT",
+      "count": 1136,
+      "duration_ns": 24277091436
+    },
+    {
+      "from": 702,
+      "to": 4186,
+      "type": "FUTEX_WAIT",
+      "count": 555,
+      "duration_ns": 26943264708
+    },
+    {
+      "from": 704,
+      "to": 4188,
+      "type": "FUTEX_WAIT",
+      "count": 115,
+      "duration_ns": 812962157
+    },
+    {
+      "from": 714,
+      "to": 6058,
+      "type": "NETWORK_WAIT",
+      "count": 5,
+      "duration_ns": 2910860637
+    },
+    {
+      "from": 720,
+      "to": 4217,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 38982
+    },
+    {
+      "from": 743,
+      "to": 6058,
+      "type": "NETWORK_WAIT",
+      "count": 1,
+      "duration_ns": 126037272
+    },
+    {
+      "from": 743,
+      "to": 4192,
+      "type": "FUTEX_WAIT",
+      "count": 11568,
+      "duration_ns": 923878859
+    },
+    {
+      "from": 744,
+      "to": 4194,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 71086
+    },
+    {
+      "from": 745,
+      "to": 4193,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 2022095
+    },
+    {
+      "from": 753,
+      "to": 4202,
+      "type": "FUTEX_WAIT",
+      "count": 54,
+      "duration_ns": 1120154
+    },
+    {
+      "from": 754,
+      "to": 4210,
+      "type": "FUTEX_WAIT",
+      "count": 206,
+      "duration_ns": 9142334
+    },
+    {
+      "from": 755,
+      "to": 4203,
+      "type": "FUTEX_WAIT",
+      "count": 14,
+      "duration_ns": 11264680101
+    },
+    {
+      "from": 756,
+      "to": 4204,
+      "type": "FUTEX_WAIT",
+      "count": 1,
+      "duration_ns": 21484
+    },
+    {
+      "from": 757,
+      "to": 776,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 251506
+    },
+    {
+      "from": 757,
+      "to": 4206,
+      "type": "FUTEX_WAIT",
+      "count": 276,
+      "duration_ns": 18445984754
+    },
+    {
+      "from": 758,
+      "to": 4205,
+      "type": "FUTEX_WAIT",
+      "count": 14524,
+      "duration_ns": 28216158328
+    },
+    {
+      "from": 763,
+      "to": 4207,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 23926
+    },
+    {
+      "from": 764,
+      "to": 4208,
+      "type": "FUTEX_WAIT",
+      "count": 7299,
+      "duration_ns": 25264411210
+    },
+    {
+      "from": 765,
+      "to": 4212,
+      "type": "FUTEX_WAIT",
+      "count": 1185,
+      "duration_ns": 19521937435
+    },
+    {
+      "from": 766,
+      "to": 4213,
+      "type": "FUTEX_WAIT",
+      "count": 1314,
+      "duration_ns": 19490720426
+    },
+    {
+      "from": 767,
+      "to": 4214,
+      "type": "FUTEX_WAIT",
+      "count": 1187,
+      "duration_ns": 19518529018
+    },
+    {
+      "from": 768,
+      "to": 4216,
+      "type": "FUTEX_WAIT",
+      "count": 1184,
+      "duration_ns": 19519829516
+    },
+    {
+      "from": 769,
+      "to": 4215,
+      "type": "FUTEX_WAIT",
+      "count": 1188,
+      "duration_ns": 19516787519
+    },
+    {
+      "from": 770,
+      "to": 4209,
+      "type": "FUTEX_WAIT",
+      "count": 6080,
+      "duration_ns": 11275203325
+    },
+    {
+      "from": 776,
+      "to": 4218,
+      "type": "FUTEX_WAIT",
+      "count": 193,
+      "duration_ns": 8284333
+    },
+    {
+      "from": 777,
+      "to": 689,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 52979
+    },
+    {
+      "from": 777,
+      "to": 4211,
+      "type": "FUTEX_WAIT",
+      "count": 415,
+      "duration_ns": 19061972
+    },
+    {
+      "from": 779,
+      "to": 4230,
+      "type": "FUTEX_WAIT",
+      "count": 8,
+      "duration_ns": 4999113322
+    },
+    {
+      "from": 784,
+      "to": 4220,
+      "type": "FUTEX_WAIT",
+      "count": 6,
+      "duration_ns": 884035
+    },
+    {
+      "from": 788,
+      "to": 4221,
+      "type": "FUTEX_WAIT",
+      "count": 1606,
+      "duration_ns": 163261852
+    },
+    {
+      "from": 791,
+      "to": 4227,
+      "type": "FUTEX_WAIT",
+      "count": 31,
+      "duration_ns": 486205
+    },
+    {
+      "from": 813,
+      "to": 4254,
+      "type": "FUTEX_WAIT",
+      "count": 32,
+      "duration_ns": 28953179908
+    },
+    {
+      "from": 821,
+      "to": 4240,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 189861
+    },
+    {
+      "from": 831,
+      "to": 4212,
+      "type": "RESOURCE_STALL",
+      "count": 20,
+      "duration_ns": 10000000
+    },
+    {
+      "from": 843,
+      "to": 4252,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 99488
+    },
+    {
+      "from": 844,
+      "to": 4253,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 10000450282
+    },
+    {
+      "from": 849,
+      "to": 4255,
+      "type": "FUTEX_WAIT",
+      "count": 1,
+      "duration_ns": 3743
+    },
+    {
+      "from": 850,
+      "to": 4256,
+      "type": "FUTEX_WAIT",
+      "count": 11,
+      "duration_ns": 24613144341
+    },
+    {
+      "from": 851,
+      "to": 4259,
+      "type": "FUTEX_WAIT",
+      "count": 24,
+      "duration_ns": 1558434
+    },
+    {
+      "from": 855,
+      "to": 4261,
+      "type": "FUTEX_WAIT",
+      "count": 12,
+      "duration_ns": 113073852
+    },
+    {
+      "from": 1701,
+      "to": 6060,
+      "type": "BUFFER_QUEUE",
+      "count": 1,
+      "duration_ns": 5000000
+    },
+    {
+      "from": 1701,
+      "to": 4602,
+      "type": "FUTEX_WAIT",
+      "count": 411,
+      "duration_ns": 2564814295
+    },
+    {
+      "from": 1873,
+      "to": 6060,
+      "type": "BUFFER_QUEUE",
+      "count": 1,
+      "duration_ns": 5000000
+    },
+    {
+      "from": 1873,
+      "to": 1881,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 48177
+    },
+    {
+      "from": 1873,
+      "to": 4670,
+      "type": "FUTEX_WAIT",
+      "count": 550,
+      "duration_ns": 3087098970
+    },
+    {
+      "from": 1881,
+      "to": 4683,
+      "type": "FUTEX_WAIT",
+      "count": 8,
+      "duration_ns": 140706
+    },
+    {
+      "from": 2128,
+      "to": 6060,
+      "type": "BUFFER_QUEUE",
+      "count": 1,
+      "duration_ns": 5000000
+    },
+    {
+      "from": 2128,
+      "to": 4858,
+      "type": "FUTEX_WAIT",
+      "count": 281,
+      "duration_ns": 1672103444
+    },
+    {
+      "from": 4147,
+      "to": 4146,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4148,
+      "to": 4147,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4149,
+      "to": 4148,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4150,
+      "to": 4149,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4151,
+      "to": 4150,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4152,
+      "to": 4151,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4153,
+      "to": 4152,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4154,
+      "to": 4153,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4155,
+      "to": 4154,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4156,
+      "to": 4155,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4157,
+      "to": 4156,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4158,
+      "to": 4157,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4159,
+      "to": 4158,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4160,
+      "to": 4159,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4161,
+      "to": 4160,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4162,
+      "to": 4161,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4163,
+      "to": 4162,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4164,
+      "to": 4163,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4165,
+      "to": 4164,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4166,
+      "to": 4165,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4167,
+      "to": 4166,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4168,
+      "to": 4167,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4169,
+      "to": 4168,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4170,
+      "to": 4169,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4171,
+      "to": 4170,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4172,
+      "to": 4171,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4173,
+      "to": 4172,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4174,
+      "to": 4173,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4175,
+      "to": 4174,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4176,
+      "to": 4175,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4177,
+      "to": 4176,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4178,
+      "to": 4177,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4179,
+      "to": 4178,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4180,
+      "to": 4179,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4181,
+      "to": 4180,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4182,
+      "to": 4181,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4183,
+      "to": 4182,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4184,
+      "to": 4183,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4185,
+      "to": 4184,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4186,
+      "to": 4185,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4187,
+      "to": 4186,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4188,
+      "to": 4187,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4189,
+      "to": 4188,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4190,
+      "to": 4189,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4191,
+      "to": 4190,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4192,
+      "to": 4191,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4193,
+      "to": 4192,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4194,
+      "to": 4193,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4195,
+      "to": 4194,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4196,
+      "to": 4195,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4197,
+      "to": 4196,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4198,
+      "to": 4197,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4199,
+      "to": 4198,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4200,
+      "to": 4199,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4201,
+      "to": 4200,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4202,
+      "to": 4201,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4203,
+      "to": 4202,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4204,
+      "to": 4203,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4205,
+      "to": 4204,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4206,
+      "to": 4205,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4207,
+      "to": 4206,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4208,
+      "to": 4207,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4209,
+      "to": 4208,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4210,
+      "to": 4209,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4211,
+      "to": 4210,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4212,
+      "to": 4211,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4213,
+      "to": 4212,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4214,
+      "to": 4213,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4215,
+      "to": 4214,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4216,
+      "to": 4215,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4217,
+      "to": 4216,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4218,
+      "to": 4217,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4219,
+      "to": 4218,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4220,
+      "to": 4219,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4221,
+      "to": 4220,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4222,
+      "to": 4221,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4223,
+      "to": 4222,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4224,
+      "to": 4223,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4225,
+      "to": 4224,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4226,
+      "to": 4225,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4227,
+      "to": 4226,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4228,
+      "to": 4227,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4229,
+      "to": 4228,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4230,
+      "to": 4229,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4231,
+      "to": 4230,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4232,
+      "to": 4231,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4233,
+      "to": 4232,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4234,
+      "to": 4233,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4235,
+      "to": 4234,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4236,
+      "to": 4235,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4237,
+      "to": 4236,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4238,
+      "to": 4237,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4239,
+      "to": 4238,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4240,
+      "to": 4239,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4241,
+      "to": 4240,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4242,
+      "to": 4241,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4243,
+      "to": 4242,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4244,
+      "to": 4243,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4245,
+      "to": 4244,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4246,
+      "to": 4245,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4247,
+      "to": 4246,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4248,
+      "to": 4247,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4249,
+      "to": 4248,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4250,
+      "to": 4249,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4251,
+      "to": 4250,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4252,
+      "to": 4251,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4253,
+      "to": 4252,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4254,
+      "to": 4253,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4255,
+      "to": 4254,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4256,
+      "to": 4255,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4257,
+      "to": 4256,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4258,
+      "to": 4257,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4259,
+      "to": 4258,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 4260,
+      "to": 4259,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4261,
+      "to": 4260,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4262,
+      "to": 4261,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 4263,
+      "to": 4262,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    }
+  ]
+}

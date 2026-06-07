@@ -158,6 +158,16 @@ typedef struct {
     uint32_t      node_count;
     uint32_t      node_capacity;
 
+    /* Fast TID→node_idx hash map (open addressing) */
+    int32_t      *tid_map;       /* key: TID; -1 = empty */
+    uint32_t     *tid_map_node;  /* value: node index */
+    uint32_t      tid_map_cap;
+
+    /* Edge dedup hash map: key = packed (from<<32 | to<<4 | type) */
+    uint32_t      edge_hash_cap;
+    uint64_t     *edge_hash_key;
+    adj_entry_t **edge_hash_val;
+
     uint64_t total_edges;
     uint64_t edge_type_counts[GRAPH_EDGE_TYPE_COUNT];
 
@@ -332,9 +342,20 @@ int classify_jank_causes(critical_path_graph_t *g,
 heuristics_comparison_t compare_heuristics(critical_path_graph_t *g,
     struct frame_window *frames, int frame_count, int top_k);
 
+struct thermal_profile;
+typedef struct thermal_profile thermal_profile_t;
+
 int output_enhanced_topk(FILE *out, critical_path_graph_t *g, int top_k,
     frame_classification_t *classifications, int class_count,
-    heuristics_comparison_t *comparison);
+    heuristics_comparison_t *comparison,
+    void *hints_out,
+    void *inference_report,
+    const thermal_profile_t *thermal);
+
+/* Export full topology (JSON) and Top-K subgraph (JSON/DOT) for visualization */
+int export_graph_topology_json(FILE *out, critical_path_graph_t *g);
+int export_graph_subgraph_json(FILE *out, critical_path_graph_t *g, int top_k);
+int export_graph_subgraph_dot(FILE *out, critical_path_graph_t *g, int top_k);
 
 void graph_destroy(critical_path_graph_t *g);
 

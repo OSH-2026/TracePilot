@@ -1,0 +1,915 @@
+{
+  "analysis_mode": "graph_based_critical_path",
+  "session_id": "93d39f8a-fe0f-47d5-b5eb-65d85ca86a20-107983",
+  "target_package": "com.ss.android.ugc.aweme",
+  "total_frames": 2141,
+  "jank_frames": 1524,
+  "avg_jank_duration_ns": 12104162764345730,
+  "total_nodes": 6622,
+  "total_edges": 4992,
+  "edge_type_distribution": {
+    "WAKEUP": 0,
+    "RUNNABLE_WAIT": 0,
+    "BINDER_CALL": 45,
+    "FUTEX_WAIT": 1977,
+    "CPU_RUN": 0,
+    "PREEMPTED_BY": 0,
+    "FRAME_DEPENDENCY": 2126,
+    "RESOURCE_STALL": 247,
+    "DECODE_DEPENDENCY": 560,
+    "BUFFER_QUEUE": 12,
+    "THERMAL_STALL": 0,
+    "NETWORK_WAIT": 25
+  },
+  "resource_stats": {
+    "avg_cpu_freq_little_khz": 1732978,
+    "avg_cpu_freq_big_khz": 2208732,
+    "min_cpu_freq_big_khz": 0,
+    "binder_call_count": 25417,
+    "total_binder_blocking_ns": 3876384,
+    "futex_wait_count": 244012,
+    "total_futex_wait_ns": 8296191643770,
+    "video_decoder_count": 3,
+    "video_frames": 0,
+    "detected_scenario": "video",
+    "freq_throttle_ratio": 1.0000,
+    "thermal_baseline_mc": 30303,
+    "thermal_peak_mc": 52281,
+    "thermal_jank_peak_mc": 52281,
+    "thermal_jank_delta_mc": 21978,
+    "thermal_throttle_score": 1.0000,
+    "jank_system_overhead_ns": 0
+  },
+  "top_k_threads": [
+    {
+      "rank": 1,
+      "tid": 103,
+      "pid": 103,
+      "comm": "",
+      "package": "",
+      "critical_score": 0.7461,
+      "score_components": {
+        "frame_window_overlap": 0.0486,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.1667,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0486,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.1111,
+        "thermal_proximity": 0.1111,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 956196004,
+      "wakeup_latency_p95_ns": 957398967,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 2,
+      "tid": 66,
+      "pid": 66,
+      "comm": "rcuop/6",
+      "package": "",
+      "critical_score": 0.5816,
+      "score_components": {
+        "frame_window_overlap": 0.0741,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.1667,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0741,
+        "background_penalty": 1.0000,
+        "decode_path_proximity": 0.1111,
+        "thermal_proximity": 0.1111,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 288393474,
+      "wakeup_latency_p95_ns": 289743083,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 3,
+      "tid": 52,
+      "pid": 52,
+      "comm": "rcuop/4",
+      "package": "",
+      "critical_score": 0.5788,
+      "score_components": {
+        "frame_window_overlap": 0.5814,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.1667,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5814,
+        "background_penalty": 1.0000,
+        "decode_path_proximity": 0.1111,
+        "thermal_proximity": 0.1111,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 100985596,
+      "wakeup_latency_p95_ns": 179158366,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 4,
+      "tid": 51,
+      "pid": 51,
+      "comm": "",
+      "package": "",
+      "critical_score": 0.4820,
+      "score_components": {
+        "frame_window_overlap": 0.7001,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.1667,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.7001,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.1111,
+        "thermal_proximity": 0.1111,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 17533772,
+      "wakeup_latency_p95_ns": 71537476,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 5,
+      "tid": 48,
+      "pid": 48,
+      "comm": "",
+      "package": "",
+      "critical_score": 0.3500,
+      "score_components": {
+        "frame_window_overlap": 0.8570,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.8570,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 4966187,
+      "wakeup_latency_p95_ns": 16277425,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 6,
+      "tid": 70,
+      "pid": 70,
+      "comm": "",
+      "package": "",
+      "critical_score": 0.3422,
+      "score_components": {
+        "frame_window_overlap": 0.5407,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.1667,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5407,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.1111,
+        "thermal_proximity": 0.1111,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 5299276,
+      "wakeup_latency_p95_ns": 30172770,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 7,
+      "tid": 26295,
+      "pid": 26295,
+      "comm": "Looper-V2",
+      "package": "",
+      "critical_score": 0.3407,
+      "score_components": {
+        "frame_window_overlap": 0.0367,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0367,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 1.0000,
+        "thermal_proximity": 1.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 8,
+      "tid": 26507,
+      "pid": 26507,
+      "comm": "Looper-V8",
+      "package": "",
+      "critical_score": 0.3391,
+      "score_components": {
+        "frame_window_overlap": 0.0289,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0289,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 1.0000,
+        "thermal_proximity": 1.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 9,
+      "tid": 26561,
+      "pid": 26561,
+      "comm": "Looper-V11",
+      "package": "",
+      "critical_score": 0.3388,
+      "score_components": {
+        "frame_window_overlap": 0.0276,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0276,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 1.0000,
+        "thermal_proximity": 1.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 10,
+      "tid": 26743,
+      "pid": 26743,
+      "comm": "MediaCodec_loop",
+      "package": "",
+      "critical_score": 0.3362,
+      "score_components": {
+        "frame_window_overlap": 0.0144,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0144,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 1.0000,
+        "thermal_proximity": 1.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    }
+  ],
+  "jank_cause_distribution": {
+    "CPU_CONTENTION": 0,
+    "BINDER_BLOCKING": 0,
+    "FUTEX_BLOCKING": 0,
+    "IO_WAIT": 0,
+    "MEMORY_RECLAIM": 0,
+    "GPU_STALL": 0,
+    "RUNNABLE_DELAY": 1524,
+    "UNKNOWN": 0,
+    "VIDEO_LATE_RENDER": 0,
+    "AUDIO_SYNC_DRIFT": 0,
+    "THERMAL_THROTTLE": 0
+  },
+  "hints": {
+    "count": 0,
+    "default_ttl_ms": 300,
+    "items": [
+    ]
+  },
+  "inference": {
+    "session_summary": "Inference over 1524 jank frames: dominant=RUNNABLE_DELAY, scenario=video, thermal_score=1.00",
+    "recommended_hint": "UCLAMP_MIN_TEMPORARY",
+    "frame_inferences": [
+      {
+        "frame_id": 3374958,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3374965,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3374972,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3374979,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3374986,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3374993,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375000,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375007,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375014,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375021,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375035,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375042,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375049,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375056,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375136,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375174,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375187,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375212,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375231,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375244,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375257,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375270,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375289,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375308,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375327,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375372,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375385,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375398,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375411,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375424,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375437,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3375457,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.8747,
+        "summary": "RUNNABLE_DELAY (conf=0.87) over THERMAL_THROTTLE in video scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 14.6617,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 2.1000,
+            "detail": "freq_throttle=1.00 thermal_delta=21978 mc"
+          }
+        ]
+      }
+    ]
+  },
+  "heuristics_comparison": {
+    "graph_avg_precision_at_k": 0.6000,
+    "heuristic_avg_precision_at_k": 0.6000,
+    "top_k_overlap_count": 6,
+    "graph_mean_signal_noise_ratio": 0.0223,
+    "heuristic_mean_signal_noise_ratio": 0.5000
+  }
+}

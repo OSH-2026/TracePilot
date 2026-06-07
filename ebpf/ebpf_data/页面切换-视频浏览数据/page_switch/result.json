@@ -1,0 +1,927 @@
+{
+  "analysis_mode": "graph_based_critical_path",
+  "session_id": "93d39f8a-fe0f-47d5-b5eb-65d85ca86a20-106833",
+  "target_package": "com.tencent.mm:push",
+  "total_frames": 1271,
+  "jank_frames": 1228,
+  "avg_jank_duration_ns": 15021778548276380,
+  "total_nodes": 4799,
+  "total_edges": 3106,
+  "edge_type_distribution": {
+    "WAKEUP": 0,
+    "RUNNABLE_WAIT": 0,
+    "BINDER_CALL": 53,
+    "FUTEX_WAIT": 1770,
+    "CPU_RUN": 0,
+    "PREEMPTED_BY": 0,
+    "FRAME_DEPENDENCY": 1270,
+    "RESOURCE_STALL": 13,
+    "DECODE_DEPENDENCY": 0,
+    "BUFFER_QUEUE": 0,
+    "THERMAL_STALL": 0,
+    "NETWORK_WAIT": 0
+  },
+  "resource_stats": {
+    "avg_cpu_freq_little_khz": 1640262,
+    "avg_cpu_freq_big_khz": 2050844,
+    "min_cpu_freq_big_khz": 0,
+    "binder_call_count": 27565,
+    "total_binder_blocking_ns": 4503097,
+    "futex_wait_count": 135108,
+    "total_futex_wait_ns": 9880027960550,
+    "video_decoder_count": 0,
+    "video_frames": 0,
+    "detected_scenario": "",
+    "freq_throttle_ratio": 0.4676,
+    "thermal_baseline_mc": 36803,
+    "thermal_peak_mc": 41479,
+    "thermal_jank_peak_mc": 41479,
+    "thermal_jank_delta_mc": 4676,
+    "thermal_throttle_score": 0.4676,
+    "jank_system_overhead_ns": 0
+  },
+  "top_k_threads": [
+    {
+      "rank": 1,
+      "tid": 16945,
+      "pid": 16945,
+      "comm": "emitExt_tracker",
+      "package": "",
+      "critical_score": 0.8563,
+      "score_components": {
+        "frame_window_overlap": 0.0839,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.0143,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0839,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 3792591066,
+      "wakeup_latency_p95_ns": 3792855308,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 2,
+      "tid": 16689,
+      "pid": 16689,
+      "comm": "Thread-17",
+      "package": "",
+      "critical_score": 0.6499,
+      "score_components": {
+        "frame_window_overlap": 0.1148,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.0909,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.1148,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.0537,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 369635498,
+      "wakeup_latency_p95_ns": 370302694,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 3,
+      "tid": 103,
+      "pid": 103,
+      "comm": "",
+      "package": "",
+      "critical_score": 0.4549,
+      "score_components": {
+        "frame_window_overlap": 0.0945,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0945,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 66906535,
+      "wakeup_latency_p95_ns": 68988282,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 4,
+      "tid": 48,
+      "pid": 48,
+      "comm": "",
+      "package": "",
+      "critical_score": 0.4254,
+      "score_components": {
+        "frame_window_overlap": 0.5081,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5081,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.2376,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 10883626,
+      "wakeup_latency_p95_ns": 49591797,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 5,
+      "tid": 12849,
+      "pid": 12849,
+      "comm": "kworker/u16:1",
+      "package": "",
+      "critical_score": 0.3930,
+      "score_components": {
+        "frame_window_overlap": 0.4910,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.4910,
+        "background_penalty": 1.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.2296,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 14055380,
+      "wakeup_latency_p95_ns": 8536946,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 6,
+      "tid": 600,
+      "pid": 600,
+      "comm": "surfaceflinger",
+      "package": "",
+      "critical_score": 0.3813,
+      "score_components": {
+        "frame_window_overlap": 0.5179,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 1.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5179,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.2422,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 7,
+      "tid": 51,
+      "pid": 51,
+      "comm": "rcuog/4",
+      "package": "",
+      "critical_score": 0.3799,
+      "score_components": {
+        "frame_window_overlap": 0.4666,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.4666,
+        "background_penalty": 1.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.2182,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 13384400,
+      "wakeup_latency_p95_ns": 24154541,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 8,
+      "tid": 17740,
+      "pid": 17740,
+      "comm": "",
+      "package": "",
+      "critical_score": 0.3259,
+      "score_components": {
+        "frame_window_overlap": 0.2003,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.2003,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.0937,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 11911743,
+      "wakeup_latency_p95_ns": 11970296,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 9,
+      "tid": 16238,
+      "pid": 16238,
+      "comm": "main",
+      "package": "",
+      "critical_score": 0.3015,
+      "score_components": {
+        "frame_window_overlap": 0.6710,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.6710,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.3138,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    },
+    {
+      "rank": 10,
+      "tid": 2044,
+      "pid": 2044,
+      "comm": "RenderThread",
+      "package": "",
+      "critical_score": 0.2886,
+      "score_components": {
+        "frame_window_overlap": 0.2533,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 1.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.2533,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.1184,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "RUNNABLE_DELAY"
+    }
+  ],
+  "jank_cause_distribution": {
+    "CPU_CONTENTION": 0,
+    "BINDER_BLOCKING": 0,
+    "FUTEX_BLOCKING": 0,
+    "IO_WAIT": 0,
+    "MEMORY_RECLAIM": 0,
+    "GPU_STALL": 0,
+    "RUNNABLE_DELAY": 1228,
+    "UNKNOWN": 0,
+    "VIDEO_LATE_RENDER": 0,
+    "AUDIO_SYNC_DRIFT": 0,
+    "THERMAL_THROTTLE": 0
+  },
+  "hints": {
+    "count": 1,
+    "default_ttl_ms": 300,
+    "items": [
+      {
+        "hint_id": "hint-1-1780322257",
+        "type": "PROTECT_UI_CHAIN",
+        "tid": 600,
+        "pid": 600,
+        "comm": "surfaceflinger",
+        "package": "com.tencent.mm:push",
+        "ttl_ms": 300,
+        "rollback": {"action":"restore_affinity","mask":"all"},
+        "reason": "Protect UI compositor chain during interaction jank burst",
+        "runnable_delay_p95_ns": 0
+      }
+    ]
+  },
+  "inference": {
+    "session_summary": "Inference over 1228 jank frames: dominant=RUNNABLE_DELAY, scenario=page_switch, thermal_score=0.47",
+    "recommended_hint": "UCLAMP_MIN_TEMPORARY",
+    "frame_inferences": [
+      {
+        "frame_id": 3173739,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3173746,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3173753,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3173886,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3174145,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3174158,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3174165,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3175200,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3175213,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3175274,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3176928,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3176990,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177021,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177052,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177083,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177114,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177139,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177164,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177189,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177214,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177239,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177264,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177289,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177314,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177339,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177364,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177389,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177414,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177439,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177464,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177489,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      },
+      {
+        "frame_id": 3177514,
+        "hypothesis": "RUNNABLE_DELAY",
+        "secondary": "THERMAL_THROTTLE",
+        "confidence": 0.9294,
+        "summary": "RUNNABLE_DELAY (conf=0.93) over THERMAL_THROTTLE in page_switch scenario",
+        "evidence": [
+          {
+            "signal": "runnable_delay",
+            "weight": 12.9361,
+            "detail": "High wakeup-to-run delay on critical threads"
+          },
+          {
+            "signal": "thermal_throttle",
+            "weight": 0.9820,
+            "detail": "freq_throttle=0.47 thermal_delta=4676 mc"
+          }
+        ]
+      }
+    ]
+  },
+  "heuristics_comparison": {
+    "graph_avg_precision_at_k": 0.7000,
+    "heuristic_avg_precision_at_k": 0.7000,
+    "top_k_overlap_count": 7,
+    "graph_mean_signal_noise_ratio": 0.0148,
+    "heuristic_mean_signal_noise_ratio": 0.5000
+  }
+}

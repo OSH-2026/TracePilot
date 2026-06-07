@@ -55,7 +55,7 @@ data_sources {
       atrace_categories: "network"
       atrace_categories: "thermal"
 
-      atrace_apps: "<PKG>"
+      atrace_apps: "*"
     }
   }
 }

@@ -62,7 +62,7 @@ struct {
 
 struct {
 	__uint(type, BPF_MAP_TYPE_HASH);
-	__uint(max_entries, 10240);
+	__uint(max_entries, 65536);
 	__type(key, __u32);
 	__type(value, __u64);
 } wakeup_times SEC(".maps");
@@ -88,7 +88,7 @@ struct {
 
 struct {
 	__uint(type, BPF_MAP_TYPE_HASH);
-	__uint(max_entries, 10240);
+	__uint(max_entries, 65536);
 	__type(key, __u32);
 	__type(value, __u64);
 } preempt_times SEC(".maps");
@@ -153,10 +153,11 @@ int handle_sched_switch(struct sched_switch_raw_tp *ctx)
 
 	evt->timestamp_ns    = now;
 	evt->event_type      = EVENT_SCHED_SWITCH;
-	evt->prev_pid        = ctx->prev_pid;
+	/* sched_switch tracepoint prev_pid/next_pid are thread IDs (task_struct->pid) */
 	evt->prev_tid        = ctx->prev_pid;
-	evt->next_pid        = ctx->next_pid;
 	evt->next_tid        = ctx->next_pid;
+	evt->prev_pid        = ctx->prev_pid;
+	evt->next_pid        = ctx->next_pid;
 	evt->next_uid        = 0;
 	evt->prev_task_state = ctx->prev_state;
 	evt->cpu             = bpf_get_smp_processor_id();
@@ -202,8 +203,8 @@ int handle_sched_wakeup(struct trace_event_raw_sched_wakeup *ctx)
 	evt->event_type      = EVENT_SCHED_WAKEUP;
 	evt->prev_pid        = 0;
 	evt->prev_tid        = 0;
-	evt->next_pid        = ctx->pid;
 	evt->next_tid        = ctx->pid;
+	evt->next_pid        = ctx->pid;
 	evt->next_uid        = 0;
 	evt->prev_task_state = 0;
 	evt->cpu             = bpf_get_smp_processor_id();

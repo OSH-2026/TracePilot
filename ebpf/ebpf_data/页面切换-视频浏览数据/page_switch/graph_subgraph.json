@@ -1,0 +1,5024 @@
+{
+  "format": "tracepilot_subgraph_v1",
+  "directed": true,
+  "top_k": 10,
+  "selected_nodes": 250,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UI_THREAD",
+      "tid": 48,
+      "pid": 48,
+      "comm": "",
+      "critical_score": 0.4254,
+      "frame_window_overlap": 0.5081,
+      "render_path_proximity": 0.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 0,
+      "in_degree": 0
+    },
+    {
+      "id": 2,
+      "type": "UI_THREAD",
+      "tid": 737,
+      "pid": 737,
+      "comm": "adpf_handler0",
+      "critical_score": 0.0721,
+      "frame_window_overlap": 0.1621,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 8,
+      "type": "UI_THREAD",
+      "tid": 2041,
+      "pid": 2041,
+      "comm": "android.hardwar",
+      "critical_score": 0.1725,
+      "frame_window_overlap": 0.3787,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 15,
+      "type": "UI_THREAD",
+      "tid": 1343,
+      "pid": 1343,
+      "comm": "adbd",
+      "critical_score": 0.2151,
+      "frame_window_overlap": 0.6938,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 16,
+      "type": "UI_THREAD",
+      "tid": 15251,
+      "pid": 15251,
+      "comm": "UsbFfs-worker",
+      "critical_score": 0.2628,
+      "frame_window_overlap": 0.6938,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 22,
+      "type": "UI_THREAD",
+      "tid": 29269,
+      "pid": 29269,
+      "comm": "Reade2-V2",
+      "critical_score": 0.2833,
+      "frame_window_overlap": 0.7142,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 23,
+      "type": "UI_THREAD",
+      "tid": 51,
+      "pid": 51,
+      "comm": "rcuog/4",
+      "critical_score": 0.3799,
+      "frame_window_overlap": 0.4666,
+      "render_path_proximity": 0.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 0,
+      "in_degree": 0
+    },
+    {
+      "id": 28,
+      "type": "UI_THREAD",
+      "tid": 661,
+      "pid": 661,
+      "comm": "mali-mem-purge",
+      "critical_score": 0.0516,
+      "frame_window_overlap": 0.1034,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 30,
+      "type": "BINDER_SERVER",
+      "tid": 4276,
+      "pid": 4276,
+      "comm": "binder:1209_1E",
+      "critical_score": 0.0673,
+      "frame_window_overlap": 0.1107,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 3,
+      "in_degree": 3
+    },
+    {
+      "id": 34,
+      "type": "UI_THREAD",
+      "tid": 2450,
+      "pid": 2450,
+      "comm": "mali-mem-purge",
+      "critical_score": 0.0400,
+      "frame_window_overlap": 0.0668,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 36,
+      "type": "UI_THREAD",
+      "tid": 16229,
+      "pid": 16229,
+      "comm": "main",
+      "critical_score": 0.0500,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 38,
+      "type": "SURFACEFLINGER",
+      "tid": 600,
+      "pid": 600,
+      "comm": "surfaceflinger",
+      "critical_score": 0.3813,
+      "frame_window_overlap": 0.5179,
+      "render_path_proximity": 1.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 2,
+      "in_degree": 1
+    },
+    {
+      "id": 40,
+      "type": "UI_THREAD",
+      "tid": 679,
+      "pid": 679,
+      "comm": "appSf",
+      "critical_score": 0.0524,
+      "frame_window_overlap": 0.0863,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 41,
+      "type": "UI_THREAD",
+      "tid": 16210,
+      "pid": 16210,
+      "comm": "main",
+      "critical_score": 0.0403,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 42,
+      "type": "UI_THREAD",
+      "tid": 1407,
+      "pid": 1407,
+      "comm": "android.anim",
+      "critical_score": 0.0823,
+      "frame_window_overlap": 0.0448,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 43,
+      "type": "UI_THREAD",
+      "tid": 16230,
+      "pid": 16230,
+      "comm": "Signal Catcher",
+      "critical_score": 0.0333,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 44,
+      "type": "UI_THREAD",
+      "tid": 16232,
+      "pid": 16232,
+      "comm": "main",
+      "critical_score": 0.0289,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 45,
+      "type": "UI_THREAD",
+      "tid": 707,
+      "pid": 707,
+      "comm": "BckgrndExec HP",
+      "critical_score": 0.1842,
+      "frame_window_overlap": 0.4121,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 3,
+      "in_degree": 0
+    },
+    {
+      "id": 46,
+      "type": "UI_THREAD",
+      "tid": 16233,
+      "pid": 16233,
+      "comm": "main",
+      "critical_score": 0.0289,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 48,
+      "type": "UI_THREAD",
+      "tid": 16231,
+      "pid": 16231,
+      "comm": "main",
+      "critical_score": 0.0289,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 49,
+      "type": "UI_THREAD",
+      "tid": 16234,
+      "pid": 16234,
+      "comm": "main",
+      "critical_score": 0.0253,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 51,
+      "type": "UI_THREAD",
+      "tid": 16235,
+      "pid": 16235,
+      "comm": "FinalizerWatchd",
+      "critical_score": 0.0403,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 52,
+      "type": "BINDER_SERVER",
+      "tid": 653,
+      "pid": 653,
+      "comm": "HwBinder:602_1",
+      "critical_score": 0.2063,
+      "frame_window_overlap": 0.3037,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 3,
+      "in_degree": 1
+    },
+    {
+      "id": 54,
+      "type": "UI_THREAD",
+      "tid": 638,
+      "pid": 638,
+      "comm": "DisplayHints",
+      "critical_score": 0.1279,
+      "frame_window_overlap": 0.3135,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 55,
+      "type": "UI_THREAD",
+      "tid": 681,
+      "pid": 681,
+      "comm": "RegSampIdle",
+      "critical_score": 0.0641,
+      "frame_window_overlap": 0.0879,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 57,
+      "type": "UI_THREAD",
+      "tid": 2700,
+      "pid": 2700,
+      "comm": "NodeLooperThrea",
+      "critical_score": 0.0453,
+      "frame_window_overlap": 0.0774,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 59,
+      "type": "UI_THREAD",
+      "tid": 680,
+      "pid": 680,
+      "comm": "RegionSampling",
+      "critical_score": 0.0688,
+      "frame_window_overlap": 0.0822,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 3,
+      "in_degree": 0
+    },
+    {
+      "id": 61,
+      "type": "UI_THREAD",
+      "tid": 652,
+      "pid": 652,
+      "comm": "RenderEngine",
+      "critical_score": 0.0922,
+      "frame_window_overlap": 0.1490,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 64,
+      "type": "BINDER_SERVER",
+      "tid": 649,
+      "pid": 649,
+      "comm": "binder:600_1",
+      "critical_score": 0.1214,
+      "frame_window_overlap": 0.0611,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 3
+    },
+    {
+      "id": 65,
+      "type": "UI_THREAD",
+      "tid": 670,
+      "pid": 670,
+      "comm": "mali-cmar-backe",
+      "critical_score": 0.0684,
+      "frame_window_overlap": 0.1002,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 72,
+      "type": "UI_THREAD",
+      "tid": 22812,
+      "pid": 22812,
+      "comm": "RE Completion",
+      "critical_score": 0.0457,
+      "frame_window_overlap": 0.0831,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 74,
+      "type": "BINDER_SERVER",
+      "tid": 20594,
+      "pid": 20594,
+      "comm": "binder:2224_7",
+      "critical_score": 0.0623,
+      "frame_window_overlap": 0.0350,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 76,
+      "type": "UI_THREAD",
+      "tid": 2224,
+      "pid": 2224,
+      "comm": "s.nexuslauncher",
+      "critical_score": 0.0958,
+      "frame_window_overlap": 0.1783,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 83,
+      "type": "UI_THREAD",
+      "tid": 29273,
+      "pid": 29273,
+      "comm": "Playe2-V2",
+      "critical_score": 0.1016,
+      "frame_window_overlap": 0.2427,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 85,
+      "type": "SURFACEFLINGER",
+      "tid": 686,
+      "pid": 686,
+      "comm": "surfaceflinger",
+      "critical_score": 0.2621,
+      "frame_window_overlap": 0.1775,
+      "render_path_proximity": 1.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 86,
+      "type": "BINDER_SERVER",
+      "tid": 16236,
+      "pid": 16236,
+      "comm": "binder:16210_1",
+      "critical_score": 0.0250,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 88,
+      "type": "BINDER_SERVER",
+      "tid": 16237,
+      "pid": 16237,
+      "comm": "binder:16210_2",
+      "critical_score": 0.0222,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 89,
+      "type": "UI_THREAD",
+      "tid": 1496,
+      "pid": 1496,
+      "comm": "OomAdjuster",
+      "critical_score": 0.0188,
+      "frame_window_overlap": 0.0098,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 90,
+      "type": "UI_THREAD",
+      "tid": 1488,
+      "pid": 1488,
+      "comm": "ActivityManager",
+      "critical_score": 0.0503,
+      "frame_window_overlap": 0.0293,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 92,
+      "type": "BINDER_SERVER",
+      "tid": 15676,
+      "pid": 15676,
+      "comm": "binder:5367_B",
+      "critical_score": 0.0500,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 93,
+      "type": "UI_THREAD",
+      "tid": 1769,
+      "pid": 1769,
+      "comm": "roid.usagestats",
+      "critical_score": 0.0250,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 96,
+      "type": "UI_THREAD",
+      "tid": 1402,
+      "pid": 1402,
+      "comm": "android.ui",
+      "critical_score": 0.0571,
+      "frame_window_overlap": 0.0489,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 97,
+      "type": "UI_THREAD",
+      "tid": 1499,
+      "pid": 1499,
+      "comm": "batterystats-ha",
+      "critical_score": 0.0474,
+      "frame_window_overlap": 0.0537,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 99,
+      "type": "SYSTEM_SERVER",
+      "tid": 1289,
+      "pid": 1289,
+      "comm": "system_server",
+      "critical_score": 0.0641,
+      "frame_window_overlap": 0.0879,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 100,
+      "type": "UI_THREAD",
+      "tid": 1404,
+      "pid": 1404,
+      "comm": "android.io",
+      "critical_score": 0.0320,
+      "frame_window_overlap": 0.0098,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 102,
+      "type": "UI_THREAD",
+      "tid": 1770,
+      "pid": 1770,
+      "comm": "eduling.default",
+      "critical_score": 0.0328,
+      "frame_window_overlap": 0.0122,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 105,
+      "type": "UI_THREAD",
+      "tid": 897,
+      "pid": 897,
+      "comm": "statsd.writer",
+      "critical_score": 0.0812,
+      "frame_window_overlap": 0.1368,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 106,
+      "type": "UI_THREAD",
+      "tid": 1860,
+      "pid": 1860,
+      "comm": "tworkPolicy.uid",
+      "critical_score": 0.0359,
+      "frame_window_overlap": 0.0073,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 113,
+      "type": "UI_THREAD",
+      "tid": 899,
+      "pid": 899,
+      "comm": "statsd.reader",
+      "critical_score": 0.0759,
+      "frame_window_overlap": 0.1352,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 115,
+      "type": "UI_THREAD",
+      "tid": 1399,
+      "pid": 1399,
+      "comm": "android.fg",
+      "critical_score": 0.0271,
+      "frame_window_overlap": 0.0138,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 121,
+      "type": "UI_THREAD",
+      "tid": 5393,
+      "pid": 5393,
+      "comm": "arch_disk_io_1",
+      "critical_score": 0.0500,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 126,
+      "type": "UI_THREAD",
+      "tid": 5373,
+      "pid": 5373,
+      "comm": "HeapTaskDaemon",
+      "critical_score": 0.0400,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 130,
+      "type": "UI_THREAD",
+      "tid": 29262,
+      "pid": 29262,
+      "comm": "AOutle2-V1",
+      "critical_score": 0.0417,
+      "frame_window_overlap": 0.0375,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 135,
+      "type": "UI_THREAD",
+      "tid": 17740,
+      "pid": 17740,
+      "comm": "",
+      "critical_score": 0.3259,
+      "frame_window_overlap": 0.2003,
+      "render_path_proximity": 0.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 144,
+      "type": "UI_THREAD",
+      "tid": 12849,
+      "pid": 12849,
+      "comm": "kworker/u16:1",
+      "critical_score": 0.3930,
+      "frame_window_overlap": 0.4910,
+      "render_path_proximity": 0.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 0,
+      "in_degree": 0
+    },
+    {
+      "id": 148,
+      "type": "UI_THREAD",
+      "tid": 1522,
+      "pid": 1522,
+      "comm": "UsfTransport",
+      "critical_score": 0.1152,
+      "frame_window_overlap": 0.2720,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 149,
+      "type": "UI_THREAD",
+      "tid": 1021,
+      "pid": 1021,
+      "comm": "android.hardwar",
+      "critical_score": 0.1117,
+      "frame_window_overlap": 0.2671,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 150,
+      "type": "UI_THREAD",
+      "tid": 1020,
+      "pid": 1020,
+      "comm": "UsfHalWorker",
+      "critical_score": 0.1082,
+      "frame_window_overlap": 0.2712,
+      "render_path_proximity": 0.0667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 151,
+      "type": "UI_THREAD",
+      "tid": 1799,
+      "pid": 1799,
+      "comm": "SensorService",
+      "critical_score": 0.1078,
+      "frame_window_overlap": 0.2671,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 153,
+      "type": "SYSTEM_SERVER",
+      "tid": 1209,
+      "pid": 1209,
+      "comm": "system_server",
+      "critical_score": 0.0858,
+      "frame_window_overlap": 0.2044,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 163,
+      "type": "UI_THREAD",
+      "tid": 711,
+      "pid": 711,
+      "comm": "android.hardwar",
+      "critical_score": 0.0367,
+      "frame_window_overlap": 0.0334,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 164,
+      "type": "UI_THREAD",
+      "tid": 29263,
+      "pid": 29263,
+      "comm": "Playe2-V1",
+      "critical_score": 0.0447,
+      "frame_window_overlap": 0.0562,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 178,
+      "type": "UI_THREAD",
+      "tid": 1523,
+      "pid": 1523,
+      "comm": "PowerManagerSer",
+      "critical_score": 0.1499,
+      "frame_window_overlap": 0.2378,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 2,
+      "in_degree": 0
+    },
+    {
+      "id": 181,
+      "type": "UI_THREAD",
+      "tid": 4075,
+      "pid": 4075,
+      "comm": "[GT]TP#Internal",
+      "critical_score": 0.0174,
+      "frame_window_overlap": 0.0090,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 183,
+      "type": "UI_THREAD",
+      "tid": 16510,
+      "pid": 16510,
+      "comm": "[GT]ColdPool#18",
+      "critical_score": 0.0165,
+      "frame_window_overlap": 0.0033,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 186,
+      "type": "UI_THREAD",
+      "tid": 1988,
+      "pid": 1988,
+      "comm": "ndroid.systemui",
+      "critical_score": 0.1418,
+      "frame_window_overlap": 0.2907,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 3,
+      "in_degree": 0
+    },
+    {
+      "id": 188,
+      "type": "UI_THREAD",
+      "tid": 2531,
+      "pid": 2531,
+      "comm": "android.hardwar",
+      "critical_score": 0.0378,
+      "frame_window_overlap": 0.0603,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 189,
+      "type": "UI_THREAD",
+      "tid": 2530,
+      "pid": 2530,
+      "comm": "android.hardwar",
+      "critical_score": 0.0402,
+      "frame_window_overlap": 0.0578,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 190,
+      "type": "BINDER_SERVER",
+      "tid": 2271,
+      "pid": 2271,
+      "comm": "binder:2200_3",
+      "critical_score": 0.0393,
+      "frame_window_overlap": 0.0603,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 191,
+      "type": "UI_THREAD",
+      "tid": 2512,
+      "pid": 2512,
+      "comm": "Thread-10",
+      "critical_score": 0.0425,
+      "frame_window_overlap": 0.0578,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 213,
+      "type": "UI_THREAD",
+      "tid": 1807,
+      "pid": 1807,
+      "comm": "InputReader",
+      "critical_score": 0.0450,
+      "frame_window_overlap": 0.0334,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 215,
+      "type": "UI_THREAD",
+      "tid": 2285,
+      "pid": 2285,
+      "comm": "InputProcessor",
+      "critical_score": 0.0517,
+      "frame_window_overlap": 0.0334,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 217,
+      "type": "UI_THREAD",
+      "tid": 1982,
+      "pid": 1982,
+      "comm": "android.hardwar",
+      "critical_score": 0.0517,
+      "frame_window_overlap": 0.0334,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 218,
+      "type": "UI_THREAD",
+      "tid": 2006,
+      "pid": 2006,
+      "comm": "classifier_pool",
+      "critical_score": 0.0617,
+      "frame_window_overlap": 0.0334,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 223,
+      "type": "BINDER_SERVER",
+      "tid": 2576,
+      "pid": 2576,
+      "comm": "binder:600_5",
+      "critical_score": 0.2018,
+      "frame_window_overlap": 0.2907,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 5
+    },
+    {
+      "id": 224,
+      "type": "UI_THREAD",
+      "tid": 1405,
+      "pid": 1405,
+      "comm": "android.display",
+      "critical_score": 0.0514,
+      "frame_window_overlap": 0.0326,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 230,
+      "type": "UI_THREAD",
+      "tid": 678,
+      "pid": 678,
+      "comm": "app",
+      "critical_score": 0.2387,
+      "frame_window_overlap": 0.5391,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 231,
+      "type": "RENDER_THREAD",
+      "tid": 2397,
+      "pid": 2397,
+      "comm": "RenderThread",
+      "critical_score": 0.2000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 1.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 238,
+      "type": "BINDER_SERVER",
+      "tid": 2886,
+      "pid": 2886,
+      "comm": "binder:1209_11",
+      "critical_score": 0.0627,
+      "frame_window_overlap": 0.0839,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 4,
+      "in_degree": 0
+    },
+    {
+      "id": 240,
+      "type": "BINDER_SERVER",
+      "tid": 1720,
+      "pid": 1720,
+      "comm": "binder:1209_3",
+      "critical_score": 0.0342,
+      "frame_window_overlap": 0.0024,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 1
+    },
+    {
+      "id": 241,
+      "type": "UI_THREAD",
+      "tid": 2415,
+      "pid": 2415,
+      "comm": "mali-cmar-backe",
+      "critical_score": 0.0286,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 245,
+      "type": "UI_THREAD",
+      "tid": 22922,
+      "pid": 22922,
+      "comm": "GPU completion",
+      "critical_score": 0.0400,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 251,
+      "type": "UI_THREAD",
+      "tid": 2755,
+      "pid": 2755,
+      "comm": "LazyTaskWriterT",
+      "critical_score": 0.0286,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 254,
+      "type": "UI_THREAD",
+      "tid": 2021,
+      "pid": 2021,
+      "comm": "ll.splashscreen",
+      "critical_score": 0.0503,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 256,
+      "type": "UI_THREAD",
+      "tid": 1290,
+      "pid": 1290,
+      "comm": "Jit thread pool",
+      "critical_score": 0.0336,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 258,
+      "type": "UI_THREAD",
+      "tid": 2022,
+      "pid": 2022,
+      "comm": "ll.splashworker",
+      "critical_score": 0.0333,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 263,
+      "type": "RENDER_THREAD",
+      "tid": 2044,
+      "pid": 2044,
+      "comm": "RenderThread",
+      "critical_score": 0.2886,
+      "frame_window_overlap": 0.2533,
+      "render_path_proximity": 1.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 4,
+      "in_degree": 0
+    },
+    {
+      "id": 270,
+      "type": "UI_THREAD",
+      "tid": 1489,
+      "pid": 1489,
+      "comm": "ActivityManager",
+      "critical_score": 0.0400,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 278,
+      "type": "UI_THREAD",
+      "tid": 1486,
+      "pid": 1486,
+      "comm": "android.bg",
+      "critical_score": 0.0254,
+      "frame_window_overlap": 0.0090,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 281,
+      "type": "UI_THREAD",
+      "tid": 2732,
+      "pid": 2732,
+      "comm": "ogle.android.as",
+      "critical_score": 0.0270,
+      "frame_window_overlap": 0.0057,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 284,
+      "type": "BINDER_SERVER",
+      "tid": 1303,
+      "pid": 1303,
+      "comm": "binder:1209_1",
+      "critical_score": 0.0311,
+      "frame_window_overlap": 0.0073,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 286,
+      "type": "BINDER_SERVER",
+      "tid": 2875,
+      "pid": 2875,
+      "comm": "binder:1209_10",
+      "critical_score": 0.0943,
+      "frame_window_overlap": 0.0790,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 6,
+      "in_degree": 2
+    },
+    {
+      "id": 289,
+      "type": "BINDER_SERVER",
+      "tid": 1305,
+      "pid": 1305,
+      "comm": "binder:1209_2",
+      "critical_score": 0.0464,
+      "frame_window_overlap": 0.0375,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 1
+    },
+    {
+      "id": 298,
+      "type": "BINDER_SERVER",
+      "tid": 2192,
+      "pid": 2192,
+      "comm": "binder:2139_4",
+      "critical_score": 0.0303,
+      "frame_window_overlap": 0.0049,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 321,
+      "type": "UI_THREAD",
+      "tid": 1507,
+      "pid": 1507,
+      "comm": "bgres-controlle",
+      "critical_score": 0.0301,
+      "frame_window_overlap": 0.0147,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 324,
+      "type": "BINDER_SERVER",
+      "tid": 2447,
+      "pid": 2447,
+      "comm": "binder:2224_2",
+      "critical_score": 0.0333,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 325,
+      "type": "UI_THREAD",
+      "tid": 16238,
+      "pid": 16238,
+      "comm": "main",
+      "critical_score": 0.3015,
+      "frame_window_overlap": 0.6710,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 5,
+      "in_degree": 0
+    },
+    {
+      "id": 327,
+      "type": "RENDER_THREAD",
+      "tid": 16239,
+      "pid": 16239,
+      "comm": "RenderThread",
+      "critical_score": 0.2000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 1.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 339,
+      "type": "UI_THREAD",
+      "tid": 16240,
+      "pid": 16240,
+      "comm": "Signal Catcher",
+      "critical_score": 0.0286,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 340,
+      "type": "UI_THREAD",
+      "tid": 16242,
+      "pid": 16242,
+      "comm": "com.xingin.xhs",
+      "critical_score": 0.0246,
+      "frame_window_overlap": 0.0130,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 341,
+      "type": "UI_THREAD",
+      "tid": 16243,
+      "pid": 16243,
+      "comm": "com.xingin.xhs",
+      "critical_score": 0.0419,
+      "frame_window_overlap": 0.0562,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 342,
+      "type": "UI_THREAD",
+      "tid": 16244,
+      "pid": 16244,
+      "comm": "ReferenceQueueD",
+      "critical_score": 0.0273,
+      "frame_window_overlap": 0.0065,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 343,
+      "type": "UI_THREAD",
+      "tid": 16245,
+      "pid": 16245,
+      "comm": "com.xingin.xhs",
+      "critical_score": 0.0199,
+      "frame_window_overlap": 0.0049,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 344,
+      "type": "UI_THREAD",
+      "tid": 16246,
+      "pid": 16246,
+      "comm": "FinalizerWatchd",
+      "critical_score": 0.0175,
+      "frame_window_overlap": 0.0024,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 350,
+      "type": "UI_THREAD",
+      "tid": 2202,
+      "pid": 2202,
+      "comm": "MobileDataStats",
+      "critical_score": 0.0350,
+      "frame_window_overlap": 0.0049,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 351,
+      "type": "UI_THREAD",
+      "tid": 1719,
+      "pid": 1719,
+      "comm": "PackageInstalle",
+      "critical_score": 0.0289,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 355,
+      "type": "BINDER_SERVER",
+      "tid": 6370,
+      "pid": 6370,
+      "comm": "binder:2120_4",
+      "critical_score": 0.0162,
+      "frame_window_overlap": 0.0024,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 357,
+      "type": "UI_THREAD",
+      "tid": 1873,
+      "pid": 1873,
+      "comm": "NsdService",
+      "critical_score": 0.0203,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 359,
+      "type": "UI_THREAD",
+      "tid": 6372,
+      "pid": 6372,
+      "comm": "DefaultDispatch",
+      "critical_score": 0.0167,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 364,
+      "type": "UI_THREAD",
+      "tid": 15309,
+      "pid": 15309,
+      "comm": "GlobalDispatchi",
+      "critical_score": 0.0185,
+      "frame_window_overlap": 0.0008,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 383,
+      "type": "UI_THREAD",
+      "tid": 16250,
+      "pid": 16250,
+      "comm": "nPool-worker-47",
+      "critical_score": 0.0333,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 386,
+      "type": "UI_THREAD",
+      "tid": 2448,
+      "pid": 2448,
+      "comm": "BckgrndExec LP",
+      "critical_score": 0.0323,
+      "frame_window_overlap": 0.0106,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 392,
+      "type": "UI_THREAD",
+      "tid": 16251,
+      "pid": 16251,
+      "comm": "main",
+      "critical_score": 0.0273,
+      "frame_window_overlap": 0.0065,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 394,
+      "type": "UI_THREAD",
+      "tid": 22901,
+      "pid": 22901,
+      "comm": "GPU completion",
+      "critical_score": 0.0282,
+      "frame_window_overlap": 0.0171,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 400,
+      "type": "UI_THREAD",
+      "tid": 16252,
+      "pid": 16252,
+      "comm": "Signal Catcher",
+      "critical_score": 0.0200,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 403,
+      "type": "UI_THREAD",
+      "tid": 16256,
+      "pid": 16256,
+      "comm": "id.apps.weather",
+      "critical_score": 0.0154,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 404,
+      "type": "UI_THREAD",
+      "tid": 16257,
+      "pid": 16257,
+      "comm": "FinalizerDaemon",
+      "critical_score": 0.0167,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 405,
+      "type": "UI_THREAD",
+      "tid": 16254,
+      "pid": 16254,
+      "comm": "Jit thread pool",
+      "critical_score": 0.0182,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 505,
+      "type": "BINDER_SERVER",
+      "tid": 650,
+      "pid": 650,
+      "comm": "binder:600_2",
+      "critical_score": 0.1419,
+      "frame_window_overlap": 0.2150,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 624,
+      "type": "UI_THREAD",
+      "tid": 103,
+      "pid": 103,
+      "comm": "",
+      "critical_score": 0.4549,
+      "frame_window_overlap": 0.0945,
+      "render_path_proximity": 0.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 0,
+      "in_degree": 0
+    },
+    {
+      "id": 670,
+      "type": "BINDER_SERVER",
+      "tid": 1965,
+      "pid": 1965,
+      "comm": "binder:600_3",
+      "critical_score": 0.1375,
+      "frame_window_overlap": 0.2500,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 1
+    },
+    {
+      "id": 986,
+      "type": "UI_THREAD",
+      "tid": 16689,
+      "pid": 16689,
+      "comm": "Thread-17",
+      "critical_score": 0.6499,
+      "frame_window_overlap": 0.1148,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 1377,
+      "type": "UI_THREAD",
+      "tid": 16945,
+      "pid": 16945,
+      "comm": "emitExt_tracker",
+      "critical_score": 0.8563,
+      "frame_window_overlap": 0.0839,
+      "render_path_proximity": 0.0143,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 0
+    },
+    {
+      "id": 2117,
+      "type": "BINDER_SERVER",
+      "tid": 2427,
+      "pid": 2427,
+      "comm": "binder:600_4",
+      "critical_score": 0.0962,
+      "frame_window_overlap": 0.1319,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 2,
+      "in_degree": 1
+    },
+    {
+      "id": 2428,
+      "type": "UI_THREAD",
+      "tid": 1964,
+      "pid": 1964,
+      "comm": "PhotonicModulat",
+      "critical_score": 0.1104,
+      "frame_window_overlap": 0.1726,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 3,
+      "in_degree": 0
+    },
+    {
+      "id": 2597,
+      "type": "BINDER_SERVER",
+      "tid": 8286,
+      "pid": 8286,
+      "comm": "binder:8252_2",
+      "critical_score": 0.0506,
+      "frame_window_overlap": 0.0016,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 0,
+      "in_degree": 1
+    },
+    {
+      "id": 3021,
+      "type": "FUTEX_WAIT",
+      "tid": -1677,
+      "pid": -1,
+      "comm": "futex_677",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3022,
+      "type": "FUTEX_WAIT",
+      "tid": -1600,
+      "pid": -1,
+      "comm": "futex_600",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3023,
+      "type": "FUTEX_WAIT",
+      "tid": -17229,
+      "pid": -1,
+      "comm": "futex_16229",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3024,
+      "type": "FUTEX_WAIT",
+      "tid": -17210,
+      "pid": -1,
+      "comm": "futex_16210",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3025,
+      "type": "FUTEX_WAIT",
+      "tid": -17230,
+      "pid": -1,
+      "comm": "futex_16230",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3026,
+      "type": "FUTEX_WAIT",
+      "tid": -17232,
+      "pid": -1,
+      "comm": "futex_16232",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3027,
+      "type": "FUTEX_WAIT",
+      "tid": -17231,
+      "pid": -1,
+      "comm": "futex_16231",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3028,
+      "type": "FUTEX_WAIT",
+      "tid": -30269,
+      "pid": -1,
+      "comm": "futex_29269",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3029,
+      "type": "FUTEX_WAIT",
+      "tid": -17235,
+      "pid": -1,
+      "comm": "futex_16235",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3030,
+      "type": "FUTEX_WAIT",
+      "tid": -1653,
+      "pid": -1,
+      "comm": "futex_653",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3031,
+      "type": "FUTEX_WAIT",
+      "tid": -1707,
+      "pid": -1,
+      "comm": "futex_707",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3032,
+      "type": "FUTEX_WAIT",
+      "tid": -1681,
+      "pid": -1,
+      "comm": "futex_681",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3033,
+      "type": "FUTEX_WAIT",
+      "tid": -1680,
+      "pid": -1,
+      "comm": "futex_680",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3034,
+      "type": "FUTEX_WAIT",
+      "tid": -1649,
+      "pid": -1,
+      "comm": "futex_649",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3035,
+      "type": "FUTEX_WAIT",
+      "tid": -1652,
+      "pid": -1,
+      "comm": "futex_652",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3036,
+      "type": "FUTEX_WAIT",
+      "tid": -1670,
+      "pid": -1,
+      "comm": "futex_670",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3037,
+      "type": "FUTEX_WAIT",
+      "tid": -17233,
+      "pid": -1,
+      "comm": "futex_16233",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3038,
+      "type": "FUTEX_WAIT",
+      "tid": -17234,
+      "pid": -1,
+      "comm": "futex_16234",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3039,
+      "type": "FUTEX_WAIT",
+      "tid": -1679,
+      "pid": -1,
+      "comm": "futex_679",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3040,
+      "type": "FUTEX_WAIT",
+      "tid": -16251,
+      "pid": -1,
+      "comm": "futex_15251",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3041,
+      "type": "FUTEX_WAIT",
+      "tid": -2343,
+      "pid": -1,
+      "comm": "futex_1343",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3042,
+      "type": "FUTEX_WAIT",
+      "tid": -5276,
+      "pid": -1,
+      "comm": "futex_4276",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3043,
+      "type": "FUTEX_WAIT",
+      "tid": -2499,
+      "pid": -1,
+      "comm": "futex_1499",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3044,
+      "type": "FUTEX_WAIT",
+      "tid": -1897,
+      "pid": -1,
+      "comm": "futex_897",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3045,
+      "type": "FUTEX_WAIT",
+      "tid": -2488,
+      "pid": -1,
+      "comm": "futex_1488",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3046,
+      "type": "FUTEX_WAIT",
+      "tid": -16676,
+      "pid": -1,
+      "comm": "futex_15676",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3047,
+      "type": "FUTEX_WAIT",
+      "tid": -1686,
+      "pid": -1,
+      "comm": "futex_686",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3048,
+      "type": "FUTEX_WAIT",
+      "tid": -6393,
+      "pid": -1,
+      "comm": "futex_5393",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3049,
+      "type": "FUTEX_WAIT",
+      "tid": -6373,
+      "pid": -1,
+      "comm": "futex_5373",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3050,
+      "type": "FUTEX_WAIT",
+      "tid": -2289,
+      "pid": -1,
+      "comm": "futex_1289",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3051,
+      "type": "FUTEX_WAIT",
+      "tid": -1899,
+      "pid": -1,
+      "comm": "futex_899",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3052,
+      "type": "FUTEX_WAIT",
+      "tid": -17236,
+      "pid": -1,
+      "comm": "futex_16236",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3053,
+      "type": "FUTEX_WAIT",
+      "tid": -17237,
+      "pid": -1,
+      "comm": "futex_16237",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3054,
+      "type": "FUTEX_WAIT",
+      "tid": -2522,
+      "pid": -1,
+      "comm": "futex_1522",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3055,
+      "type": "FUTEX_WAIT",
+      "tid": -2021,
+      "pid": -1,
+      "comm": "futex_1021",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3056,
+      "type": "FUTEX_WAIT",
+      "tid": -30273,
+      "pid": -1,
+      "comm": "futex_29273",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3057,
+      "type": "FUTEX_WAIT",
+      "tid": -1661,
+      "pid": -1,
+      "comm": "futex_661",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3058,
+      "type": "FUTEX_WAIT",
+      "tid": -3450,
+      "pid": -1,
+      "comm": "futex_2450",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3059,
+      "type": "FUTEX_WAIT",
+      "tid": -1638,
+      "pid": -1,
+      "comm": "futex_638",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3060,
+      "type": "FUTEX_WAIT",
+      "tid": -1711,
+      "pid": -1,
+      "comm": "futex_711",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3061,
+      "type": "FUTEX_WAIT",
+      "tid": -3700,
+      "pid": -1,
+      "comm": "futex_2700",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3062,
+      "type": "FUTEX_WAIT",
+      "tid": -23812,
+      "pid": -1,
+      "comm": "futex_22812",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3063,
+      "type": "FUTEX_WAIT",
+      "tid": -1737,
+      "pid": -1,
+      "comm": "futex_737",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3064,
+      "type": "FUTEX_WAIT",
+      "tid": -2799,
+      "pid": -1,
+      "comm": "futex_1799",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3065,
+      "type": "FUTEX_WAIT",
+      "tid": -2020,
+      "pid": -1,
+      "comm": "futex_1020",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0714,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3066,
+      "type": "FUTEX_WAIT",
+      "tid": -5075,
+      "pid": -1,
+      "comm": "futex_4075",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3067,
+      "type": "FUTEX_WAIT",
+      "tid": -17510,
+      "pid": -1,
+      "comm": "futex_16510",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3068,
+      "type": "FUTEX_WAIT",
+      "tid": -3531,
+      "pid": -1,
+      "comm": "futex_2531",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3069,
+      "type": "FUTEX_WAIT",
+      "tid": -3271,
+      "pid": -1,
+      "comm": "futex_2271",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3070,
+      "type": "FUTEX_WAIT",
+      "tid": -3530,
+      "pid": -1,
+      "comm": "futex_2530",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3071,
+      "type": "FUTEX_WAIT",
+      "tid": -3512,
+      "pid": -1,
+      "comm": "futex_2512",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3072,
+      "type": "FUTEX_WAIT",
+      "tid": -30263,
+      "pid": -1,
+      "comm": "futex_29263",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3073,
+      "type": "FUTEX_WAIT",
+      "tid": -30262,
+      "pid": -1,
+      "comm": "futex_29262",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3074,
+      "type": "FUTEX_WAIT",
+      "tid": -2807,
+      "pid": -1,
+      "comm": "futex_1807",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3075,
+      "type": "FUTEX_WAIT",
+      "tid": -2982,
+      "pid": -1,
+      "comm": "futex_1982",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3076,
+      "type": "FUTEX_WAIT",
+      "tid": -3576,
+      "pid": -1,
+      "comm": "futex_2576",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3077,
+      "type": "FUTEX_WAIT",
+      "tid": -3041,
+      "pid": -1,
+      "comm": "futex_2041",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3078,
+      "type": "FUTEX_WAIT",
+      "tid": -3285,
+      "pid": -1,
+      "comm": "futex_2285",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3079,
+      "type": "FUTEX_WAIT",
+      "tid": -3006,
+      "pid": -1,
+      "comm": "futex_2006",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3080,
+      "type": "FUTEX_WAIT",
+      "tid": -3397,
+      "pid": -1,
+      "comm": "futex_2397",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3081,
+      "type": "FUTEX_WAIT",
+      "tid": -1678,
+      "pid": -1,
+      "comm": "futex_678",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3082,
+      "type": "FUTEX_WAIT",
+      "tid": -2402,
+      "pid": -1,
+      "comm": "futex_1402",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3083,
+      "type": "FUTEX_WAIT",
+      "tid": -3224,
+      "pid": -1,
+      "comm": "futex_2224",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3084,
+      "type": "FUTEX_WAIT",
+      "tid": -3415,
+      "pid": -1,
+      "comm": "futex_2415",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3085,
+      "type": "FUTEX_WAIT",
+      "tid": -2720,
+      "pid": -1,
+      "comm": "futex_1720",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3086,
+      "type": "FUTEX_WAIT",
+      "tid": -3755,
+      "pid": -1,
+      "comm": "futex_2755",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3087,
+      "type": "FUTEX_WAIT",
+      "tid": -2290,
+      "pid": -1,
+      "comm": "futex_1290",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3088,
+      "type": "FUTEX_WAIT",
+      "tid": -2405,
+      "pid": -1,
+      "comm": "futex_1405",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3089,
+      "type": "FUTEX_WAIT",
+      "tid": -2407,
+      "pid": -1,
+      "comm": "futex_1407",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3090,
+      "type": "FUTEX_WAIT",
+      "tid": -3044,
+      "pid": -1,
+      "comm": "futex_2044",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3091,
+      "type": "FUTEX_WAIT",
+      "tid": -3021,
+      "pid": -1,
+      "comm": "futex_2021",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3092,
+      "type": "FUTEX_WAIT",
+      "tid": -2489,
+      "pid": -1,
+      "comm": "futex_1489",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3093,
+      "type": "FUTEX_WAIT",
+      "tid": -3886,
+      "pid": -1,
+      "comm": "futex_2886",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3094,
+      "type": "FUTEX_WAIT",
+      "tid": -2404,
+      "pid": -1,
+      "comm": "futex_1404",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3095,
+      "type": "FUTEX_WAIT",
+      "tid": -2769,
+      "pid": -1,
+      "comm": "futex_1769",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3096,
+      "type": "FUTEX_WAIT",
+      "tid": -2486,
+      "pid": -1,
+      "comm": "futex_1486",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3097,
+      "type": "FUTEX_WAIT",
+      "tid": -3732,
+      "pid": -1,
+      "comm": "futex_2732",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3098,
+      "type": "FUTEX_WAIT",
+      "tid": -2303,
+      "pid": -1,
+      "comm": "futex_1303",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3099,
+      "type": "FUTEX_WAIT",
+      "tid": -2305,
+      "pid": -1,
+      "comm": "futex_1305",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3100,
+      "type": "FUTEX_WAIT",
+      "tid": -3875,
+      "pid": -1,
+      "comm": "futex_2875",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3101,
+      "type": "FUTEX_WAIT",
+      "tid": -2860,
+      "pid": -1,
+      "comm": "futex_1860",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3102,
+      "type": "FUTEX_WAIT",
+      "tid": -3192,
+      "pid": -1,
+      "comm": "futex_2192",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3103,
+      "type": "FUTEX_WAIT",
+      "tid": -2770,
+      "pid": -1,
+      "comm": "futex_1770",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3104,
+      "type": "FUTEX_WAIT",
+      "tid": -3022,
+      "pid": -1,
+      "comm": "futex_2022",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3105,
+      "type": "FUTEX_WAIT",
+      "tid": -23922,
+      "pid": -1,
+      "comm": "futex_22922",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3106,
+      "type": "FUTEX_WAIT",
+      "tid": -21594,
+      "pid": -1,
+      "comm": "futex_20594",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3107,
+      "type": "FUTEX_WAIT",
+      "tid": -17239,
+      "pid": -1,
+      "comm": "futex_16239",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3108,
+      "type": "FUTEX_WAIT",
+      "tid": -17238,
+      "pid": -1,
+      "comm": "futex_16238",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.3333,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3109,
+      "type": "FUTEX_WAIT",
+      "tid": -2988,
+      "pid": -1,
+      "comm": "futex_1988",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3110,
+      "type": "FUTEX_WAIT",
+      "tid": -3447,
+      "pid": -1,
+      "comm": "futex_2447",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3111,
+      "type": "FUTEX_WAIT",
+      "tid": -17240,
+      "pid": -1,
+      "comm": "futex_16240",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3112,
+      "type": "FUTEX_WAIT",
+      "tid": -17244,
+      "pid": -1,
+      "comm": "futex_16244",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3113,
+      "type": "FUTEX_WAIT",
+      "tid": -17243,
+      "pid": -1,
+      "comm": "futex_16243",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3114,
+      "type": "FUTEX_WAIT",
+      "tid": -17242,
+      "pid": -1,
+      "comm": "futex_16242",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3115,
+      "type": "FUTEX_WAIT",
+      "tid": -17245,
+      "pid": -1,
+      "comm": "futex_16245",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3116,
+      "type": "FUTEX_WAIT",
+      "tid": -17246,
+      "pid": -1,
+      "comm": "futex_16246",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3117,
+      "type": "FUTEX_WAIT",
+      "tid": -2496,
+      "pid": -1,
+      "comm": "futex_1496",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3118,
+      "type": "FUTEX_WAIT",
+      "tid": -2209,
+      "pid": -1,
+      "comm": "futex_1209",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3119,
+      "type": "FUTEX_WAIT",
+      "tid": -7370,
+      "pid": -1,
+      "comm": "futex_6370",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3120,
+      "type": "FUTEX_WAIT",
+      "tid": -7372,
+      "pid": -1,
+      "comm": "futex_6372",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3121,
+      "type": "FUTEX_WAIT",
+      "tid": -16309,
+      "pid": -1,
+      "comm": "futex_15309",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3122,
+      "type": "FUTEX_WAIT",
+      "tid": -2873,
+      "pid": -1,
+      "comm": "futex_1873",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3123,
+      "type": "FUTEX_WAIT",
+      "tid": -2399,
+      "pid": -1,
+      "comm": "futex_1399",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3124,
+      "type": "FUTEX_WAIT",
+      "tid": -2507,
+      "pid": -1,
+      "comm": "futex_1507",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3125,
+      "type": "FUTEX_WAIT",
+      "tid": -2719,
+      "pid": -1,
+      "comm": "futex_1719",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3126,
+      "type": "FUTEX_WAIT",
+      "tid": -3202,
+      "pid": -1,
+      "comm": "futex_2202",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3127,
+      "type": "FUTEX_WAIT",
+      "tid": -2523,
+      "pid": -1,
+      "comm": "futex_1523",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3128,
+      "type": "FUTEX_WAIT",
+      "tid": -17250,
+      "pid": -1,
+      "comm": "futex_16250",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3129,
+      "type": "FUTEX_WAIT",
+      "tid": -3448,
+      "pid": -1,
+      "comm": "futex_2448",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1667,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3130,
+      "type": "FUTEX_WAIT",
+      "tid": -17251,
+      "pid": -1,
+      "comm": "futex_16251",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1429,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3131,
+      "type": "FUTEX_WAIT",
+      "tid": -23901,
+      "pid": -1,
+      "comm": "futex_22901",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1250,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3132,
+      "type": "FUTEX_WAIT",
+      "tid": -17252,
+      "pid": -1,
+      "comm": "futex_16252",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1111,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3133,
+      "type": "FUTEX_WAIT",
+      "tid": -17254,
+      "pid": -1,
+      "comm": "futex_16254",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3134,
+      "type": "FUTEX_WAIT",
+      "tid": -17257,
+      "pid": -1,
+      "comm": "futex_16257",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0909,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3135,
+      "type": "FUTEX_WAIT",
+      "tid": -17256,
+      "pid": -1,
+      "comm": "futex_16256",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0833,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3136,
+      "type": "FUTEX_WAIT",
+      "tid": -17255,
+      "pid": -1,
+      "comm": "futex_16255",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0769,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3459,
+      "type": "FUTEX_WAIT",
+      "tid": -17689,
+      "pid": -1,
+      "comm": "futex_16689",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.1000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3524,
+      "type": "FUTEX_WAIT",
+      "tid": -1650,
+      "pid": -1,
+      "comm": "futex_650",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3574,
+      "type": "FUTEX_WAIT",
+      "tid": -2965,
+      "pid": -1,
+      "comm": "futex_1965",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 3734,
+      "type": "FUTEX_WAIT",
+      "tid": -17945,
+      "pid": -1,
+      "comm": "futex_16945",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0145,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 2
+    },
+    {
+      "id": 4017,
+      "type": "FUTEX_WAIT",
+      "tid": -18238,
+      "pid": -1,
+      "comm": "futex_17238",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2500,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 1,
+      "in_degree": 3
+    },
+    {
+      "id": 4386,
+      "type": "FUTEX_WAIT",
+      "tid": -2964,
+      "pid": -1,
+      "comm": "futex_1964",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.2000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 0,
+      "in_degree": 1
+    },
+    {
+      "id": 4448,
+      "type": "FUTEX_WAIT",
+      "tid": -18740,
+      "pid": -1,
+      "comm": "futex_17740",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.0000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 0,
+      "in_degree": 1
+    },
+    {
+      "id": 4488,
+      "type": "MEMORY_RECLAIM",
+      "tid": -4044,
+      "pid": -1,
+      "comm": "mem_reclaim",
+      "critical_score": 0.0000,
+      "frame_window_overlap": 0.0000,
+      "render_path_proximity": 0.5000,
+      "decode_path_proximity": 0.0000,
+      "out_degree": 0,
+      "in_degree": 1
+    }
+  ],
+  "edges": [
+    {
+      "from": 2,
+      "to": 3063,
+      "type": "FUTEX_WAIT",
+      "count": 572,
+      "duration_ns": 29070235895
+    },
+    {
+      "from": 8,
+      "to": 3077,
+      "type": "FUTEX_WAIT",
+      "count": 1863,
+      "duration_ns": 28746057307
+    },
+    {
+      "from": 15,
+      "to": 3041,
+      "type": "FUTEX_WAIT",
+      "count": 1388,
+      "duration_ns": 118445257
+    },
+    {
+      "from": 16,
+      "to": 3040,
+      "type": "FUTEX_WAIT",
+      "count": 2794,
+      "duration_ns": 134796068
+    },
+    {
+      "from": 22,
+      "to": 3028,
+      "type": "FUTEX_WAIT",
+      "count": 2872,
+      "duration_ns": 29110987480
+    },
+    {
+      "from": 28,
+      "to": 3057,
+      "type": "FUTEX_WAIT",
+      "count": 260,
+      "duration_ns": 29161902932
+    },
+    {
+      "from": 30,
+      "to": 3042,
+      "type": "FUTEX_WAIT",
+      "count": 209,
+      "duration_ns": 666597863
+    },
+    {
+      "from": 34,
+      "to": 3058,
+      "type": "FUTEX_WAIT",
+      "count": 174,
+      "duration_ns": 29176168748
+    },
+    {
+      "from": 36,
+      "to": 3023,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 39116008
+    },
+    {
+      "from": 38,
+      "to": 52,
+      "type": "BINDER_CALL",
+      "count": 2,
+      "duration_ns": 142701
+    },
+    {
+      "from": 38,
+      "to": 3022,
+      "type": "FUTEX_WAIT",
+      "count": 6380,
+      "duration_ns": 279961661
+    },
+    {
+      "from": 40,
+      "to": 3039,
+      "type": "FUTEX_WAIT",
+      "count": 866,
+      "duration_ns": 28616017453
+    },
+    {
+      "from": 41,
+      "to": 3024,
+      "type": "FUTEX_WAIT",
+      "count": 35,
+      "duration_ns": 1923707
+    },
+    {
+      "from": 42,
+      "to": 64,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 45817
+    },
+    {
+      "from": 42,
+      "to": 3089,
+      "type": "FUTEX_WAIT",
+      "count": 112,
+      "duration_ns": 41571899
+    },
+    {
+      "from": 43,
+      "to": 3025,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 12939
+    },
+    {
+      "from": 44,
+      "to": 3026,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 38031820
+    },
+    {
+      "from": 45,
+      "to": 240,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 225097
+    },
+    {
+      "from": 45,
+      "to": 3031,
+      "type": "FUTEX_WAIT",
+      "count": 2588,
+      "duration_ns": 28692865288
+    },
+    {
+      "from": 46,
+      "to": 3037,
+      "type": "FUTEX_WAIT",
+      "count": 6,
+      "duration_ns": 29344685
+    },
+    {
+      "from": 48,
+      "to": 3027,
+      "type": "FUTEX_WAIT",
+      "count": 1,
+      "duration_ns": 11271
+    },
+    {
+      "from": 49,
+      "to": 3038,
+      "type": "FUTEX_WAIT",
+      "count": 4,
+      "duration_ns": 29452514
+    },
+    {
+      "from": 51,
+      "to": 3029,
+      "type": "FUTEX_WAIT",
+      "count": 6,
+      "duration_ns": 37528278
+    },
+    {
+      "from": 52,
+      "to": 505,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 78491
+    },
+    {
+      "from": 52,
+      "to": 38,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 47241
+    },
+    {
+      "from": 52,
+      "to": 3030,
+      "type": "FUTEX_WAIT",
+      "count": 887,
+      "duration_ns": 19007383
+    },
+    {
+      "from": 54,
+      "to": 3059,
+      "type": "FUTEX_WAIT",
+      "count": 1109,
+      "duration_ns": 28975523973
+    },
+    {
+      "from": 55,
+      "to": 3032,
+      "type": "FUTEX_WAIT",
+      "count": 432,
+      "duration_ns": 29050908502
+    },
+    {
+      "from": 57,
+      "to": 3061,
+      "type": "FUTEX_WAIT",
+      "count": 237,
+      "duration_ns": 28965990111
+    },
+    {
+      "from": 59,
+      "to": 3033,
+      "type": "FUTEX_WAIT",
+      "count": 855,
+      "duration_ns": 28811806000
+    },
+    {
+      "from": 61,
+      "to": 3035,
+      "type": "FUTEX_WAIT",
+      "count": 1870,
+      "duration_ns": 28433676895
+    },
+    {
+      "from": 64,
+      "to": 3034,
+      "type": "FUTEX_WAIT",
+      "count": 131,
+      "duration_ns": 11204956
+    },
+    {
+      "from": 65,
+      "to": 3036,
+      "type": "FUTEX_WAIT",
+      "count": 791,
+      "duration_ns": 118208349
+    },
+    {
+      "from": 72,
+      "to": 3062,
+      "type": "FUTEX_WAIT",
+      "count": 349,
+      "duration_ns": 28911215995
+    },
+    {
+      "from": 74,
+      "to": 3106,
+      "type": "FUTEX_WAIT",
+      "count": 30,
+      "duration_ns": 1496829
+    },
+    {
+      "from": 76,
+      "to": 3083,
+      "type": "FUTEX_WAIT",
+      "count": 74,
+      "duration_ns": 13723473
+    },
+    {
+      "from": 83,
+      "to": 3056,
+      "type": "FUTEX_WAIT",
+      "count": 582,
+      "duration_ns": 29173425503
+    },
+    {
+      "from": 85,
+      "to": 3047,
+      "type": "FUTEX_WAIT",
+      "count": 99,
+      "duration_ns": 10143663741
+    },
+    {
+      "from": 86,
+      "to": 3052,
+      "type": "FUTEX_WAIT",
+      "count": 4,
+      "duration_ns": 28198
+    },
+    {
+      "from": 88,
+      "to": 3053,
+      "type": "FUTEX_WAIT",
+      "count": 4,
+      "duration_ns": 10621
+    },
+    {
+      "from": 89,
+      "to": 3117,
+      "type": "FUTEX_WAIT",
+      "count": 1,
+      "duration_ns": 96679
+    },
+    {
+      "from": 90,
+      "to": 3045,
+      "type": "FUTEX_WAIT",
+      "count": 228,
+      "duration_ns": 70963634
+    },
+    {
+      "from": 92,
+      "to": 3046,
+      "type": "FUTEX_WAIT",
+      "count": 4,
+      "duration_ns": 2229696
+    },
+    {
+      "from": 93,
+      "to": 3095,
+      "type": "FUTEX_WAIT",
+      "count": 4,
+      "duration_ns": 207356
+    },
+    {
+      "from": 96,
+      "to": 3082,
+      "type": "FUTEX_WAIT",
+      "count": 22,
+      "duration_ns": 5339922
+    },
+    {
+      "from": 97,
+      "to": 3043,
+      "type": "FUTEX_WAIT",
+      "count": 36,
+      "duration_ns": 255386313
+    },
+    {
+      "from": 99,
+      "to": 3050,
+      "type": "FUTEX_WAIT",
+      "count": 717,
+      "duration_ns": 29142259573
+    },
+    {
+      "from": 100,
+      "to": 3094,
+      "type": "FUTEX_WAIT",
+      "count": 28,
+      "duration_ns": 106363
+    },
+    {
+      "from": 102,
+      "to": 3103,
+      "type": "FUTEX_WAIT",
+      "count": 52,
+      "duration_ns": 13323938
+    },
+    {
+      "from": 105,
+      "to": 3044,
+      "type": "FUTEX_WAIT",
+      "count": 1106,
+      "duration_ns": 26535443
+    },
+    {
+      "from": 106,
+      "to": 3101,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 3238567
+    },
+    {
+      "from": 113,
+      "to": 3051,
+      "type": "FUTEX_WAIT",
+      "count": 857,
+      "duration_ns": 29130243174
+    },
+    {
+      "from": 115,
+      "to": 3123,
+      "type": "FUTEX_WAIT",
+      "count": 8,
+      "duration_ns": 428465
+    },
+    {
+      "from": 121,
+      "to": 3048,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 10036894536
+    },
+    {
+      "from": 126,
+      "to": 3049,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 10035455287
+    },
+    {
+      "from": 130,
+      "to": 3073,
+      "type": "FUTEX_WAIT",
+      "count": 97,
+      "duration_ns": 29113221818
+    },
+    {
+      "from": 135,
+      "to": 4448,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 413858
+    },
+    {
+      "from": 148,
+      "to": 3054,
+      "type": "FUTEX_WAIT",
+      "count": 1646,
+      "duration_ns": 43165892
+    },
+    {
+      "from": 149,
+      "to": 3055,
+      "type": "FUTEX_WAIT",
+      "count": 1613,
+      "duration_ns": 29099526992
+    },
+    {
+      "from": 150,
+      "to": 3065,
+      "type": "FUTEX_WAIT",
+      "count": 929,
+      "duration_ns": 29111942685
+    },
+    {
+      "from": 151,
+      "to": 3064,
+      "type": "FUTEX_WAIT",
+      "count": 707,
+      "duration_ns": 29059127056
+    },
+    {
+      "from": 153,
+      "to": 3118,
+      "type": "FUTEX_WAIT",
+      "count": 22,
+      "duration_ns": 9918050
+    },
+    {
+      "from": 163,
+      "to": 30,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 17497
+    },
+    {
+      "from": 163,
+      "to": 3060,
+      "type": "FUTEX_WAIT",
+      "count": 144,
+      "duration_ns": 4400513
+    },
+    {
+      "from": 164,
+      "to": 3072,
+      "type": "FUTEX_WAIT",
+      "count": 145,
+      "duration_ns": 29019101535
+    },
+    {
+      "from": 178,
+      "to": 223,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 68603
+    },
+    {
+      "from": 178,
+      "to": 3127,
+      "type": "FUTEX_WAIT",
+      "count": 527,
+      "duration_ns": 34796864
+    },
+    {
+      "from": 181,
+      "to": 3066,
+      "type": "FUTEX_WAIT",
+      "count": 26,
+      "duration_ns": 2154421
+    },
+    {
+      "from": 183,
+      "to": 3067,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 28628886041
+    },
+    {
+      "from": 186,
+      "to": 3109,
+      "type": "FUTEX_WAIT",
+      "count": 797,
+      "duration_ns": 555511577
+    },
+    {
+      "from": 188,
+      "to": 3068,
+      "type": "FUTEX_WAIT",
+      "count": 536,
+      "duration_ns": 127956662
+    },
+    {
+      "from": 189,
+      "to": 3070,
+      "type": "FUTEX_WAIT",
+      "count": 534,
+      "duration_ns": 28858473615
+    },
+    {
+      "from": 190,
+      "to": 3069,
+      "type": "FUTEX_WAIT",
+      "count": 278,
+      "duration_ns": 8398400
+    },
+    {
+      "from": 191,
+      "to": 3071,
+      "type": "FUTEX_WAIT",
+      "count": 288,
+      "duration_ns": 28946399715
+    },
+    {
+      "from": 213,
+      "to": 3074,
+      "type": "FUTEX_WAIT",
+      "count": 178,
+      "duration_ns": 6143028
+    },
+    {
+      "from": 215,
+      "to": 3078,
+      "type": "FUTEX_WAIT",
+      "count": 171,
+      "duration_ns": 27179878950
+    },
+    {
+      "from": 217,
+      "to": 3075,
+      "type": "FUTEX_WAIT",
+      "count": 159,
+      "duration_ns": 9196859
+    },
+    {
+      "from": 218,
+      "to": 3079,
+      "type": "FUTEX_WAIT",
+      "count": 158,
+      "duration_ns": 27185005626
+    },
+    {
+      "from": 223,
+      "to": 3076,
+      "type": "FUTEX_WAIT",
+      "count": 324,
+      "duration_ns": 16418611
+    },
+    {
+      "from": 224,
+      "to": 3088,
+      "type": "FUTEX_WAIT",
+      "count": 37,
+      "duration_ns": 24049646
+    },
+    {
+      "from": 230,
+      "to": 3081,
+      "type": "FUTEX_WAIT",
+      "count": 3092,
+      "duration_ns": 28355662366
+    },
+    {
+      "from": 231,
+      "to": 3080,
+      "type": "FUTEX_WAIT",
+      "count": 163,
+      "duration_ns": 2088422
+    },
+    {
+      "from": 238,
+      "to": 3093,
+      "type": "FUTEX_WAIT",
+      "count": 159,
+      "duration_ns": 131431553
+    },
+    {
+      "from": 240,
+      "to": 3085,
+      "type": "FUTEX_WAIT",
+      "count": 33,
+      "duration_ns": 8269818
+    },
+    {
+      "from": 241,
+      "to": 3084,
+      "type": "FUTEX_WAIT",
+      "count": 65,
+      "duration_ns": 2061690
+    },
+    {
+      "from": 245,
+      "to": 3105,
+      "type": "FUTEX_WAIT",
+      "count": 33,
+      "duration_ns": 554363807
+    },
+    {
+      "from": 251,
+      "to": 3086,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 3004086794
+    },
+    {
+      "from": 254,
+      "to": 3091,
+      "type": "FUTEX_WAIT",
+      "count": 37,
+      "duration_ns": 21800010
+    },
+    {
+      "from": 256,
+      "to": 3087,
+      "type": "FUTEX_WAIT",
+      "count": 9,
+      "duration_ns": 27820009452
+    },
+    {
+      "from": 258,
+      "to": 3104,
+      "type": "FUTEX_WAIT",
+      "count": 4,
+      "duration_ns": 35563
+    },
+    {
+      "from": 263,
+      "to": 4488,
+      "type": "RESOURCE_STALL",
+      "count": 15,
+      "duration_ns": 7500000
+    },
+    {
+      "from": 263,
+      "to": 64,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 46183
+    },
+    {
+      "from": 263,
+      "to": 223,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 31372
+    },
+    {
+      "from": 263,
+      "to": 3090,
+      "type": "FUTEX_WAIT",
+      "count": 3245,
+      "duration_ns": 506223576
+    },
+    {
+      "from": 270,
+      "to": 3092,
+      "type": "FUTEX_WAIT",
+      "count": 4,
+      "duration_ns": 147055
+    },
+    {
+      "from": 278,
+      "to": 3096,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 7311728
+    },
+    {
+      "from": 281,
+      "to": 3097,
+      "type": "FUTEX_WAIT",
+      "count": 19,
+      "duration_ns": 520872
+    },
+    {
+      "from": 284,
+      "to": 3098,
+      "type": "FUTEX_WAIT",
+      "count": 68,
+      "duration_ns": 8794269
+    },
+    {
+      "from": 286,
+      "to": 64,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 21159
+    },
+    {
+      "from": 286,
+      "to": 3100,
+      "type": "FUTEX_WAIT",
+      "count": 96,
+      "duration_ns": 62936157
+    },
+    {
+      "from": 289,
+      "to": 3099,
+      "type": "FUTEX_WAIT",
+      "count": 184,
+      "duration_ns": 13807530
+    },
+    {
+      "from": 298,
+      "to": 3102,
+      "type": "FUTEX_WAIT",
+      "count": 14,
+      "duration_ns": 1757689
+    },
+    {
+      "from": 321,
+      "to": 3124,
+      "type": "FUTEX_WAIT",
+      "count": 7,
+      "duration_ns": 4846720
+    },
+    {
+      "from": 324,
+      "to": 3110,
+      "type": "FUTEX_WAIT",
+      "count": 37,
+      "duration_ns": 551749186
+    },
+    {
+      "from": 325,
+      "to": 2597,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 963501
+    },
+    {
+      "from": 325,
+      "to": 4017,
+      "type": "RESOURCE_STALL",
+      "count": 4,
+      "duration_ns": 2000000
+    },
+    {
+      "from": 325,
+      "to": 670,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 49968
+    },
+    {
+      "from": 325,
+      "to": 223,
+      "type": "BINDER_CALL",
+      "count": 2,
+      "duration_ns": 117269
+    },
+    {
+      "from": 325,
+      "to": 3108,
+      "type": "FUTEX_WAIT",
+      "count": 6788,
+      "duration_ns": 960612654
+    },
+    {
+      "from": 327,
+      "to": 3107,
+      "type": "FUTEX_WAIT",
+      "count": 4,
+      "duration_ns": 49641
+    },
+    {
+      "from": 339,
+      "to": 3111,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 8504
+    },
+    {
+      "from": 340,
+      "to": 3114,
+      "type": "FUTEX_WAIT",
+      "count": 49,
+      "duration_ns": 28069680474
+    },
+    {
+      "from": 341,
+      "to": 3113,
+      "type": "FUTEX_WAIT",
+      "count": 841,
+      "duration_ns": 26764359309
+    },
+    {
+      "from": 342,
+      "to": 3112,
+      "type": "FUTEX_WAIT",
+      "count": 70,
+      "duration_ns": 28507331272
+    },
+    {
+      "from": 343,
+      "to": 3115,
+      "type": "FUTEX_WAIT",
+      "count": 43,
+      "duration_ns": 28560404231
+    },
+    {
+      "from": 344,
+      "to": 3116,
+      "type": "FUTEX_WAIT",
+      "count": 15,
+      "duration_ns": 28562203667
+    },
+    {
+      "from": 350,
+      "to": 3126,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 178468
+    },
+    {
+      "from": 351,
+      "to": 3125,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 1303467
+    },
+    {
+      "from": 355,
+      "to": 3119,
+      "type": "FUTEX_WAIT",
+      "count": 4,
+      "duration_ns": 99609
+    },
+    {
+      "from": 357,
+      "to": 3122,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 775594
+    },
+    {
+      "from": 359,
+      "to": 3120,
+      "type": "FUTEX_WAIT",
+      "count": 8,
+      "duration_ns": 27791100314
+    },
+    {
+      "from": 364,
+      "to": 3121,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 101888
+    },
+    {
+      "from": 383,
+      "to": 3128,
+      "type": "FUTEX_WAIT",
+      "count": 1,
+      "duration_ns": 12491
+    },
+    {
+      "from": 386,
+      "to": 3129,
+      "type": "FUTEX_WAIT",
+      "count": 45,
+      "duration_ns": 28126269625
+    },
+    {
+      "from": 392,
+      "to": 3130,
+      "type": "FUTEX_WAIT",
+      "count": 68,
+      "duration_ns": 8564414
+    },
+    {
+      "from": 394,
+      "to": 3131,
+      "type": "FUTEX_WAIT",
+      "count": 68,
+      "duration_ns": 23314136567
+    },
+    {
+      "from": 400,
+      "to": 3132,
+      "type": "FUTEX_WAIT",
+      "count": 2,
+      "duration_ns": 16763
+    },
+    {
+      "from": 403,
+      "to": 3135,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 20839252289
+    },
+    {
+      "from": 404,
+      "to": 3134,
+      "type": "FUTEX_WAIT",
+      "count": 5,
+      "duration_ns": 20839349824
+    },
+    {
+      "from": 405,
+      "to": 3133,
+      "type": "FUTEX_WAIT",
+      "count": 3,
+      "duration_ns": 20839350231
+    },
+    {
+      "from": 505,
+      "to": 3524,
+      "type": "FUTEX_WAIT",
+      "count": 230,
+      "duration_ns": 35075613
+    },
+    {
+      "from": 670,
+      "to": 3574,
+      "type": "FUTEX_WAIT",
+      "count": 230,
+      "duration_ns": 54458621
+    },
+    {
+      "from": 986,
+      "to": 3459,
+      "type": "FUTEX_WAIT",
+      "count": 151,
+      "duration_ns": 11111947547
+    },
+    {
+      "from": 1377,
+      "to": 3734,
+      "type": "FUTEX_WAIT",
+      "count": 8,
+      "duration_ns": 5999915855
+    },
+    {
+      "from": 2428,
+      "to": 2117,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 2971
+    },
+    {
+      "from": 2428,
+      "to": 505,
+      "type": "BINDER_CALL",
+      "count": 1,
+      "duration_ns": 77026
+    },
+    {
+      "from": 2428,
+      "to": 4386,
+      "type": "FUTEX_WAIT",
+      "count": 477,
+      "duration_ns": 2968220784
+    },
+    {
+      "from": 3022,
+      "to": 3021,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3023,
+      "to": 3022,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3024,
+      "to": 3023,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3025,
+      "to": 3024,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3026,
+      "to": 3025,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3027,
+      "to": 3026,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 3028,
+      "to": 3027,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 3029,
+      "to": 3028,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3030,
+      "to": 3029,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3031,
+      "to": 3030,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3032,
+      "to": 3031,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3033,
+      "to": 3032,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3034,
+      "to": 3033,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3035,
+      "to": 3034,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3036,
+      "to": 3035,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3037,
+      "to": 3036,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3038,
+      "to": 3037,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3039,
+      "to": 3038,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3040,
+      "to": 3039,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3041,
+      "to": 3040,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3042,
+      "to": 3041,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3043,
+      "to": 3042,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3044,
+      "to": 3043,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3045,
+      "to": 3044,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3046,
+      "to": 3045,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3047,
+      "to": 3046,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3048,
+      "to": 3047,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3049,
+      "to": 3048,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3050,
+      "to": 3049,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3051,
+      "to": 3050,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3052,
+      "to": 3051,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3053,
+      "to": 3052,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3054,
+      "to": 3053,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3055,
+      "to": 3054,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3056,
+      "to": 3055,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3057,
+      "to": 3056,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3058,
+      "to": 3057,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3059,
+      "to": 3058,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3060,
+      "to": 3059,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3061,
+      "to": 3060,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3062,
+      "to": 3061,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3063,
+      "to": 3062,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3064,
+      "to": 3063,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3065,
+      "to": 3064,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3066,
+      "to": 3065,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3067,
+      "to": 3066,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3068,
+      "to": 3067,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3069,
+      "to": 3068,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3070,
+      "to": 3069,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 3071,
+      "to": 3070,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 0
+    },
+    {
+      "from": 3072,
+      "to": 3071,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3073,
+      "to": 3072,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3074,
+      "to": 3073,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3075,
+      "to": 3074,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3076,
+      "to": 3075,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3077,
+      "to": 3076,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3078,
+      "to": 3077,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3079,
+      "to": 3078,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3080,
+      "to": 3079,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3081,
+      "to": 3080,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3082,
+      "to": 3081,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3083,
+      "to": 3082,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3084,
+      "to": 3083,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3085,
+      "to": 3084,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3086,
+      "to": 3085,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3087,
+      "to": 3086,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3088,
+      "to": 3087,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3089,
+      "to": 3088,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3090,
+      "to": 3089,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3091,
+      "to": 3090,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3092,
+      "to": 3091,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3093,
+      "to": 3092,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3094,
+      "to": 3093,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3095,
+      "to": 3094,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3096,
+      "to": 3095,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3097,
+      "to": 3096,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3098,
+      "to": 3097,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3099,
+      "to": 3098,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3100,
+      "to": 3099,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3101,
+      "to": 3100,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3102,
+      "to": 3101,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3103,
+      "to": 3102,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3104,
+      "to": 3103,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3105,
+      "to": 3104,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3106,
+      "to": 3105,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3107,
+      "to": 3106,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3108,
+      "to": 3107,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3109,
+      "to": 3108,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3110,
+      "to": 3109,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3111,
+      "to": 3110,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3112,
+      "to": 3111,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3113,
+      "to": 3112,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3114,
+      "to": 3113,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3115,
+      "to": 3114,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3116,
+      "to": 3115,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3117,
+      "to": 3116,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3118,
+      "to": 3117,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3119,
+      "to": 3118,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3120,
+      "to": 3119,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3121,
+      "to": 3120,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3122,
+      "to": 3121,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3123,
+      "to": 3122,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3124,
+      "to": 3123,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3125,
+      "to": 3124,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3126,
+      "to": 3125,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3127,
+      "to": 3126,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3128,
+      "to": 3127,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3129,
+      "to": 3128,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3130,
+      "to": 3129,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3131,
+      "to": 3130,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3132,
+      "to": 3131,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3133,
+      "to": 3132,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3134,
+      "to": 3133,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3135,
+      "to": 3134,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    },
+    {
+      "from": 3136,
+      "to": 3135,
+      "type": "FRAME_DEPENDENCY",
+      "count": 1,
+      "duration_ns": 1
+    }
+  ]
+}

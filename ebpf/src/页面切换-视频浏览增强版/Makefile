@@ -82,7 +82,12 @@ SKEL_H      := $(LOADER_DIR)/tracepilot.skel.h
 
 LOADER_SRC  := $(LOADER_DIR)/main.c \
                $(LOADER_DIR)/frame_aggregator.c \
-               $(LOADER_DIR)/resolver.c
+               $(LOADER_DIR)/resolver.c \
+               $(LOADER_DIR)/identity.c \
+               $(LOADER_DIR)/hint_engine.c \
+               $(LOADER_DIR)/thermal_profile.c \
+               $(LOADER_DIR)/inference_engine.c \
+               $(LOADER_DIR)/session_compare.c
 
 LOADER_BIN  := $(OUTPUT_DIR)/tracepilot
 ANDROID_BIN := $(OUTPUT_DIR)/tracepilot-aarch64

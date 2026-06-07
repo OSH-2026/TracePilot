@@ -14,8 +14,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 #include "frame_aggregator.h"
+#include "hint_engine.h"
+#include "identity.h"
+#include "inference_engine.h"
+#include "thermal_profile.h"
 #include "../bpf/tracepilot.bpf.h"
 
 #define PRE_MARGIN_NS  20000000UL
@@ -195,6 +200,7 @@ int parse_frame_json(const char *filename, struct frame_window **out)
         if (line[0] == '\n' || line[0] == '-' || line[0] == '\r') continue;
 
         /* Parse format: frame_type frame_token intended expected_start expected_end actual_end is_jank delay_ms */
+        /* Support both space, comma, and pipe delimiters */
         fields = sscanf(line, "%3s %lld %llu %llu %llu %llu %d %lf",
                         ftype, &frame_token, &intended_vsync,
                         &expected_start, &expected_end, &actual_end,
@@ -208,13 +214,34 @@ int parse_frame_json(const char *filename, struct frame_window **out)
                            &actual_end, &is_jank, &delay_ms) < 6) {
                     if (sscanf(line, "%lld %llu %llu %llu %d %lf",
                                &frame_token, &intended_vsync, &expected_end,
-                               &actual_end, &is_jank, &delay_ms) < 5)
-                        continue;
-                    expected_start = intended_vsync;
+                               &actual_end, &is_jank, &delay_ms) < 5) {
+                        /* Try pipe-delimited format (trace_processor_shell default) */
+                        char ftype_pipe[4] = {0};
+                        if (sscanf(line, "%3[^|]|%lld|%llu|%llu|%llu|%llu|%d|%lf",
+                                   ftype_pipe, &frame_token, &intended_vsync,
+                                   &expected_start, &expected_end, &actual_end,
+                                   &is_jank, &delay_ms) >= 6) {
+                            memcpy(ftype, ftype_pipe, 3);
+                            ftype[3] = 0;
+                        } else {
+                            /* Try CSV format: "XX",int,int,int,int,int,int,float */
+                            char ftype_csv[4] = {0};
+                            if (sscanf(line, "\"%3[^\"]\",%lld,%llu,%llu,%llu,%llu,%d,%lf",
+                                       ftype_csv, &frame_token, &intended_vsync,
+                                       &expected_start, &expected_end, &actual_end,
+                                       &is_jank, &delay_ms) >= 6) {
+                                memcpy(ftype, ftype_csv, 3);
+                                ftype[3] = 0;
+                            } else
+                                continue;
+                        }
+                    } else {
+                        expected_start = intended_vsync;
+                    }
                 }
             }
-            /* Legacy format: no frame_type, default to SF */
-            ftype[0] = 'S'; ftype[1] = 'F'; ftype[2] = 0;
+            /* Default to SF if no frame_type parsed via non-pipe paths */
+            if (!ftype[0]) { ftype[0] = 'S'; ftype[1] = 'F'; ftype[2] = 0; }
         }
 
         if (cnt >= cap) {
@@ -271,6 +298,101 @@ static uint64_t compute_p95(uint64_t *samples, int count)
     uint64_t result = sorted[idx];
     free(sorted);
     return result;
+}
+
+#define SCHED_TRACK_MAP_CAP 65536
+#define NODE_DELAY_SAMPLES  512
+
+typedef struct {
+    int32_t  keys[SCHED_TRACK_MAP_CAP];
+    uint64_t vals[SCHED_TRACK_MAP_CAP];
+} sched_track_map_t;
+
+typedef struct {
+    uint64_t rd[NODE_DELAY_SAMPLES];
+    uint64_t wl[NODE_DELAY_SAMPLES];
+    int rd_n;
+    int wl_n;
+} node_delay_buf_t;
+
+static void track_map_clear(sched_track_map_t *m)
+{
+    for (int i = 0; i < SCHED_TRACK_MAP_CAP; i++)
+        m->keys[i] = INT32_MIN;
+}
+
+static void track_map_put(sched_track_map_t *m, int32_t tid, uint64_t ts)
+{
+    uint32_t idx = (uint32_t)((tid * 2654435761U) % SCHED_TRACK_MAP_CAP);
+
+    for (uint32_t p = 0; p < SCHED_TRACK_MAP_CAP; p++) {
+        if (m->keys[idx] == INT32_MIN || m->keys[idx] == tid) {
+            m->keys[idx] = tid;
+            m->vals[idx] = ts;
+            return;
+        }
+        idx = (idx + 1) % SCHED_TRACK_MAP_CAP;
+    }
+}
+
+static uint64_t track_map_take(sched_track_map_t *m, int32_t tid)
+{
+    uint32_t idx = (uint32_t)((tid * 2654435761U) % SCHED_TRACK_MAP_CAP);
+
+    for (uint32_t p = 0; p < SCHED_TRACK_MAP_CAP; p++) {
+        if (m->keys[idx] == tid) {
+            uint64_t v = m->vals[idx];
+            m->keys[idx] = INT32_MIN;
+            return v;
+        }
+        if (m->keys[idx] == INT32_MIN)
+            return 0;
+        idx = (idx + 1) % SCHED_TRACK_MAP_CAP;
+    }
+    return 0;
+}
+
+static void track_map_del(sched_track_map_t *m, int32_t tid)
+{
+    uint32_t idx = (uint32_t)((tid * 2654435761U) % SCHED_TRACK_MAP_CAP);
+
+    for (uint32_t p = 0; p < SCHED_TRACK_MAP_CAP; p++) {
+        if (m->keys[idx] == tid) {
+            m->keys[idx] = INT32_MIN;
+            return;
+        }
+        if (m->keys[idx] == INT32_MIN)
+            return;
+        idx = (idx + 1) % SCHED_TRACK_MAP_CAP;
+    }
+}
+
+static int32_t sched_event_next_tid(const struct sched_event *ev)
+{
+    if (ev->next_tid > 0)
+        return (int32_t)ev->next_tid;
+    if (ev->next_pid > 0)
+        return (int32_t)ev->next_pid;
+    return 0;
+}
+
+static int32_t sched_event_prev_tid(const struct sched_event *ev)
+{
+    if (ev->prev_tid > 0)
+        return (int32_t)ev->prev_tid;
+    if (ev->prev_pid > 0)
+        return (int32_t)ev->prev_pid;
+    return 0;
+}
+
+static void node_delay_add(node_delay_buf_t *buf, uint64_t rd, uint64_t wl)
+{
+    if (!buf)
+        return;
+    if (rd > 0 && buf->rd_n < NODE_DELAY_SAMPLES)
+        buf->rd[buf->rd_n++] = rd;
+    if (wl > 0 && buf->wl_n < NODE_DELAY_SAMPLES)
+        buf->wl[buf->wl_n++] = wl;
 }
 
 static int compare_score(const void *a, const void *b)
@@ -367,13 +489,109 @@ int output_topk(FILE *out, int top_k)
 
 /* ── Graph helper functions ─────────────────────────────────────────── */
 
+static int graph_tid_map_grow(critical_path_graph_t *g)
+{
+    uint32_t new_cap = g->tid_map_cap * 2;
+    int32_t *new_map;
+    uint32_t *new_node;
+    uint32_t i;
+
+    if (new_cap <= g->tid_map_cap)
+        return -1;
+
+    new_map = malloc(new_cap * sizeof(int32_t));
+    new_node = malloc(new_cap * sizeof(uint32_t));
+    if (!new_map || !new_node) {
+        free(new_map);
+        free(new_node);
+        return -1;
+    }
+    for (i = 0; i < new_cap; i++)
+        new_map[i] = INT32_MIN;
+
+    for (i = 0; i < g->tid_map_cap; i++) {
+        int32_t tid;
+        uint32_t nid, idx;
+
+        if (g->tid_map[i] == INT32_MIN)
+            continue;
+        tid = g->tid_map[i];
+        nid = g->tid_map_node[i];
+        idx = (uint32_t)((tid * 2654435761U) % new_cap);
+        while (new_map[idx] != INT32_MIN)
+            idx = (idx + 1) % new_cap;
+        new_map[idx] = tid;
+        new_node[idx] = nid;
+    }
+
+    free(g->tid_map);
+    free(g->tid_map_node);
+    g->tid_map = new_map;
+    g->tid_map_node = new_node;
+    g->tid_map_cap = new_cap;
+    return 0;
+}
+
 /* Returns stable node ID (index into g->nodes). IDs never change even
  * after realloc. Use &g->nodes[id] to access the node struct. */
 static uint32_t graph_find_or_create(critical_path_graph_t *g,
     graph_node_type_t type, int32_t tid, int32_t pid,
     const char *comm, const char *pkg)
 {
-    /* Search by tid */
+    /* Fast hash map lookup (if available) */
+    if (g->tid_map && tid != 0) {
+        uint32_t idx, probes = 0;
+        int use_hash = 1;
+
+        /* Expand before load exceeds ~75% to keep probing cheap */
+        if (g->node_count * 4 >= g->tid_map_cap * 3)
+            graph_tid_map_grow(g);
+
+        idx = (uint32_t)((tid * 2654435761U) % g->tid_map_cap);
+        while (g->tid_map[idx] != INT32_MIN) {
+            if (g->tid_map[idx] == tid)
+                return g->tid_map_node[idx];
+            idx = (idx + 1) % g->tid_map_cap;
+            if (++probes >= g->tid_map_cap) {
+                if (graph_tid_map_grow(g) < 0) {
+                    use_hash = 0;
+                    break;
+                }
+                idx = (uint32_t)((tid * 2654435761U) % g->tid_map_cap);
+                probes = 0;
+            }
+        }
+
+        if (use_hash) {
+            uint32_t nid;
+
+            if (g->node_count >= g->node_capacity) {
+                uint32_t nc = g->node_capacity * 2;
+                graph_node_t *nn = realloc(g->nodes, nc * sizeof(graph_node_t));
+                if (!nn) return (uint32_t)-1;
+                memset(nn + g->node_capacity, 0, (nc - g->node_capacity) * sizeof(graph_node_t));
+                g->nodes = nn;
+                g->node_capacity = nc;
+            }
+
+            nid = g->node_count;
+            graph_node_t *n = &g->nodes[nid];
+            memset(n, 0, sizeof(*n));
+            n->id   = nid;
+            n->type = type;
+            n->tid  = tid;
+            n->pid  = pid;
+            if (comm) strncpy(n->comm, comm, sizeof(n->comm) - 1);
+            if (pkg)  strncpy(n->pkg, pkg, sizeof(n->pkg) - 1);
+            g->node_count++;
+
+            g->tid_map[idx] = tid;
+            g->tid_map_node[idx] = nid;
+            return nid;
+        }
+    }
+
+    /* Fallback: linear search (hash unavailable or table full) */
     for (uint32_t i = 0; i < g->node_count; i++) {
         if (g->nodes[i].tid == tid && tid > 0)
             return i;
@@ -407,7 +625,59 @@ static void graph_add_edge_nodes(critical_path_graph_t *g,
 {
     if (from >= g->node_count || to >= g->node_count) return;
 
-    /* Check duplicate */
+    /* Fast path: use edge hash map if available */
+    if (g->edge_hash_cap > 0) {
+        uint64_t ek = ((uint64_t)from << 32) | ((uint64_t)to << 4) | (uint64_t)type;
+        if (ek == UINT64_MAX) ek = UINT64_MAX - 1; /* avoid sentinel collision */
+        uint32_t ei = (uint32_t)((ek * 11400714819323198485ULL) % g->edge_hash_cap);
+        uint32_t probe_limit = 128;
+        while (g->edge_hash_key[ei] != UINT64_MAX) {
+            if (g->edge_hash_key[ei] == ek) {
+                adj_entry_t *e = g->edge_hash_val[ei];
+                e->weight.duration_ns += dur_ns;
+                e->weight.count++;
+                if (dur_ns > e->weight.p95_ns * 0.95)
+                    e->weight.p95_ns = (e->weight.p95_ns * 3 + dur_ns) / 4;
+                return;
+            }
+            if (--probe_limit == 0) break; /* fallback: table full, use linear scan */
+            ei = (ei + 1) % g->edge_hash_cap;
+        }
+        if (probe_limit > 0) {
+            /* Found empty slot — create new edge */
+            adj_entry_t *oe = calloc(1, sizeof(*oe));
+            if (!oe) return;
+            oe->target = to;
+            oe->type   = type;
+            oe->weight.duration_ns = dur_ns;
+            oe->weight.count = 1;
+            oe->weight.p95_ns = dur_ns;
+            oe->next = g->nodes[from].out_edges;
+            g->nodes[from].out_edges = oe;
+            g->nodes[from].out_degree++;
+
+            adj_entry_t *ie = calloc(1, sizeof(*ie));
+            if (!ie) { g->nodes[from].out_edges = oe->next; free(oe); return; }
+            ie->target = from;
+            ie->type   = type;
+            ie->weight.duration_ns = dur_ns;
+            ie->weight.count = 1;
+            ie->weight.p95_ns = dur_ns;
+            ie->next = g->nodes[to].in_edges;
+            g->nodes[to].in_edges = ie;
+            g->nodes[to].in_degree++;
+
+            g->total_edges++;
+            g->edge_type_counts[type]++;
+
+            g->edge_hash_key[ei] = ek;
+            g->edge_hash_val[ei] = oe;
+            return;
+        }
+        /* Fall through to linear scan on hash table full */
+    }
+
+    /* Fallback: linear scan (when no edge hash map) */
     adj_entry_t *e = g->nodes[from].out_edges;
     while (e) {
         if (e->target == to && e->type == type) {
@@ -435,7 +705,6 @@ static void graph_add_edge_nodes(critical_path_graph_t *g,
     /* Create in-edge */
     adj_entry_t *ie = calloc(1, sizeof(*ie));
     if (!ie) {
-        /* Free the out-edge we just created to avoid leaking it */
         g->nodes[from].out_edges = oe->next;
         free(oe);
         return;
@@ -513,7 +782,16 @@ critical_path_graph_t *build_critical_path_graph(
     g->node_capacity = 2048;
     g->nodes = calloc(g->node_capacity, sizeof(graph_node_t));
     if (!g->nodes) { free(g); return NULL; }
+
+    /* Init fast TID→node_idx hash map (grows automatically under load) */
+    g->tid_map_cap = 32768;
+    g->tid_map = malloc(g->tid_map_cap * sizeof(int32_t));
+    g->tid_map_node = malloc(g->tid_map_cap * sizeof(uint32_t));
+    if (!g->tid_map || !g->tid_map_node) { free(g->tid_map); free(g->tid_map_node); free(g->nodes); free(g); return NULL; }
+    for (uint32_t i = 0; i < g->tid_map_cap; i++) g->tid_map[i] = INT32_MIN;
+
     g->total_frames = frame_count;
+    struct timespec __t0; clock_gettime(CLOCK_MONOTONIC, &__t0);
 
     /* Count jank frames */
     for (int i = 0; i < frame_count; i++) {
@@ -524,6 +802,8 @@ critical_path_graph_t *build_critical_path_graph(
     }
     if (g->jank_frames > 0)
         g->avg_jank_duration_ns = (double)g->jank_frame_duration_sum_ns / g->jank_frames;
+
+    { struct timespec __t1; clock_gettime(CLOCK_MONOTONIC, &__t1); fprintf(stderr, "[TIME] init: %.3f s\n", (__t1.tv_sec-__t0.tv_sec)+(__t1.tv_nsec-__t0.tv_nsec)/1e9); clock_gettime(CLOCK_MONOTONIC, &__t0); }
 
     /* Phase 1: Create thread nodes from all events */
     for (size_t i = 0; i < sched_count; i++) {
@@ -541,6 +821,7 @@ critical_path_graph_t *build_critical_path_graph(
             graph_find_or_create(g, classify_thread(ev->comm),
                 ev->tid, ev->pid, ev->comm, NULL);
     }
+    { struct timespec __t1; clock_gettime(CLOCK_MONOTONIC, &__t1); fprintf(stderr, "[TIME] Phase1 (thread nodes): %.3f s\n", (__t1.tv_sec-__t0.tv_sec)+(__t1.tv_nsec-__t0.tv_nsec)/1e9); clock_gettime(CLOCK_MONOTONIC, &__t0); }
 
     /* Phase 1b: Create frame nodes */
     uint32_t frame_base_id = g->node_count;
@@ -555,6 +836,14 @@ critical_path_graph_t *build_critical_path_graph(
     graph_find_or_create(g, GRAPH_NODE_CPU_RESOURCE, -2, -1, "cpu_little", NULL);
     graph_find_or_create(g, GRAPH_NODE_CPU_RESOURCE, -3, -1, "cpu_big", NULL);
     graph_find_or_create(g, GRAPH_NODE_IO_WAIT, -4, -1, "io_wait", NULL);
+    { struct timespec __t1; clock_gettime(CLOCK_MONOTONIC, &__t1); fprintf(stderr, "[TIME] Phase1b/1c (frame+res nodes): %.3f s  nodes=%u\n", (__t1.tv_sec-__t0.tv_sec)+(__t1.tv_nsec-__t0.tv_nsec)/1e9, g->node_count); clock_gettime(CLOCK_MONOTONIC, &__t0); }
+
+    /* Init edge dedup hash map */
+    g->edge_hash_cap = 1048576; /* 2^20 */
+    g->edge_hash_key = malloc(g->edge_hash_cap * sizeof(uint64_t));
+    g->edge_hash_val = calloc(g->edge_hash_cap, sizeof(adj_entry_t*));
+    if (!g->edge_hash_key || !g->edge_hash_val) { free(g->edge_hash_key); free(g->edge_hash_val); g->edge_hash_cap = 0; }
+    else { for (uint32_t _ei = 0; _ei < g->edge_hash_cap; _ei++) g->edge_hash_key[_ei] = UINT64_MAX; }
 
     /* Phase 2: Build edges from sched events */
     uint64_t prev_cpu_ts[MAX_CPUS] = {0};
@@ -576,19 +865,16 @@ critical_path_graph_t *build_critical_path_graph(
                 g->nodes[npid].total_runtime_ns += ev->timestamp_ns - prev_cpu_ts[cpu];
             }
 
-            /* PREEMPTED_BY: next preempted prev */
-            uint32_t nnid  = graph_find_or_create(g, classify_thread(""), next_tid, 0, "", NULL);
-            uint32_t np2id = graph_find_or_create(g, classify_thread(""), prev_tid, 0, "", NULL);
+            /* PREEMPTED_BY: next preempted prev — skip edge creation to avoid O(N²), just accumulate runtime */
             if (prev_tid > 0 && next_tid != prev_tid) {
-                graph_add_edge_nodes(g, nnid, np2id,
-                    GRAPH_EDGE_PREEMPTED_BY, ev->timestamp_ns - prev_cpu_ts[cpu]);
+                /* graph_add_edge_nodes call omitted for performance */
             }
 
             prev_cpu_ts[cpu] = ev->timestamp_ns;
             prev_cpu_tid[cpu] = next_tid;
-            prev_cpu_node[cpu] = (int32_t)nnid;
         }
     }
+    { struct timespec __t1; clock_gettime(CLOCK_MONOTONIC, &__t1); fprintf(stderr, "[TIME] Phase2 (sched edges): %.3f s\n", (__t1.tv_sec-__t0.tv_sec)+(__t1.tv_nsec-__t0.tv_nsec)/1e9); clock_gettime(CLOCK_MONOTONIC, &__t0); }
 
     /* Phase 3: Build Binder dependency graph from enhanced events */
     /*
@@ -597,9 +883,14 @@ critical_path_graph_t *build_critical_path_graph(
      */
     #define BINDER_HASH_SIZE 512
     struct { uint32_t tid; uint64_t ts; } binder_map[BINDER_HASH_SIZE];
+    memset(binder_map, 0, sizeof(binder_map));
 
     for (size_t i = 0; i < enh_count; i++) {
         struct enhanced_event *ev = &enh_events[i];
+
+        if (i > 0 && (i % 500000) == 0)
+            fprintf(stderr, "[TIME] Phase3 progress: %zu / %zu enhanced events\n",
+                    i, enh_count);
 
         if (ev->type == ENH_EV_BINDER_CALL) {
             int idx = (int)(ev->value1 % BINDER_HASH_SIZE);
@@ -653,6 +944,7 @@ critical_path_graph_t *build_critical_path_graph(
                 GRAPH_EDGE_RESOURCE_STALL, 500000);
         }
     }
+    { struct timespec __t1; clock_gettime(CLOCK_MONOTONIC, &__t1); fprintf(stderr, "[TIME] Phase3 (enhanced events): %.3f s\n", (__t1.tv_sec-__t0.tv_sec)+(__t1.tv_nsec-__t0.tv_nsec)/1e9); clock_gettime(CLOCK_MONOTONIC, &__t0); }
 
     /* Phase 4: Frame dependency edges */
     for (int i = 1; i < frame_count; i++) {
@@ -663,32 +955,184 @@ critical_path_graph_t *build_critical_path_graph(
             graph_add_edge_nodes(g, curr, prev, GRAPH_EDGE_FRAME_DEPENDENCY, weight);
         }
     }
+    { struct timespec __t1; clock_gettime(CLOCK_MONOTONIC, &__t1); fprintf(stderr, "[TIME] Phase4 (frame deps): %.3f s\n", (__t1.tv_sec-__t0.tv_sec)+(__t1.tv_nsec-__t0.tv_nsec)/1e9); clock_gettime(CLOCK_MONOTONIC, &__t0); }
 
-    /* Phase 5: Compute frame_window_overlap per thread */
-    for (uint32_t i = 0; i < g->node_count; i++) {
-        graph_node_t *n = &g->nodes[i];
-        if (n->type >= GRAPH_NODE_UI_THREAD && n->type <= GRAPH_NODE_BUFFER_QUEUE) {
-            if (g->jank_frames > 0) {
-                /* Estimate overlap from total runtime * jank_frame_ratio */
-                for (size_t j = 0; j < sched_count; j++) {
-                    struct sched_event *ev = &sched_events[j];
-                    if (ev->event_type != EVENT_SCHED_SWITCH) continue;
-                    for (int k = 0; k < frame_count; k++) {
-                        if (!frames[k].is_jank) continue;
-                        int64_t adj = (int64_t)ev->timestamp_ns + g_clock_offset_ns;
-                        if (adj >= (int64_t)frames[k].expected_start_ns - 20000000 &&
-                            adj <= (int64_t)frames[k].actual_end_ns + 10000000) {
-                            if (ev->next_tid == n->tid || ev->prev_tid == n->tid) {
-                                n->jank_frame_count++;
-                                break;
-                            }
+    /* Phase 5: Compute frame_window_overlap per thread (optimized: single sweep via TID hash) */
+    if (g->jank_frames > 0) {
+        /* ~~ Build TID→node_index hash map (open addressing) ~~ */
+        uint32_t tid_map_sz = g->node_count * 2 + 64;
+        int32_t *tid_to_node = calloc(tid_map_sz, sizeof(int32_t));
+        int32_t *tid_to_key  = calloc(tid_map_sz, sizeof(int32_t));
+        if (!tid_to_node || !tid_to_key) { free(tid_to_node); free(tid_to_key); goto skip_phase5; }
+        for (uint32_t i = 0; i < tid_map_sz; i++) tid_to_key[i] = INT32_MIN;
+
+        for (uint32_t i = 0; i < g->node_count; i++) {
+            graph_node_t *n = &g->nodes[i];
+            if (n->type >= GRAPH_NODE_UI_THREAD && n->type <= GRAPH_NODE_BUFFER_QUEUE) {
+                n->jank_frame_count = 0;
+                int32_t key = n->tid;
+                uint32_t idx = (uint32_t)((key * 2654435761U) % tid_map_sz);
+                while (tid_to_key[idx] != INT32_MIN && tid_to_key[idx] != key)
+                    idx = (idx + 1) % tid_map_sz;
+                tid_to_key[idx] = key;
+                tid_to_node[idx] = (int32_t)i;
+            }
+        }
+
+        /* ~~ Jank frame index ~~ */
+        int *jank_idx = malloc(frame_count * sizeof(int));
+        int nj = 0;
+        for (int i = 0; i < frame_count; i++)
+            if (frames[i].is_jank) jank_idx[nj++] = i;
+
+        /* ~~ Per-node last-frame-seen tracking ~~ */
+        int *last_seen = calloc(g->node_count, sizeof(int));
+        if (!last_seen) { free(jank_idx); free(tid_to_node); free(tid_to_key); goto skip_phase5; }
+
+        /* ~~ Two-pointer sweep: events are assumed sorted by timestamp ~~ */
+        int fj = 0;
+        for (size_t j = 0; j < sched_count && fj < nj; j++) {
+            if (j > 0 && (j % 2000000) == 0)
+                fprintf(stderr, "[TIME] Phase5 progress: %zu / %zu sched events\n",
+                        j, sched_count);
+
+            struct sched_event *ev = &sched_events[j];
+            if (ev->event_type != EVENT_SCHED_SWITCH) continue;
+
+            int64_t adj = (int64_t)ev->timestamp_ns + g_clock_offset_ns;
+
+            /* Advance past frames that end before this event */
+            while (fj < nj) {
+                int ki = jank_idx[fj];
+                if (adj > (int64_t)frames[ki].actual_end_ns + (int64_t)POST_MARGIN_NS)
+                    fj++;
+                else
+                    break;
+            }
+            if (fj >= nj) break;
+
+            int ki = jank_idx[fj];
+            int64_t ws = (int64_t)frames[ki].expected_start_ns - (int64_t)PRE_MARGIN_NS;
+            int64_t we = (int64_t)frames[ki].actual_end_ns + (int64_t)POST_MARGIN_NS;
+
+            if (adj >= ws && adj <= we) {
+                /* Check both prev_tid and next_tid */
+                int32_t tids[2] = { ev->prev_tid, ev->next_tid };
+                for (int t = 0; t < 2; t++) {
+                    if (tids[t] <= 0) continue;
+                    uint32_t h = (uint32_t)((tids[t] * 2654435761U) % tid_map_sz);
+                    while (tid_to_key[h] != INT32_MIN && tid_to_key[h] != tids[t])
+                        h = (h + 1) % tid_map_sz;
+                    int32_t ni = (tid_to_key[h] == tids[t]) ? tid_to_node[h] : -1;
+                    if (ni >= 0 && (uint32_t)ni < g->node_count) {
+                        if (last_seen[ni] != fj) {
+                            g->nodes[ni].jank_frame_count++;
+                            last_seen[ni] = fj;
                         }
                     }
                 }
-                n->frame_window_overlap = (double)n->jank_frame_count / g->jank_frames;
             }
         }
+
+        /* ~~ Compute overlap ratio ~~ */
+        for (uint32_t i = 0; i < g->node_count; i++) {
+            graph_node_t *n = &g->nodes[i];
+            if (n->type >= GRAPH_NODE_UI_THREAD && n->type <= GRAPH_NODE_BUFFER_QUEUE)
+                n->frame_window_overlap = (double)n->jank_frame_count / nj;
+        }
+
+        /* ~~ Phase 5b: runnable delay + wakeup latency in jank windows ~~ */
+        {
+            sched_track_map_t preempt_map, wakeup_map;
+            node_delay_buf_t *delay_bufs = calloc(g->node_count, sizeof(*delay_bufs));
+            track_map_clear(&preempt_map);
+            track_map_clear(&wakeup_map);
+
+            if (delay_bufs) {
+                int fj2 = 0;
+                for (size_t j = 0; j < sched_count; j++) {
+                    struct sched_event *ev = &sched_events[j];
+                    int32_t next_tid = sched_event_next_tid(ev);
+                    int32_t prev_tid = sched_event_prev_tid(ev);
+                    int64_t adj = (int64_t)ev->timestamp_ns + g_clock_offset_ns;
+                    int in_jank = 0;
+
+                    while (fj2 < nj) {
+                        int ki = jank_idx[fj2];
+                        if (adj > (int64_t)frames[ki].actual_end_ns + (int64_t)POST_MARGIN_NS)
+                            fj2++;
+                        else
+                            break;
+                    }
+                    if (fj2 < nj) {
+                        int ki = jank_idx[fj2];
+                        int64_t ws = (int64_t)frames[ki].expected_start_ns - (int64_t)PRE_MARGIN_NS;
+                        int64_t we = (int64_t)frames[ki].actual_end_ns + (int64_t)POST_MARGIN_NS;
+                        if (adj >= ws && adj <= we)
+                            in_jank = 1;
+                    }
+
+                    if (ev->event_type == EVENT_SCHED_WAKEUP && next_tid > 0) {
+                        track_map_del(&preempt_map, next_tid);
+                        track_map_put(&wakeup_map, next_tid, ev->timestamp_ns);
+                    } else if (ev->event_type == EVENT_SCHED_SWITCH) {
+                        uint64_t rd = 0, wl = 0;
+
+                        rd = track_map_take(&preempt_map, next_tid);
+                        if (rd > 0 && ev->timestamp_ns > rd)
+                            rd = ev->timestamp_ns - rd;
+                        else
+                            rd = 0;
+
+                        wl = track_map_take(&wakeup_map, next_tid);
+                        if (wl > 0 && ev->timestamp_ns > wl)
+                            wl = ev->timestamp_ns - wl;
+                        else
+                            wl = 0;
+
+                        if (rd == 0 && ev->next_runnable_delay_ns > 0)
+                            rd = ev->next_runnable_delay_ns;
+                        if (wl == 0 && ev->wakeup_latency_ns > 0)
+                            wl = ev->wakeup_latency_ns;
+
+                        if (in_jank && next_tid > 0) {
+                            uint32_t h = (uint32_t)((next_tid * 2654435761U) % tid_map_sz);
+                            while (tid_to_key[h] != INT32_MIN && tid_to_key[h] != next_tid)
+                                h = (h + 1) % tid_map_sz;
+                            int32_t ni = (tid_to_key[h] == next_tid) ? tid_to_node[h] : -1;
+                            if (ni >= 0 && (uint32_t)ni < g->node_count) {
+                                node_delay_add(&delay_bufs[ni], rd, wl);
+                                g->nodes[ni].total_runnable_delay_ns += rd;
+                                g->nodes[ni].total_wakeup_latency_ns += wl;
+                            }
+                        }
+
+                        if ((ev->prev_task_state & 0xFF) == 0 && prev_tid > 0)
+                            track_map_put(&preempt_map, prev_tid, ev->timestamp_ns);
+                    }
+                }
+
+                for (uint32_t i = 0; i < g->node_count; i++) {
+                    graph_node_t *n = &g->nodes[i];
+                    if (n->type < GRAPH_NODE_UI_THREAD || n->type > GRAPH_NODE_BUFFER_QUEUE)
+                        continue;
+                    n->runnable_delay_p95_ns =
+                        compute_p95(delay_bufs[i].rd, delay_bufs[i].rd_n);
+                    n->wakeup_latency_p95_ns =
+                        compute_p95(delay_bufs[i].wl, delay_bufs[i].wl_n);
+                }
+                free(delay_bufs);
+            }
+        }
+
+        free(last_seen);
+        free(jank_idx);
+        free(tid_to_node);
+        free(tid_to_key);
     }
+    skip_phase5:
+
+    { struct timespec __t1; clock_gettime(CLOCK_MONOTONIC, &__t1); fprintf(stderr, "[TIME] Phase5 (frame overlap + delay): %.3f s\n", (__t1.tv_sec-__t0.tv_sec)+(__t1.tv_nsec-__t0.tv_nsec)/1e9); clock_gettime(CLOCK_MONOTONIC, &__t0); }
 
     /* Phase 6: repeated_jank_cooccurrence */
     for (uint32_t i = 0; i < g->node_count; i++) {
@@ -697,6 +1141,8 @@ critical_path_graph_t *build_critical_path_graph(
             n->repeated_jank_cooccurrence = (double)n->jank_frame_count / g->jank_frames;
         }
     }
+
+    { struct timespec __t1; clock_gettime(CLOCK_MONOTONIC, &__t1); fprintf(stderr, "[TIME] Phase6 (jank co-occur): %.3f s\n", (__t1.tv_sec-__t0.tv_sec)+(__t1.tv_nsec-__t0.tv_nsec)/1e9); clock_gettime(CLOCK_MONOTONIC, &__t0); }
 
     /* Phase 7: background_penalty */
     for (uint32_t i = 0; i < g->node_count; i++) {
@@ -707,6 +1153,19 @@ critical_path_graph_t *build_critical_path_graph(
             n->background_penalty = 0.0;
         }
     }
+    { struct timespec __t1; clock_gettime(CLOCK_MONOTONIC, &__t1); fprintf(stderr, "[TIME] Phase7 (bg penalty): %.3f s\n", (__t1.tv_sec-__t0.tv_sec)+(__t1.tv_nsec-__t0.tv_nsec)/1e9); clock_gettime(CLOCK_MONOTONIC, &__t0); }
+
+    /* Cleanup hash maps */
+    free(g->tid_map);
+    g->tid_map = NULL;
+    free(g->tid_map_node);
+    g->tid_map_node = NULL;
+    g->tid_map_cap = 0;
+    free(g->edge_hash_key);
+    g->edge_hash_key = NULL;
+    free(g->edge_hash_val);
+    g->edge_hash_val = NULL;
+    g->edge_hash_cap = 0;
 
     return g;
 }
@@ -1316,6 +1775,18 @@ int classify_jank_causes(critical_path_graph_t *g,
         fc[i].audio_sync_drift_score = 0.0;
         fc[i].thermal_throttle_score = 0.0;
 
+        if (g->freq_throttle_ratio > 0.15)
+            fc[i].thermal_throttle_score += g->freq_throttle_ratio;
+
+        for (uint32_t j = 0; j < g->node_count; j++) {
+            graph_node_t *n = &g->nodes[j];
+            if (n->frame_window_overlap < 0.05)
+                continue;
+            if (n->runnable_delay_p95_ns > 1000000)
+                fc[i].runnable_delay_score +=
+                    log1p((double)n->runnable_delay_p95_ns / 1e6) * n->frame_window_overlap;
+        }
+
         /* ── Video-specific detection ── */
         if (frames[i].is_video_frame) {
             double decode_score = 0.0, thermal_score = 0.0;
@@ -1562,12 +2033,19 @@ static const char *cause_to_str(jank_cause_t c)
 
 int output_enhanced_topk(FILE *out, critical_path_graph_t *g, int top_k,
     frame_classification_t *classifications, int class_count,
-    heuristics_comparison_t *comparison)
+    heuristics_comparison_t *comparison,
+    void *hints_out_ptr,
+    void *inference_report_ptr,
+    const thermal_profile_t *thermal)
 {
+    hint_list_t *hints_out = (hint_list_t *)hints_out_ptr;
+    inference_report_t *inference_report = (inference_report_t *)inference_report_ptr;
     if (!g || !out) return -1;
 
     /* Collect thread rankings */
     thread_ranking_t *ranking = calloc(g->node_count, sizeof(*ranking));
+    hint_list_t hints;
+    const app_session_t *sess = identity_get_session();
     if (!ranking) return -1;
     int rcount = 0;
 
@@ -1590,6 +2068,7 @@ int output_enhanced_topk(FILE *out, critical_path_graph_t *g, int top_k,
         r->thermal_proximity           = n->thermal_proximity;
         r->buffer_underrun_contribution = n->buffer_underrun_contribution;
         r->runnable_delay_p95_ns      = n->runnable_delay_p95_ns;
+        r->wakeup_latency_p95_ns        = n->wakeup_latency_p95_ns;
         r->total_runtime_ns           = n->total_runtime_ns;
         r->dominant_cause             = n->dominant_cause;
         snprintf(r->comm, sizeof(r->comm), "%s", n->comm);
@@ -1602,9 +2081,15 @@ int output_enhanced_topk(FILE *out, critical_path_graph_t *g, int top_k,
     /* Assign ranks */
     for (int i = 0; i < rcount; i++) ranking[i].rank = i + 1;
 
+    hints = hint_engine_generate(g, ranking, rcount, top_k, sess);
+    if (hints_out)
+        *hints_out = hints;
+
     /* ── Output JSON ── */
     fprintf(out, "{\n");
     fprintf(out, "  \"analysis_mode\": \"graph_based_critical_path\",\n");
+    fprintf(out, "  \"session_id\": \"%s\",\n", sess->session_id);
+    fprintf(out, "  \"target_package\": \"%s\",\n", sess->package);
     fprintf(out, "  \"total_frames\": %llu,\n", (unsigned long long)g->total_frames);
     fprintf(out, "  \"jank_frames\": %llu,\n", (unsigned long long)g->jank_frames);
     fprintf(out, "  \"avg_jank_duration_ns\": %.0f,\n", g->avg_jank_duration_ns);
@@ -1643,6 +2128,14 @@ int output_enhanced_topk(FILE *out, critical_path_graph_t *g, int top_k,
     fprintf(out, "    \"video_frames\": %llu,\n",
         (unsigned long long)g->video_frames);
     fprintf(out, "    \"detected_scenario\": \"%s\",\n", g->detected_scenario);
+    fprintf(out, "    \"freq_throttle_ratio\": %.4f,\n", g->freq_throttle_ratio);
+    if (thermal && thermal->count > 0) {
+        fprintf(out, "    \"thermal_baseline_mc\": %d,\n", thermal->baseline_temp_mc);
+        fprintf(out, "    \"thermal_peak_mc\": %d,\n", thermal->peak_temp_mc);
+        fprintf(out, "    \"thermal_jank_peak_mc\": %d,\n", thermal->jank_window_peak_mc);
+        fprintf(out, "    \"thermal_jank_delta_mc\": %d,\n", thermal->jank_window_delta_mc);
+        fprintf(out, "    \"thermal_throttle_score\": %.4f,\n", thermal->throttle_score);
+    }
     fprintf(out, "    \"jank_system_overhead_ns\": %llu\n",
         (unsigned long long)g->jank_system_overhead_ns);
     fprintf(out, "  },\n");
@@ -1675,6 +2168,8 @@ int output_enhanced_topk(FILE *out, critical_path_graph_t *g, int top_k,
         fprintf(out, "      },\n");
         fprintf(out, "      \"runnable_delay_p95_ns\": %llu,\n",
             (unsigned long long)r->runnable_delay_p95_ns);
+        fprintf(out, "      \"wakeup_latency_p95_ns\": %llu,\n",
+            (unsigned long long)r->wakeup_latency_p95_ns);
         fprintf(out, "      \"total_runtime_ns\": %llu,\n",
             (unsigned long long)r->total_runtime_ns);
         fprintf(out, "      \"dominant_cause\": \"%s\"\n", r->cause_name);
@@ -1698,6 +2193,11 @@ int output_enhanced_topk(FILE *out, critical_path_graph_t *g, int top_k,
     }
     fprintf(out, "  },\n");
 
+    hint_engine_print_json_section(out, &hints);
+
+    if (inference_report)
+        inference_print_json_section(out, inference_report);
+
     /* Heuristic comparison */
     fprintf(out, "  \"heuristics_comparison\": {\n");
     fprintf(out, "    \"graph_avg_precision_at_k\": %.4f,\n",
@@ -1718,6 +2218,306 @@ int output_enhanced_topk(FILE *out, critical_path_graph_t *g, int top_k,
     return 0;
 }
 
+/* ── Graph topology export ──────────────────────────────────────────── */
+
+#define MAX_SUBGRAPH_NODES 250
+
+static const char *node_type_name(graph_node_type_t t)
+{
+    static const char *names[] = {
+        "FRAME", "UI_THREAD", "RENDER_THREAD", "BINDER_CLIENT",
+        "BINDER_SERVER", "SYSTEM_SERVER", "SURFACEFLINGER", "FUTEX_WAIT",
+        "CPU_RESOURCE", "MEMORY_RECLAIM", "IO_WAIT", "VIDEO_DECODER",
+        "AUDIO_THREAD", "MEDIA_SERVER", "NETWORK", "THERMAL", "BUFFER_QUEUE",
+    };
+    if (t >= 0 && t < (int)(sizeof(names) / sizeof(names[0])))
+        return names[t];
+    return "UNKNOWN";
+}
+
+static const char *edge_type_name(graph_edge_type_t t)
+{
+    static const char *names[] = {
+        "WAKEUP", "RUNNABLE_WAIT", "BINDER_CALL", "FUTEX_WAIT",
+        "CPU_RUN", "PREEMPTED_BY", "FRAME_DEPENDENCY", "RESOURCE_STALL",
+        "DECODE_DEPENDENCY", "BUFFER_QUEUE", "THERMAL_STALL", "NETWORK_WAIT",
+    };
+    if (t >= 0 && t < GRAPH_EDGE_TYPE_COUNT)
+        return names[t];
+    return "UNKNOWN";
+}
+
+static void json_escape(FILE *out, const char *s)
+{
+    if (!s) s = "";
+    fputc('"', out);
+    for (; *s; s++) {
+        if (*s == '"' || *s == '\\')
+            fputc('\\', out);
+        if (*s == '\n' || *s == '\r')
+            continue;
+        fputc(*s, out);
+    }
+    fputc('"', out);
+}
+
+static void dot_escape(FILE *out, const char *s)
+{
+    if (!s) s = "";
+    for (; *s; s++) {
+        if (*s == '"' || *s == '\\' || *s == ']' || *s == '[')
+            fputc('\\', out);
+        if (*s == '\n' || *s == '\r')
+            continue;
+        fputc(*s, out);
+    }
+}
+
+typedef struct {
+    uint32_t id;
+    double   score;
+} scored_node_t;
+
+static int compare_scored_node(const void *a, const void *b)
+{
+    const scored_node_t *sa = a;
+    const scored_node_t *sb = b;
+    if (sb->score > sa->score) return 1;
+    if (sb->score < sa->score) return -1;
+    return 0;
+}
+
+static uint8_t *select_subgraph_nodes(critical_path_graph_t *g, int top_k,
+                                      uint32_t *selected_count)
+{
+    uint8_t *sel;
+    scored_node_t *threads;
+    int nt = 0, pick, round;
+    uint32_t count = 0;
+
+    sel = calloc(g->node_count, 1);
+    threads = malloc(g->node_count * sizeof(*threads));
+    if (!sel || !threads) {
+        free(sel);
+        free(threads);
+        return NULL;
+    }
+
+    for (uint32_t i = 0; i < g->node_count; i++) {
+        graph_node_t *n = &g->nodes[i];
+        if (n->type >= GRAPH_NODE_UI_THREAD && n->type <= GRAPH_NODE_BUFFER_QUEUE &&
+            n->tid > 0) {
+            threads[nt].id = i;
+            threads[nt].score = n->critical_score;
+            nt++;
+        }
+    }
+    qsort(threads, nt, sizeof(*threads), compare_scored_node);
+
+    pick = top_k < nt ? top_k : nt;
+    if (pick < 1 && nt > 0)
+        pick = nt < 5 ? nt : 5;
+
+    for (int i = 0; i < pick; i++)
+        sel[threads[i].id] = 1;
+
+    for (uint32_t i = 0; i < g->node_count; i++)
+        if (sel[i]) count++;
+
+    for (round = 0; round < 2 && count < MAX_SUBGRAPH_NODES; round++) {
+        for (uint32_t i = 0; i < g->node_count && count < MAX_SUBGRAPH_NODES; i++) {
+            adj_entry_t *e;
+            if (!sel[i]) continue;
+            e = g->nodes[i].out_edges;
+            while (e && count < MAX_SUBGRAPH_NODES) {
+                uint32_t t = e->target;
+                if (!sel[t] && g->nodes[t].type != GRAPH_NODE_FRAME) {
+                    sel[t] = 1;
+                    count++;
+                }
+                e = e->next;
+            }
+            e = g->nodes[i].in_edges;
+            while (e && count < MAX_SUBGRAPH_NODES) {
+                uint32_t t = e->target;
+                if (!sel[t] && g->nodes[t].type != GRAPH_NODE_FRAME) {
+                    sel[t] = 1;
+                    count++;
+                }
+                e = e->next;
+            }
+        }
+    }
+
+    free(threads);
+    *selected_count = count;
+    return sel;
+}
+
+static void write_node_json(FILE *out, critical_path_graph_t *g, uint32_t i)
+{
+    graph_node_t *n = &g->nodes[i];
+    fprintf(out, "    {\n");
+    fprintf(out, "      \"id\": %u,\n", i);
+    fprintf(out, "      \"type\": \"%s\",\n", node_type_name(n->type));
+    fprintf(out, "      \"tid\": %d,\n", n->tid);
+    fprintf(out, "      \"pid\": %d,\n", n->pid);
+    fprintf(out, "      \"comm\": ");
+    json_escape(out, n->comm);
+    fprintf(out, ",\n");
+    fprintf(out, "      \"critical_score\": %.4f,\n", n->critical_score);
+    fprintf(out, "      \"frame_window_overlap\": %.4f,\n", n->frame_window_overlap);
+    fprintf(out, "      \"render_path_proximity\": %.4f,\n", n->render_path_proximity);
+    fprintf(out, "      \"decode_path_proximity\": %.4f,\n", n->decode_path_proximity);
+    fprintf(out, "      \"out_degree\": %u,\n", n->out_degree);
+    fprintf(out, "      \"in_degree\": %u\n", n->in_degree);
+    fprintf(out, "    }");
+}
+
+static int write_edges_json(FILE *out, critical_path_graph_t *g,
+                            const uint8_t *sel, int first_edge)
+{
+    int first = first_edge;
+    for (uint32_t i = 0; i < g->node_count; i++) {
+        if (sel && !sel[i]) continue;
+        for (adj_entry_t *e = g->nodes[i].out_edges; e; e = e->next) {
+            if (sel && (!sel[e->target])) continue;
+            if (!first) fprintf(out, ",\n");
+            first = 0;
+            fprintf(out, "    {\n");
+            fprintf(out, "      \"from\": %u,\n", i);
+            fprintf(out, "      \"to\": %u,\n", e->target);
+            fprintf(out, "      \"type\": \"%s\",\n", edge_type_name(e->type));
+            fprintf(out, "      \"count\": %u,\n", e->weight.count);
+            fprintf(out, "      \"duration_ns\": %llu\n",
+                (unsigned long long)e->weight.duration_ns);
+            fprintf(out, "    }");
+        }
+    }
+    return first;
+}
+
+int export_graph_topology_json(FILE *out, critical_path_graph_t *g)
+{
+    int first_node = 1, first_edge = 1;
+    if (!out || !g) return -1;
+
+    fprintf(out, "{\n");
+    fprintf(out, "  \"format\": \"tracepilot_graph_v1\",\n");
+    fprintf(out, "  \"directed\": true,\n");
+    fprintf(out, "  \"total_nodes\": %u,\n", g->node_count);
+    fprintf(out, "  \"total_edges\": %llu,\n", (unsigned long long)g->total_edges);
+    fprintf(out, "  \"detected_scenario\": ");
+    json_escape(out, g->detected_scenario);
+    fprintf(out, ",\n  \"nodes\": [\n");
+
+    for (uint32_t i = 0; i < g->node_count; i++) {
+        if (!first_node) fprintf(out, ",\n");
+        first_node = 0;
+        write_node_json(out, g, i);
+    }
+
+    fprintf(out, "\n  ],\n  \"edges\": [\n");
+    first_edge = write_edges_json(out, g, NULL, 1);
+    fprintf(out, "\n  ]\n}\n");
+    return 0;
+}
+
+int export_graph_subgraph_json(FILE *out, critical_path_graph_t *g, int top_k)
+{
+    uint32_t selected = 0;
+    uint8_t *sel;
+    int first_node = 1;
+    if (!out || !g || top_k <= 0) return -1;
+
+    sel = select_subgraph_nodes(g, top_k, &selected);
+    if (!sel) return -1;
+
+    fprintf(out, "{\n");
+    fprintf(out, "  \"format\": \"tracepilot_subgraph_v1\",\n");
+    fprintf(out, "  \"directed\": true,\n");
+    fprintf(out, "  \"top_k\": %d,\n", top_k);
+    fprintf(out, "  \"selected_nodes\": %u,\n", selected);
+    fprintf(out, "  \"nodes\": [\n");
+
+    for (uint32_t i = 0; i < g->node_count; i++) {
+        if (!sel[i]) continue;
+        if (!first_node) fprintf(out, ",\n");
+        first_node = 0;
+        write_node_json(out, g, i);
+    }
+
+    fprintf(out, "\n  ],\n  \"edges\": [\n");
+    write_edges_json(out, g, sel, 1);
+    fprintf(out, "\n  ]\n}\n");
+    free(sel);
+    return 0;
+}
+
+static const char *node_dot_color(graph_node_type_t t)
+{
+    switch (t) {
+    case GRAPH_NODE_SURFACEFLINGER: return "#e45756";
+    case GRAPH_NODE_RENDER_THREAD:  return "#4c78a8";
+    case GRAPH_NODE_VIDEO_DECODER:  return "#f58518";
+    case GRAPH_NODE_BINDER_CLIENT:
+    case GRAPH_NODE_BINDER_SERVER:  return "#72b7b2";
+    case GRAPH_NODE_FUTEX_WAIT:     return "#bab0ac";
+    case GRAPH_NODE_CPU_RESOURCE:
+    case GRAPH_NODE_MEMORY_RECLAIM:
+    case GRAPH_NODE_IO_WAIT:        return "#54a24b";
+    default:                        return "#b279a2";
+    }
+}
+
+int export_graph_subgraph_dot(FILE *out, critical_path_graph_t *g, int top_k)
+{
+    uint32_t selected = 0;
+    uint8_t *sel;
+    if (!out || !g || top_k <= 0) return -1;
+
+    sel = select_subgraph_nodes(g, top_k, &selected);
+    if (!sel) return -1;
+
+    fprintf(out, "digraph critical_path_subgraph {\n");
+    fprintf(out, "  rankdir=LR;\n");
+    fprintf(out, "  graph [fontname=\"Arial\", fontsize=11, label=\"Top-%d Critical Path Subgraph (%u nodes)\"];\n",
+        top_k, selected);
+    fprintf(out, "  node [fontname=\"Arial\", fontsize=9, style=filled, shape=box];\n");
+    fprintf(out, "  edge [fontname=\"Arial\", fontsize=8, color=\"#666666\"];\n");
+
+    for (uint32_t i = 0; i < g->node_count; i++) {
+        graph_node_t *n;
+        if (!sel[i]) continue;
+        n = &g->nodes[i];
+        fprintf(out, "  n%u [label=\"", i);
+        if (n->comm[0])
+            dot_escape(out, n->comm);
+        else
+            dot_escape(out, node_type_name(n->type));
+        if (n->tid > 0)
+            fprintf(out, "\\nTID %d", n->tid);
+        fprintf(out, "\\nscore %.3f\", fillcolor=\"%s\"];\n",
+            n->critical_score, node_dot_color(n->type));
+    }
+
+    for (uint32_t i = 0; i < g->node_count; i++) {
+        if (!sel[i]) continue;
+        for (adj_entry_t *e = g->nodes[i].out_edges; e; e = e->next) {
+            if (!sel[e->target]) continue;
+            fprintf(out, "  n%u -> n%u [label=\"%s", i, e->target,
+                edge_type_name(e->type));
+            if (e->weight.count > 1)
+                fprintf(out, " x%u", e->weight.count);
+            fprintf(out, "\"];\n");
+        }
+    }
+
+    fprintf(out, "}\n");
+    free(sel);
+    return 0;
+}
+
 /* ── Graph cleanup ──────────────────────────────────────────────────── */
 
 void graph_destroy(critical_path_graph_t *g)
@@ -1730,5 +2530,7 @@ void graph_destroy(critical_path_graph_t *g)
         while (e) { adj_entry_t *next = e->next; free(e); e = next; }
     }
     free(g->nodes);
+    free(g->edge_hash_key);
+    free(g->edge_hash_val);
     free(g);
 }

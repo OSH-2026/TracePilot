@@ -1,0 +1,24 @@
+{
+  "session_id": "93d39f8a-fe0f-47d5-b5eb-65d85ca86a20-106833",
+  "package": "com.tencent.mm:push",
+  "hint_count": 1,
+  "default_ttl_ms": 300,
+  "hints": [
+    {
+      "hint_id": "hint-1-1780322257",
+      "type": "PROTECT_UI_CHAIN",
+      "target": {
+        "tid": 600,
+        "pid": 600,
+        "comm": "surfaceflinger",
+        "package": "com.tencent.mm:push"
+      },
+      "ttl_ms": 300,
+      "rollback": {"action":"restore_affinity","mask":"all"},
+      "reason": "Protect UI compositor chain during interaction jank burst",
+      "critical_score": 0.3813,
+      "runnable_delay_p95_ns": 0,
+      "created_at_ns": 1780322257687156789
+    }
+  ]
+}
