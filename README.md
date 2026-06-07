@@ -236,6 +236,7 @@ User Interaction
 | 页面切换（基础版） | [ebpf/ebpf_data/页面切换-基础版数据/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88%E6%95%B0%E6%8D%AE) | 基础页面切换场景的 perfetto trace 与事件记录 |
 | 信息流滚动 | [ebpf/ebpf_data/feed_scroll/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll) | Chrome 信息流滚动场景的帧统计、线程分析、Binder/ftrace 补充数据与 CriticalScore 评分 |
 | 相机 | [ebpf/ebpf_data/camera/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/camera) | 相机启动与预览场景的行为特征 |
+| 页面切换-视频浏览 | [ebpf/ebpf_data/页面切换-视频浏览数据/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E8%A7%86%E9%A2%91%E6%B5%8F%E8%A7%88%E6%95%B0%E6%8D%AE) | 页面切换 + 视频浏览双场景，含 Perfetto trace、eBPF 事件、CriticalPath 图、Inference 证据链、多会话对比报告 |
 
 ### 各场景数据类型
 
@@ -251,6 +252,8 @@ User Interaction
 | 页面切换场景数据分析报告 | [behavior_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/behavior_analysis_report.md) |
 | 页面切换-基础版数据分析报告 | [页面切换-基础版数据分析报告.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.md) |
 | 信息流滚动场景数据分析报告 | [feed_scroll_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/feed_scroll_analysis_report.md) |
+| 页面切换-视频浏览综合分析报告 | [页面切换-视频浏览综合分析报告.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E8%A7%86%E9%A2%91%E6%B5%8F%E8%A7%88%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.md) |
+| 页面切换-视频浏览技术报告 | [页面切换-视频浏览技术报告.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E8%A7%86%E9%A2%91%E6%B5%8F%E8%A7%88%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A.md) |
 
 ---
 
@@ -275,6 +278,7 @@ User Interaction
 
 - 页面切换场景 eBPF 程序 — 位于 `page_turning/` 子目录
 - **页面切换-基础版** 完整项目 — [`ebpf/src/页面切换-基础版/`](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88)，包含 eBPF 探针源码（`tracepilot.bpf.c`）、C 加载器、Python 分析脚本、原始采集事件及分析报告
+- **页面切换-视频浏览增强版** 完整项目 — [`ebpf/src/页面切换-视频浏览增强版/`](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E8%A7%86%E9%A2%91%E6%B5%8F%E8%A7%88%E5%A2%9E%E5%BC%BA%E7%89%88)，支持双场景分析（页面切换 + 视频浏览），含 Binder/Futex 依赖图、温控深化、Inference 证据链融合、多会话对比
 
 ---
 
@@ -392,3 +396,4 @@ CriticalScore(tid) =
 | **初步工作** | 4/27 ~ 5/1（第九周） |完成交叉编译环境的搭建和对三个常见的场景进行eBPF信息采集和处理。页面切换场景：[ebpf/src/page_turning](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/page_turning)，对应数据处理报告：[behavior_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/behavior_analysis_report.md)；信息流滚动场景数据：[ebpf/ebpf_data/feed_scroll](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll)，对应数据处理报告：[feed_scroll_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/feed_scroll_analysis_report.md) | 中期汇报：潘智勇 |
 | **数据进一步采集与处理** | 5/4 ~ 5/10（第十周） |对中期汇报得到的反馈进行调研和进一步工作，[会议记录](https://github.com/OSH-2026/TracePilot/blob/main/doc/minutes%20of%20meetings/5-6%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95.md) | 调研：李松茂，贺小轩 实现观测和处理：潘智勇，邵晨轩，杨子皓 |
 | **场景拓展与增强** | 5/11 ~ 5/24（第十一至十二周） | 完成**页面切换、拍照、浏览器**三个场景的基础部分（eBPF 采集 + Perfetto 配置 + 分析工具 + 多 App 测试）；推进**支付、游戏、视频**三个拓展场景的基础部分；并行进行页面切换、拍照、浏览器的增强部分（深度帧分析、系统开销归因、评分模型优化） | 潘智勇，邵晨轩，杨子皓 |
+| **页面切换-视频浏览增强版** | 5/25 ~ 6/8（第十三至十四周） | 完成 eBPF + Perfetto 的交互关键路径图（ICPG）双场景分析系统：Binder/Futex 依赖图、CPU 频率归因、Jank 分类器、Thermal 深化、Inference 证据链融合、多会话对比；在 Pixel 6a 上完成页面切换与视频浏览两个场景的采集与分析，输出技术报告与综合分析报告 | 潘智勇 |
