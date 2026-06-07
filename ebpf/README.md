@@ -12,7 +12,8 @@ ebpf/
 ├── src/                        # 源码目录
 │   ├── camera/                 # 相机场景 eBPF + Perfetto
 │   ├── page_turning/           # 页面切换场景 eBPF
-│   └── 页面切换-基础版/        # 页面切换完整项目（含 libbpf 源码、loader 等）
+│   ├── 页面切换-基础版/        # 页面切换完整项目（含 libbpf 源码、loader 等）
+│   └── 页面切换-视频浏览增强版/ # 双场景分析系统（Binder/Futex 图、温控、Inference）
 ```
 
 ## 环境要求
@@ -65,6 +66,12 @@ adb shell "su -c '/data/local/tmp/tracepilot -d 60 -e /data/local/tmp/events.bin
 - 路径：`src/页面切换-基础版/`
 - 探针：sched_switch、sched_wakeup、irq、softirq
 - 目标：页面切换场景下的卡顿根因分析
+
+### 页面切换-视频浏览增强版
+- 路径：`src/页面切换-视频浏览增强版/`
+- 探针：sched_switch、sched_wakeup、binder_transaction、futex、cpu_frequency
+- 目标：双场景（页面切换 + 视频浏览）的交互关键路径图分析
+- 特性：Binder/Futex 依赖图、温控深化、Inference 证据链融合、多会话对比、Learned Policy
 
 ### 相机
 - 路径：`src/camera/`
