@@ -5,4 +5,21 @@ __pycache__/
 *.csv
 !ebpf/ebpf_data/feed_scroll/*.csv
 !ebpf/ebpf_data/game_sgame/*.csv
+!ebpf/ebpf_data/game_sgame/**/*.csv
 ebpf/ebpf_data/game_sgame/*.jsonl.gz
+
+# Game scene raw captures are packaged separately before submission.
+ebpf/ebpf_data/game_sgame/**/*.bin
+ebpf/ebpf_data/game_sgame/**/*.perfetto-trace
+ebpf/ebpf_data/game_sgame/**/*_tracepilot_stdout.txt
+ebpf/ebpf_data/game_sgame/**/*_device_stdout.txt
+ebpf/ebpf_data/game_sgame/**/*_ftrace.txt
+ebpf/ebpf_data/game_sgame/**/*_framestats.txt
+ebpf/ebpf_data/game_sgame/**/*_surfaceflinger_layer.txt
+ebpf/ebpf_data/game_sgame/**/*_surfaceflinger_latency.txt
+!ebpf/ebpf_data/game_sgame/raw_packages/*.zip
+!ebpf/ebpf_data/game_sgame/raw_packages/*.json
+
+# Incomplete game capture attempts; keep only the validated 20260607_170754 sample.
+ebpf/ebpf_data/game_sgame/game_match_sgame_20260607_170339/
+ebpf/ebpf_data/game_sgame/game_match_sgame_20260607_170412/

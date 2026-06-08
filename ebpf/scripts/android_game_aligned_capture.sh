@@ -8,6 +8,7 @@ TRACE_DIR="/sys/kernel/tracing"
 TRACEPILOT="/data/local/tmp/tracepilot"
 BPF_OBJ="/data/local/tmp/tracepilot.bpf.o"
 SF_LAYER=""
+TRACEPILOT_STATUS=0
 
 if [ -z "$APP_PACKAGE" ]; then
     echo "usage: android_game_aligned_capture.sh <duration_s> <output_prefix> <app_package>" >&2
@@ -75,7 +76,15 @@ for e in $SELECTED_EVENTS; do
 done
 
 echo 1 > "$TRACE_DIR/tracing_on"
-"$TRACEPILOT" --duration "$DURATION" --out "${PREFIX}.jsonl" --bpf "$BPF_OBJ"
+if "$TRACEPILOT" --duration "$DURATION" --out "${PREFIX}.jsonl" --bpf "$BPF_OBJ" > "${PREFIX}_tracepilot_stdout.txt" 2>&1; then
+    TRACEPILOT_STATUS=0
+elif "$TRACEPILOT" -p "$APP_PACKAGE" -s page_switch -d "$DURATION" -e "${PREFIX}_events.bin" -G >> "${PREFIX}_tracepilot_stdout.txt" 2>&1; then
+    TRACEPILOT_STATUS=0
+else
+    TRACEPILOT_STATUS=$?
+    echo "tracepilot failed; keeping ftrace active for ${DURATION}s" >> "${PREFIX}_tracepilot_stdout.txt"
+    sleep "$DURATION"
+fi
 echo 0 > "$TRACE_DIR/tracing_on"
 cat "$TRACE_DIR/trace" > "${PREFIX}_ftrace.txt"
 /system/bin/dumpsys gfxinfo "$APP_PACKAGE" framestats > "${PREFIX}_framestats.txt" 2>&1 || true
@@ -86,5 +95,6 @@ fi
 
 {
     echo "finished_at=$(date '+%Y-%m-%dT%H:%M:%S%z')"
+    echo "tracepilot_status=$TRACEPILOT_STATUS"
     /system/bin/dumpsys window | /system/bin/grep -E 'mCurrentFocus|mFocusedApp' | /system/bin/head -n 2
 } >> "${PREFIX}_metadata.txt"
