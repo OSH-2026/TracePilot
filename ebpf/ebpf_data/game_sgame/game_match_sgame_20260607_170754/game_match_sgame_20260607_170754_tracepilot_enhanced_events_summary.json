@@ -1,0 +1,351 @@
+{
+  "stdout": "ebpf\\ebpf_data\\game_sgame\\game_match_sgame_20260607_170754\\game_match_sgame_20260607_170754_tracepilot_stdout.txt",
+  "total_lines": 14781565,
+  "enhanced_event_lines": 570671,
+  "event_counts": {
+    "BINDER_CALL": 42250,
+    "FUTEX_WAIT": 528421
+  },
+  "relevant_regex": "Unity|sgame|surfaceflinger|RenderThread|Input|binder:600|binder:15364|HwBinder",
+  "relevant_event_counts": {
+    "BINDER_CALL": 18806,
+    "FUTEX_WAIT": 316186
+  },
+  "top_candidates": [
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "15498",
+      "comm": "UnityMain",
+      "count": 221670,
+      "first_ts_ns": 273100351780484,
+      "last_ts_ns": 273159845749548,
+      "relevant_to_game_pipeline": true,
+      "rank": 1,
+      "duration_ms": 59493.969
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "15551",
+      "comm": "UnityGfxDeviceW",
+      "count": 61861,
+      "first_ts_ns": 273100354568245,
+      "last_ts_ns": 273159845490841,
+      "relevant_to_game_pipeline": true,
+      "rank": 2,
+      "duration_ms": 59490.923
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "600",
+      "comm": "surfaceflinger",
+      "count": 7716,
+      "first_ts_ns": 273100352673917,
+      "last_ts_ns": 273159834544836,
+      "relevant_to_game_pipeline": true,
+      "rank": 3,
+      "duration_ms": 59481.871
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "1807",
+      "comm": "InputReader",
+      "count": 7503,
+      "first_ts_ns": 273100361616707,
+      "last_ts_ns": 273159839316280,
+      "relevant_to_game_pipeline": true,
+      "rank": 4,
+      "duration_ms": 59477.7
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "2285",
+      "comm": "InputProcessor",
+      "count": 7312,
+      "first_ts_ns": 273100350969531,
+      "last_ts_ns": 273159839577185,
+      "relevant_to_game_pipeline": true,
+      "rank": 5,
+      "duration_ms": 59488.608
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "2285",
+      "comm": "InputProcessor",
+      "count": 7147,
+      "first_ts_ns": 273100361933398,
+      "last_ts_ns": 273159840132198,
+      "relevant_to_game_pipeline": true,
+      "rank": 6,
+      "duration_ms": 59478.199
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "15364",
+      "comm": "cent.tmgp.sgame",
+      "count": 2948,
+      "first_ts_ns": 273100350505094,
+      "last_ts_ns": 273159840193477,
+      "relevant_to_game_pipeline": true,
+      "rank": 7,
+      "duration_ms": 59489.688
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "15521",
+      "comm": "binder:15364_2",
+      "count": 2073,
+      "first_ts_ns": 273100371221158,
+      "last_ts_ns": 273159819494625,
+      "relevant_to_game_pipeline": true,
+      "rank": 8,
+      "duration_ms": 59448.273
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "600",
+      "comm": "surfaceflinger",
+      "count": 1878,
+      "first_ts_ns": 273100351111173,
+      "last_ts_ns": 273159818108028,
+      "relevant_to_game_pipeline": true,
+      "rank": 9,
+      "duration_ms": 59466.997
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "653",
+      "comm": "HwBinder:602_1",
+      "count": 1872,
+      "first_ts_ns": 273100352224169,
+      "last_ts_ns": 273159818595048,
+      "relevant_to_game_pipeline": true,
+      "rank": 10,
+      "duration_ms": 59466.371
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "653",
+      "comm": "HwBinder:602_1",
+      "count": 1847,
+      "first_ts_ns": 273100369477628,
+      "last_ts_ns": 273159818321936,
+      "relevant_to_game_pipeline": true,
+      "rank": 11,
+      "duration_ms": 59448.844
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "15531",
+      "comm": "UnityMain",
+      "count": 1802,
+      "first_ts_ns": 273100351895556,
+      "last_ts_ns": 273159830912512,
+      "relevant_to_game_pipeline": true,
+      "rank": 12,
+      "duration_ms": 59479.017
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "15551",
+      "comm": "UnityGfxDeviceW",
+      "count": 1802,
+      "first_ts_ns": 273100355250292,
+      "last_ts_ns": 273159832379228,
+      "relevant_to_game_pipeline": true,
+      "rank": 13,
+      "duration_ms": 59477.129
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "3879",
+      "comm": "HwBinder:910_5",
+      "count": 1589,
+      "first_ts_ns": 273100384944873,
+      "last_ts_ns": 273159809747270,
+      "relevant_to_game_pipeline": true,
+      "rank": 14,
+      "duration_ms": 59424.802
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "15571",
+      "comm": "UnityMain",
+      "count": 927,
+      "first_ts_ns": 273100380734220,
+      "last_ts_ns": 273159803964311,
+      "relevant_to_game_pipeline": true,
+      "rank": 15,
+      "duration_ms": 59423.23
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "3898",
+      "comm": "HwBinder:910_6",
+      "count": 767,
+      "first_ts_ns": 273108718271333,
+      "last_ts_ns": 273150272880444,
+      "relevant_to_game_pipeline": true,
+      "rank": 16,
+      "duration_ms": 41554.609
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "1806",
+      "comm": "InputDispatcher",
+      "count": 513,
+      "first_ts_ns": 273100426479093,
+      "last_ts_ns": 273159791763953,
+      "relevant_to_game_pipeline": true,
+      "rank": 17,
+      "duration_ms": 59365.285
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "15378",
+      "comm": "binder:15364_2",
+      "count": 513,
+      "first_ts_ns": 273101843417041,
+      "last_ts_ns": 273133005464501,
+      "relevant_to_game_pipeline": true,
+      "rank": 18,
+      "duration_ms": 31162.047
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "15391",
+      "comm": "binder:15364_3",
+      "count": 501,
+      "first_ts_ns": 273114697954198,
+      "last_ts_ns": 273159819436845,
+      "relevant_to_game_pipeline": true,
+      "rank": 19,
+      "duration_ms": 45121.483
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "16304",
+      "comm": "binder:15364_7",
+      "count": 449,
+      "first_ts_ns": 273100371176847,
+      "last_ts_ns": 273140244891181,
+      "relevant_to_game_pipeline": true,
+      "rank": 20,
+      "duration_ms": 39873.714
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "2044",
+      "comm": "RenderThread",
+      "count": 370,
+      "first_ts_ns": 273101973020435,
+      "last_ts_ns": 273157932889440,
+      "relevant_to_game_pipeline": true,
+      "rank": 21,
+      "duration_ms": 55959.869
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "1806",
+      "comm": "InputDispatcher",
+      "count": 349,
+      "first_ts_ns": 273101521323047,
+      "last_ts_ns": 273159792280473,
+      "relevant_to_game_pipeline": true,
+      "rank": 22,
+      "duration_ms": 58270.957
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "1965",
+      "comm": "binder:600_3",
+      "count": 314,
+      "first_ts_ns": 273100534486743,
+      "last_ts_ns": 273159840314653,
+      "relevant_to_game_pipeline": true,
+      "rank": 23,
+      "duration_ms": 59305.828
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "649",
+      "comm": "binder:600_1",
+      "count": 292,
+      "first_ts_ns": 273100371833056,
+      "last_ts_ns": 273159840581498,
+      "relevant_to_game_pipeline": true,
+      "rank": 24,
+      "duration_ms": 59468.748
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "15377",
+      "comm": "binder:15364_1",
+      "count": 258,
+      "first_ts_ns": 273147314396474,
+      "last_ts_ns": 273159755193437,
+      "relevant_to_game_pipeline": true,
+      "rank": 25,
+      "duration_ms": 12440.797
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "15529",
+      "comm": "binder:15364_4",
+      "count": 207,
+      "first_ts_ns": 273100856121386,
+      "last_ts_ns": 273157616838252,
+      "relevant_to_game_pipeline": true,
+      "rank": 26,
+      "duration_ms": 56760.717
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "650",
+      "comm": "binder:600_2",
+      "count": 189,
+      "first_ts_ns": 273104836253387,
+      "last_ts_ns": 273145491069203,
+      "relevant_to_game_pipeline": true,
+      "rank": 27,
+      "duration_ms": 40654.816
+    },
+    {
+      "event": "FUTEX_WAIT",
+      "tid": "2576",
+      "comm": "binder:600_5",
+      "count": 177,
+      "first_ts_ns": 273100517183357,
+      "last_ts_ns": 273159734354325,
+      "relevant_to_game_pipeline": true,
+      "rank": 28,
+      "duration_ms": 59217.171
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "2044",
+      "comm": "RenderThread",
+      "count": 94,
+      "first_ts_ns": 273101976730518,
+      "last_ts_ns": 273157932415400,
+      "relevant_to_game_pipeline": true,
+      "rank": 29,
+      "duration_ms": 55955.685
+    },
+    {
+      "event": "BINDER_CALL",
+      "tid": "2576",
+      "comm": "binder:600_5",
+      "count": 9,
+      "first_ts_ns": 273102227859384,
+      "last_ts_ns": 273153619495924,
+      "relevant_to_game_pipeline": true,
+      "rank": 30,
+      "duration_ms": 51391.637
+    }
+  ],
+  "outputs": {
+    "csv": "ebpf\\ebpf_data\\game_sgame\\game_match_sgame_20260607_170754\\game_match_sgame_20260607_170754_tracepilot_enhanced_events.csv"
+  },
+  "method": "Parse TracePilot debug lines of the form [DBG] ENH BINDER_CALL/FUTEX_WAIT ts=... tid=... comm=...",
+  "limitation": "Debug ENH lines provide candidate event ownership by comm/tid, not full blocking duration or cross-thread dependency proof."
+}

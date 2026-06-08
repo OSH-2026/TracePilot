@@ -1,0 +1,332 @@
+{
+  "analysis_mode": "graph_based_critical_path",
+  "session_id": "93d39f8a-fe0f-47d5-b5eb-65d85ca86a20-273100",
+  "target_package": "com.luna.music",
+  "total_frames": 923,
+  "jank_frames": 2,
+  "avg_jank_duration_ns": 77407400,
+  "total_nodes": 4115,
+  "total_edges": 915,
+  "edge_type_distribution": {
+    "WAKEUP": 0,
+    "RUNNABLE_WAIT": 0,
+    "BINDER_CALL": 36,
+    "FUTEX_WAIT": 399,
+    "CPU_RUN": 0,
+    "PREEMPTED_BY": 0,
+    "FRAME_DEPENDENCY": 437,
+    "RESOURCE_STALL": 35,
+    "DECODE_DEPENDENCY": 0,
+    "BUFFER_QUEUE": 2,
+    "THERMAL_STALL": 0,
+    "NETWORK_WAIT": 6
+  },
+  "resource_stats": {
+    "avg_cpu_freq_little_khz": 1512752,
+    "avg_cpu_freq_big_khz": 2096440,
+    "min_cpu_freq_big_khz": 0,
+    "binder_call_count": 42250,
+    "total_binder_blocking_ns": 6625281,
+    "futex_wait_count": 528201,
+    "total_futex_wait_ns": 6161649995062,
+    "video_decoder_count": 0,
+    "video_frames": 0,
+    "detected_scenario": "video",
+    "freq_throttle_ratio": 0.0000,
+    "jank_system_overhead_ns": 0
+  },
+  "top_k_threads": [
+    {
+      "rank": 1,
+      "tid": 686,
+      "pid": 686,
+      "comm": "surfaceflinger",
+      "package": "",
+      "critical_score": 0.2667,
+      "score_components": {
+        "frame_window_overlap": 0.5000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 1.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.3333,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 2,
+      "tid": 14030,
+      "pid": 14030,
+      "comm": "CCodecWatchdog",
+      "package": "",
+      "critical_score": 0.2333,
+      "score_components": {
+        "frame_window_overlap": 0.0000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 1.0000,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 3,
+      "tid": 600,
+      "pid": 600,
+      "comm": "surfaceflinger",
+      "package": "",
+      "critical_score": 0.2071,
+      "score_components": {
+        "frame_window_overlap": 0.5000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 1.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0357,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 4,
+      "tid": 15393,
+      "pid": 15393,
+      "comm": "RenderThread",
+      "package": "",
+      "critical_score": 0.2000,
+      "score_components": {
+        "frame_window_overlap": 0.5000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 1.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0000,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 5,
+      "tid": 1965,
+      "pid": 1965,
+      "comm": "binder:600_3",
+      "package": "",
+      "critical_score": 0.1574,
+      "score_components": {
+        "frame_window_overlap": 0.5000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.5000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0370,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 6,
+      "tid": 653,
+      "pid": 653,
+      "comm": "HwBinder:602_1",
+      "package": "",
+      "critical_score": 0.1571,
+      "score_components": {
+        "frame_window_overlap": 0.5000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.5000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0357,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 7,
+      "tid": 3879,
+      "pid": 3879,
+      "comm": "HwBinder:910_5",
+      "package": "",
+      "critical_score": 0.1569,
+      "score_components": {
+        "frame_window_overlap": 0.5000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.5000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0345,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 8,
+      "tid": 1982,
+      "pid": 1982,
+      "comm": "android.hardwar",
+      "package": "",
+      "critical_score": 0.1569,
+      "score_components": {
+        "frame_window_overlap": 0.5000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.5000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0345,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 9,
+      "tid": 1806,
+      "pid": 1806,
+      "comm": "InputDispatcher",
+      "package": "",
+      "critical_score": 0.1405,
+      "score_components": {
+        "frame_window_overlap": 0.5000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0357,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 10,
+      "tid": 15551,
+      "pid": 15551,
+      "comm": "UnityGfxDeviceW",
+      "package": "",
+      "critical_score": 0.1405,
+      "score_components": {
+        "frame_window_overlap": 0.5000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.5000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0357,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    }
+  ],
+  "jank_cause_distribution": {
+    "CPU_CONTENTION": 2,
+    "BINDER_BLOCKING": 0,
+    "FUTEX_BLOCKING": 0,
+    "IO_WAIT": 0,
+    "MEMORY_RECLAIM": 0,
+    "GPU_STALL": 0,
+    "RUNNABLE_DELAY": 0,
+    "UNKNOWN": 0,
+    "VIDEO_LATE_RENDER": 0,
+    "AUDIO_SYNC_DRIFT": 0,
+    "THERMAL_THROTTLE": 0
+  },
+  "hints": {
+    "count": 1,
+    "default_ttl_ms": 300,
+    "items": [
+      {
+        "hint_id": "hint-1-1780824749",
+        "type": "PROTECT_UI_CHAIN",
+        "tid": 600,
+        "pid": 600,
+        "comm": "surfaceflinger",
+        "package": "com.luna.music",
+        "ttl_ms": 300,
+        "rollback": {"action":"restore_affinity","mask":"all"},
+        "reason": "Protect UI compositor chain during interaction jank burst",
+        "runnable_delay_p95_ns": 0
+      }
+    ]
+  },
+  "inference": {
+    "session_summary": "Inference over 2 jank frames: dominant=CPU_CONTENTION, scenario=page_switch, thermal_score=0.00",
+    "recommended_hint": "BOOST_THREAD",
+    "frame_inferences": [
+      {
+        "frame_id": 9449120,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 9451827,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      }
+    ]
+  },
+  "heuristics_comparison": {
+    "graph_avg_precision_at_k": 0.2000,
+    "heuristic_avg_precision_at_k": 0.2000,
+    "top_k_overlap_count": 2,
+    "graph_mean_signal_noise_ratio": 0.0065,
+    "heuristic_mean_signal_noise_ratio": 0.5000
+  }
+}
