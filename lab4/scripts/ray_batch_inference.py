@@ -272,7 +272,7 @@ def ray_roundrobin_execution(server_urls: list):
 
 
 def ray_fixed_allocation_execution(server_urls: list):
-    """Ray 并行：固定分配 - 前一半请求给 server1,后一半给 server2"""
+    """Ray 并行：固定分配 - 前一半请求给 server1，后一半给 server2"""
     num_servers = len(server_urls)
     print(f"\n===== Ray 多机并行 - 固定分配 ({num_servers} 台) =====")
     actors = [LLMInferenceActor.remote(url, f"server{i+1}") for i, url in enumerate(server_urls)]

@@ -22,7 +22,7 @@ wsl -d Ubuntu -u $WSL2_USER bash -c "test -f ~/llama.cpp/models/qwen2.5-1.5b-ins
 Write-Host "模型就绪" -ForegroundColor Green
 
 Write-Host "=== 4. (备选) Windows端口转发 ===" -ForegroundColor Cyan
-Write-Host "如果使用 Tailscale 直连 WSL2,无需端口转发" -ForegroundColor Yellow
+Write-Host "如果使用 Tailscale 直连 WSL2，无需端口转发" -ForegroundColor Yellow
 Write-Host "如果需要通过 Windows IP 访问，执行:" -ForegroundColor Yellow
 Write-Host "  netsh interface portproxy add v4tov4 listenport=50052 listenaddress=0.0.0.0 connectport=50052 connectaddress=$WSL2_NAT_IP"
 Write-Host "  netsh interface portproxy add v4tov4 listenport=8080 listenaddress=0.0.0.0 connectport=8080 connectaddress=$WSL2_NAT_IP"

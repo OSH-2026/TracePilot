@@ -57,6 +57,15 @@ netsh advfirewall firewall add rule name="llama-rpc-50052" dir=in action=allow p
 
 如果从机是 WSL2 模式，使用 **Windows 的局域网 IP**（而非 WSL2 内部 IP）。
 
+### 3. 多从机（选做）
+```bash
+# 主机连接多台从机
+./build-rpc/bin/llama-cli \
+  -m ./models/qwen2.5-1.5b-instruct-q4_k_m.gguf \
+  -p "Hello" -n 100 \
+  --rpc 192.168.x.x:50052,192.168.y.y:50052
+```
+
 
 ## 本实验实际部署拓扑
 

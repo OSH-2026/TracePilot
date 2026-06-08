@@ -1,4 +1,8 @@
 # Lab 4: llama.cpp 本地与分布式推理系统
+
+**学生**: 潘智勇 (PB24111692)
+**日期**: 2026-06-05
+
 ---
 
 ## 提交文档
@@ -21,12 +25,14 @@ lab4/
 │   ├── benchmark.sh
 │   ├── test_prompts.sh
 │   ├── ray_batch_inference.py
+│   ├── ray_load_balance.py
 │   ├── rpc_setup.md
 │   └── slave_setup_win.ps1
 └── results/                   # 测试结果数据
     ├── benchmark_results.txt
     ├── prompts_output.txt
     ├── ray_batch_inference.txt
+    ├── ray_pressure_test.txt
     ├── rpc_win_forward.txt
     ├── rpc_server_win_forward.log
     ├── concurrent_stress_test.txt

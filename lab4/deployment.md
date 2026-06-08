@@ -1,4 +1,8 @@
 # Lab 4: llama.cpp 本地与分布式推理系统
+
+**学生**: 潘智勇 (PB24111692)
+**日期**: 2026-05-28
+
 ---
 
 # 部署说明文档
@@ -22,7 +26,7 @@
 
 | 项目 | 内容 |
 |------|------|
-| 型号 | MacBook Air |
+| 型号 | MacBook Air (Mac17,3) |
 | 芯片 | Apple M5 |
 | CPU 核心数 | 10 核 |
 | 内存 | 16 GB |
@@ -129,6 +133,7 @@ cmake --build build-cuda --config Release -j 16
 ```
 
 **主机启动 (macOS):**
+> ⚠️ 该版本 llama.cpp 中 `llama-cli --rpc` 有 bug（加载模型后卡死/崩溃），`llama-server --rpc` 是正常工作路径，两者底层共享同一 RPC 机制，功能等价。
 ```bash
 ./build-rpc/bin/llama-server \
   -m ./models/qwen2.5-1.5b-instruct-q4_k_m.gguf \
