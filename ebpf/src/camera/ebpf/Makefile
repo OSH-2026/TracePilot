@@ -7,8 +7,8 @@ CLANG_ANDROID := $(TOOLCHAIN)/bin/aarch64-linux-android$(API)-clang
 CLANG_HOST := clang
 BPFTOOL := bpftool
 
-LIBBPF_SRC := ./libbpf/src
-INCLUDE_DIR := ./include
+LIBBPF_SRC := ../env/libbpf/src
+INCLUDE_DIR := ../env/include
 SRC_DIR := ./src
 BUILD_DIR := ./build
 
@@ -34,11 +34,11 @@ $(BUILD_DIR)/camera_ebpf_android: $(SRC_DIR)/camera_ebpf.c $(BUILD_DIR)/camera_e
 		-I$(INCLUDE_DIR) \
 		-I$(BUILD_DIR) \
 		-I$(LIBBPF_SRC) \
-		-I./libbpf/include \
-		-I./libbpf/include/uapi \
+		-I../env/libbpf/include \
+		-I../env/libbpf/include/uapi \
 		$(LIBBPF_SRC)/libbpf.a \
-		./lib_arm64/libelf.a \
-		./lib_arm64/eu-search.o \
+		../env/lib_arm64/libelf.a \
+		../env/lib_arm64/eu-search.o \
 		-lz
 
 clean:

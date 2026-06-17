@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <signal.h>
 
-// 1. 强行补上 u32 的定义，伺候生成的骨架文件
+
 typedef uint32_t u32;
 
 #include <bpf/bpf.h>
@@ -27,11 +27,21 @@ struct event_t {
     uint8_t  type;
 };
 
+/* 与 BPF 侧 struct irq_event_t 对齐 — IRQ 专用事件 */
+struct irq_event_t {
+    uint64_t ts;
+    uint32_t irq_nr;
+    uint32_t cpu;
+    uint64_t duration_ns;
+};
+
 static FILE *sched_file  = NULL;   // sched_events.csv
 static FILE *binder_file = NULL;   // binder_futex_events.csv
+static FILE *irq_file    = NULL;   // irq_events.csv (新增)
 static volatile int running = 1;
-static int quiet = 0;              // -q: 静默模式, 不打印事件到终端
-static unsigned long event_count = 0;  // 事件计数器, 用于定时 fflush
+static int quiet = 0;
+static unsigned long event_count = 0;
+static unsigned long irq_count   = 0;
 
 static void sig_handler(int sig) { running = 0; }
 
@@ -52,11 +62,27 @@ static const char *event_type_name(uint8_t type) {
         case 1: return "wakeup";
         case 2: return "binder_transaction";
         case 3: return "binder_received";
-        case 4: return "futex";
+        case 4: return "futex_wait";
         case 5: return "cpu_frequency";
         case 6: return "thermal";
+        case 9: return "futex_wake";
         default: return "unknown";
     }
+}
+
+/* IRQ 事件回调 — 写入 irq_events.csv */
+static int handle_irq_event(void *ctx, void *data, size_t data_sz) {
+    struct irq_event_t *e = data;
+    if (irq_file) {
+        fprintf(irq_file, "%llu,%u,%u,%llu\n",
+            (unsigned long long)e->ts, e->irq_nr, e->cpu,
+            (unsigned long long)e->duration_ns);
+        irq_count++;
+        if (irq_count % 200 == 0) fflush(irq_file);
+    }
+    if (!quiet) printf("[IRQ] irq:%u cpu:%u dur:%lluns\n",
+        e->irq_nr, e->cpu, (unsigned long long)e->duration_ns);
+    return 0;
 }
 
 // 2. 补全回调函数逻辑
@@ -97,17 +123,23 @@ static int handle_event(void *ctx, void *data, size_t data_sz) {
             event_type_name(e->type), e->tid, e->debug_id, e->prev_tid, e->comm);
         break;
 
-    case 4: /* futex */
+    case 4: /* futex_wait (sys_enter) */
+    case 9: /* futex_wake (sys_exit, 含 duration_ns 在 ret 字段) */
         if (binder_file) {
-            fprintf(binder_file, "%llu,futex,%u,0,%u,%u,%u,%u,%d,%s\n",
+            fprintf(binder_file, "%llu,%s,%u,0,%u,%u,%u,%u,%d,%s\n",
                 (unsigned long long)e->ts,
+                event_type_name(e->type),
                 e->tid, e->tgid, e->uid,
                 e->debug_id, e->extra, e->ret,
                 e->comm);
             maybe_flush();
         }
-        if (!quiet) printf("[FUTEX] TID:%d op:0x%x uaddr:0x%x [%s]\n",
-            e->tid, e->extra, e->debug_id, e->comm);
+        if (!quiet) {
+            if (e->type == 9)
+                printf("[FUTEX_WAKE] TID:%d duration:%dns [%s]\n", e->tid, e->ret, e->comm);
+            else
+                printf("[FUTEX_WAIT] TID:%d [%s]\n", e->tid, e->comm);
+        }
         break;
 
     case 5: /* cpu_frequency */
@@ -129,8 +161,9 @@ static int handle_event(void *ctx, void *data, size_t data_sz) {
 }
 
 int main(int argc, char **argv) {
-    struct camera_ebpf_bpf *skel; // 改为 camera_ebpf_bpf
-    struct ring_buffer *rb = NULL;
+    struct camera_ebpf_bpf *skel;
+    struct ring_buffer *rb     = NULL;
+    struct ring_buffer *sys_rb = NULL;
     int err;
 
     signal(SIGINT,  sig_handler);
@@ -146,7 +179,7 @@ int main(int argc, char **argv) {
         }
     }
 
-    /* 打开两个输出 CSV */
+    /* 打开三个输出 CSV */
     sched_file = fopen("sched_events.csv", "w");
     if (sched_file) {
         fprintf(sched_file, "ts,event,tid,prev_tid,tgid,uid,comm\n");
@@ -159,6 +192,13 @@ int main(int argc, char **argv) {
         fprintf(binder_file, "ts,event,tid,prev_tid,tgid,uid,debug_id,extra,ret,comm\n");
     } else {
         fprintf(stderr, "Warning: Failed to open binder_futex_events.csv for writing\n");
+    }
+
+    irq_file = fopen("irq_events.csv", "w");
+    if (irq_file) {
+        fprintf(irq_file, "ts,irq_nr,cpu,duration_ns\n");
+    } else {
+        fprintf(stderr, "Warning: Failed to open irq_events.csv for writing\n");
     }
 
     // 提升 RLIMIT_MEMLOCK, 否则 eBPF 加载因权限失败 (Android 常见问题)
@@ -231,32 +271,47 @@ int main(int argc, char **argv) {
         printf("  [✓] %d BPF programs running (%d skipped)\n", attached, skipped);
     }
 
-    // 5. 初始化 RingBuffer 映射
+    // 5. 初始化主 RingBuffer (sched/binder/futex/cpufreq/thermal)
     rb = ring_buffer__new(bpf_map__fd(skel->maps.rb), handle_event, NULL, NULL);
     if (!rb) {
-        fprintf(stderr, "Failed to create ring buffer\n");
+        fprintf(stderr, "Failed to create main ring buffer\n");
         goto cleanup;
     }
 
-    printf("Camera eBPF running! Capturing sched + binder + futex events.\n");
+    // 5b. 初始化 IRQ RingBuffer (sys_rb)
+    sys_rb = ring_buffer__new(bpf_map__fd(skel->maps.sys_rb), handle_irq_event, NULL, NULL);
+    if (!sys_rb) {
+        fprintf(stderr, "Failed to create IRQ ring buffer (non-fatal, continuing)\n");
+    }
+
+    printf("Camera eBPF running! Capturing sched + binder + futex + irq events.\n");
     printf("Press Ctrl+C to stop.\n");
 
-    // 6. 循环消费数据
+    // 6. 双 ring buffer 轮询
     while (running) {
         err = ring_buffer__poll(rb, 100 /* timeout ms */);
         if (err == -EINTR) continue;
         if (err < 0) {
-            printf("Error polling ring buffer: %d\n", err);
+            printf("Error polling main ring buffer: %d\n", err);
             break;
+        }
+        /* 同时轮询 IRQ ring buffer (不阻塞, timeout=0) */
+        if (sys_rb) {
+            err = ring_buffer__poll(sys_rb, 0);
+            if (err < 0 && err != -EINTR) {
+                printf("Error polling IRQ ring buffer: %d\n", err);
+            }
         }
     }
 
-    printf("\nShutting down... (processed %lu events)\n", event_count);
+    printf("\nShutting down... (events: %lu, irq: %lu)\n", event_count, irq_count);
 
 cleanup:
     if (sched_file)  { fflush(sched_file);  fclose(sched_file);  sched_file = NULL; }
-    if (binder_file) { fclose(binder_file); binder_file = NULL; }
+    if (binder_file) { fflush(binder_file); fclose(binder_file); binder_file = NULL; }
+    if (irq_file)    { fflush(irq_file);    fclose(irq_file);    irq_file = NULL; }
     ring_buffer__free(rb);
-    camera_ebpf_bpf__destroy(skel); // 名字彻底对齐！
+    ring_buffer__free(sys_rb);
+    camera_ebpf_bpf__destroy(skel);
     return err < 0 ? -err : 0;
 }
