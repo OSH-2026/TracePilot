@@ -46,6 +46,7 @@ TracePilot 团队 · 潘智勇 李松茂 邵晨轩 贺小轩 杨子皓 · 2026 �
 - Android 交互卡顿（Jank）严重影响用户体验
 - 根因往往是 **跨进程等待链**：
   `UI thread → RenderThread → Binder → system_server → SurfaceFlinger`
+  &nbsp;&nbsp;&nbsp;&nbsp;`↑___________ 卡顿根源在此 ___________↑`
 - 传统单进程分析方法无法有效定位
 
 **右侧：为什么 PID-Centric 不可行**
@@ -56,10 +57,20 @@ TracePilot 团队 · 潘智勇 李松茂 邵晨轩 贺小轩 杨子皓 · 2026 �
 | 卡顿不是单个 PID 的事 | jank 根因是跨进程等待链，需全局视角 |
 | eBPF 只观测内核事件 | 无法直接回答"用户在经历什么" |
 
-**底部结论框：**
-> 正确路径：**Frame-Centric + Dependency-Centric**
->
+**中间对比结论框（大字，高亮）：**
+> ❌ PID 视角：看到 `pid=1234 进程 CPU 占用高` → 无法定位根因
+> ✅ Frame 视角：看到 `f32 帧内 SurfaceFlinger 被 Binder 调用阻塞 12ms` → 精准定位
+
+**底部核心路径：**
 > FrameTimeline 定义问题 → eBPF 提供原因 → Graph 找关键路径 → Hint Engine 做受控干预
+
+### 插图建议
+- 左侧展示跨进程等待链（UI → RenderThread → Binder → system_server → SurfaceFlinger），在 Binder 处用红色高亮标注"Jank"
+- 右侧用两张对比图：PID 视角（散乱的进程号）vs Frame 视角（以帧为窗口的整齐排列）
+- 中间大字对比结论用鲜明底色突出
+
+### 演讲要点
+> 重点讲清楚两个认知转变：(1)为什么传统的用 PID 看问题不行；(2)为什么必须以帧为对齐单位。这一页是整个汇报的论证起点，务必让听众理解。
 
 ### 插图建议
 - 一个简单的时序图：展示一帧从 UI 线程开始，经过 RenderThread → Binder → SurfaceFlinger 的流程，标注"此处卡顿"
@@ -198,16 +209,23 @@ TracePilot 团队 · 潘智勇 李松茂 邵晨轩 贺小轩 杨子皓 · 2026 �
 
 **主标题：** eBPF 探针 — 内核事件采集
 
+**推导逻辑（为什么选这些探针？）：**
+> 用户感知卡顿 → 帧掉 → 线程没跑 → 三种可能：**调度排队 / 等 Binder / 等锁**
+> → 因此必须同时采集 `sched_switch + binder + futex`
+> → 再加 `cpu_frequency + thermal` 解释环境因素
+
 **探针一览表：**
 
 | 探针 | 挂载点 | 采集内容 | 用途 |
 |------|--------|---------|------|
 | `sched_switch` | tracepoint | 线程切换 prev/next TID、运行时长、runnable delay | 计算就绪等待延迟 |
 | `sched_wakeup` | tracepoint | 唤醒延迟 | wakeup-to-run latency |
-| `binder_transaction` | kprobe | Binder IPC 调用发起/接收 | 跨进程依赖分析 |
+| `binder_transaction` | **kprobe** ⚠️ | Binder IPC 调用发起/接收 | 跨进程依赖分析 |
 | `futex` wait/wake | tracepoint | 锁等待 | 同步阻塞识别 |
 | `cpu_frequency` | tracepoint | CPU 频率变化 | 大小核调频分析 |
 | `thermal_temperature` | tracepoint | 温控温度 | 降频归因 |
+
+> ⚠️ binder 用 kprobe 而非 tracepoint：Android GKI 内核未暴露 binder tracepoint
 
 **编译部署流程：**
 ```
@@ -219,11 +237,12 @@ Docker(NDK r26b + clang) → 交叉编译 → tracepilot.bpf.o + tracepilot-aarc
 ```
 
 ### 插图建议
-- 每个探针可以用小图标表示（绿色=调度、蓝色=IPC、橙色=锁、红色=电源）
-- 编译流程图用横向箭头
+- 在探针表上方，用一个简短的推导链（用户感知卡顿 → 帧掉 → 线程没跑 → 三种可能 → 对应探针），用箭头串联
+- 每个探针用小图标表示（绿色=调度、蓝色=IPC、橙色=锁、红色=电源）
+- binder 的 kprobe 挂载点用 ⚠️ 或红色标记，突显与 tracepoint 的不同
 
 ### 演讲要点
-> "我们的核心数据来源是这 6 个 eBPF 探针，覆盖了调度、跨进程通信、锁、调频和温控。注意 binder 用的是 kprobe 而非 tracepoint，因为 Android 内核没有 binder 的 trace 挂载点。"
+> "为什么选这 6 个探针？因为 Android 卡顿只有三种可能原因：线程没被调度、在等 Binder、在等锁。所以我们必须同时采集这三种信号，再加 CPU 频率和温度解释环境。注意 binder 用的 kprobe 而非 tracepoint——Android 内核没暴露 binder 的 tracepoint。"
 
 ---
 
@@ -348,6 +367,14 @@ eBPF events.bin:    ●●●●●●●●●●●●●●●●●●●●
 $$CriticalScore(T) = \alpha \times CriticalPosition(T) + \beta \times \frac{RunnableDelay(T)}{TotalDelay} + \gamma \times ConnectionDegree(T)$$
 
 其中 $\alpha$=0.4, $\beta$=0.4, $\gamma$=0.2（可调）
+
+**直觉解释（为什么是这三个维度？）：**
+
+| 维度 | 含义 | 直觉 |
+|------|------|------|
+| `CriticalPosition` | 线程在关键路径深度 | 越靠近帧渲染末端越关键 |
+| `RunnableDelayShare` | 该线程延迟 / 总延迟 | 占帧内浪费时间的比例越大越关键 |
+| `ConnectionDegree` | Binder/Futex 连接数 | 影响其他线程越多越关键 |
 
 **可视化方法：**
 - BFS 分层布局 + 同层按 CriticalScore 降序

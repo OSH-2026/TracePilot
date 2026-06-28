@@ -15,14 +15,24 @@
 ## 📄 第 2 页 — 项目背景与研究问题
 
 ### 核心问题
-Android 交互场景中的卡顿（Jank）严重影响用户体验，根源往往涉及**跨进程等待链**（UI thread → RenderThread → Binder → SurfaceFlinger 等），传统的单进程分析方式无法有效定位。
+Android 交互场景中的卡顿（Jank）严重影响用户体验，根源往往涉及**跨进程等待链**:
+```
+UI Thread → RenderThread → Binder → system_server → SurfaceFlinger
+    ↑___________________ 卡顿根源在此 ___________________↑
+```
+
+传统单进程分析方法无法定位这种跨进程依赖问题。
 
 ### 为什么 PID-Centric 不可行
 | 问题 | 说明 |
 |------|------|
 | PID 不稳定 | 同一 App 每次启动 PID 不同，还会被系统复用 |
-| 卡顿不是单个 PID 的问题 | jank 根因是跨进程等待链，需全局视角 |
+| 卡顿不是单个 PID 的问题 | Jank 根因是跨进程等待链，需全局视角 |
 | eBPF 只能观测内核事件 | 无法直接回答"用户在经历什么" |
+
+### PID 视角 vs Frame 视角（大字结论）
+> ❌ PID 视角：看到 `pid=1234 进程 CPU 占用高` → 无法定位根因
+> ✅ Frame 视角：看到 `f32 帧内 SurfaceFlinger 被 Binder 调用阻塞 12ms` → 精准定位
 
 ### 正确路径：Frame-Centric + Dependency-Centric
 ```
@@ -82,14 +92,23 @@ FrameTimeline 定义问题 → eBPF 提供原因 → Graph 找关键路径 → H
 
 ## 📄 第 6 页 — eBPF 探针设计
 
+### 为什么选这些探针？（推导逻辑）
+> 用户感知卡顿 → 帧掉 → 线程没跑 → 三种可能：**调度排队 / 等 Binder / 等锁**
+> → 因此必须同时采集 `sched_switch + binder + futex`
+> → 再加 `cpu_frequency + thermal` 解释环境因素
+
+### 探针一览
+
 | 探针 | 挂载点 | 采集内容 | 用途 |
 |------|--------|---------|------|
 | `sched_switch` | tracepoint | 线程切换 prev/next TID、运行时长、runnable delay | 计算就绪等待延迟 |
 | `sched_wakeup` | tracepoint | 唤醒延迟 | wakeup-to-run latency |
-| `binder_transaction` | kprobe | Binder IPC 调用发起/接收 | 跨进程依赖分析 |
+| `binder_transaction` | **kprobe** ⚠️ | Binder IPC 调用发起/接收 | 跨进程依赖分析 |
 | `futex` wait/wake | tracepoint | 锁等待 | 同步阻塞识别 |
 | `cpu_frequency` | tracepoint | CPU 频率变化 | 大小核调频分析 |
 | `thermal_temperature` | tracepoint | 温控温度 | 降频归因 |
+
+> ⚠️ binder 用 kprobe 而非 tracepoint：Android GKI 内核未暴露 binder tracepoint
 
 跨平台编译：Docker → clang 交叉编译为 BPF 字节码 → `bpf()` 系统加载 → ringbuf 输出 events.bin
 
@@ -165,13 +184,17 @@ Frame Window 聚合:        每个帧窗口内的 sched/binder/futex/cpufreq 事
 ```python
 # 核心公式：多维度加权评分
 CriticalScore(T) = α × CriticalPosition(T) + β × RunnableDelayShare(T) + γ × ConnectionDegree(T)
-
-# 其中:
-#   CriticalPosition(T)   = 该线程在关键路径上的位置权重 (depth)
-#   RunnableDelayShare(T) = 该线程 runnable delay / 帧窗口总 delay
-#   ConnectionDegree(T)   = 出度 + 入度 (Binder/Futex 连接数)
-#   α, β, γ               = 可调权值 (默认 0.4, 0.4, 0.2)
 ```
+
+**直觉解释（为什么是这三个维度？）:**
+
+| 维度 | 含义 | 直觉 |
+|------|------|------|
+| `CriticalPosition(T)` | 线程在关键路径上的深度 | 越靠近帧渲染末端越关键 |
+| `RunnableDelayShare(T)` | 该线程 runnable delay / 总 delay | 占帧内浪费时间的比例越大越关键 |
+| `ConnectionDegree(T)` | Binder/Futex 连接数(出度+入度) | 影响其他线程越多越关键 |
+
+默认权值：α=0.4, β=0.4, γ=0.2（可调）
 
 ### 图可视化方法
 - 分层布局：BFS 计算 depth → 同层按 CriticalScore 降序排列
@@ -201,9 +224,14 @@ CriticalScore(T) = α × CriticalPosition(T) + β × RunnableDelayShare(T) + γ 
 | 页面切换 Run 2 | RUNNABLE_DELAY | **UCLAMP_MIN_TEMPORARY** (降频抑制) | 0.9999 |
 | 视频浏览 | RUNNABLE_DELAY | BOOST_THREAD | 0.9999 |
 
-### 关键发现
-- 页面切换 Run 2 出现明显的温度升高（36.8→41.5°C）和降频现象（throttle=0.47），推荐策略从 PROTECT 升级为 UCLAMP
-- 视频浏览场景温度高达 52.3°C，调频抑制比达 1.00（完全降频），是典型的温控场景
+### 关键发现与洞察
+
+| 数据 | 洞察 |
+|------|------|
+| Run1 Jank 率 72.5%，温控 0.00 | → 即使没有温度问题，**调度竞争本身**就是主要瓶颈 |
+| Run2 Jank 率 96.6%，温控 0.47 | → 温度升高后降频介入，Jank 率进一步恶化——**温控是雪上加霜** |
+| 视频 Jank 率 71.2%，温控 1.00 | → 温控最严重但 Jank 率并非最高——**视频场景有额外延迟容忍** |
+
 - Top-5 嫌疑线程中包含 rcuop、kworker 等系统线程，说明卡顿涉及系统级资源竞争
 
 ---
@@ -339,25 +367,31 @@ Camera 场景实现了最精细的延迟归因，将 Top-K 线程的总阻塞时
 
 ## 📄 第 15 页 — 总结与展望
 
-### 已完成成果
-- ✅ **完整的数据采集 Pipeline**：eBPF + Perfetto 覆盖四大场景
-- ✅ **身份解析与图构建**：帧窗口内的依赖关键路径图
-- ✅ **多维度特征提取**：6 维特征，涵盖调度、IPC、锁、温控、解码、中断
-- ✅ **自动标注 + 决策树分类**：端到端的 Jank 根因分类 Pipeline
-- ✅ **Hint Engine**：安全的用户态 hint 推荐（BOOST/UCLAMP/PROTECT）
-- ✅ **多 Session 对比**：页面切换 ×2 + 视频浏览对比分析
-- ✅ **信息流滚动补充分析**：线程分类 + 评分 + ftrace 融合
-- ✅ **自动化部署与分析**：一键式脚本，从编译到报告全自动
-- ✅ **项目文档**：4 份调研报告 + 5 次会议记录 + 7 份分析报告
+### 我们做了什么
+| # | 成果 |
+|:-:|------|
+| ✅ | **eBPF + Perfetto 双通道采集**：覆盖页面切换、视频、信息流、相机四大场景 |
+| ✅ | **帧对齐 + 依赖图构建**：~7000 节点 / ~5000 边的关键路径图 |
+| ✅ | **6 维特征 + 决策树分类**：端到端 Jank 根因自动分类 Pipeline |
+| ✅ | **Hint Engine**：安全调度建议（TTL / 自旋保护 / 黑名单 / 置信度阈值） |
 
-### 下一步（未做 / 研究扩展）
+### 我们发现了什么
+| 发现 | 含义 |
+|------|------|
+| 调度竞争是卡顿主因 | 无温控条件下 Jank 率仍高达 72.5% — 非 Binder 非锁，就是调度问题 |
+| 温控降频雪上加霜 | 温度升高后 Jank 率升至 96.6%，降频介入显著恶化 |
+| 场景差异不容忽视 | 视频温控最严重但 Jank 率非最高 — 不同场景延迟容忍度不同 |
+| Hint Engine 自适应 | 能根据温控程度自动切换策略（PROTECT → UCLAMP） |
+
+### 核心贡献
+> **证明了 Frame-Centric（帧对齐 + 依赖感知）比 PID-Centric 更有效地定位卡顿根因**
+
+### 下一步
 | 方向 | 说明 |
 |------|------|
-| Learned Policy | 基于强化学习的调度策略学习 |
-| Cuttlefish | 在虚拟化 Android 环境进行更多实验 |
-| sched_ext | 可编程调度器，更灵活的内核调度注入 |
-| 模型增强 | 引入大语言模型进行序列预测 |
-| 多场景扩展 | 游戏场景、相机场景深化、网络场景 |
+| 🔲 sched_ext | 可编程调度器，更灵活的内核调度注入 |
+| 🔲 Learned Policy | 基于强化学习的调度策略学习 |
+| 🔲 多场景扩展 | 游戏 / 支付等高频交互场景 |
 
 ---
 
