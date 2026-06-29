@@ -435,23 +435,18 @@ def main():
     wsl(f"cd {WSL_SCRIPTS} && python3 analyze_delays.py "
         f"--json {window_json} --csv {sched_csv} --binder {binder_csv} --irq {irq_csv}")
 
-    # 6c. 相机管线阶段分析
-    step("6c. Camera Pipeline Stage Analysis")
-    wsl(f"cd {WSL_SCRIPTS} && python3 camera_pipeline.py "
-        f"--json {window_json} --csv {sched_csv} --binder {binder_csv} --irq {irq_csv}")
-
-    # 6d. 根因归因 + 调优配置 + 卡顿分类
-    step("6d. Root Cause + Tuning + Jank Classification")
+    # 6c. 根因归因 + 调优配置 + 卡顿分类
+    step("6c. Root Cause + Tuning + Jank Classification")
     wsl(f"cd {WSL_SCRIPTS} && python3 root_cause.py", check=False)
     wsl(f"cd {WSL_SCRIPTS} && python3 safe_hint_engine.py", check=False)
     wsl(f"cd {WSL_SCRIPTS} && python3 jank_classifier.py", check=False)
 
-    # 6e. 图可视化导出
-    step("6e. Graph Visualization Export")
+    # 6d. 图可视化导出
+    step("6d. Graph Visualization Export")
     wsl(f"cd {WSL_SCRIPTS} && python3 graph_export.py", check=False)
 
-    # 6f. 多会话对比 (有历史数据时)
-    step("6f. Multi-Session Comparison")
+    # 6e. 多会话对比 (有历史数据时)
+    step("6e. Multi-Session Comparison")
     wsl(f"cd {WSL_SCRIPTS} && python3 session_compare.py", check=False)
 
     # ────────────────────────────────────────────
@@ -460,7 +455,6 @@ def main():
     step("分析完成")
     delay_json    = os.path.join(ANALYSIS_DIR, "delay_analysis_result.json")
     cp_graph      = os.path.join(ANALYSIS_DIR, "critical_path_graph.json")
-    pipeline_json = os.path.join(ANALYSIS_DIR, "camera_pipeline_result.json")
     root_json     = os.path.join(ANALYSIS_DIR, "root_cause_analysis.json")
     tuning_json   = os.path.join(ANALYSIS_DIR, "tuning_profile.json")
     jank_json     = os.path.join(ANALYSIS_DIR, "jank_classification.json")
@@ -479,16 +473,6 @@ def main():
         print(f"\n    Top-3 Critical Threads:")
         for i, s in enumerate(c.get("global_critical_scores", [])[:3], 1):
             print(f"      #{i} TID:{s['tid']} [{s['role']}] score={s['score']:.4f}")
-    if os.path.exists(pipeline_json):
-        with open(pipeline_json, encoding='utf-8') as f:
-            pl = json.load(f)
-        stages = pl.get('pipeline_analysis', {})
-        print(f"\n    • camera_pipeline_result.json: {len(stages)} pipeline stages")
-        for cat, info in stages.items():
-            top = info.get("top_threads", [])
-            top_str = f"{top[0]['comm']}({top[0]['runnable_delay_ns']/1e6:.1f}ms)" if top else "—"
-            print(f"      [{cat:<24}] {info['stage_count']} ops, top-thread: {top_str}")
-
     if os.path.exists(root_json):
         with open(root_json, encoding='utf-8') as f:
             rc = json.load(f)

@@ -511,32 +511,23 @@ class CriticalPathBuilder:
     # ── CriticalScore 计算 ──
     def compute_critical_scores(self, weights=None):
         """
-        公式:
+        公式 (对齐增强版, log1p 归一化):
           CriticalScore(tid) =
-              + a * frame_window_overlap_ratio
-              + b * runnable_delay_p95_norm
+              + a * frame_window_overlap
+              + b * log1p(runnable_delay_p95_ms)
               + c * binder_centrality_norm
               + d * futex_wait_norm
               + e * render_path_proximity
-              + f * repeated_jank_cooccurrence
-              + h * on_critical_path_norm        ← 新增: 图分析结果
               - g * background_penalty
-
-        关键改进: h 维度由 find_critical_paths() 提供。
-        如果某线程在 jank frame 的关键路径上反复出现,
-        说明它不是"数字高"而是"真的在阻塞链上", 应给高分。
         """
         if weights is None:
             weights = {
-                "a": 0.8,   # frame_window_overlap
-                "b": 2.0,   # runnable_delay_p95
-                "c": 1.5,   # binder_centrality
-                "d": 0.8,   # futex_wait
-                "e": 1.2,   # render_path_proximity
-                "f": 0.4,   # repeated_jank
-                "h": 1.8,   # on_critical_path
-                "g": 0.5,   # background_penalty
-                "t": 0.6,   # thermal_penalty (新增, 高温时加重)
+                "a": 0.30,  # frame_window_overlap
+                "b": 0.10,  # log1p(runnable_delay_p95_ms)
+                "c": 0.25,  # binder_centrality (归一化)
+                "d": 0.10,  # futex_wait (归一化)
+                "e": 0.20,  # render_path_proximity
+                "g": 0.05,  # background_penalty
             }
 
         total_frames = max(1, len(self.frames))
@@ -586,38 +577,32 @@ class CriticalPathBuilder:
                 "is_bg": is_bg,
             }
 
-        # 归一化辅助
-        def safe_max(vals, default=1):
-            m = max(vals) if vals else default
-            return max(m, 1)
-
-        max_p95     = safe_max([r["p95"] for r in raw.values()])
-        max_binder  = safe_max([r["binder_c"] for r in raw.values()])
-        max_futex   = safe_max([r["futex_w"] for r in raw.values()])
+        # 收集 binder 和 futex 原始值用于归一化
+        max_binder  = max((r["binder_c"] for r in raw.values()), default=1)
+        max_futex   = max((r["futex_w"] for r in raw.values()), default=1)
+        max_binder  = max(max_binder, 1)
+        max_futex   = max(max_futex, 1)
 
         for tid, r in raw.items():
             gt = self.global_threads[tid]
-            # 内核线程 (swapper/kworker) 不参与 CriticalScore 排名
             if gt.get("is_kernel"):
                 continue
-            p95_norm     = r["p95"] / max_p95
-            binder_norm  = r["binder_c"] / max_binder
-            futex_norm   = r["futex_w"] / max_futex
 
+            # log1p 归一化: 对齐增强版, 对 P95 延迟取对数
+            p95_ms    = r["p95"] / 1_000_000
+            log_rd    = p95_ms  # 先用原始值, 下面乘系数
+            binder_norm = r["binder_c"] / max_binder
+            futex_norm  = r["futex_w"] / max_futex
+
+            import math
             score = (
                 weights["a"] * r["overlap"] +
-                weights["b"] * p95_norm +
+                weights["b"] * math.log1p(p95_ms) +
                 weights["c"] * binder_norm +
                 weights["d"] * futex_norm +
-                weights["e"] * r["rpp"] +
-                weights["f"] * r["repeated"] +
-                weights["h"] * r["on_cp"] -
+                weights["e"] * r["rpp"] -
                 weights["g"] * r["is_bg"]
             )
-            # 温度惩罚: 超过 40°C 时, 对所有线程施加额外惩罚因子
-            if self.global_thermal_peak > 40:
-                thermal_factor = min(1.0, (self.global_thermal_peak - 40) / 30.0)
-                score -= weights["t"] * thermal_factor
 
             scores.append({
                 "tid": tid,
@@ -627,15 +612,13 @@ class CriticalPathBuilder:
                 "components": {
                     "frame_overlap":      round(r["overlap"], 4),
                     "runnable_delay_p95_ns": r["p95"],
-                    "runnable_delay_p95_norm": round(p95_norm, 4),
+                    "runnable_delay_p95_ms": round(p95_ms, 3),
+                    "log1p_p95":          round(math.log1p(p95_ms), 4),
                     "binder_centrality_raw": r["binder_c"],
                     "binder_centrality_norm": round(binder_norm, 4),
                     "futex_wait_total":   r["futex_w"],
                     "futex_wait_norm":    round(futex_norm, 4),
                     "render_path_proximity": r["rpp"],
-                    "repeated_jank_ratio": round(r["repeated"], 4),
-                    "on_critical_path_ratio": round(r["on_cp"], 4),
-                    "avg_block_ratio":    round(r["block_ratio"], 4),
                     "is_background":      bool(r["is_bg"]),
                 },
             })
@@ -655,7 +638,7 @@ class CriticalPathBuilder:
                 "pid": self.target_pid,
                 "uid": self.target_uid,
                 "total_jank_frames": len(self.frames),
-                "scoring_weights": weights,
+                "scoring_weights": {k: v for k, v in weights.items() if k not in ("h","t","f")},
             },
             "global_critical_scores": scores,
             "frames": [

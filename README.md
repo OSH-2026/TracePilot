@@ -368,6 +368,15 @@ CriticalScore = 0.15×overlap + 0.10×log1p(rd) + 0.15×binder
               + 0.20×decode + 0.10×thermal + 0.15×buffer - 0.05×net
 ```
 
+**相机场景权重：**
+
+```
+CriticalScore = 0.30×overlap + 0.10×log1p(rd) + 0.25×binder
+              + 0.10×futex + 0.20×render - 0.05×bg
+```
+
+> **相机模块数据全景：** 以上 5 维仅用于 CriticalScore 评分。完整的 eBPF 采集数据（sched + binder + futex + IRQ + SoftIRQ + cpu_freq + mem_reclaim）还同时驱动：每帧延迟聚合 → DAG 关键路径图构建 → 6 信号根因归因（Sched/Binder/Futex/IRQ/SoftIRQ/Env）→ 9 维卡顿分类 → DOT 图可视化 → 多会话对比 → 调优建议生成。详见 [`ebpf/src/camera/README.md`](ebpf/src/camera/README.md)。
+
 ---
 
 ## 目标与实施路线
