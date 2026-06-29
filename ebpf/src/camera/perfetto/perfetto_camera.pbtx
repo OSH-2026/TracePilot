@@ -42,7 +42,7 @@ data_sources: {
             # 针对相机与相册场景的核心类别
             atrace_categories: "gfx"          # 图形渲染
             atrace_categories: "view"         # 视图系统
-            atrace_categories: "camera"       # 相机HAL层
+            atrace_categories: "camera"       # 相机HAL层 (标准)
             atrace_categories: "hal"          # 硬件抽象层
             atrace_categories: "binder_driver"# Binder驱动
             atrace_categories: "sched"        # 调度
@@ -50,7 +50,9 @@ data_sources: {
             atrace_categories: "wm"           # 窗口管理
             atrace_categories: "res"          # 资源
             
-            atrace_apps: "*"                  # 可以指定具体的包名如 "com.google.android.GoogleCamera"
+            # 显式追踪相机相关进程 (vendor HAL 可能不走通用 camera atrace)
+            atrace_apps: "com.google.android.GoogleCamera"
+            atrace_apps: "android.hardware.camera.provider"
         }
     }
 }

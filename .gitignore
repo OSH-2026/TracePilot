@@ -12,7 +12,13 @@ events.bin
 *events.bin
 *.bin
 *.perfetto-trace
+*.perfetto
 tracepilot_events.zip
+
+# ── Camera module large artifacts ──
+ebpf/src/camera/perfetto/tools/
+ebpf/src/camera/output/
+
 
 # ── CSV data (generated during analysis) ──
 *.csv
@@ -31,3 +37,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 .vscode/
+
+env/

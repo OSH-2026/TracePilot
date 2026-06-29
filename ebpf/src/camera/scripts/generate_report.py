@@ -14,6 +14,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DELAY_JSON = os.path.join(BASE_DIR, "..", "output", "analysis", "delay_analysis_result.json")
 GRAPH_JSON = os.path.join(BASE_DIR, "..", "output", "analysis", "critical_path_graph.json")
 ROOTCAUSE_JSON = os.path.join(BASE_DIR, "..", "output", "analysis", "root_cause_analysis.json")
+PIPELINE_JSON = os.path.join(BASE_DIR, "..", "output", "analysis", "camera_pipeline_result.json")
+JANK_JSON     = os.path.join(BASE_DIR, "..", "output", "analysis", "jank_classification.json")
+COMPARE_JSON  = os.path.join(BASE_DIR, "..", "output", "analysis", "compare_report.json")
 OUT_DIR   = os.path.join(BASE_DIR, "..", "output", "reports")
 
 
@@ -49,6 +52,9 @@ def generate():
     delay = load_json(DELAY_JSON)
     graph = load_json(GRAPH_JSON)
     root_cause = load_json(ROOTCAUSE_JSON)
+    pipeline = load_json(PIPELINE_JSON)
+    jank_cls = load_json(JANK_JSON)     # 可选
+    compare  = load_json(COMPARE_JSON)   # 可选
     if not delay or not graph:
         sys.exit(1)
 
@@ -296,33 +302,162 @@ def generate():
     h(2, "六、延迟归因 (Root-Cause Attribution)")
     w()
     if root_cause:
-        attributions = root_cause.get("attributions", [])
+        # 新格式: global_thread_attributions (v2 多信号归因)
+        attributions = root_cause.get("global_thread_attributions", [])
         if attributions:
-            w("对 Top-K 线程逐帧汇总延迟构成：调度竞争(Runnable Delay) + Binder IPC + Futex 锁。")
+            w("对全帧聚合的线程级延迟归因：调度竞争(RunnableDelay) + Binder IPC + Futex。")
             w()
-            table_h7 = ["TID", "线程名", "调度竞争", "Binder IPC", "Futex", "CPU频率(avg)", "根因"]
+            table_h7 = ["TID", "线程名", "调度竞争", "Binder IPC", "Futex", "跨帧数", "根因"]
             table_r7 = []
             for a in attributions[:10]:
-                attr = a.get("attribution", {})
-                freq = attr.get("cpu_freq_avg_mhz", 0)
-                freq_str = f"{freq}MHz" if freq > 0 else "—"
                 table_r7.append([
-                    a["tid"], a["comm"],
-                    f"{attr.get('runnable_delay_ms',0):.2f}ms",
-                    f"{attr.get('binder_latency_ms',0):.2f}ms",
-                    f"{attr.get('futex_wait_count',0)}次",
-                    freq_str,
-                    a.get("root_cause", ""),
+                    a["tid"], a.get("comm","?"),
+                    f"{a.get('runnable_ms',0):.2f}ms",
+                    f"{a.get('binder_ms',0):.2f}ms",
+                    f"{a.get('futex_count',0)}次",
+                    str(a.get('frames',0)),
+                    a.get("root_cause",""),
                 ])
             table(table_h7, table_r7)
+
+            w()
+            w("**逐帧归因分布**:")
+            cause_dist = root_cause.get("cause_distribution", {})
+            for cause, cnt in sorted(cause_dist.items(), key=lambda x: -x[1]):
+                w(f"- {cause}: {cnt} 帧")
         else:
             w("*未生成归因数据*")
     else:
         w("*运行 root_cause.py 后可生成此部分*")
     w()
 
-    # ═══════ 七、总结 ═══════
-    h(2, "七、总结与建议")
+    # ═══════ 七、相机管线阶段分析 ═══════
+    h(2, "七、相机管线阶段分析 (Camera Pipeline)")
+    w()
+    if pipeline:
+        pl = pipeline.get("pipeline_analysis", {})
+        if pl:
+            w("基于 Perfetto atrace (`camera` + `hal` 类别) 提取的相机操作管线阶段，"
+              "在每个阶段窗口内聚合 eBPF 调度延迟。")
+            w()
+
+            stage_order = ["CameraOpen", "CaptureSessionSetup", "Preview",
+                           "CaptureRequest", "JpegEncode", "AutoFocus",
+                           "HalCommunication", "CameraClose", "Flash",
+                           "FaceDetection", "OtherCamera"]
+
+            for cat in stage_order:
+                if cat not in pl:
+                    continue
+                info = pl[cat]
+                dur_ms = info.get("total_duration_ns", 0) / 1_000_000
+
+                w(f"### {cat}  ({info['stage_count']} 次操作, 总耗时 {dur_ms:.1f}ms)")
+                w()
+
+                # Top 线程表
+                top_t = info.get("top_threads", [])[:5]
+                if top_t:
+                    table_h8 = ["TID", "角色", "线程名", "Runnable Delay", "P95 Delay", "Actual Run"]
+                    table_r8 = []
+                    for t in top_t:
+                        table_r8.append([
+                            t["tid"],
+                            f"{role_emoji(t.get('role',''))}{t.get('role','')}",
+                            t.get("comm", "?"),
+                            fmt_ns(t.get("runnable_delay_ns", 0)),
+                            fmt_ns(t.get("p95_delay_ns", 0)),
+                            fmt_ns(t.get("actual_run_ns", 0)),
+                        ])
+                    table(table_h8, table_r8)
+                else:
+                    w("*此阶段未检测到显著的调度事件*")
+                    w()
+
+                # Binder 摘要
+                bs = info.get("binder_summary", {})
+                if bs.get("total_calls", 0) > 0:
+                    w(f"- Binder: {bs['total_calls']} 次调用, "
+                      f"总延迟 {bs['total_latency_ns']/1e6:.2f}ms, "
+                      f"平均 {bs['avg_latency_ns']/1e6:.3f}ms")
+
+                # Futex 摘要
+                fs = info.get("futex_summary", {})
+                if fs.get("total_waits", 0) > 0 or fs.get("total_wakes", 0) > 0:
+                    w(f"- Futex: WAIT={fs['total_waits']}, WAKE={fs['total_wakes']}")
+
+                # CPU / Thermal / IRQ / Mem
+                cpu = info.get("cpu_freq", {})
+                thermal = info.get("thermal", {})
+                irq = info.get("irq", {})
+                mem = info.get("mem_reclaim", {})
+                if cpu:
+                    w(f"- CPU 频率: {cpu.get('min_mhz','?')}~{cpu.get('max_mhz','?')}MHz "
+                      f"(avg {cpu.get('avg_mhz','?')}MHz)")
+                if thermal:
+                    w(f"- 温度: {thermal.get('min_c','?')}~{thermal.get('max_c','?')}°C")
+                if irq:
+                    w(f"- 中断: hard={irq.get('hard_ns',0)/1e6:.2f}ms "
+                      f"soft={irq.get('soft_ns',0)/1e6:.2f}ms")
+                if mem:
+                    w(f"- 内存回收: {mem.get('count',0)} 次 (order {mem.get('min_order',0)}~{mem.get('max_order',0)})")
+                w()
+        else:
+            w("*未生成相机管线分析数据*")
+    else:
+        w("*运行 `python camera_pipeline.py` 后可生成此部分*")
+    w()
+
+    # ═══════ 八、卡顿分类 ═══════
+    h(2, "八、卡顿根因分类 (Jank Classification)")
+    w()
+    if jank_cls:
+        summary = jank_cls.get("summary", {})
+        total = jank_cls.get("total_frames", 0)
+        if summary:
+            w(f"共 {total} 帧，按主导因分类：")
+            w()
+            table_h9 = ["根因", "帧数", "占比"]
+            table_r9 = []
+            for cause, cnt in sorted(summary.items(), key=lambda x: -x[1]):
+                pct = cnt / max(1, total) * 100
+                table_r9.append([cause, str(cnt), f"{pct:.0f}%"])
+            table(table_h9, table_r9)
+        else:
+            w("*未检测到显著的卡顿分类信号*")
+    else:
+        w("*运行 `python jank_classifier.py` 后可生成此部分*")
+    w()
+
+    # ═══════ 九、多会话对比 ═══════
+    h(2, "九、多会话对比 (Cross-Session)")
+    w()
+    if compare:
+        sessions = compare.get("sessions", [])
+        cross = compare.get("cross_analysis", {})
+        if len(sessions) >= 2:
+            table_h10 = ["会话", "目标", "帧数", "线程数", "温度", "Top-1 线程"]
+            table_r10 = []
+            for s in sessions:
+                top1 = s["top3"][0]["comm"][:20] if s.get("top3") else "?"
+                table_r10.append([
+                    s["label"], (s.get("target") or "?")[:25],
+                    str(s.get("n_frames",0)), str(s.get("n_threads",0)),
+                    f"{s.get('thermal_max_c',0)}°C", top1,
+                ])
+            table(table_h10, table_r10)
+            recurring = cross.get("top1_recurring", [])
+            if recurring:
+                w(f"**跨会话重复出现**: {', '.join(recurring)}")
+                w()
+        else:
+            w("*需要至少 2 次运行才能生成对比报告*")
+    else:
+        w("*运行 `python session_compare.py` 后可生成此部分*")
+    w()
+
+    # ═══════ 十、总结 ═══════
+    h(2, "十、总结与建议")
     w()
 
     # 从 Top-K 提取卡片
@@ -351,6 +486,38 @@ def generate():
     w("- 若 Futex 竞争多 → 检查相机 pipeline 内部锁设计")
     w("- 若 GPU 线程卡顿 → 添加 GPU frequency / Mali 跟踪点进一步定位")
     w("- 若探针扰动大 → 考虑内核态 UID 预过滤减少事件量")
+    if pipeline:
+        pl = pipeline.get("pipeline_analysis", {})
+        if pl:
+            w()
+            w("### 相机管线专项建议")
+            # 检查 CameraOpen 阶段
+            cam_open = pl.get("CameraOpen", {})
+            if cam_open:
+                top = cam_open.get("top_threads", [])
+                if top:
+                    w(f"- **相机打开阶段**耗时 {cam_open.get('total_duration_ns',0)/1e6:.0f}ms，"
+                      f"首要线程 `{top[0].get('comm','?')}` 延迟 {top[0].get('runnable_delay_ns',0)/1e6:.1f}ms")
+            # 检查 CaptureRequest 阶段
+            cap_req = pl.get("CaptureRequest", {})
+            if cap_req:
+                top = cap_req.get("top_threads", [])
+                if top:
+                    w(f"- **拍照请求阶段** {cap_req['stage_count']} 次操作，"
+                      f"重点线程 `{top[0].get('comm','?')}`")
+            # 检查 JpegEncode
+            jpeg = pl.get("JpegEncode", {})
+            if jpeg:
+                top = jpeg.get("top_threads", [])
+                if top:
+                    w(f"- **JPEG 编码阶段**：关注 `{top[0].get('comm','?')}` 线程的 CPU 调度是否充足")
+            # 跨阶段对比：相机打开 vs 预览
+            if "CameraOpen" in pl and "Preview" in pl:
+                open_top = pl["CameraOpen"].get("top_threads", [])
+                prev_top = pl["Preview"].get("top_threads", [])
+                if open_top and prev_top and open_top[0].get("comm") == prev_top[0].get("comm"):
+                    w(f"- ⚠️ `{open_top[0].get('comm')}` 在相机打开和预览阶段均为瓶颈线程，"
+                      f"建议考虑对该线程做调度优先")
 
     # 写文件
     with open(out_path, "w", encoding="utf-8") as f:

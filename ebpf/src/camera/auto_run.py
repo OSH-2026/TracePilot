@@ -27,19 +27,56 @@ PERFETTO_DIR = os.path.join(PROJECT_ROOT, "perfetto")
 BUILD_DIR    = os.path.join(EBPF_DIR, "build")
 PERFETTO_CFG = os.path.join(PERFETTO_DIR, "perfetto_camera.pbtx")
 
-# WSL 中对应的 Linux 路径 (固定映射)
-WSL_HOME     = "/home/yy/OSH-labs/camera"
-WSL_EBPF     = f"{WSL_HOME}/ebpf"
-WSL_PERFETTO = f"{WSL_HOME}/perfetto"
+# ─── 环境自动检测: WSL 内 vs Windows 外 ───
+def _detect_env():
+    """检测运行环境, 返回 (in_wsl, wsl_root)"""
+    # 检查是否在 WSL 内部 (Linux 内核 + /proc/version 包含 microsoft)
+    if sys.platform == 'linux' or sys.platform.startswith('linux'):
+        try:
+            with open('/proc/version', 'r') as f:
+                ver = f.read().lower()
+                if 'microsoft' in ver or 'wsl' in ver:
+                    return True, PROJECT_ROOT
+        except Exception:
+            pass
+        return True, PROJECT_ROOT
+
+    # Windows: 从 UNC 路径推导 WSL 路径
+    # \\wsl.localhost\Ubuntu\home\yy\OSH-labs\TracePilot\ebpf\src\camera
+    # → /home/yy/OSH-labs/TracePilot/ebpf/src/camera
+    if PROJECT_ROOT.startswith('\\\\wsl.localhost\\'):
+        parts = PROJECT_ROOT.replace('\\\\wsl.localhost\\', '').split('\\', 1)
+        if len(parts) >= 2:
+            return False, '/' + parts[1].replace('\\', '/')
+    elif PROJECT_ROOT.startswith('\\\\wsl$\\'):
+        parts = PROJECT_ROOT.replace('\\\\wsl$\\', '').split('\\', 1)
+        if len(parts) >= 2:
+            return False, '/' + parts[1].replace('\\', '/')
+
+    return False, None
+
+IN_WSL, WSL_ROOT = _detect_env()
+
+# WSL 内各子目录路径
+if IN_WSL:
+    WSL_EBPF     = os.path.join(PROJECT_ROOT, "ebpf")
+    WSL_SCRIPTS  = os.path.join(PROJECT_ROOT, "scripts")
+    WSL_PERFETTO = os.path.join(PROJECT_ROOT, "perfetto")
+    WSL_OUTPUT   = os.path.join(PROJECT_ROOT, "output")
+else:
+    WSL_EBPF     = f"{WSL_ROOT}/ebpf"
+    WSL_SCRIPTS  = f"{WSL_ROOT}/scripts"
+    WSL_PERFETTO = f"{WSL_ROOT}/perfetto"
+    WSL_OUTPUT   = f"{WSL_ROOT}/output"
+
+WSL_RAW      = f"{WSL_OUTPUT}/raw"
+WSL_ANALYSIS = f"{WSL_OUTPUT}/analysis"
 
 # 输出目录 (所有生成产物放在这里, 不与源码混杂)
 OUTPUT_DIR     = os.path.join(PROJECT_ROOT, "output")
 RAW_DIR        = os.path.join(OUTPUT_DIR, "raw")
 ANALYSIS_DIR   = os.path.join(OUTPUT_DIR, "analysis")
 REPORT_DIR     = os.path.join(OUTPUT_DIR, "reports")
-WSL_OUTPUT     = f"{WSL_HOME}/output"
-WSL_RAW        = f"{WSL_OUTPUT}/raw"
-WSL_ANALYSIS   = f"{WSL_OUTPUT}/analysis"
 
 # ─── 工具函数 ───
 
@@ -52,7 +89,8 @@ def run(cmd, cwd=None, check=True, capture=False, shell=False):
         result = subprocess.run(
             [str(a) for a in cmd] if isinstance(cmd, (list, tuple)) else cmd,
             cwd=cwd, check=check, capture_output=capture,
-            text=True, shell=shell, timeout=600
+            text=True, shell=shell, timeout=600,
+            encoding='utf-8', errors='replace'
         )
         if capture:
             return result.stdout.strip()
@@ -78,8 +116,39 @@ def adb(var, *args, **kwargs):
 
 
 def wsl(cmd_str, **kwargs):
-    """在 WSL 中执行命令"""
-    return run(["wsl", "-d", "Ubuntu", "--", "bash", "-c", cmd_str], **kwargs)
+    """在 WSL 中执行命令。若已在 WSL 内, 直接本地执行。
+    失败时自动打印 stderr 以帮助诊断。"""
+    if IN_WSL:
+        cmd = ["bash", "-c", cmd_str]
+    else:
+        cmd = ["wsl", "-d", "Ubuntu", "--", "bash", "-c", cmd_str]
+
+    desc = " ".join(str(c) for c in cmd)
+    print(f"\n  $ {desc}")
+    sys.stdout.flush()
+
+    try:
+        result = subprocess.run(
+            cmd, check=False, capture_output=True,
+            text=True, timeout=600,
+            encoding='utf-8', errors='replace'
+        )
+    except FileNotFoundError as e:
+        print(f"  [✗] Command not found: {e}")
+        sys.exit(1)
+
+    if result.returncode != 0:
+        print(f"  [✗] Exit code: {result.returncode}")
+        if result.stdout:
+            print(f"  stdout:\n{result.stdout}")
+        if result.stderr:
+            print(f"  stderr:\n{result.stderr}")
+        # 如果调用方允许失败, 不退出
+        if kwargs.get('check', True):
+            sys.exit(1)
+    elif result.stdout:
+        print(result.stdout)
+    return result
 
 
 def step(title):
@@ -225,8 +294,6 @@ def main():
         ebpf_proc = subprocess.Popen(
             ["adb", "shell"],
             stdin=subprocess.PIPE,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
         )
         ebpf_proc.stdin.write(b"su\n")
         ebpf_proc.stdin.write(b"cd /data/local/tmp\n")
@@ -306,6 +373,8 @@ def main():
                           f"{RAW_DIR}/", check=False, capture=True)
             binder_ok = adb("pull", "/data/local/tmp/binder_futex_events.csv",
                            f"{RAW_DIR}/", check=False, capture=True)
+            irq_ok = adb("pull", "/data/local/tmp/irq_events.csv",
+                        f"{RAW_DIR}/", check=False, capture=True)
 
             # 验证文件
             sched_file = os.path.join(RAW_DIR, "sched_events.csv")
@@ -332,20 +401,20 @@ def main():
     # 安装 perfetto Python 依赖 (WSL)
     print("  [*] Checking perfetto Python package in WSL...")
     has_perfetto = wsl("python3 -c 'from perfetto.trace_processor import TraceProcessor; print(1)'",
-                       check=False, capture=True)
-    if not has_perfetto:
+                       check=False)
+    if has_perfetto.returncode != 0:
         print("  [*] perfetto not found, attempting to install...")
         # 先看 pip 是否可用
-        has_pip = wsl("python3 -m pip --version 2>/dev/null", check=False, capture=True)
-        if not has_pip:
+        has_pip = wsl("python3 -m pip --version 2>/dev/null", check=False)
+        if has_pip.returncode != 0:
             print("  [⚠] pip3 not installed in WSL. Installing python3-pip...")
             wsl("sudo apt-get install -y -qq python3-pip 2>/dev/null || "
                 "apt-get install -y -qq python3-pip 2>/dev/null", check=False)
         wsl("python3 -m pip install perfetto pandas numpy -q --break-system-packages 2>&1", check=False)
         # 最终验证
         final_check = wsl("python3 -c 'from perfetto.trace_processor import TraceProcessor; print(1)'",
-                          check=False, capture=True)
-        if not final_check:
+                          check=False)
+        if final_check.returncode != 0:
             print("  [✗] Failed to install perfetto. Run manually:")
             print("      wsl -d Ubuntu sudo apt-get install -y python3-pip")
             print("      wsl -d Ubuntu python3 -m pip install perfetto")
@@ -361,33 +430,86 @@ def main():
     window_json = f"{WSL_ANALYSIS}/ebpf_target_windows.json"
     sched_csv   = f"{WSL_RAW}/sched_events.csv"
     binder_csv  = f"{WSL_RAW}/binder_futex_events.csv"
+    irq_csv     = f"{WSL_RAW}/irq_events.csv"
 
-    wsl(f"cd {WSL_EBPF} && python3 analyze_delays.py "
-        f"--json {window_json} --csv {sched_csv} --binder {binder_csv}")
+    wsl(f"cd {WSL_SCRIPTS} && python3 analyze_delays.py "
+        f"--json {window_json} --csv {sched_csv} --binder {binder_csv} --irq {irq_csv}")
+
+    # 6c. 相机管线阶段分析
+    step("6c. Camera Pipeline Stage Analysis")
+    wsl(f"cd {WSL_SCRIPTS} && python3 camera_pipeline.py "
+        f"--json {window_json} --csv {sched_csv} --binder {binder_csv} --irq {irq_csv}")
+
+    # 6d. 根因归因 + 调优配置 + 卡顿分类
+    step("6d. Root Cause + Tuning + Jank Classification")
+    wsl(f"cd {WSL_SCRIPTS} && python3 root_cause.py", check=False)
+    wsl(f"cd {WSL_SCRIPTS} && python3 safe_hint_engine.py", check=False)
+    wsl(f"cd {WSL_SCRIPTS} && python3 jank_classifier.py", check=False)
+
+    # 6e. 图可视化导出
+    step("6e. Graph Visualization Export")
+    wsl(f"cd {WSL_SCRIPTS} && python3 graph_export.py", check=False)
+
+    # 6f. 多会话对比 (有历史数据时)
+    step("6f. Multi-Session Comparison")
+    wsl(f"cd {WSL_SCRIPTS} && python3 session_compare.py", check=False)
 
     # ────────────────────────────────────────────
     # Stage 7: 输出摘要
     # ────────────────────────────────────────────
     step("分析完成")
-    delay_json = os.path.join(ANALYSIS_DIR, "delay_analysis_result.json")
-    cp_graph   = os.path.join(ANALYSIS_DIR, "critical_path_graph.json")
+    delay_json    = os.path.join(ANALYSIS_DIR, "delay_analysis_result.json")
+    cp_graph      = os.path.join(ANALYSIS_DIR, "critical_path_graph.json")
+    pipeline_json = os.path.join(ANALYSIS_DIR, "camera_pipeline_result.json")
+    root_json     = os.path.join(ANALYSIS_DIR, "root_cause_analysis.json")
+    tuning_json   = os.path.join(ANALYSIS_DIR, "tuning_profile.json")
+    jank_json     = os.path.join(ANALYSIS_DIR, "jank_classification.json")
+    compare_json  = os.path.join(ANALYSIS_DIR, "compare_report.json")
+    dot_file      = os.path.join(ANALYSIS_DIR, "graph_topology.dot")
 
     print(f"  产物列表:")
     if os.path.exists(delay_json):
-        with open(delay_json) as f:
+        with open(delay_json, encoding='utf-8') as f:
             d = json.load(f)
         print(f"    • delay_analysis_result.json: {len(d.get('frames',[]))} frames analyzed")
     if os.path.exists(cp_graph):
-        with open(cp_graph) as f:
+        with open(cp_graph, encoding='utf-8') as f:
             c = json.load(f)
         print(f"    • critical_path_graph.json: {len(c.get('global_critical_scores',[]))} threads scored")
         print(f"\n    Top-3 Critical Threads:")
         for i, s in enumerate(c.get("global_critical_scores", [])[:3], 1):
             print(f"      #{i} TID:{s['tid']} [{s['role']}] score={s['score']:.4f}")
+    if os.path.exists(pipeline_json):
+        with open(pipeline_json, encoding='utf-8') as f:
+            pl = json.load(f)
+        stages = pl.get('pipeline_analysis', {})
+        print(f"\n    • camera_pipeline_result.json: {len(stages)} pipeline stages")
+        for cat, info in stages.items():
+            top = info.get("top_threads", [])
+            top_str = f"{top[0]['comm']}({top[0]['runnable_delay_ns']/1e6:.1f}ms)" if top else "—"
+            print(f"      [{cat:<24}] {info['stage_count']} ops, top-thread: {top_str}")
+
+    if os.path.exists(root_json):
+        with open(root_json, encoding='utf-8') as f:
+            rc = json.load(f)
+        attribs = rc.get('attributions', [])
+        if attribs:
+            print(f"\n    • root_cause_analysis.json: {len(attribs)} threads attributed")
+            for a in attribs[:3]:
+                print(f"      {a.get('comm','?')}: {a.get('root_cause','?')}")
+
+    if os.path.exists(tuning_json):
+        with open(tuning_json, encoding='utf-8') as f:
+            tp = json.load(f)
+        actions = tp.get('actions', [])
+        if actions:
+            print(f"\n    • tuning_profile.json: {len(actions)} tuning actions generated")
+            for a in actions[:3]:
+                print(f"      [{a.get('type','?')}] {a.get('description','?')}")
 
     # 生成报告文档
     print("\n  [*] Generating markdown report...")
-    wsl(f"cd {WSL_EBPF} && python3 generate_report.py", check=False)
+    wsl(f"cd {WSL_SCRIPTS} && python3 generate_report.py", check=False)
 
     print(f"\n  [✓] All done!")
 

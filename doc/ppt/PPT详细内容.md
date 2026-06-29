@@ -263,10 +263,10 @@ Docker(NDK r26b + clang) → 交叉编译 → tracepilot.bpf.o + tracepilot-aarc
 │ (基础版)     │  │ (增强版)     │  │ (Chrome)    │  │ (Camera)    │
 │─────────────│  │─────────────│  │─────────────│  │─────────────│
 │ QQ          │  │ 微信/抖音    │  │ Chrome      │  │ Google Cam  │
-│ 690MB events│  │ 451MB events│  │ 261万/34s   │  │ 全自动Pipline│
-│ IRQ/softirq │  │ Binder/Futex│  │ 秒级聚合     │  │ 编译→部署→   │
-│ 辅助分析     │  │ Jank分类    │  │ 34线程级汇总  │  │ 采集→分析→   │
-│             │  │ Hint Engine │  │ ftrace补充   │  │ 报告        │
+│ 690MB events│  │ 451MB events│  │ 261万/34s   │  │ 13探针 36MB │
+│ IRQ/softirq │  │ Binder/Futex│  │ 秒级聚合     │  │ 内核内延迟  │
+│ 辅助分析     │  │ Jank分类    │  │ 34线程级汇总  │  │ 6信号归因   │
+│             │  │ Hint Engine │  │ ftrace补充   │  │ 9维卡顿分类 │
 └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘
 ```
 
@@ -494,10 +494,15 @@ $$CriticalScore(T) = \alpha \times CriticalPosition(T) + \beta \times \frac{Runn
 - 评估：LeaveOneOut 交叉验证 + confusion matrix
 - 导出为 C 头文件 `learned_model.h`，嵌入 loader
 
-**③ Camera 延迟分解方法**
-$$总阻塞时间 = 调度竞争(RunnableDelay) + Binder\ IPC\ 等待 + Futex\ 锁等待$$
-
-- 角色识别 → DAG 关键路径 → 根因归因 → 安全调优生成
+**③ Camera 模块深度分析**
+- **13 探针 + 36MB buffer**: sched/binder/futex/cpu/thermal/irq/softirq/mem_reclaim
+- **内核内延迟计算**: wakeup+preempt 在 BPF 内完成, 事件量减半
+- **6 信号根因归因**: Sched + Binder + Futex + IRQ + SoftIRQ + 环境 (CPU频率/温度/内存)
+- **9 维卡顿分类**: SCHED/BINDER/FUTEX/CPU/THERMAL/GPU/RENDER/IRQ/MEM
+- **DOT 图导出**: 全局拓扑 + 16 帧子图 (4 种边类型)
+- **16 种线程角色**: 30+ Google Camera 特有线程模式 (GcamTasks/smz-analysis/sabre/YUV 等)
+- 实测结果: 30s 采集 ~470 万事件, 16 jank 帧, 631 线程评分
+- 根因: 100% CPU Scheduling Contention (IRQ 仅 2-5%, Binder 0ns)
 
 **④ 两种聚合策略对比**
 
@@ -593,16 +598,20 @@ $$总阻塞时间 = 调度竞争(RunnableDelay) + Binder\ IPC\ 等待 + Futex\ �
 | `export_step2_graphs.py` | 图可视化导出 |
 | `render_graph_svg.py` | SVG 渲染 |
 
-**相机场景脚本：**
+**相机场景脚本 (10 个)：**
 
 | 脚本 | 功能 |
 |------|------|
-| `auto_run.py` | 全自动：编译→部署→采集→拉取→分析→报告 |
-| `analyze_delays.py` | 延迟聚合 + Binder 配对 + Futex 统计 |
-| `critical_path.py` | DAG 关键路径 + 评分 |
-| `root_cause.py` | 根因归因 |
-| `safe_hint_engine.py` | 安全调优配置 + shell 脚本 |
-| `generate_report.py` | 生成 MD 报告 |
+| `auto_run.py` | 一键全自动：编译→部署→采集→拉取→9步分析→报告 |
+| `analyze_delays.py` | 延迟聚合 + Binder配对 + Futex统计 + CPU + IRQ + Mem |
+| `critical_path.py` | DAG 关键路径 + 8+1维评分 (含温度惩罚) |
+| `root_cause.py` | 6 信号根因归因 (Sched/Binder/Futex/IRQ/SoftIRQ/环境) |
+| `camera_pipeline.py` | 相机管线阶段聚合 (按 atrace 阶段) |
+| `safe_hint_engine.py` | 持久化调优配置 + shell 脚本 |
+| `jank_classifier.py` | 9 维卡顿分类 |
+| `graph_export.py` | DOT 图导出 (全局拓扑 + 每帧子图) |
+| `session_compare.py` | 多会话对比 (Top-1 重叠 + 根因分布) |
+| `generate_report.py` | Markdown 报告 (10 章) |
 
 ### 插图建议
 - 以"工具箱"的视觉风格展示，每个脚本是一个工具图标
@@ -634,6 +643,7 @@ $$总阻塞时间 = 调度竞争(RunnableDelay) + Binder\ IPC\ 等待 + Futex\ �
 | ✅ | **多 Session 对比**：页面切换 ×2 + 视频浏览对比分析 |
 | ✅ | **信息流滚动补充分析**：线程分类 + 评分 + ftrace 融合 |
 | ✅ | **自动化部署与分析**：一键式脚本，从编译到报告全自动 |
+| ✅ | **相机模块深化**：13 探针 + 36MB buffer + 内核内延迟计算 + 6 信号归因 + 9 维分类 + DOT 图导出 |
 | ✅ | **项目文档**：4 份调研报告 + 5 次会议记录 + 7 份分析报告 |
 
 **下一步扩展方向：**
@@ -664,15 +674,14 @@ $$总阻塞时间 = 调度竞争(RunnableDelay) + Binder\ IPC\ 等待 + Futex\ �
 
 **主标题：** 附录：关键技术指标
 
-| 指标 | 页面切换 Run 1 | 页面切换 Run 2 | 视频浏览 | 信息流滚动 |
-|------|:---:|:---:|:---:|:---:|
-| 采集时长 | — | — | — | **34.2s** |
-| 原始事件数 | **~870万** | **~580万** | **~500万** | **261万** |
-| events.bin 体积 | 690 MB | 459 MB | 451 MB | — |
-| 图节点 | 6968 | 4799 | 6622 | — |
-| 图边 | 5234 | 3106 | 4992 | — |
-| 人工标注帧 | — | — | — | 1575+ 帧 |
-| Jank 率 | 72.5% | 96.6% | 71.2% | — |
+| 指标 | 页面切换 Run 1 | 页面切换 Run 2 | 视频浏览 | 相机拍照 | 信息流滚动 |
+|------|:---:|:---:|:---:|:---:|:---:|
+| 采集时长 | — | — | — | **30s** | **34.2s** |
+| 原始事件数 | **~870万** | **~580万** | **~500万** | **~470万** | **261万** |
+| events.bin 体积 | 690 MB | 459 MB | 451 MB | — | — |
+| 图节点 | 6968 | 4799 | 6622 | 631 | — |
+| 图边 | 5234 | 3106 | 4992 | — | — |
+| Jank 率 | 72.5% | 96.6% | 71.2% | **1.8%** | — |
 
 **底部备注：**
 - 数据日期：2026 年 6 月

@@ -28,6 +28,67 @@ def identify_role(comm, tid, target_pid):
         return "UI Thread"
     if "renderthread" in cl or cl.startswith("rend"):
         return "RenderThread"
+
+    # ── 相机 / HAL 层特有线程 ──
+    if "camera" in cl:
+        if "provider" in cl or "service" in cl:
+            return "CameraService"
+        if "hal" in cl:
+            return "CameraHal"
+        return "CameraThread"
+    if cl.startswith("lwis_"):
+        return "CameraHal"
+    if "jpeg" in cl or "heic" in cl or "encoder" in cl:
+        return "JpegEncoder"
+    if "media" in cl and ("codec" in cl or "decode" in cl or "encode" in cl):
+        return "MediaCodec"
+    if "mm-qcamera" in cl or "qCamera" in cl:
+        return "CameraHal"
+    if "cameraserver" in cl:
+        return "CameraService"
+    if "isp" in cl or "csi" in cl:
+        return "CameraHal"
+    if cl.startswith("android.hardwar") or "hardware.camera" in cl:
+        return "CameraHal"
+    if "gca" in cl and "generic" in cl:
+        return "CameraThread"
+    if cl.startswith("gcam") or "gcam" in cl:
+        return "CameraThread"
+    if "smz-" in cl or cl.startswith("smz_"):
+        return "CameraThread"
+    if cl.startswith("catcher-"):
+        return "CameraThread"
+    if cl.startswith("frame-quality") or cl.startswith("frame-store"):
+        return "CameraThread"
+    if cl.startswith("meta-store") or cl.startswith("trk-"):
+        return "CameraThread"
+    if cl.startswith("mv-") and ("gyro" in cl or "ctrl" in cl or "vid" in cl):
+        return "CameraThread"
+    if cl.startswith("ois-"):
+        return "CameraThread"
+    if cl.startswith("pck-"):
+        return "CameraThread"
+    if cl == "sabre" or cl.startswith("sabre"):
+        return "CameraThread"
+    if cl.startswith("cvk-"):
+        return "CameraThread"
+    if cl.startswith("c2node"):
+        return "CameraThread"
+    if cl.startswith("raw") and ("w" in cl):
+        return "CameraThread"
+    if cl.startswith("yuv") and ("w" in cl):
+        return "CameraThread"
+    if cl.startswith("private") and ("w" in cl):
+        return "CameraThread"
+    if "mali" in cl:
+        return "GPU Worker"
+    if cl.startswith("glide-"):
+        return "GPU Worker"
+    if cl.startswith("dhd_") or cl.startswith("bcm"):
+        return "I/O Worker"
+    if cl.startswith("irq/") or cl.startswith("thermal_"):
+        return "KernelWorker"
+
     if "binder" in cl:
         return "HwBinder RPC" if "hw" in cl else "Binder RPC"
     if "surfaceflinger" in cl:
@@ -84,6 +145,7 @@ class CriticalPathBuilder:
         self.target_pid  = self.delay_data.get("pid", 0)
         self.target_uid  = self.delay_data.get("uid", 0)
         self.target_pkg  = self.delay_data.get("target_package", "unknown")
+        self.global_thermal_peak = 0  # 全局最高温度, 用于 penalize 高温
 
         # 帧列表 (来自 delay_data)
         self.frames = self.delay_data.get("frames", [])
@@ -99,21 +161,24 @@ class CriticalPathBuilder:
         # tid -> { comm, role, delay_samples[], binder_centrality_score, futex_wait_total, ... }
         self.global_threads = defaultdict(lambda: {
             "comm": "?", "role": "UnknownWorker",
-            "delay_samples": [],      # [(frame_token, d_ns), ...]  — 每帧累加延迟
-            "delay_events": [],       # 各次唤醒→switch的延迟样本 — 用于 P95
+            "delay_samples": [],
+            "delay_events": [],
             "run_samples": [],
-            "binder_in_degree": 0,    # 作为服务端被调用的次数
-            "binder_out_degree": 0,   # 作为客户端发起调用的次数
+            "binder_in_degree": 0,
+            "binder_out_degree": 0,
             "binder_latency_samples": [],
             "futex_wait_total": 0,
             "futex_wake_total": 0,
-            "frame_occurrences": 0,   # 出现在多少个 jank frame 中
+            "frame_occurrences": 0,
             "is_foreground": False,
-            "is_kernel": False,       # swapper/kworker 等内核线程
-            # 关键路径分析新增
+            "is_kernel": False,
+            # 关键路径分析
             "on_critical_path_count": 0,
             "upstream_block_cost": 0,
             "block_ratios": [],
+            # 新增: 资源压力 (thermal + mem)
+            "thermal_peak_c": 0,        # 全局最高温度
+            "mem_reclaim_total": 0,     # 内存回收事件数
         })
 
         # 每帧的图: frame_token -> Graph
@@ -238,6 +303,53 @@ class CriticalPathBuilder:
 
             self.global_threads[tid]["futex_wait_total"] += wc
             self.global_threads[tid]["futex_wake_total"] += kc
+
+        # ── CPU频率 & 温度 (资源压力, 影响所有线程) ──
+        cpu_freq = report.get("cpu_freq", {})
+        thermal = report.get("thermal", {})
+        if thermal:
+            tmax = thermal.get("max_c", 0)
+            if tmax > self.global_thermal_peak:
+                self.global_thermal_peak = tmax
+
+        # ── IRQ / SoftIRQ 开销 (系统中断抢占 CPU) ──
+        irq_data = report.get("irq", {})
+        if irq_data:
+            hard_ns = irq_data.get("hard_ns", 0)
+            soft_ns = irq_data.get("soft_ns", 0)
+            if hard_ns > 0:
+                nid = f"irq_frame_{frame_token}"
+                nodes[nid] = GraphNode(nid, "resource", label="HardIRQ",
+                    overhead_ns=hard_ns, count=irq_data.get("hard_count",0))
+                edges.append(GraphEdge(nid, frame_nid, "SYSTEM_OVERHEAD",
+                    duration_ns=hard_ns))
+            if soft_ns > 0:
+                nid = f"softirq_frame_{frame_token}"
+                nodes[nid] = GraphNode(nid, "resource", label="SoftIRQ",
+                    overhead_ns=soft_ns, count=irq_data.get("soft_count",0))
+                edges.append(GraphEdge(nid, frame_nid, "SYSTEM_OVERHEAD",
+                    duration_ns=soft_ns))
+
+        # ── CPU 频率资源节点 ──
+        if cpu_freq:
+            avg_mhz = cpu_freq.get("avg_mhz", 0)
+            min_mhz = cpu_freq.get("min_mhz", 0)
+            if avg_mhz > 0 and avg_mhz < 1500:  # 降频视为资源压力
+                nid = f"cpufreq_frame_{frame_token}"
+                nodes[nid] = GraphNode(nid, "resource", label="CPUThrottle",
+                    avg_mhz=avg_mhz, min_mhz=min_mhz)
+                edges.append(GraphEdge(nid, frame_nid, "RESOURCE_STALL",
+                    severity=1 - avg_mhz/2400))
+
+        # ── 内存回收资源节点 ──
+        mem_data = report.get("mem_reclaim", {})
+        if mem_data and mem_data.get("count", 0) > 0:
+            nid = f"memreclaim_frame_{frame_token}"
+            nodes[nid] = GraphNode(nid, "resource", label="MemReclaim",
+                count=mem_data.get("count",0),
+                max_order=mem_data.get("max_order",0))
+            edges.append(GraphEdge(nid, frame_nid, "RESOURCE_STALL",
+                severity=min(1.0, mem_data["count"]/10.0)))
 
         self.per_frame_graphs[frame_token] = {
             "frame_token": frame_token,
@@ -422,8 +534,9 @@ class CriticalPathBuilder:
                 "d": 0.8,   # futex_wait
                 "e": 1.2,   # render_path_proximity
                 "f": 0.4,   # repeated_jank
-                "h": 1.8,   # on_critical_path (图分析, 高权重)
+                "h": 1.8,   # on_critical_path
                 "g": 0.5,   # background_penalty
+                "t": 0.6,   # thermal_penalty (新增, 高温时加重)
             }
 
         total_frames = max(1, len(self.frames))
@@ -501,6 +614,10 @@ class CriticalPathBuilder:
                 weights["h"] * r["on_cp"] -
                 weights["g"] * r["is_bg"]
             )
+            # 温度惩罚: 超过 40°C 时, 对所有线程施加额外惩罚因子
+            if self.global_thermal_peak > 40:
+                thermal_factor = min(1.0, (self.global_thermal_peak - 40) / 30.0)
+                score -= weights["t"] * thermal_factor
 
             scores.append({
                 "tid": tid,

@@ -59,29 +59,32 @@ static void maybe_flush(void) {
 static const char *event_type_name(uint8_t type) {
     switch (type) {
         case 0: return "switch";
-        case 1: return "wakeup";
+        case 1: return "wakeup";        /* 已废弃 */
         case 2: return "binder_transaction";
         case 3: return "binder_received";
         case 4: return "futex_wait";
         case 5: return "cpu_frequency";
         case 6: return "thermal";
+        case 7: return "mem_reclaim";    /* 新增 */
         case 9: return "futex_wake";
         default: return "unknown";
     }
 }
 
-/* IRQ 事件回调 — 写入 irq_events.csv */
+/* IRQ + SoftIRQ 事件回调 — 写入 irq_events.csv */
 static int handle_irq_event(void *ctx, void *data, size_t data_sz) {
     struct irq_event_t *e = data;
+    /* irq_nr < 32 判定为 softirq (vec), >= 32 为硬中断 */
+    const char *evt_type = (e->irq_nr < 32) ? "softirq" : "irq";
     if (irq_file) {
-        fprintf(irq_file, "%llu,%u,%u,%llu\n",
-            (unsigned long long)e->ts, e->irq_nr, e->cpu,
+        fprintf(irq_file, "%llu,%s,%u,%u,%llu\n",
+            (unsigned long long)e->ts, evt_type, e->irq_nr, e->cpu,
             (unsigned long long)e->duration_ns);
         irq_count++;
         if (irq_count % 200 == 0) fflush(irq_file);
     }
-    if (!quiet) printf("[IRQ] irq:%u cpu:%u dur:%lluns\n",
-        e->irq_nr, e->cpu, (unsigned long long)e->duration_ns);
+    if (!quiet) printf("[%s] vec/irq:%u cpu:%u dur:%lluns\n",
+        evt_type, e->irq_nr, e->cpu, (unsigned long long)e->duration_ns);
     return 0;
 }
 
@@ -90,23 +93,19 @@ static int handle_event(void *ctx, void *data, size_t data_sz) {
     struct event_t *e = data;
 
     switch (e->type) {
-    case 0: /* sched_switch */
+    case 0: /* sched_switch (含内核内计算的 runnable_delay_ns) */
         if (sched_file) {
-            fprintf(sched_file, "%llu,switch,%u,%u,%u,%u,%s\n",
-                (unsigned long long)e->ts, e->tid, e->prev_tid, e->tgid, e->uid, e->comm);
+            fprintf(sched_file, "%llu,switch,%u,%u,%u,%u,%d,%s\n",
+                (unsigned long long)e->ts, e->tid, e->prev_tid, e->tgid, e->uid,
+                e->ret,  /* runnable_delay_ns (BPF 内核内计算) */
+                e->comm);
             maybe_flush();
         }
-        if (!quiet) printf("[SWITCH] Prev_TID:%d -> Next_TID:%d [%s]\n", e->prev_tid, e->tid, e->comm);
+        if (!quiet) printf("[SWITCH] Prev:%d->Next:%d delay:%dns [%s]\n",
+            e->prev_tid, e->tid, e->ret, e->comm);
         break;
 
-    case 1: /* sched_wakeup */
-        if (sched_file) {
-            fprintf(sched_file, "%llu,wakeup,%u,0,%u,%u,%s\n",
-                (unsigned long long)e->ts, e->tid, e->tgid, e->uid, e->comm);
-            maybe_flush();
-        }
-        if (!quiet) printf("[WAKEUP] TID:%d [%s]\n", e->tid, e->comm);
-        break;
+    case 1: /* sched_wakeup — 已废弃, 不再从 ringbuf 接收 */
 
     case 2: /* binder_transaction */
     case 3: /* binder_received */
@@ -144,6 +143,7 @@ static int handle_event(void *ctx, void *data, size_t data_sz) {
 
     case 5: /* cpu_frequency */
     case 6: /* thermal */
+    case 7: /* mem_reclaim (新增) */
         if (binder_file) {
             fprintf(binder_file, "%llu,%s,%u,%u,%u,%u,%u,%u,%d,%s\n",
                 (unsigned long long)e->ts,
@@ -179,24 +179,24 @@ int main(int argc, char **argv) {
         }
     }
 
-    /* 打开三个输出 CSV */
-    sched_file = fopen("sched_events.csv", "w");
+    /* 打开三个输出 CSV — 使用 /data/local/tmp/ 绝对路径, 避免当前目录无写权限 */
+    sched_file = fopen("/data/local/tmp/sched_events.csv", "w");
     if (sched_file) {
-        fprintf(sched_file, "ts,event,tid,prev_tid,tgid,uid,comm\n");
+        fprintf(sched_file, "ts,event,tid,prev_tid,tgid,uid,runnable_delay_ns,comm\n");
     } else {
         fprintf(stderr, "Warning: Failed to open sched_events.csv for writing\n");
     }
 
-    binder_file = fopen("binder_futex_events.csv", "w");
+    binder_file = fopen("/data/local/tmp/binder_futex_events.csv", "w");
     if (binder_file) {
         fprintf(binder_file, "ts,event,tid,prev_tid,tgid,uid,debug_id,extra,ret,comm\n");
     } else {
         fprintf(stderr, "Warning: Failed to open binder_futex_events.csv for writing\n");
     }
 
-    irq_file = fopen("irq_events.csv", "w");
+    irq_file = fopen("/data/local/tmp/irq_events.csv", "w");
     if (irq_file) {
-        fprintf(irq_file, "ts,irq_nr,cpu,duration_ns\n");
+        fprintf(irq_file, "ts,type,irq_nr,cpu,duration_ns\n");
     } else {
         fprintf(stderr, "Warning: Failed to open irq_events.csv for writing\n");
     }

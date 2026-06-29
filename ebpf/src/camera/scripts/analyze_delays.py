@@ -15,6 +15,66 @@ def identify_role(comm, tid, target_pid):
         return "UI Thread"
     if "renderthread" in cl or cl.startswith("rend"):
         return "RenderThread"
+
+    # ── 相机 / HAL 层特有线程 ──
+    if "camera" in cl:
+        if "provider" in cl or "service" in cl:
+            return "CameraService"
+        if "hal" in cl:
+            return "CameraHal"
+        return "CameraThread"
+    if cl.startswith("lwis_"):
+        return "CameraHal"
+    if "jpeg" in cl or "heic" in cl or "encoder" in cl:
+        return "JpegEncoder"
+    if "media" in cl and ("codec" in cl or "decode" in cl or "encode" in cl):
+        return "MediaCodec"
+    if "mm-qcamera" in cl or "qCamera" in cl:
+        return "CameraHal"
+    if "cameraserver" in cl:
+        return "CameraService"
+    if "isp" in cl or "csi" in cl:
+        return "CameraHal"
+    if cl.startswith("android.hardwar") or "hardware.camera" in cl:
+        return "CameraHal"
+    if "gca" in cl and "generic" in cl:
+        return "CameraThread"
+    # ── Google Camera (GCam) 特有线程 ──
+    if cl.startswith("gcam") or "gcam" in cl:
+        return "CameraThread"
+    if "smz-" in cl or cl.startswith("smz_"):
+        return "CameraThread"          # GCam 图像分析
+    if cl.startswith("catcher-"):
+        return "CameraThread"          # GCam 图像捕获
+    if cl.startswith("frame-quality") or cl.startswith("frame-store"):
+        return "CameraThread"          # 帧质量/存储
+    if cl.startswith("meta-store") or cl.startswith("trk-"):
+        return "CameraThread"          # 元数据/跟踪
+    if cl.startswith("mv-") and ("gyro" in cl or "ctrl" in cl or "vid" in cl):
+        return "CameraThread"          # 运动向量
+    if cl.startswith("ois-"):
+        return "CameraThread"          # 光学防抖
+    if cl.startswith("pck-"):
+        return "CameraThread"          # HDR 处理
+    if cl == "sabre" or cl.startswith("sabre"):
+        return "CameraThread"          # GCam 图像引擎
+    if cl.startswith("cvk-"):
+        return "CameraThread"          # 计算机视觉
+    if cl.startswith("c2node"):
+        return "CameraThread"          # Camera2 节点
+    if cl.startswith("raw") and ("w" in cl):
+        return "CameraThread"          # RAW 图像处理
+    if cl.startswith("yuv") and ("w" in cl):
+        return "CameraThread"          # YUV 格式转换
+    if cl.startswith("private") and ("w" in cl):
+        return "CameraThread"          # 私有格式处理
+    if "mali" in cl:
+        return "GPU Worker"
+    if cl.startswith("glide-"):
+        return "GPU Worker"
+    if cl.startswith("dhd_") or cl.startswith("bcm"):
+        return "I/O Worker"            # WiFi/BT 驱动
+
     if "binder" in cl:
         if "hw" in cl:
             return "HwBinder RPC"
@@ -36,8 +96,8 @@ def identify_role(comm, tid, target_pid):
 
 # ─── 命令行参数解析 ───
 def parse_args():
-    """简单参数：--json perfetto输出 --csv sched_csv [--binder binder_csv]"""
-    args = {'json': None, 'csv': None, 'binder': None}
+    """简单参数：--json perfetto输出 --csv sched_csv [--binder binder_csv] [--irq irq_csv]"""
+    args = {'json': None, 'csv': None, 'binder': None, 'irq': None}
     i = 1
     while i < len(sys.argv):
         if sys.argv[i] == '--json' and i+1 < len(sys.argv):
@@ -46,6 +106,8 @@ def parse_args():
             args['csv'] = sys.argv[i+1]; i += 2
         elif sys.argv[i] == '--binder' and i+1 < len(sys.argv):
             args['binder'] = sys.argv[i+1]; i += 2
+        elif sys.argv[i] == '--irq' and i+1 < len(sys.argv):
+            args['irq'] = sys.argv[i+1]; i += 2
         else:
             i += 1
     return args
@@ -79,37 +141,39 @@ def analyze_ebpf_delays():
         return
 
     thread_info = {}
-    pending_wakeups = defaultdict(list)
     frame_delays   = defaultdict(lambda: defaultdict(int))
     frame_runtimes = defaultdict(lambda: defaultdict(int))
-    frame_delay_events = defaultdict(lambda: defaultdict(list))  # 每个 wakeup→switch 的延迟样本
+    frame_delay_events = defaultdict(lambda: defaultdict(list))  # 每个 switch 的延迟样本
 
     with open(csv_path, 'r', encoding='utf-8', errors='replace') as f:
         sched_events = list(csv.DictReader(f))
 
-    print(f"[*] Loaded {len(sched_events)} sched events.")
+    print(f"[*] Loaded {len(sched_events)} sched events (in-kernel delay computation).")
 
-    # ─── 3. 逐帧独立处理 sched 事件 (Runnable Delay) ───
-    # 每帧有独立的 pending_wakeups 和 running_start,
-    # 杜绝前一帧的 wakeup 穿越到后一帧匹配 switch 导致的虚假大延迟.
+    # ─── 3. 逐帧独立处理 sched 事件 (BPF 内核内计算的 runnable_delay) ───
+    # 改进: BPF 已在内核内计算 runnable_delay_ns, 写在 switch 事件的 ret 字段.
+    #       不再需要 wakeup→switch 配对, 直接读取即可.
     for frame in jank_frames:
         ft = frame["frame_token"]
         ws = frame["window_start_ns"]
         we = frame["window_end_ns"]
         frame_dur = max(1, we - ws)
 
-        pending_wakeups = defaultdict(list)
-        running_start   = {}
+        running_start = {}
 
         for row in sched_events:
             if not row.get('ts') or not row.get('tid'):
                 continue
             ts = int(row['ts'])
-            evt_type = row['event']
+            evt_type = row.get('event', '')
+            if evt_type != 'switch':
+                continue  # wakeup 不再出现在 CSV 中
             tid = int(row['tid'])
-            prev_tid = int(row['prev_tid']) if row.get('prev_tid') else 0
-            uid = int(row.get('uid', 0))
+            prev_tid = int(row.get('prev_tid') or 0)
+            uid = int(row.get('uid') or 0)
             comm = row.get('comm', '')
+            # 读取 BPF 预计算的 runnable_delay_ns
+            rd = int(row.get('runnable_delay_ns') or 0)
 
             if not (ws <= ts <= we):
                 continue
@@ -122,29 +186,50 @@ def analyze_ebpf_delays():
             else:
                 thread_info[tid] = {'comm': comm}
 
-            if evt_type == 'switch' and str(prev_tid) in threads_map:
+            if str(prev_tid) in threads_map:
                 thread_info[prev_tid] = {'comm': threads_map[str(prev_tid)]['name']}
-            elif evt_type == 'switch' and prev_tid not in thread_info:
+            elif prev_tid and prev_tid not in thread_info:
                 thread_info[prev_tid] = {'comm': comm}
 
-            if evt_type == "wakeup":
-                pending_wakeups[tid].append(ts)
-            elif evt_type == "switch":
-                if prev_tid in running_start:
-                    run_dur = ts - running_start[prev_tid]
-                    if run_dur > 0:
-                        frame_runtimes[ft][prev_tid] += run_dur
-                    del running_start[prev_tid]
+            if prev_tid in running_start:
+                run_dur = ts - running_start[prev_tid]
+                if run_dur > 0:
+                    frame_runtimes[ft][prev_tid] += run_dur
+                del running_start[prev_tid]
 
-                running_start[tid] = ts
-                if pending_wakeups[tid]:
-                    w_ts = pending_wakeups[tid].pop(0)
-                    rd = ts - w_ts
-                    if 0 < rd <= frame_dur:
-                        frame_delays[ft][tid] += rd
-                        frame_delay_events[ft][tid].append(rd)  # 记录每个样本用于 P95
+            running_start[tid] = ts
+            if 0 < rd <= frame_dur:
+                frame_delays[ft][tid] += rd
+                frame_delay_events[ft][tid].append(rd)
 
     print(f"[*] Processed sched events for {len(frame_delays)} frame windows.")
+
+    # ─── 3.5. 读入 IRQ/SoftIRQ 数据 ───
+    irq_path = args['irq'] or os.path.join(base_dir, "..", "output", "raw", "irq_events.csv")
+    frame_irq_overhead = defaultdict(lambda: {"irq_ns": 0, "softirq_ns": 0, "irq_count": 0, "softirq_count": 0})
+    if os.path.exists(irq_path):
+        with open(irq_path, 'r', encoding='utf-8', errors='replace') as f:
+            irq_events = list(csv.DictReader(f))
+        print(f"[*] Loaded {len(irq_events)} irq/softirq events.")
+        for row in irq_events:
+            try:
+                ts = int(row['ts'])
+                dur = int(row.get('duration_ns', 0) or 0)
+                etype = row.get('type', 'irq')
+            except (ValueError, TypeError):
+                continue
+            for frame in jank_frames:
+                if frame["window_start_ns"] <= ts <= frame["window_end_ns"]:
+                    ft = frame["frame_token"]
+                    if etype == 'irq':
+                        frame_irq_overhead[ft]["irq_ns"] += dur
+                        frame_irq_overhead[ft]["irq_count"] += 1
+                    else:
+                        frame_irq_overhead[ft]["softirq_ns"] += dur
+                        frame_irq_overhead[ft]["softirq_count"] += 1
+                    break
+    else:
+        print("[*] No irq_events.csv found, skipping IRQ/SoftIRQ analysis.")
 
     # ─── 4. 读入 binder/futex CSV ───
     binder_path = args['binder'] or os.path.join(base_dir, "..", "output", "raw", "binder_futex_events.csv")
@@ -163,8 +248,9 @@ def analyze_ebpf_delays():
     # frame -> { tid -> futex_wait_count }
     frame_futex_waits = defaultdict(lambda: defaultdict(int))
     frame_futex_wakes = defaultdict(lambda: defaultdict(int))
-    frame_cpu_freqs = {}     # frame_token -> {cpu_id: [freq_mhz, ...]}
-    frame_thermal   = {}     # frame_token -> [(ts, zone, temp_c), ...]
+    frame_cpu_freqs = {}       # frame_token -> {cpu_id: [freq_mhz, ...]}
+    frame_thermal   = {}       # frame_token -> [(ts, zone, temp_c), ...]
+    frame_mem_reclaims = {}    # frame_token -> [(ts, tid, order, comm), ...]
 
     for row in binder_events:
         # 跳过损坏行
@@ -227,7 +313,7 @@ def analyze_ebpf_delays():
                         'latency_ns': latency,
                         'is_reply': tx['is_reply']
                     }
-        elif evt == 'futex':
+        elif evt.startswith('futex'):  # futex_wait (type 4) / futex_wake (type 9) / futex (旧版兼容)
             op = extra
             op_base = op & 0x7F
             if op_base == 0:  # FUTEX_WAIT
@@ -250,6 +336,13 @@ def analyze_ebpf_delays():
             if active_frame not in frame_thermal:
                 frame_thermal[active_frame] = []
             frame_thermal[active_frame].append((ts, zone, temp_c))
+
+        elif evt == 'mem_reclaim':
+            # extra = 分配阶数, tid = 发起进程
+            order = extra
+            if active_frame not in frame_mem_reclaims:
+                frame_mem_reclaims[active_frame] = []
+            frame_mem_reclaims[active_frame].append((ts, tid, order, comm))
 
     # ─── 5. 综合分析 & 输出报告 ───
     print("\n" + "=" * 80)
@@ -380,6 +473,31 @@ def analyze_ebpf_delays():
                 "min_c": min(temps),
                 "max_c": max(temps),
                 "zones": sorted(zones),
+            }
+
+        # ── 5f. Mem Reclaim ──
+        mems = frame_mem_reclaims.get(frame_token, [])
+        if mems:
+            orders = [m[2] for m in mems]
+            print(f"  [MemReclaim] {len(mems)} events, order={min(orders)}~{max(orders)}")
+            frame_report["mem_reclaim"] = {
+                "count": len(mems),
+                "min_order": min(orders),
+                "max_order": max(orders),
+            }
+
+        # ── 5g. IRQ / SoftIRQ Overhead ──
+        irq_data = frame_irq_overhead.get(frame_token, {})
+        if irq_data:
+            irq_ms = irq_data.get("irq_ns", 0) / 1e6
+            softirq_ms = irq_data.get("softirq_ns", 0) / 1e6
+            print(f"  [IRQ] hard={irq_ms:.2f}ms ({irq_data.get('irq_count',0)}evt) "
+                  f"soft={softirq_ms:.2f}ms ({irq_data.get('softirq_count',0)}evt)")
+            frame_report["irq"] = {
+                "hard_ns": irq_data["irq_ns"],
+                "soft_ns": irq_data["softirq_ns"],
+                "hard_count": irq_data["irq_count"],
+                "soft_count": irq_data["softirq_count"],
             }
 
         analysis_result["frames"].append(frame_report)
