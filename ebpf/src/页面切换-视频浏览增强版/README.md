@@ -1,6 +1,6 @@
 # TracePilot — 页面切换与视频浏览增强版
 
-基于 eBPF + Perfetto 的 **交互关键路径图（Interaction Critical Path Graph）** Android 卡顿观测与 Hint 系统。支持双场景分析 + Step 3 扩展（温控深化、Inference 证据链、多会话对比）。
+基于 eBPF + Perfetto 的 **交互关键路径图（Interaction Critical Path Graph）** Android 卡顿观测与 Hint 系统。支持双场景分析 + Step 3 扩展（温控深化、Inference 证据融合、多会话对比）。
 
 - **页面切换**（`--scenario page_switch`）— UI 帧 vsync 超时
 - **视频播放**（`--scenario video`）— 解码丢帧 + 温控降频 + GPU stall
