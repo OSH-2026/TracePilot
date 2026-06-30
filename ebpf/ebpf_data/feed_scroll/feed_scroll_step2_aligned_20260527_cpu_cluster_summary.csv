@@ -1,0 +1,4 @@
+﻿cluster,target_on_cpu_ms,frequency_event_count,frequency_avg_khz,frequency_p95_khz,frequency_max_khz
+little_0_3,4017.744,31844,1243992.6,1803000,1803000
+middle_4_5,5238.898,12340,1190027.1,2130000,2253000
+big_6_7,6715.341,8930,949893.2,1745000,2802000
