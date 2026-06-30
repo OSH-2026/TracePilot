@@ -4,11 +4,11 @@
 
 ## 📄 第 1 页 — 封面
 
-- **项目名称**：TracePilot — Frame-Centric 的 Android 调度辅助系统
-- **英文副标题**：Frame-aligned, dependency-aware scheduling assistant for Android interaction workloads
-- **团队**：TracePilot（潘智勇、李松茂、邵晨轩、贺小轩、杨子皓）
+- **项目名称**：TracePilot — 以帧为中心的 Android 调度辅助系统
+- **英文副标题**：A Frame-aligned, dependency-aware scheduling assistant targeting Android interaction workloads
+- **团队成员**：TracePilot（潘智勇、李松茂、邵晨轩、贺小轩、杨子皓）
 - **日期**：2026 年 6 月
-- **一句话定位**：在 Pixel 6a 上，通过 eBPF 采集内核调度事件，Perfetto 标定帧边界，构建帧级依赖路径图，识别卡顿根因并输出调度建议
+- **一句话定位**：基于 Pixel 6a 平台，利用 eBPF 采集内核调度事件，结合 Perfetto 标定帧边界，构建帧级依赖路径图，定位卡顿根因并生成调度优化建议
 
 ---
 
