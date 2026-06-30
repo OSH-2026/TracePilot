@@ -1,4 +1,4 @@
-# Lab 4: llama.cpp 本地与分布式推理系统
+# Lab 4: llama.cpp 本地及分布式推理系统
 
 ---
 
