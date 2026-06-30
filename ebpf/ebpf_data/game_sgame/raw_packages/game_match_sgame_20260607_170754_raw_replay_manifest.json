@@ -1,0 +1,135 @@
+{
+  "tag": "game_match_sgame_20260607_170754",
+  "relative_dataset_dir": "ebpf/ebpf_data/game_sgame/game_match_sgame_20260607_170754",
+  "created_at_utc": "2026-06-08T07:56:38.619670+00:00",
+  "purpose": "Packaged raw/replay inputs for the game_sgame Step1/Step2 analysis. Large loose files should stay out of git.",
+  "report_path": "doc/report/sgame_gameplay_analysis_report.md",
+  "files": [
+    {
+      "path": "game_match_sgame_20260607_170754_events.bin",
+      "role": "raw_tracepilot_events_bin",
+      "size_bytes": 1027831224,
+      "sha256": "b4155a667efc226dc8a3f8bbdbc7169b1b5fdb0a0b5bd0b5739530f276cdc660"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754.perfetto-trace",
+      "role": "raw_perfetto_trace",
+      "size_bytes": 134120931,
+      "sha256": "58c3a03ac4d7165b1eaf5eb3e58f00aec9152fb246672e59935e1ea4b48c05e2"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_tracepilot_stdout.txt",
+      "role": "raw_tracepilot_debug_stdout",
+      "size_bytes": 782521236,
+      "sha256": "33b68509d15c94da354da451d569f1196b1ebaf5de66487f8829b8981b8bcebc"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_device_stdout.txt",
+      "role": "raw_capture_stdout",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_host_metadata.json",
+      "role": "capture_host_metadata",
+      "size_bytes": 1485,
+      "sha256": "925d22eefefe5971a4642ec8f66a188bc5e3ca14c6156a54ca10d46fe426fdc0"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_metadata.txt",
+      "role": "capture_device_metadata",
+      "size_bytes": 498,
+      "sha256": "f402a64246ddc7d1953894a99fe795916c91ee629d9c3c4cab54a814fa1964ad"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_perfetto.pbtx",
+      "role": "perfetto_config_used",
+      "size_bytes": 1548,
+      "sha256": "1f3c5f4486424b4e1e690b5a40f9b8729cddfd0849399c45014be7a89af33620"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_ftrace.txt",
+      "role": "raw_ftrace_snapshot",
+      "size_bytes": 515,
+      "sha256": "f94ca6af0299c8976743d225ce5450e145e0e93091842ff74659455e19879be8"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_framestats.txt",
+      "role": "raw_dumpsys_gfxinfo_framestats",
+      "size_bytes": 6670,
+      "sha256": "b89b9080ea1b6152fb402b83c3fbaee49ca21e983223f4f9f2fd772c8df6c405"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_surfaceflinger_layer.txt",
+      "role": "surfaceflinger_layer_name",
+      "size_bytes": 156,
+      "sha256": "8d7345b77e270be650637560aacd14db9ea6c10714159a61b485ed9bb34ba9f7"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_surfaceflinger_latency.txt",
+      "role": "raw_surfaceflinger_latency",
+      "size_bytes": 9,
+      "sha256": "bca9d08807dc16fb516fe123c19f05284bc5c24d426aca6bedf9a5b6ff7bb11d"
+    },
+    {
+      "path": "game_match_sgame_20260607_170754_frames.txt",
+      "role": "tracepilot_replay_frame_input",
+      "size_bytes": 78106,
+      "sha256": "ece60ad15f0a5832a5badaf9fd867ea22ab13ce23b1757e4a993a41e156ba7c3"
+    }
+  ],
+  "analysis_outputs": [
+    "game_match_sgame_20260607_170754_perfetto_frametimeline_summary.json",
+    "game_match_sgame_20260607_170754_perfetto_frametimeline_frames.csv",
+    "game_match_sgame_20260607_170754_perfetto_sched_summary.json",
+    "game_match_sgame_20260607_170754_perfetto_thread_sched_summary.csv",
+    "game_match_sgame_20260607_170754_perfetto_frame_sched_summary.csv",
+    "game_match_sgame_20260607_170754_perfetto_frame_thread_sched.csv",
+    "game_match_sgame_20260607_170754_perfetto_cpu_freq_summary.json",
+    "game_match_sgame_20260607_170754_perfetto_frame_cpu_freq.csv",
+    "game_match_sgame_20260607_170754_perfetto_thread_cpu_cluster.csv",
+    "game_match_sgame_20260607_170754_tracepilot_enhanced_events_summary.json",
+    "game_match_sgame_20260607_170754_tracepilot_enhanced_events.csv",
+    "game_match_sgame_20260607_170754_step1_summary.json",
+    "game_match_sgame_20260607_170754_step2_summary.json"
+  ],
+  "replay_commands": {
+    "optional_tracepilot_offline_device_cleanup": "python ebpf/scripts/run_tracepilot_offline_device.py ebpf/ebpf_data/game_sgame/game_match_sgame_20260607_170754 --tag game_match_sgame_20260607_170754 --package com.tencent.tmgp.sgame --adb D:/platform-tools/adb.exe",
+    "perfetto_frametimeline": "python ebpf/scripts/parse_perfetto_frametimeline.py game_match_sgame_20260607_170754.perfetto-trace --package com.tencent.tmgp.sgame --csv-out game_match_sgame_20260607_170754_perfetto_frametimeline_frames.csv --summary-out game_match_sgame_20260607_170754_perfetto_frametimeline_summary.json",
+    "perfetto_sched_windows": "python ebpf/scripts/analyze_perfetto_sched_windows.py game_match_sgame_20260607_170754.perfetto-trace --frames-csv game_match_sgame_20260607_170754_perfetto_frametimeline_frames.csv --frame-thread-csv-out game_match_sgame_20260607_170754_perfetto_frame_thread_sched.csv --thread-summary-csv-out game_match_sgame_20260607_170754_perfetto_thread_sched_summary.csv --frame-summary-csv-out game_match_sgame_20260607_170754_perfetto_frame_sched_summary.csv --summary-out game_match_sgame_20260607_170754_perfetto_sched_summary.json",
+    "perfetto_cpu_freq_windows": "python ebpf/scripts/analyze_perfetto_cpu_freq_windows.py game_match_sgame_20260607_170754.perfetto-trace --frames-csv game_match_sgame_20260607_170754_perfetto_frametimeline_frames.csv --frame-cluster-csv-out game_match_sgame_20260607_170754_perfetto_frame_cpu_freq.csv --thread-cluster-csv-out game_match_sgame_20260607_170754_perfetto_thread_cpu_cluster.csv --summary-out game_match_sgame_20260607_170754_perfetto_cpu_freq_summary.json",
+    "tracepilot_enhanced_events": "python ebpf/scripts/extract_tracepilot_enhanced_events.py game_match_sgame_20260607_170754_tracepilot_stdout.txt --summary-out game_match_sgame_20260607_170754_tracepilot_enhanced_events_summary.json --csv-out game_match_sgame_20260607_170754_tracepilot_enhanced_events.csv"
+  },
+  "known_limitations": [
+    "The current result.json/hints.json were generated before forcing -p com.tencent.tmgp.sgame and still contain a TracePilot auto resolver package mismatch; the core submission uses capture metadata and derived summaries instead.",
+    "Step2 Binder/Futex/Jank cause outputs are candidate observational evidence, not intervention-proven causality.",
+    "Perfetto FrameTimeline used all_frametimeline_rows_fallback because the package filter did not match process names in this trace."
+  ],
+  "do_not_commit_raw_files": [
+    "*_events.bin",
+    "*.perfetto-trace",
+    "*_tracepilot_stdout.txt",
+    "*_device_stdout.txt",
+    "*_ftrace.txt",
+    "*_framestats.txt",
+    "*_surfaceflinger_layer.txt",
+    "*_surfaceflinger_latency.txt"
+  ],
+  "archive_policy": "The zip package is the submission-friendly raw replay artifact. If the target platform rejects files around 233 MB, place the zip in an external artifact store and commit only this manifest plus analysis outputs.",
+  "tool_versions": {
+    "trace_processor_shell": "Perfetto trace_processor_shell from ebpf/dependencies/",
+    "adb": "D:/platform-tools/adb.exe during capture",
+    "device": "Pixel 6a rooted via Magisk, per capture metadata/root checks"
+  },
+  "notes": [
+    "Analysis CSV/JSON summaries are intentionally not duplicated in this raw package.",
+    "Use *_frames.txt with *_events.bin to replay TracePilot offline analysis.",
+    "Use the .perfetto-trace with trace_processor_shell to regenerate FrameTimeline, sched, and CPU-frequency derived outputs."
+  ],
+  "missing_optional_files": [],
+  "archive": {
+    "path": "ebpf/ebpf_data/game_sgame/raw_packages/game_match_sgame_20260607_170754_raw_replay_package.zip",
+    "size_bytes": 233540901,
+    "sha256": "44e3a3ed24f7c352e0bbdf5cf55d042dbccf293503edff216d8f044ca538f2a6"
+  }
+}

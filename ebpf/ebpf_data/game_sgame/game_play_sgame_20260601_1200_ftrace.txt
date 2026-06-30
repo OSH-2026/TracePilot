@@ -1,0 +1,1542 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 1523/181595   #P:8
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+  binder:31215_3-31225   [007] ..... 86324.552723: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [007] ..... 86324.616359: binder_transaction: transaction=3912945 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [007] ..... 86324.616388: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [007] ..... 86324.616395: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [007] ..... 86324.616413: binder_transaction_received: transaction=3912945
+    binder:602_2-602     [007] ..... 86324.616948: binder_transaction: transaction=3912946 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [007] ..... 86324.616979: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [007] ..... 86324.616996: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [007] ..... 86324.617000: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [007] ..... 86324.617014: binder_transaction_received: transaction=3912946
+    binder:600_3-1965    [007] ..... 86324.679356: binder_transaction_received: transaction=3912961
+    binder:600_3-1965    [007] ..... 86324.679513: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [007] ..... 86324.745811: binder_transaction: transaction=3912980 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86324.745863: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [007] ..... 86324.845060: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [007] ..... 86324.850676: binder_transaction: transaction=3913016 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [007] ..... 86324.850716: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [007] ..... 86324.850726: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [007] ..... 86324.850751: binder_transaction_received: transaction=3913016
+    binder:602_2-602     [007] ..... 86324.851379: binder_transaction: transaction=3913017 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [007] ..... 86324.851418: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [007] ..... 86324.851443: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [007] ..... 86324.851447: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [007] ..... 86324.851467: binder_transaction_received: transaction=3913017
+ UnityGfxDeviceW-31394   [007] ..... 86324.878520: binder_transaction: transaction=3913024 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86324.878691: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+       Thread-76-31418   [007] ..... 86324.917476: binder_transaction: transaction=3913039 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [007] ..... 86324.917507: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ UnityGfxDeviceW-31394   [007] ..... 86324.943418: binder_transaction: transaction=3913044 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86324.943473: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    TracingMuxer-1936    [007] ..... 86324.945241: block_rq_issue: 7,40 RA 131072 () 255344 + 256 [TracingMuxer]
+    TracingMuxer-1936    [007] ..... 86324.947693: block_rq_issue: 7,40 RA 131072 () 276520 + 256 [TracingMuxer]
+    TracingMuxer-1936    [007] ..... 86324.948964: block_rq_issue: 7,40 RA 131072 () 20352 + 256 [TracingMuxer]
+##### CPU 6 buffer started ####
+   kworker/u16:0-29939   [006] ..... 86324.949088: block_rq_issue: 8,0 R 131072 () 11874768 + 256 [kworker/u16:0]
+          <idle>-0       [006] ..s1. 86324.949393: block_rq_complete: 8,0 R () 11874768 + 256 [0]
+     ksoftirqd/6-63      [006] ..s.. 86324.949950: block_rq_complete: 7,40 RA () 20352 + 256 [0]
+    TracingMuxer-1936    [007] ..... 86324.950107: block_rq_issue: 7,40 RA 118784 () 21040 + 232 [TracingMuxer]
+   kworker/u16:0-29939   [006] ..... 86324.950234: block_rq_issue: 8,0 R 102400 () 11875456 + 200 [kworker/u16:0]
+   kworker/u16:0-29939   [006] ..... 86324.950247: block_rq_issue: 8,0 R 16384 () 11898360 + 32 [kworker/u16:0]
+     ksoftirqd/6-63      [006] ..s.. 86324.950720: block_rq_complete: 8,0 R () 11875456 + 200 [0]
+     ksoftirqd/6-63      [006] .Ns.. 86324.950747: block_rq_complete: 8,0 R () 11898360 + 32 [0]
+    kworker/6:5H-32464   [006] ..s1. 86324.951261: block_rq_complete: 7,40 RA () 21040 + 232 [0]
+    TracingMuxer-1936    [007] ..... 86324.954323: block_rq_issue: 7,40 RA 131072 () 254528 + 256 [TracingMuxer]
+          <idle>-0       [007] .Ns1. 86324.955072: block_rq_complete: 7,40 RA () 254528 + 256 [0]
+       Thread-76-31418   [006] ..... 86324.984166: binder_transaction: transaction=3913059 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [006] ..... 86324.984226: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ UnityGfxDeviceW-31394   [007] ..... 86325.009793: binder_transaction: transaction=3913066 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86325.009854: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ UnityGfxDeviceW-31394   [006] ..... 86325.043516: binder_transaction: transaction=3913077 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [007] ..... 86325.043540: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [006] ..... 86325.043578: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [007] ..... 86325.055682: binder_transaction_received: transaction=3913083
+  binder:31215_3-31225   [007] ..... 86325.055876: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [007] ..... 86325.075227: binder_transaction: transaction=3913089 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [006] ..... 86325.075245: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [007] ..... 86325.075299: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  surfaceflinger-600     [006] ..... 86325.085042: binder_transaction: transaction=3913093 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [006] ..... 86325.085126: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [006] ..... 86325.085141: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [006] ..... 86325.085178: binder_transaction_received: transaction=3913093
+    binder:602_2-602     [006] ..... 86325.086140: binder_transaction: transaction=3913094 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [006] ..... 86325.086202: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [006] ..... 86325.086245: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [006] ..... 86325.086254: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [006] ..... 86325.086290: binder_transaction_received: transaction=3913094
+  surfaceflinger-600     [006] ..... 86325.118083: binder_transaction: transaction=3913105 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [006] ..... 86325.118122: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [006] ..... 86325.118137: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [006] ..... 86325.118162: binder_transaction_received: transaction=3913105
+    binder:602_2-602     [006] ..... 86325.118712: binder_transaction: transaction=3913106 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [006] ..... 86325.118751: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [006] ..... 86325.118775: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [006] ..... 86325.118780: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [006] ..... 86325.118802: binder_transaction_received: transaction=3913106
+    kworker/6:5H-32464   [006] ..... 86325.131122: block_rq_issue: 8,0 R 8192 () 13021640 + 16 [kworker/6:5H]
+    TracingMuxer-1864    [006] ..... 86325.131171: block_rq_issue: 8,0 RA 131072 () 12501560 + 256 [TracingMuxer]
+          <idle>-0       [006] ..s1. 86325.131247: block_rq_complete: 8,0 R () 13021640 + 16 [0]
+          <idle>-0       [006] ..s1. 86325.131491: block_rq_complete: 8,0 RA () 12501560 + 256 [0]
+    TracingMuxer-1864    [007] ..... 86325.132631: block_rq_issue: 8,0 RA 122880 () 12501848 + 240 [TracingMuxer]
+          <idle>-0       [007] ..s1. 86325.132871: block_rq_complete: 8,0 RA () 12501848 + 240 [0]
+    TracingMuxer-1864    [006] ..... 86325.133730: block_rq_issue: 8,0 RA 131072 () 12498928 + 256 [TracingMuxer]
+          <idle>-0       [006] ..s1. 86325.134028: block_rq_complete: 8,0 RA () 12498928 + 256 [0]
+    kworker/7:2H-32560   [007] ..... 86325.134579: block_rq_issue: 8,0 R 8192 () 13021608 + 16 [kworker/7:2H]
+    TracingMuxer-1864    [007] ..... 86325.134604: block_rq_issue: 8,0 RA 131072 () 12497584 + 256 [TracingMuxer]
+          <idle>-0       [007] ..s1. 86325.134704: block_rq_complete: 8,0 R () 13021608 + 16 [0]
+          <idle>-0       [007] ..s1. 86325.134847: block_rq_complete: 8,0 RA () 12497584 + 256 [0]
+ UnityGfxDeviceW-31394   [006] ..... 86325.140606: binder_transaction: transaction=3913109 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [006] ..... 86325.140665: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [007] ..... 86325.140708: binder_transaction_received: transaction=3913109
+    binder:600_3-1965    [007] ..... 86325.140942: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [007] ..... 86325.156695: binder_transaction_received: transaction=3913114
+  binder:31215_3-31225   [007] ..... 86325.156978: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [006] ..... 86325.167973: binder_transaction: transaction=3913119 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [006] ..... 86325.168022: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ UnityGfxDeviceW-31394   [006] ..... 86325.174550: binder_transaction: transaction=3913120 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [006] ..... 86325.174703: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+       Thread-76-31418   [006] ..... 86325.184680: binder_transaction: transaction=3913123 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [006] ..... 86325.184751: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ cent.tmgp.sgame-31215   [007] ..... 86325.193085: binder_transaction: transaction=3913127 dest_node=30429 dest_proc=2214 dest_thread=0 reply=0 flags=0x12 code=0x15f
+ cent.tmgp.sgame-31215   [007] ..... 86325.193179: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  binder:31215_3-31225   [006] ..... 86325.207293: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [006] ..... 86325.218775: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [006] ..... 86325.221783: binder_transaction_received: transaction=3913139
+  binder:31215_3-31225   [006] ..... 86325.221956: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:600_3-1965    [007] ..... 86325.235117: binder_transaction_received: transaction=3913140
+    binder:600_3-1965    [007] ..... 86325.235175: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [007] ..... 86325.239970: binder_transaction: transaction=3913141 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86325.240052: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+##### CPU 2 buffer started ####
+    binder:602_2-602     [002] ..... 86325.254033: binder_transaction: transaction=3913146 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [002] ..... 86325.254087: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [002] ..... 86325.254139: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.254148: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [002] ..... 86325.254179: binder_transaction_received: transaction=3913146
+  thermal_LITTLE-219     [002] ..... 86325.255583: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=60000 temp=60000
+  thermal_LITTLE-219     [002] ..... 86325.255680: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=60000 temp=60000
+       Thread-76-31418   [002] ..... 86325.268295: binder_transaction: transaction=3913150 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [002] ..... 86325.268357: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ UnityGfxDeviceW-31394   [006] ..... 86325.272919: binder_transaction: transaction=3913153 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [006] ..... 86325.273061: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [002] ..... 86325.273090: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [006] ..... 86325.285768: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   kworker/u17:1-3871    [006] ..... 86325.294368: block_rq_issue: 8,0 RA 45056 () 2370576 + 88 [kworker/u17:1]
+   kworker/u17:1-3871    [006] ..... 86325.294382: block_rq_issue: 8,0 RA 4096 () 2370688 + 8 [kworker/u17:1]
+   kworker/u17:1-3871    [006] ..... 86325.294386: block_rq_issue: 8,0 RA 8192 () 2370704 + 16 [kworker/u17:1]
+   kworker/u17:1-3871    [006] ..... 86325.294388: block_rq_issue: 8,0 RA 4096 () 2370736 + 8 [kworker/u17:1]
+   kworker/u17:1-3871    [006] ..... 86325.294391: block_rq_issue: 8,0 RA 4096 () 2370752 + 8 [kworker/u17:1]
+   kworker/u17:1-3871    [006] ..... 86325.294397: block_rq_issue: 8,0 RA 20480 () 2370784 + 40 [kworker/u17:1]
+    binder:600_3-1965    [002] ..... 86325.301807: binder_transaction_received: transaction=3913159
+    binder:600_3-1965    [002] ..... 86325.301973: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:600_3-1965    [002] ..... 86325.305021: binder_transaction_received: transaction=3913160
+    binder:600_3-1965    [002] ..... 86325.305366: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  thermal_LITTLE-219     [002] ..... 86325.308973: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=60000 temp=60000
+  surfaceflinger-600     [002] ..... 86325.320166: binder_transaction: transaction=3913169 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [002] ..... 86325.320228: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [002] ..... 86325.320243: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.320282: binder_transaction_received: transaction=3913169
+    binder:602_2-602     [002] ..... 86325.321643: binder_transaction: transaction=3913170 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [002] ..... 86325.321695: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [002] ..... 86325.321740: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.321748: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [002] ..... 86325.321775: binder_transaction_received: transaction=3913170
+     thermal_BIG-193     [002] ..... 86325.323896: thermal_temperature: thermal_zone=BIG id=9 temp_prev=60000 temp=60000
+     thermal_BIG-193     [002] ..... 86325.324006: thermal_temperature: thermal_zone=BIG id=9 temp_prev=60000 temp=60000
+##### CPU 0 buffer started ####
+    Thread-59883-31689   [000] ..... 86325.326091: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+   binder:1209_E-2870    [000] ..... 86325.326122: binder_transaction_received: transaction=3913172
+   binder:1209_E-2870    [000] ..... 86325.326529: binder_transaction: transaction=3913173 dest_node=0 dest_proc=31215 dest_thread=31689 reply=1 flags=0x0 code=0x0
+   binder:1209_E-2870    [000] ..... 86325.326562: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [000] ..... 86325.326574: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    Thread-59883-31689   [000] ..... 86325.326598: binder_transaction_received: transaction=3913173
+     thermal_BIG-193     [002] ..... 86325.334701: thermal_temperature: thermal_zone=BIG id=9 temp_prev=60000 temp=60000
+     thermal_BIG-193     [002] ..... 86325.334849: thermal_temperature: thermal_zone=BIG id=9 temp_prev=60000 temp=60000
+       Thread-76-31418   [002] ..... 86325.335253: binder_transaction: transaction=3913174 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [002] ..... 86325.335311: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+     thermal_BIG-193     [002] ..... 86325.336153: thermal_temperature: thermal_zone=BIG id=9 temp_prev=60000 temp=61000
+     thermal_BIG-193     [002] ..... 86325.336259: thermal_temperature: thermal_zone=BIG id=9 temp_prev=61000 temp=61000
+  binder:31215_3-31225   [000] ..... 86325.337587: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:600_3-1965    [000] ..... 86325.352195: binder_transaction_received: transaction=3913177
+    binder:600_3-1965    [000] ..... 86325.352254: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [000] ..... 86325.352540: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  decon0_kthread-294     [002] ..... 86325.354588: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.354595: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.354597: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8255
+  decon0_kthread-294     [002] ..... 86325.354598: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8255
+  BckgrndExec HP-707     [000] ..... 86325.355660: binder_transaction: transaction=3913180 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [000] ..... 86325.355768: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+     thermal_BIG-193     [000] ..... 86325.360740: thermal_temperature: thermal_zone=BIG id=9 temp_prev=61000 temp=62000
+     thermal_BIG-193     [000] ..... 86325.360918: thermal_temperature: thermal_zone=BIG id=9 temp_prev=62000 temp=62000
+     thermal_BIG-193     [000] ..... 86325.361935: thermal_temperature: thermal_zone=BIG id=9 temp_prev=62000 temp=62000
+     thermal_BIG-193     [000] ..... 86325.362039: thermal_temperature: thermal_zone=BIG id=9 temp_prev=62000 temp=62000
+       Thread-76-31418   [007] ..... 86325.368336: binder_transaction: transaction=3913181 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [007] ..... 86325.368366: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [000] ..... 86325.368387: binder_transaction_received: transaction=3913181
+    binder:600_3-1965    [000] ..... 86325.368440: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [007] ..... 86325.370494: binder_transaction: transaction=3913186 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86325.370537: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [002] ..... 86325.370565: binder_transaction_received: transaction=3913186
+    binder:600_3-1965    [002] ..... 86325.370865: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    kworker/2:1H-7183    [002] ..... 86325.376033: block_rq_issue: 8,0 R 4096 () 130215872 + 8 [kworker/2:1H]
+    Job.worker 0-31376   [002] ..s.. 86325.377089: block_rq_complete: 8,0 R () 130215872 + 8 [0]
+       Thread-76-31418   [000] ..... 86325.385434: binder_transaction: transaction=3913189 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86325.385523: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+     thermal_BIG-193     [002] ..... 86325.387259: thermal_temperature: thermal_zone=BIG id=9 temp_prev=63000 temp=65000
+     thermal_BIG-193     [002] ..... 86325.387369: thermal_temperature: thermal_zone=BIG id=9 temp_prev=65000 temp=65000
+  decon0_kthread-294     [002] ..... 86325.387610: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.387615: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.387617: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8256
+  decon0_kthread-294     [002] ..... 86325.387618: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8256
+  BckgrndExec HP-707     [000] ..... 86325.388482: binder_transaction: transaction=3913192 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [000] ..... 86325.388566: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [007] ..... 86325.388579: binder_transaction_received: transaction=3913192
+  binder:31215_3-31225   [007] ..... 86325.388681: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   kworker/u16:0-29939   [000] ..... 86325.398945: block_rq_issue: 8,0 R 4096 () 1697648 + 8 [kworker/u16:0]
+     ksoftirqd/0-13      [000] ..s.. 86325.400055: block_rq_complete: 8,0 R () 1697648 + 8 [0]
+     thermal_MID-206     [000] ..... 86325.400917: thermal_temperature: thermal_zone=MID id=10 temp_prev=60000 temp=60000
+    kworker/7:2H-32560   [007] ..... 86325.401560: block_rq_issue: 8,0 R 4096 () 124629384 + 8 [kworker/7:2H]
+          <idle>-0       [007] ..s1. 86325.401752: block_rq_complete: 8,0 R () 124629384 + 8 [0]
+       Thread-76-31418   [000] ..... 86325.401987: binder_transaction: transaction=3913193 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86325.402063: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [007] ..... 86325.403675: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   binder:2071_5-4352    [000] ..... 86325.417325: binder_transaction_received: transaction=3913198
+   binder:2071_5-4352    [000] ..... 86325.417388: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   binder:1209_D-2509    [000] ..... 86325.417570: binder_transaction_received: transaction=3913201
+   binder:1209_D-2509    [000] ..... 86325.417654: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+##### CPU 5 buffer started ####
+   binder:2214_E-10281   [005] ..... 86325.417708: binder_transaction: transaction=3913202 dest_node=27951 dest_proc=1209 dest_thread=0 reply=0 flags=0x11 code=0x1
+   binder:2214_E-10281   [005] ..... 86325.417730: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:2214_E-10281   [005] ..... 86325.417753: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [007] ..... 86325.418534: binder_transaction: transaction=3913203 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [007] ..... 86325.418558: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    NetworkStats-1858    [005] ..... 86325.418853: binder_transaction: transaction=3913204 dest_node=1173 dest_proc=891 dest_thread=0 reply=0 flags=0x10 code=0xe
+    binder:891_1-929     [005] ..... 86325.418888: binder_transaction_received: transaction=3913204
+    NetworkStats-1858    [005] ..... 86325.419395: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+    binder:891_1-929     [007] ..... 86325.419648: binder_transaction: transaction=3913211 dest_node=0 dest_proc=1209 dest_thread=1858 reply=1 flags=0x0 code=0x0
+    binder:891_1-929     [007] ..... 86325.419664: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    NetworkStats-1858    [005] ..... 86325.419666: binder_transaction_received: transaction=3913211
+    binder:891_1-929     [007] ..... 86325.419667: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [007] ..... 86325.419978: binder_transaction_received: transaction=3913212
+  binder:31215_3-31225   [007] ..... 86325.420062: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    NetworkStats-1858    [005] ..... 86325.421285: block_rq_issue: 8,0 WS 4096 () 130298304 + 8 [NetworkStats]
+          <idle>-0       [005] ..s1. 86325.422169: block_rq_complete: 8,0 WS () 130298304 + 8 [0]
+    binder:891_1-929     [007] ..... 86325.424931: binder_transaction_received: transaction=3913213
+    binder:891_1-929     [007] ..... 86325.425094: binder_transaction: transaction=3913214 dest_node=0 dest_proc=1209 dest_thread=1858 reply=1 flags=0x0 code=0x0
+    binder:891_1-929     [007] ..... 86325.425106: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:891_1-929     [007] ..... 86325.425109: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   binder:2071_8-13678   [005] ..... 86325.425291: binder_transaction_received: transaction=3913216
+   binder:2071_5-4352    [000] ..... 86325.425307: binder_transaction_received: transaction=3913215
+   binder:2071_5-4352    [000] ..... 86325.425360: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   binder:2071_8-13678   [005] ..... 86325.425374: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   NetworkPolicy-1859    [005] ..... 86325.425462: binder_transaction: transaction=3913217 dest_node=1173 dest_proc=891 dest_thread=0 reply=0 flags=0x10 code=0x2e
+   NetworkPolicy-1859    [005] ..... 86325.425477: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+    binder:891_1-929     [007] ..... 86325.425479: binder_transaction_received: transaction=3913217
+    binder:891_1-929     [005] ..... 86325.426648: binder_transaction: transaction=3913219 dest_node=0 dest_proc=1209 dest_thread=1859 reply=1 flags=0x0 code=0x0
+    binder:891_1-929     [005] ..... 86325.426662: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:891_1-929     [005] ..... 86325.426667: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   NetworkPolicy-1859    [005] ..... 86325.426679: binder_transaction_received: transaction=3913219
+   NetworkPolicy-1859    [005] ..... 86325.426751: binder_transaction: transaction=3913220 dest_node=1173 dest_proc=891 dest_thread=0 reply=0 flags=0x10 code=0x2d
+   NetworkPolicy-1859    [005] ..... 86325.426766: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+    binder:891_1-929     [005] ..... 86325.426779: binder_transaction_received: transaction=3913220
+    binder:891_1-929     [007] ..... 86325.427692: binder_transaction: transaction=3913221 dest_node=0 dest_proc=1209 dest_thread=1859 reply=1 flags=0x0 code=0x0
+    binder:891_1-929     [007] ..... 86325.427705: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:891_1-929     [007] ..... 86325.427708: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   NetworkPolicy-1859    [005] ..... 86325.427709: binder_transaction_received: transaction=3913221
+   NetworkPolicy-1859    [005] ..... 86325.427779: binder_transaction: transaction=3913222 dest_node=16010 dest_proc=2071 dest_thread=0 reply=0 flags=0x11 code=0x3
+   NetworkPolicy-1859    [005] ..... 86325.427805: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   NetworkPolicy-1859    [005] ..... 86325.427825: binder_transaction: transaction=3913223 dest_node=16239 dest_proc=2071 dest_thread=0 reply=0 flags=0x11 code=0x3
+   NetworkPolicy-1859    [005] ..... 86325.427837: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:2071_5-4352    [000] ..... 86325.427853: binder_transaction_received: transaction=3913223
+   NetworkPolicy-1859    [005] ..... 86325.427858: binder_transaction: transaction=3913224 dest_node=27908 dest_proc=2214 dest_thread=0 reply=0 flags=0x11 code=0x3
+   NetworkPolicy-1859    [005] ..... 86325.427900: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:2071_5-4352    [000] ..... 86325.427949: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   NetworkPolicy-1859    [005] ..... 86325.428015: binder_transaction: transaction=3913225 dest_node=30805 dest_proc=1988 dest_thread=0 reply=0 flags=0x11 code=0x2
+   NetworkPolicy-1859    [005] ..... 86325.428067: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   NetworkPolicy-1859    [005] ..... 86325.428088: binder_transaction: transaction=3913226 dest_node=32888 dest_proc=2214 dest_thread=0 reply=0 flags=0x11 code=0x2
+   NetworkPolicy-1859    [005] ..... 86325.428104: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  thermal_LITTLE-219     [002] ..... 86325.428984: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=60000 temp=64000
+   NetworkPolicy-1859    [005] ..... 86325.429486: block_rq_issue: 8,0 WS 8192 () 130298312 + 16 [NetworkPolicy]
+   kworker/u17:1-3871    [005] ..... 86325.430210: block_rq_issue: 8,0 WS 8192 () 130298312 + 16 [kworker/u17:1]
+       pcdn_http-31688   [005] ..s.. 86325.430337: block_rq_complete: 8,0 WS () 130298312 + 16 [0]
+       Thread-76-31418   [007] ..... 86325.435243: binder_transaction: transaction=3913227 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [007] ..... 86325.435260: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [000] ..... 86325.436747: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ WifiHandlerThre-1861    [005] ..... 86325.451134: binder_transaction: transaction=3913230 dest_node=33287 dest_proc=975 dest_thread=0 reply=0 flags=0x10 code=0xc
+ WifiHandlerThre-1861    [005] ..... 86325.451164: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+    binder:975_3-975     [007] ..... 86325.451168: binder_transaction_received: transaction=3913230
+  binder:31215_3-31225   [000] ..... 86325.452661: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  decon0_kthread-294     [005] ..... 86325.454310: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [005] ..... 86325.454312: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [005] ..... 86325.454313: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8258
+  decon0_kthread-294     [005] ..... 86325.454313: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8258
+  BckgrndExec HP-707     [000] ..... 86325.455013: binder_transaction: transaction=3913234 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [000] ..... 86325.455097: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [002] ..... 86325.455102: binder_transaction_received: transaction=3913234
+  binder:31215_3-31225   [002] ..... 86325.455323: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+##### CPU 1 buffer started ####
+    binder:600_3-1965    [001] ..... 86325.469166: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.469447: binder_transaction: transaction=3913236 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+  HwBinder:910_4-1884    [000] ..... 86325.469538: binder_transaction_received: transaction=3913236
+ UnityGfxDeviceW-31394   [007] ..... 86325.469609: binder_transaction: transaction=3913237 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86325.469640: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [000] ..... 86325.469683: binder_transaction_received: transaction=3913237
+    binder:600_3-1965    [000] ..... 86325.469926: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  HwBinder:910_4-1884    [000] ..... 86325.470036: binder_transaction: transaction=3913239 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [000] ..... 86325.470069: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [000] ..... 86325.470090: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.470121: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [000] ..... 86325.470124: binder_transaction_received: transaction=3913239
+    binder:981_4-5355    [000] ..... 86325.470208: binder_transaction: transaction=3913240 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  HwBinder:910_4-1884    [000] ..... 86325.470257: binder_transaction_received: transaction=3913240
+  HwBinder:910_4-1884    [000] ..... 86325.470302: binder_transaction: transaction=3913241 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [000] ..... 86325.470320: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [000] ..... 86325.470330: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.470343: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [000] ..... 86325.470345: binder_transaction_received: transaction=3913241
+  thermal_LITTLE-219     [001] ..... 86325.484955: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=64000 temp=70000
+    binder:600_3-1965    [001] ..... 86325.485694: binder_transaction_received: transaction=3913242
+    binder:600_3-1965    [001] ..... 86325.485748: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [000] ..... 86325.486006: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [002] ..... 86325.486571: binder_transaction: transaction=3913243 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [002] ..... 86325.486628: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [002] ..... 86325.486640: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.486671: binder_transaction_received: transaction=3913243
+  decon0_kthread-294     [001] ..... 86325.487479: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [001] ..... 86325.487483: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [001] ..... 86325.487484: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8259
+  decon0_kthread-294     [001] ..... 86325.487485: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8259
+    binder:602_2-602     [002] ..... 86325.487561: binder_transaction: transaction=3913244 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [002] ..... 86325.487603: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [002] ..... 86325.487636: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.487642: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [002] ..... 86325.487667: binder_transaction_received: transaction=3913244
+     thermal_BIG-193     [001] ..... 86325.488051: thermal_temperature: thermal_zone=BIG id=9 temp_prev=91000 temp=88000
+     thermal_BIG-193     [001] ..... 86325.488151: thermal_temperature: thermal_zone=BIG id=9 temp_prev=88000 temp=88000
+  BckgrndExec HP-707     [000] ..... 86325.488178: binder_transaction: transaction=3913245 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [000] ..... 86325.488243: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [002] ..... 86325.488261: binder_transaction_received: transaction=3913245
+  binder:31215_3-31225   [002] ..... 86325.488531: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:975_3-975     [005] ..... 86325.488841: binder_transaction: transaction=3913246 dest_node=0 dest_proc=1209 dest_thread=1861 reply=1 flags=0x0 code=0x0
+    binder:975_3-975     [005] ..... 86325.488863: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:975_3-975     [005] ..... 86325.488870: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ WifiHandlerThre-1861    [002] ..... 86325.488881: binder_transaction_received: transaction=3913246
+ WifiHandlerThre-1861    [002] ..... 86325.489352: binder_transaction: transaction=3913247 dest_node=33287 dest_proc=975 dest_thread=0 reply=0 flags=0x10 code=0x1c
+ WifiHandlerThre-1861    [002] ..... 86325.489404: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+    binder:975_3-975     [002] ..... 86325.489425: binder_transaction_received: transaction=3913247
+    binder:975_3-975     [002] ..... 86325.489718: binder_transaction: transaction=3913248 dest_node=0 dest_proc=1209 dest_thread=1861 reply=1 flags=0x0 code=0x0
+    binder:975_3-975     [002] ..... 86325.489740: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:975_3-975     [002] ..... 86325.489748: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ WifiHandlerThre-1861    [002] ..... 86325.489768: binder_transaction_received: transaction=3913248
+ WifiHandlerThre-1861    [002] ..... 86325.490161: binder_transaction: transaction=3913249 dest_node=445936 dest_proc=13065 dest_thread=0 reply=0 flags=0x10 code=0x3e
+ WifiHandlerThre-1861    [002] ..... 86325.490209: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  wpa_supplicant-13065   [007] ..... 86325.490249: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  wpa_supplicant-13065   [007] ..... 86325.490252: binder_transaction_received: transaction=3913249
+ UnityGfxDeviceW-31394   [007] ..... 86325.502115: binder_transaction: transaction=3913250 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86325.502159: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_8-5283    [000] ..... 86325.502264: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [001] ..... 86325.502306: binder_transaction: transaction=3913252 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [001] ..... 86325.502346: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_1-649     [000] ..... 86325.502356: binder_transaction_received: transaction=3913252
+    binder:600_1-649     [000] ..... 86325.502393: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  wpa_supplicant-13065   [005] ..... 86325.508458: binder_transaction: transaction=3913253 dest_node=0 dest_proc=1209 dest_thread=1861 reply=1 flags=0x0 code=0x0
+  wpa_supplicant-13065   [005] ..... 86325.508483: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ WifiHandlerThre-1861    [002] ..... 86325.508833: binder_transaction_received: transaction=3913253
+ WifiHandlerThre-1861    [002] ..... 86325.510275: binder_transaction: transaction=3913254 dest_node=212013 dest_proc=5368 dest_thread=0 reply=0 flags=0x11 code=0x1
+ WifiHandlerThre-1861    [002] ..... 86325.510319: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   kworker/u17:3-30045   [001] ..... 86325.511806: block_rq_issue: 8,0 R 8192 () 19846552 + 16 [kworker/u17:3]
+   kworker/u17:3-30045   [001] ..... 86325.511834: block_rq_issue: 8,0 R 4096 () 19846616 + 8 [kworker/u17:3]
+   kworker/u17:3-30045   [001] ..... 86325.511842: block_rq_issue: 8,0 R 4096 () 19846664 + 8 [kworker/u17:3]
+   kworker/u17:3-30045   [001] ..... 86325.511850: block_rq_issue: 8,0 R 8192 () 19846720 + 16 [kworker/u17:3]
+   kworker/u17:3-30045   [001] ..... 86325.511858: block_rq_issue: 8,0 R 4096 () 19846768 + 8 [kworker/u17:3]
+   kworker/u16:3-31166   [005] ..... 86325.511939: block_rq_issue: 8,0 R 8192 () 19846792 + 16 [kworker/u16:3]
+          <idle>-0       [001] ..s1. 86325.512106: block_rq_complete: 8,0 R () 19846616 + 8 [0]
+      tracepilot-7012    [005] ..s.. 86325.512129: block_rq_complete: 8,0 R () 19846792 + 16 [0]
+     cableThread-5286    [001] ..s1. 86325.512166: block_rq_complete: 8,0 R () 19846592 + 8 [0]
+     cableThread-5286    [001] ..s1. 86325.512175: block_rq_complete: 7,320 RA () 2416 + 8 [0]
+    kworker/1:0H-6995    [001] ..s2. 86325.512236: block_rq_complete: 7,320 RA () 2392 + 8 [0]
+     thermal_MID-206     [000] ..... 86325.512977: thermal_temperature: thermal_zone=MID id=10 temp_prev=64000 temp=66000
+ WifiScorerServi-5600    [000] ..... 86325.513640: binder_transaction: transaction=3913255 dest_node=6728 dest_proc=1209 dest_thread=0 reply=0 flags=0x12 code=0x81
+ WifiScorerServi-5600    [000] ..... 86325.513715: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+   binder:1209_E-2870    [000] ..... 86325.513742: binder_transaction_received: transaction=3913255
+   binder:1209_E-2870    [000] ..... 86325.513947: binder_transaction: transaction=3913256 dest_node=0 dest_proc=5368 dest_thread=5600 reply=1 flags=0x0 code=0x0
+   binder:1209_E-2870    [000] ..... 86325.513979: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [000] ..... 86325.513988: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ WifiScorerServi-5600    [000] ..... 86325.514023: binder_transaction_received: transaction=3913256
+       Thread-76-31418   [001] ..... 86325.519021: binder_transaction: transaction=3913257 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [001] ..... 86325.519065: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [000] ..... 86325.519501: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [001] ..... 86325.519553: binder_transaction: transaction=3913258 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+  HwBinder:910_4-1884    [001] ..... 86325.519613: binder_transaction_received: transaction=3913258
+  HwBinder:910_4-1884    [001] ..... 86325.519706: binder_transaction: transaction=3913259 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [001] ..... 86325.519736: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [001] ..... 86325.519756: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [001] ..... 86325.519774: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [001] ..... 86325.519777: binder_transaction_received: transaction=3913259
+    binder:981_4-5355    [001] ..... 86325.519849: binder_transaction: transaction=3913260 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  HwBinder:910_4-1884    [001] ..... 86325.519884: binder_transaction_received: transaction=3913260
+  HwBinder:910_4-1884    [001] ..... 86325.519927: binder_transaction: transaction=3913261 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [001] ..... 86325.520004: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [001] ..... 86325.520019: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [001] ..... 86325.520036: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [001] ..... 86325.520039: binder_transaction_received: transaction=3913261
+  surfaceflinger-600     [002] ..... 86325.520041: binder_transaction: transaction=3913262 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [002] ..... 86325.520126: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [002] ..... 86325.520137: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.520187: binder_transaction_received: transaction=3913262
+    binder:602_2-602     [002] ..... 86325.521116: binder_transaction: transaction=3913263 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [002] ..... 86325.521155: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [002] ..... 86325.521186: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.521191: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [002] ..... 86325.521213: binder_transaction_received: transaction=3913263
+  binder:31215_3-31225   [000] ..... 86325.521798: binder_transaction_received: transaction=3913264
+  binder:31215_3-31225   [000] ..... 86325.521998: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+      android.bg-1486    [002] ..... 86325.528066: binder_transaction: transaction=3913265 dest_node=3331 dest_proc=1545 dest_thread=0 reply=0 flags=0x10 code=0x4
+      android.bg-1486    [002] ..... 86325.528108: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+ android.hardwar-1545    [002] ..... 86325.528151: binder_transaction_received: transaction=3913265
+ android.hardwar-1545    [002] ..... 86325.529404: binder_transaction: transaction=3913266 dest_node=0 dest_proc=1209 dest_thread=1486 reply=1 flags=0x0 code=0x0
+ android.hardwar-1545    [002] ..... 86325.529449: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-1545    [002] ..... 86325.529459: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+      android.bg-1486    [002] ..... 86325.529582: binder_transaction_received: transaction=3913266
+ UnityGfxDeviceW-31394   [007] ..... 86325.534346: binder_transaction: transaction=3913267 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86325.534384: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+       Thread-76-31418   [005] ..... 86325.535525: binder_transaction: transaction=3913270 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [005] ..... 86325.535543: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+     thermal_BIG-193     [005] ..... 86325.540916: thermal_temperature: thermal_zone=BIG id=9 temp_prev=88000 temp=85000
+  thermal_LITTLE-219     [007] ..... 86325.540938: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=70000 temp=68000
+     kworker/5:0-31660   [005] ...1. 86325.540993: thermal_pressure_update: cpu=6 thermal_pressure=147
+       Thread-76-31418   [000] ..... 86325.552449: binder_transaction: transaction=3913271 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86325.552516: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  surfaceflinger-600     [001] ..... 86325.553431: binder_transaction: transaction=3913272 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [001] ..... 86325.553484: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [001] ..... 86325.553496: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.553547: binder_transaction_received: transaction=3913272
+    binder:602_2-602     [001] ..... 86325.554423: binder_transaction: transaction=3913273 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [001] ..... 86325.554471: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [001] ..... 86325.554509: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.554523: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [001] ..... 86325.554549: binder_transaction_received: transaction=3913273
+  binder:31215_3-31225   [000] ..... 86325.555145: binder_transaction_received: transaction=3913274
+  binder:31215_3-31225   [000] ..... 86325.555347: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [007] ..... 86325.567395: binder_transaction: transaction=3913275 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [001] ..... 86325.567425: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [007] ..... 86325.567431: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [002] ..... 86325.567453: binder_transaction_received: transaction=3913275
+    binder:600_3-1965    [002] ..... 86325.567717: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [007] ..... 86325.569319: binder_transaction: transaction=3913277 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+       Thread-76-31418   [002] ..... 86325.569332: binder_transaction: transaction=3913278 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+  surfaceflinger-600     [007] ..... 86325.569338: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [007] ..... 86325.569343: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [007] ..... 86325.569355: binder_transaction_received: transaction=3913277
+       Thread-76-31418   [002] ..... 86325.569371: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [002] ..... 86325.569528: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  HwBinder:910_4-1884    [000] ..... 86325.569680: binder_transaction_received: transaction=3913279
+  decon0_kthread-294     [002] ..... 86325.569680: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.569684: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.569686: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8262
+  decon0_kthread-294     [002] ..... 86325.569687: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8262
+    binder:602_2-602     [007] ..... 86325.569700: binder_transaction: transaction=3913280 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [007] ..... 86325.569735: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [007] ..... 86325.569747: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [007] ..... 86325.569748: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [007] ..... 86325.569758: binder_transaction_received: transaction=3913280
+  HwBinder:910_4-1884    [000] ..... 86325.569772: binder_transaction: transaction=3913281 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [000] ..... 86325.569818: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [000] ..... 86325.569837: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.569858: binder_transaction_received: transaction=3913281
+    binder:981_4-5355    [000] ..... 86325.569937: binder_transaction: transaction=3913282 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  BckgrndExec HP-707     [005] ..... 86325.569962: binder_transaction: transaction=3913283 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  HwBinder:910_4-1884    [000] ..... 86325.569971: binder_transaction_received: transaction=3913282
+  BckgrndExec HP-707     [005] ..... 86325.569988: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [001] ..... 86325.569998: binder_transaction_received: transaction=3913283
+  HwBinder:910_4-1884    [000] ..... 86325.570010: binder_transaction: transaction=3913284 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [000] ..... 86325.570028: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [000] ..... 86325.570037: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.570049: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [000] ..... 86325.570051: binder_transaction_received: transaction=3913284
+  binder:31215_3-31225   [001] ..... 86325.570158: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [001] ..... 86325.585896: binder_transaction: transaction=3913285 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [001] ..... 86325.585975: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [000] ..... 86325.585986: binder_transaction_received: transaction=3913285
+    binder:600_3-1965    [000] ..... 86325.586046: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     thermal_BIG-193     [002] ..... 86325.597616: thermal_temperature: thermal_zone=BIG id=9 temp_prev=85000 temp=82000
+     kworker/2:0-1826    [002] ...1. 86325.597727: thermal_pressure_update: cpu=6 thermal_pressure=108
+ UnityGfxDeviceW-31394   [005] ..... 86325.600353: binder_transaction: transaction=3913286 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [005] ..... 86325.600400: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [002] ..... 86325.600422: binder_transaction_received: transaction=3913286
+    binder:600_3-1965    [002] ..... 86325.600743: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  thermal_LITTLE-219     [002] ..... 86325.600881: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=68000 temp=68000
+       Thread-76-31418   [000] ..... 86325.602667: binder_transaction: transaction=3913289 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86325.602707: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [002] ..... 86325.602716: binder_transaction_received: transaction=3913289
+    binder:600_3-1965    [002] ..... 86325.602745: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [001] ..... 86325.603521: binder_transaction: transaction=3913290 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [001] ..... 86325.603572: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [001] ..... 86325.603585: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.603617: binder_transaction_received: transaction=3913290
+  decon0_kthread-294     [002] ..... 86325.604490: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.604494: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.604496: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8263
+  decon0_kthread-294     [002] ..... 86325.604497: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8263
+    binder:602_2-602     [001] ..... 86325.604621: binder_transaction: transaction=3913291 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [001] ..... 86325.604667: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [001] ..... 86325.604715: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.604722: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [001] ..... 86325.604747: binder_transaction_received: transaction=3913291
+  BckgrndExec HP-707     [002] ..... 86325.605324: binder_transaction: transaction=3913292 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [002] ..... 86325.605375: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [001] ..... 86325.605396: binder_transaction_received: transaction=3913292
+  binder:31215_3-31225   [001] ..... 86325.605585: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:600_3-1965    [000] ..... 86325.619403: binder_transaction_received: transaction=3913293
+    binder:600_3-1965    [000] ..... 86325.619471: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  HwBinder:910_4-1884    [001] ..... 86325.620126: binder_transaction_received: transaction=3913296
+  HwBinder:910_4-1884    [001] ..... 86325.620178: binder_transaction: transaction=3913297 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+    binder:981_4-5355    [001] ..... 86325.620233: binder_transaction_received: transaction=3913297
+  HwBinder:910_4-1884    [001] ..... 86325.620274: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [001] ..... 86325.620291: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.620506: binder_transaction: transaction=3913298 dest_node=2696 dest_proc=1209 dest_thread=0 reply=0 flags=0x10 code=0x1
+   binder:1209_E-2870    [002] ..... 86325.620611: binder_transaction_received: transaction=3913298
+  [GT]ColdPool#5-32106   [000] ..... 86325.620678: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+   binder:1209_E-2870    [002] ..... 86325.620680: binder_transaction: transaction=3913299 dest_node=1443 dest_proc=962 dest_thread=0 reply=0 flags=0x10 code=0x1
+   binder:1209_E-2870    [002] ..... 86325.620729: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+     ChromiumNet-15371   [001] ..... 86325.620770: block_rq_issue: 8,0 RA 20480 () 20959600 + 40 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.620834: block_rq_issue: 8,0 RA 8192 () 20959648 + 16 [ChromiumNet]
+     ChromiumNet-15371   [001] ..s1. 86325.620890: block_rq_complete: 8,0 RA () 20959600 + 40 [0]
+     ChromiumNet-15371   [001] ..... 86325.620911: block_rq_issue: 8,0 RA 12288 () 20959680 + 24 [ChromiumNet]
+ android.hardwar-962     [000] ..... 86325.620914: binder_transaction_received: transaction=3913299
+     ChromiumNet-15371   [001] ..s2. 86325.620932: block_rq_complete: 8,0 RA () 20959648 + 16 [0]
+     ChromiumNet-15371   [001] ..... 86325.620962: block_rq_issue: 8,0 RA 24576 () 20959720 + 48 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.620998: block_rq_issue: 8,0 RA 28672 () 20959776 + 56 [ChromiumNet]
+     ChromiumNet-15371   [001] .Ns1. 86325.621006: block_rq_complete: 8,0 RA () 20959680 + 24 [0]
+ android.hardwar-962     [000] ..... 86325.621026: binder_transaction: transaction=3913300 dest_node=0 dest_proc=1209 dest_thread=2870 reply=1 flags=0x0 code=0x0
+   binder:1209_E-2870    [005] ..... 86325.621054: binder_transaction_received: transaction=3913300
+   binder:1209_E-2870    [005] ..... 86325.621074: binder_transaction: transaction=3913301 dest_node=0 dest_proc=32020 dest_thread=32106 reply=1 flags=0x0 code=0x0
+ android.hardwar-962     [000] ..... 86325.621076: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-962     [000] ..... 86325.621085: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   binder:1209_E-2870    [005] ..... 86325.621092: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.621095: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.621106: binder_transaction_received: transaction=3913301
+     ksoftirqd/1-27      [001] ..s.. 86325.621156: block_rq_complete: 8,0 RA () 20959720 + 48 [0]
+     ksoftirqd/1-27      [001] ..s.. 86325.621168: block_rq_complete: 8,0 RA () 20959776 + 56 [0]
+     ChromiumNet-15371   [001] ..... 86325.621208: block_rq_issue: 8,0 RA 4096 () 20959840 + 8 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.621272: block_rq_issue: 8,0 RA 4096 () 20959856 + 8 [ChromiumNet]
+     ChromiumNet-15371   [001] ..s.. 86325.621301: block_rq_complete: 8,0 RA () 20959840 + 8 [0]
+     ChromiumNet-15371   [001] ..... 86325.621312: block_rq_issue: 8,0 RA 12288 () 20959872 + 24 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.621340: block_rq_issue: 8,0 RA 12288 () 20960088 + 24 [ChromiumNet]
+     ChromiumNet-15371   [001] ..s.. 86325.621362: block_rq_complete: 8,0 RA () 20959856 + 8 [0]
+  [GT]ColdPool#5-32106   [000] ..... 86325.621391: binder_transaction: transaction=3913302 dest_node=2696 dest_proc=1209 dest_thread=0 reply=0 flags=0x10 code=0x1
+     kworker/1:3-755     [001] ..s1. 86325.621429: block_rq_complete: 8,0 RA () 20959872 + 24 [0]
+  [GT]ColdPool#5-32106   [000] ..... 86325.621432: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+     kworker/1:3-755     [001] ..s1. 86325.621437: block_rq_complete: 8,0 RA () 20960088 + 24 [0]
+ android.hardwar-962     [002] ..... 86325.621573: binder_transaction_received: transaction=3913303
+     ChromiumNet-15371   [001] ..... 86325.621728: block_rq_issue: 8,0 RA 131072 () 20958712 + 256 [ChromiumNet]
+          <idle>-0       [001] ..s1. 86325.621983: block_rq_complete: 8,0 RA () 20958712 + 256 [0]
+ android.hardwar-962     [002] ..... 86325.621995: binder_transaction: transaction=3913304 dest_node=0 dest_proc=1209 dest_thread=2870 reply=1 flags=0x0 code=0x0
+ android.hardwar-962     [002] ..... 86325.622035: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-962     [002] ..... 86325.622044: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.622059: binder_transaction_received: transaction=3913305
+  [GT]ColdPool#5-32106   [000] ..... 86325.622090: binder_transaction: transaction=3913306 dest_node=2696 dest_proc=1209 dest_thread=0 reply=0 flags=0x10 code=0x1
+     ChromiumNet-15371   [001] ..... 86325.622105: block_rq_issue: 8,0 RA 40960 () 20958344 + 80 [ChromiumNet]
+  [GT]ColdPool#5-32106   [000] ..... 86325.622120: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.622123: binder_transaction_received: transaction=3913306
+   binder:1209_E-2870    [005] ..... 86325.622135: binder_transaction: transaction=3913307 dest_node=1443 dest_proc=962 dest_thread=0 reply=0 flags=0x10 code=0x1
+   binder:1209_E-2870    [005] ..... 86325.622153: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+ android.hardwar-962     [002] ..... 86325.622159: binder_transaction_received: transaction=3913307
+     ChromiumNet-15371   [001] ..... 86325.622179: block_rq_issue: 8,0 RA 86016 () 20958432 + 168 [ChromiumNet]
+ android.hardwar-962     [002] ..... 86325.622275: binder_transaction: transaction=3913308 dest_node=0 dest_proc=1209 dest_thread=2870 reply=1 flags=0x0 code=0x0
+   binder:1209_E-2870    [005] ..... 86325.622294: binder_transaction_received: transaction=3913308
+          <idle>-0       [001] ..s1. 86325.622302: block_rq_complete: 8,0 RA () 20958344 + 80 [0]
+   binder:1209_E-2870    [005] ..... 86325.622305: binder_transaction: transaction=3913309 dest_node=0 dest_proc=32020 dest_thread=32106 reply=1 flags=0x0 code=0x0
+ android.hardwar-962     [002] ..... 86325.622309: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-962     [002] ..... 86325.622315: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   binder:1209_E-2870    [005] ..... 86325.622316: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.622319: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.622324: binder_transaction_received: transaction=3913309
+  [GT]ColdPool#5-32106   [000] ..... 86325.622347: binder_transaction: transaction=3913310 dest_node=2696 dest_proc=1209 dest_thread=0 reply=0 flags=0x10 code=0x1
+   binder:1209_E-2870    [005] ..... 86325.622395: binder_transaction_received: transaction=3913310
+  [GT]ColdPool#5-32106   [000] ..... 86325.622396: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.622404: binder_transaction: transaction=3913311 dest_node=1443 dest_proc=962 dest_thread=0 reply=0 flags=0x10 code=0x1
+   binder:1209_E-2870    [005] ..... 86325.622419: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+          <idle>-0       [001] ..s1. 86325.622426: block_rq_complete: 8,0 RA () 20958432 + 168 [0]
+ android.hardwar-962     [000] ..... 86325.622447: binder_transaction_received: transaction=3913311
+ android.hardwar-962     [000] ..... 86325.622464: binder_transaction: transaction=3913312 dest_node=0 dest_proc=1209 dest_thread=2870 reply=1 flags=0x0 code=0x0
+ android.hardwar-962     [000] ..... 86325.622499: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-962     [000] ..... 86325.622509: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.622576: binder_transaction_received: transaction=3913313
+  [GT]ColdPool#5-32106   [000] ..... 86325.622867: binder_transaction: transaction=3913314 dest_node=2696 dest_proc=1209 dest_thread=0 reply=0 flags=0x10 code=0x1
+  [GT]ColdPool#5-32106   [000] ..... 86325.622894: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+ android.hardwar-962     [000] ..... 86325.622944: binder_transaction_received: transaction=3913315
+ android.hardwar-962     [000] ..... 86325.622964: binder_transaction: transaction=3913316 dest_node=0 dest_proc=1209 dest_thread=2870 reply=1 flags=0x0 code=0x0
+ android.hardwar-962     [000] ..... 86325.623033: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-962     [000] ..... 86325.623044: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.623067: binder_transaction_received: transaction=3913317
+  [GT]ColdPool#5-32106   [000] ..... 86325.623285: binder_transaction: transaction=3913318 dest_node=4210 dest_proc=1209 dest_thread=0 reply=0 flags=0x12 code=0x65
+  [GT]ColdPool#5-32106   [000] ..... 86325.623316: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.623320: binder_transaction_received: transaction=3913318
+   binder:1209_E-2870    [005] ..... 86325.623493: binder_transaction: transaction=3913319 dest_node=0 dest_proc=32020 dest_thread=32106 reply=1 flags=0x0 code=0x0
+   binder:1209_E-2870    [005] ..... 86325.623509: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.623512: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.623517: binder_transaction_received: transaction=3913319
+##### CPU 4 buffer started ####
+     ChromiumNet-15371   [004] ..... 86325.623607: block_rq_issue: 8,0 RA 94208 () 20963864 + 184 [ChromiumNet]
+  [GT]ColdPool#5-32106   [000] ..... 86325.623612: binder_transaction: transaction=3913320 dest_node=4210 dest_proc=1209 dest_thread=0 reply=0 flags=0x12 code=0x58
+  [GT]ColdPool#5-32106   [000] ..... 86325.623636: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.623639: binder_transaction_received: transaction=3913320
+   binder:1209_E-2870    [005] ..... 86325.623759: binder_transaction: transaction=3913321 dest_node=0 dest_proc=32020 dest_thread=32106 reply=1 flags=0x0 code=0x0
+   binder:1209_E-2870    [005] ..... 86325.623772: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.623775: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.623780: binder_transaction_received: transaction=3913321
+          <idle>-0       [004] ..s1. 86325.623838: block_rq_complete: 8,0 RA () 20963864 + 184 [0]
+  [GT]ColdPool#5-32106   [000] ..... 86325.624000: binder_transaction: transaction=3913322 dest_node=4210 dest_proc=1209 dest_thread=0 reply=0 flags=0x12 code=0x65
+   binder:1209_E-2870    [004] ..... 86325.624035: binder_transaction_received: transaction=3913322
+  [GT]ColdPool#5-32106   [000] ..... 86325.624035: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+   binder:1209_E-2870    [004] ..... 86325.624176: binder_transaction: transaction=3913323 dest_node=0 dest_proc=32020 dest_thread=32106 reply=1 flags=0x0 code=0x0
+   binder:1209_E-2870    [004] ..... 86325.624190: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [004] ..... 86325.624193: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.624261: binder_transaction_received: transaction=3913323
+     ChromiumNet-15371   [001] ..... 86325.624268: block_rq_issue: 8,0 RA 61440 () 20955520 + 120 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.624291: block_rq_issue: 8,0 RA 4096 () 20955648 + 8 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.624339: block_rq_issue: 8,0 RA 49152 () 20955680 + 96 [ChromiumNet]
+          <idle>-0       [001] ..s1. 86325.624487: block_rq_complete: 8,0 RA () 20955520 + 120 [0]
+          <idle>-0       [001] ..s1. 86325.624630: block_rq_complete: 8,0 RA () 20955648 + 8 [0]
+  [GT]ColdPool#5-32106   [000] ..... 86325.624667: binder_transaction: transaction=3913324 dest_node=4210 dest_proc=1209 dest_thread=0 reply=0 flags=0x12 code=0x57
+          <idle>-0       [001] ..s1. 86325.624674: block_rq_complete: 8,0 RA () 20955680 + 96 [0]
+  [GT]ColdPool#5-32106   [000] ..... 86325.624695: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.624699: binder_transaction_received: transaction=3913324
+     ChromiumNet-15371   [004] ..... 86325.624714: block_rq_issue: 8,0 RA 12288 () 20955776 + 24 [ChromiumNet]
+     ChromiumNet-15371   [004] ..... 86325.624733: block_rq_issue: 8,0 RA 20480 () 20955808 + 40 [ChromiumNet]
+     ChromiumNet-15371   [004] ..... 86325.624743: block_rq_issue: 8,0 RA 8192 () 20955856 + 16 [ChromiumNet]
+     ChromiumNet-15371   [004] ..... 86325.624752: block_rq_issue: 8,0 RA 8192 () 20955888 + 16 [ChromiumNet]
+     ChromiumNet-15371   [004] ..... 86325.624763: block_rq_issue: 8,0 RA 12288 () 20955920 + 24 [ChromiumNet]
+   binder:1209_E-2870    [005] ..... 86325.624818: binder_transaction: transaction=3913325 dest_node=0 dest_proc=32020 dest_thread=32106 reply=1 flags=0x0 code=0x0
+   binder:1209_E-2870    [005] ..... 86325.624835: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.624838: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     ksoftirqd/4-48      [004] ..s.. 86325.624845: block_rq_complete: 8,0 RA () 20955776 + 24 [0]
+      tracepilot-7012    [004] ..s.. 86325.624872: block_rq_complete: 8,0 RA () 20955808 + 40 [0]
+      tracepilot-7012    [004] ..s.. 86325.624885: block_rq_complete: 8,0 RA () 20955856 + 16 [0]
+      tracepilot-7012    [004] ..s.. 86325.624887: block_rq_complete: 8,0 RA () 20955888 + 16 [0]
+      tracepilot-7012    [004] ..s.. 86325.624888: block_rq_complete: 8,0 RA () 20955920 + 24 [0]
+  [GT]ColdPool#5-32106   [000] ..... 86325.624913: binder_transaction_received: transaction=3913325
+     thermal_MID-206     [001] ..... 86325.625031: thermal_temperature: thermal_zone=MID id=10 temp_prev=65000 temp=68000
+     ChromiumNet-15371   [001] ..... 86325.625187: block_rq_issue: 8,0 RA 4096 () 20955344 + 8 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.625224: block_rq_issue: 8,0 RA 8192 () 20955384 + 16 [ChromiumNet]
+     ChromiumNet-15371   [001] ..s2. 86325.625270: block_rq_complete: 8,0 RA () 20955344 + 8 [0]
+     ChromiumNet-15371   [001] ..... 86325.625311: block_rq_issue: 8,0 RA 53248 () 20955416 + 104 [ChromiumNet]
+     ChromiumNet-15371   [001] ..s1. 86325.625318: block_rq_complete: 8,0 RA () 20955384 + 16 [0]
+     ChromiumNet-15371   [001] ..s5. 86325.625459: block_rq_complete: 8,0 RA () 20955416 + 104 [0]
+  [GT]ColdPool#5-32106   [000] ..... 86325.626152: binder_transaction: transaction=3913326 dest_node=4210 dest_proc=1209 dest_thread=0 reply=0 flags=0x12 code=0x4f
+   binder:1209_E-2870    [005] ..... 86325.626196: binder_transaction_received: transaction=3913326
+  [GT]ColdPool#5-32106   [000] ..... 86325.626197: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+     ChromiumNet-15371   [001] ..... 86325.626266: block_rq_issue: 8,0 RA 61440 () 20957800 + 120 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.626315: block_rq_issue: 8,0 RA 4096 () 20957928 + 8 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.626337: block_rq_issue: 8,0 RA 4096 () 20957952 + 8 [ChromiumNet]
+     ChromiumNet-15371   [001] ..... 86325.626397: block_rq_issue: 8,0 RA 45056 () 20957968 + 88 [ChromiumNet]
+   binder:1209_E-2870    [005] ..... 86325.626421: binder_transaction: transaction=3913327 dest_node=0 dest_proc=32020 dest_thread=32106 reply=1 flags=0x0 code=0x0
+   binder:1209_E-2870    [005] ..... 86325.626443: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.626448: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  [GT]ColdPool#5-32106   [000] ..... 86325.626448: binder_transaction_received: transaction=3913327
+          <idle>-0       [001] ..s1. 86325.626483: block_rq_complete: 8,0 RA () 20957800 + 120 [0]
+          <idle>-0       [001] ..s1. 86325.626616: block_rq_complete: 8,0 RA () 20957928 + 8 [0]
+          <idle>-0       [001] ..s1. 86325.626649: block_rq_complete: 8,0 RA () 20957952 + 8 [0]
+     ChromiumNet-15371   [004] ..... 86325.626702: block_rq_issue: 8,0 RA 16384 () 20959432 + 32 [ChromiumNet]
+          <idle>-0       [001] ..s1. 86325.626712: block_rq_complete: 8,0 RA () 20957968 + 88 [0]
+     ChromiumNet-15371   [004] ..... 86325.626715: block_rq_issue: 8,0 RA 4096 () 20959472 + 8 [ChromiumNet]
+     ChromiumNet-15371   [004] ..... 86325.626723: block_rq_issue: 8,0 RA 4096 () 20959488 + 8 [ChromiumNet]
+     ChromiumNet-15371   [004] ..... 86325.626740: block_rq_issue: 8,0 RA 24576 () 20959504 + 48 [ChromiumNet]
+     ChromiumNet-15371   [004] ..... 86325.626753: block_rq_issue: 8,0 RA 16384 () 20959560 + 32 [ChromiumNet]
+          <idle>-0       [004] .Ns1. 86325.626815: block_rq_complete: 8,0 RA () 20959432 + 32 [0]
+      tracepilot-7012    [004] ..s.. 86325.626882: block_rq_complete: 8,0 RA () 20959472 + 8 [0]
+      tracepilot-7012    [004] ..s.. 86325.626886: block_rq_complete: 8,0 RA () 20959488 + 8 [0]
+      tracepilot-7012    [004] ..s.. 86325.626951: block_rq_complete: 8,0 RA () 20959560 + 32 [0]
+     ChromiumNet-15371   [004] ..s.. 86325.627034: block_rq_complete: 8,0 RA () 20959504 + 48 [0]
+     ChromiumNet-15371   [004] ..... 86325.627051: block_rq_issue: 8,0 RA 102400 () 20960648 + 200 [ChromiumNet]
+          <idle>-0       [004] .Ns1. 86325.627289: block_rq_complete: 8,0 RA () 20960648 + 200 [0]
+ UnityGfxDeviceW-31394   [005] ..... 86325.632988: binder_transaction: transaction=3913328 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [001] ..... 86325.633026: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [005] ..... 86325.633033: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [002] ..... 86325.633056: binder_transaction_received: transaction=3913328
+    binder:600_3-1965    [002] ..... 86325.633365: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:891_2-930     [004] ..... 86325.634805: binder_transaction: transaction=3913331 dest_node=11885 dest_proc=1209 dest_thread=0 reply=0 flags=0x11 code=0x3
+    binder:891_2-930     [004] ..... 86325.634824: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.634831: binder_transaction_received: transaction=3913331
+   binder:1209_E-2870    [005] ..... 86325.635003: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [005] ..... 86325.635838: binder_transaction: transaction=3913332 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [005] ..... 86325.635856: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [002] ..... 86325.635874: binder_transaction_received: transaction=3913332
+    binder:600_3-1965    [002] ..... 86325.635904: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     ChromiumNet-15371   [004] .n... 86325.636208: block_rq_issue: 8,0 RA 77824 () 20958056 + 152 [ChromiumNet]
+  surfaceflinger-600     [001] ..... 86325.636968: binder_transaction: transaction=3913333 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [001] ..... 86325.637017: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [001] ..... 86325.637028: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.637079: binder_transaction_received: transaction=3913333
+   kworker/u17:1-3871    [004] ..... 86325.637175: block_rq_issue: 8,0 RA 77824 () 20958056 + 152 [kworker/u17:1]
+     ksoftirqd/4-48      [004] ..s.. 86325.637487: block_rq_complete: 8,0 RA () 20958056 + 152 [0]
+  decon0_kthread-294     [004] ..... 86325.637881: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [004] ..... 86325.637883: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [004] ..... 86325.637884: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8264
+  decon0_kthread-294     [004] ..... 86325.637884: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8264
+    binder:602_2-602     [001] ..... 86325.637988: binder_transaction: transaction=3913334 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [001] ..... 86325.638084: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [001] ..... 86325.638122: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.638129: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [001] ..... 86325.638155: binder_transaction_received: transaction=3913334
+  BckgrndExec HP-707     [002] ..... 86325.638688: binder_transaction: transaction=3913335 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [002] ..... 86325.638759: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [000] ..... 86325.638775: binder_transaction_received: transaction=3913335
+  binder:31215_3-31225   [000] ..... 86325.638989: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     ChromiumNet-15371   [004] ..... 86325.639033: block_rq_issue: 8,0 RA 131072 () 20963280 + 256 [ChromiumNet]
+      tracepilot-7012    [004] ..s.. 86325.639524: block_rq_complete: 8,0 RA () 20963280 + 256 [0]
+     ChromiumNet-15371   [004] ..... 86325.640882: block_rq_issue: 8,0 RA 49152 () 20958208 + 96 [ChromiumNet]
+     ChromiumNet-15371   [004] ..... 86325.640921: block_rq_issue: 8,0 RA 16384 () 20958312 + 32 [ChromiumNet]
+      tracepilot-7012    [004] ..s.. 86325.641089: block_rq_complete: 8,0 RA () 20958208 + 96 [0]
+      tracepilot-7012    [004] ..s.. 86325.641181: block_rq_complete: 8,0 RA () 20958312 + 32 [0]
+    binder:891_2-930     [005] ..... 86325.648540: binder_transaction: transaction=3913336 dest_node=11885 dest_proc=1209 dest_thread=0 reply=0 flags=0x11 code=0x3
+    binder:891_2-930     [005] ..... 86325.648564: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [002] ..... 86325.648580: binder_transaction_received: transaction=3913336
+   binder:1209_E-2870    [002] ..... 86325.648930: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [002] ..... 86325.652675: binder_transaction: transaction=3913337 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [002] ..... 86325.652725: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+     thermal_BIG-193     [001] ..... 86325.652976: thermal_temperature: thermal_zone=BIG id=9 temp_prev=82000 temp=83000
+     kworker/1:3-755     [001] ...1. 86325.653107: thermal_pressure_update: cpu=6 thermal_pressure=147
+  thermal_LITTLE-219     [002] ..... 86325.656912: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=68000 temp=68000
+ UnityGfxDeviceW-31394   [006] ..... 86325.666045: binder_transaction: transaction=3913338 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [006] ..... 86325.666078: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [004] ..... 86325.666090: binder_transaction_received: transaction=3913338
+  binder:31215_3-31225   [000] ..... 86325.666150: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:600_3-1965    [004] ..... 86325.666231: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [004] ..... 86325.669225: binder_transaction: transaction=3913340 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [004] ..... 86325.669295: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [002] ..... 86325.669310: binder_transaction_received: transaction=3913340
+    binder:600_3-1965    [002] ..... 86325.669345: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [002] ..... 86325.669728: binder_transaction: transaction=3913341 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+  HwBinder:910_4-1884    [002] ..... 86325.669791: binder_transaction_received: transaction=3913341
+  binder:31215_3-31225   [001] ..... 86325.669874: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  HwBinder:910_4-1884    [002] ..... 86325.669924: binder_transaction: transaction=3913342 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [002] ..... 86325.670024: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [002] ..... 86325.670064: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [002] ..... 86325.670081: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [002] ..... 86325.670085: binder_transaction_received: transaction=3913342
+    binder:981_4-5355    [002] ..... 86325.670160: binder_transaction: transaction=3913343 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  HwBinder:910_4-1884    [002] ..... 86325.670196: binder_transaction_received: transaction=3913343
+  HwBinder:910_4-1884    [002] ..... 86325.670239: binder_transaction: transaction=3913344 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [002] ..... 86325.670261: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [002] ..... 86325.670274: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [002] ..... 86325.670290: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [002] ..... 86325.670293: binder_transaction_received: transaction=3913344
+  surfaceflinger-600     [000] ..... 86325.670460: binder_transaction: transaction=3913345 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [000] ..... 86325.670530: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [000] ..... 86325.670542: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [000] ..... 86325.670573: binder_transaction_received: transaction=3913345
+  decon0_kthread-294     [002] ..... 86325.671529: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.671534: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.671535: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8265
+  decon0_kthread-294     [002] ..... 86325.671540: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8265
+    binder:602_2-602     [000] ..... 86325.671615: binder_transaction: transaction=3913346 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [000] ..... 86325.671669: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [000] ..... 86325.671702: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [000] ..... 86325.671709: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [000] ..... 86325.671735: binder_transaction_received: transaction=3913346
+  BckgrndExec HP-707     [006] ..... 86325.672283: binder_transaction: transaction=3913347 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [006] ..... 86325.672310: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [006] ..... 86325.672329: binder_transaction_received: transaction=3913347
+  binder:31215_3-31225   [006] ..... 86325.672406: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     thermal_MID-206     [001] ..... 86325.680912: thermal_temperature: thermal_zone=MID id=10 temp_prev=68000 temp=67000
+    binder:600_3-1965    [002] ..... 86325.686173: binder_transaction_received: transaction=3913348
+    binder:600_3-1965    [002] ..... 86325.686217: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [006] ..... 86325.698616: binder_transaction: transaction=3913349 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+    binder:600_3-1965    [002] ..... 86325.698673: binder_transaction_received: transaction=3913349
+ UnityGfxDeviceW-31394   [006] ..... 86325.698764: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [000] ..... 86325.698766: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:600_3-1965    [002] ..... 86325.698956: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+            netd-918     [006] ..... 86325.700065: binder_transaction: transaction=3913351 dest_node=11901 dest_proc=1209 dest_thread=0 reply=0 flags=0x11 code=0x2
+            netd-918     [006] ..... 86325.700081: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_E-2870    [005] ..... 86325.700107: binder_transaction_received: transaction=3913351
+            netd-918     [006] ..... 86325.700130: binder_transaction: transaction=3913352 dest_node=6793 dest_proc=1209 dest_thread=0 reply=0 flags=0x11 code=0x2
+            netd-918     [006] ..... 86325.700141: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+            netd-918     [006] ..... 86325.700147: binder_transaction: transaction=3913353 dest_node=12256 dest_proc=1209 dest_thread=0 reply=0 flags=0x11 code=0x2
+            netd-918     [006] ..... 86325.700159: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_D-2509    [000] ..... 86325.700161: binder_transaction_received: transaction=3913352
+            netd-918     [006] ..... 86325.700163: binder_transaction: transaction=3913354 dest_node=6553 dest_proc=1209 dest_thread=0 reply=0 flags=0x11 code=0x2
+            netd-918     [006] ..... 86325.700169: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+            netd-918     [006] ..... 86325.700174: binder_transaction: transaction=3913355 dest_node=16301 dest_proc=2071 dest_thread=0 reply=0 flags=0x11 code=0x2
+   binder:1209_8-2322    [001] ..... 86325.700176: binder_transaction_received: transaction=3913353
+   binder:1209_F-2873    [004] ..... 86325.700177: binder_transaction_received: transaction=3913354
+   binder:1209_E-2870    [005] ..... 86325.700181: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+            netd-918     [006] ..... 86325.700185: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_D-2509    [000] ..... 86325.700232: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   binder:1209_F-2873    [004] ..... 86325.700256: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   binder:2071_5-4352    [004] ..... 86325.700274: binder_transaction_received: transaction=3913355
+   binder:2071_5-4352    [004] ..... 86325.700353: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   binder:1209_8-2322    [001] ..... 86325.700365: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [000] ..... 86325.702732: binder_transaction: transaction=3913356 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86325.702784: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [000] ..... 86325.703298: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [001] ..... 86325.703852: binder_transaction: transaction=3913357 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [001] ..... 86325.703949: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [001] ..... 86325.703961: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.704013: binder_transaction_received: transaction=3913357
+  decon0_kthread-294     [002] ..... 86325.704851: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.704855: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.704857: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8266
+  decon0_kthread-294     [002] ..... 86325.704858: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8266
+    binder:602_2-602     [001] ..... 86325.704964: binder_transaction: transaction=3913358 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [001] ..... 86325.705010: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [001] ..... 86325.705056: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.705063: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [001] ..... 86325.705088: binder_transaction_received: transaction=3913358
+  binder:31215_3-31225   [000] ..... 86325.705670: binder_transaction_received: transaction=3913359
+  binder:31215_3-31225   [000] ..... 86325.705868: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     thermal_BIG-193     [001] ..... 86325.708914: thermal_temperature: thermal_zone=BIG id=9 temp_prev=83000 temp=83000
+    binder:600_3-1965    [002] ..... 86325.719535: binder_transaction_received: transaction=3913360
+    binder:600_3-1965    [002] ..... 86325.719574: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.720635: binder_transaction: transaction=3913361 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+  HwBinder:910_4-1884    [000] ..... 86325.720716: binder_transaction_received: transaction=3913361
+  HwBinder:910_4-1884    [000] ..... 86325.720859: binder_transaction: transaction=3913362 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [000] ..... 86325.720886: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [000] ..... 86325.720905: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.720923: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [000] ..... 86325.720926: binder_transaction_received: transaction=3913362
+    binder:981_4-5355    [000] ..... 86325.720998: binder_transaction: transaction=3913363 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  HwBinder:910_4-1884    [000] ..... 86325.721052: binder_transaction_received: transaction=3913363
+  HwBinder:910_4-1884    [000] ..... 86325.721094: binder_transaction: transaction=3913364 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [000] ..... 86325.721118: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [000] ..... 86325.721130: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.721148: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [000] ..... 86325.721151: binder_transaction_received: transaction=3913364
+  binder:31215_3-31225   [000] ..... 86325.731844: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86325.731872: binder_transaction: transaction=3913365 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [004] ..... 86325.731929: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [006] ..... 86325.731931: binder_transaction_received: transaction=3913365
+    binder:600_3-1965    [006] ..... 86325.732042: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [001] ..... 86325.736349: binder_transaction: transaction=3913368 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [001] ..... 86325.736410: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [002] ..... 86325.736419: binder_transaction_received: transaction=3913368
+  surfaceflinger-600     [006] ..... 86325.736467: binder_transaction: transaction=3913369 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+    binder:600_3-1965    [002] ..... 86325.736477: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [006] ..... 86325.736489: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [006] ..... 86325.736494: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [006] ..... 86325.736514: binder_transaction_received: transaction=3913369
+  decon0_kthread-294     [002] ..... 86325.736878: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.736882: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86325.736883: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8267
+  decon0_kthread-294     [002] ..... 86325.736885: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8267
+    binder:602_2-602     [006] ..... 86325.736895: binder_transaction: transaction=3913370 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [006] ..... 86325.736910: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [006] ..... 86325.736922: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [006] ..... 86325.736924: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [006] ..... 86325.736938: binder_transaction_received: transaction=3913370
+     thermal_MID-206     [001] ..... 86325.736949: thermal_temperature: thermal_zone=MID id=10 temp_prev=67000 temp=66000
+  BckgrndExec HP-707     [001] ..... 86325.737250: binder_transaction: transaction=3913371 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [001] ..... 86325.737316: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+       Thread-76-31418   [001] ..... 86325.753059: binder_transaction: transaction=3913372 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [001] ..... 86325.753139: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ UnityGfxDeviceW-31394   [006] ..... 86325.763762: binder_transaction: transaction=3913373 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [006] ..... 86325.763796: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [001] ..... 86325.763812: binder_transaction_received: transaction=3913373
+    binder:600_3-1965    [001] ..... 86325.764063: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    kworker/5:5H-6727    [005] ..... 86325.764521: block_rq_issue: 8,0 RM 4096 () 18359544 + 8 [kworker/5:5H]
+     thermal_BIG-193     [001] ..... 86325.765056: thermal_temperature: thermal_zone=BIG id=9 temp_prev=83000 temp=84000
+     kworker/1:3-755     [001] ...1. 86325.765166: thermal_pressure_update: cpu=6 thermal_pressure=225
+   kworker/u17:1-3871    [004] ..... 86325.765252: block_rq_issue: 8,0 RM 4096 () 18359544 + 8 [kworker/u17:1]
+          <idle>-0       [005] ..s1. 86325.765488: block_rq_complete: 8,0 RM () 18359544 + 8 [0]
+    kworker/5:5H-6727    [005] ..... 86325.765554: block_rq_issue: 8,0 R 4096 () 27017688 + 8 [kworker/5:5H]
+          <idle>-0       [005] ..s1. 86325.765686: block_rq_complete: 8,0 R () 27017688 + 8 [0]
+       UnityMain-31334   [005] ..... 86325.765741: block_rq_issue: 8,0 RA 8192 () 106937072 + 16 [UnityMain]
+       UnityMain-31334   [005] ..... 86325.765746: block_rq_issue: 8,0 RA 20480 () 106937088 + 40 [UnityMain]
+       UnityMain-31334   [005] ..... 86325.765861: block_rq_issue: 8,0 RA 4096 () 106937136 + 8 [UnityMain]
+       UnityMain-31334   [005] ..... 86325.765865: block_rq_issue: 8,0 RA 12288 () 106937144 + 24 [UnityMain]
+       UnityMain-31334   [005] ..s.. 86325.765877: block_rq_complete: 8,0 RA () 106937072 + 16 [0]
+       UnityMain-31334   [005] ..... 86325.765938: block_rq_issue: 8,0 RA 12288 () 106937144 + 24 [UnityMain]
+       UnityMain-31334   [005] ..... 86325.765941: block_rq_issue: 8,0 RA 28672 () 106937168 + 56 [UnityMain]
+       UnityMain-31334   [005] ..s1. 86325.765945: block_rq_complete: 8,0 RA () 106937088 + 40 [0]
+       UnityMain-31334   [005] ..... 86325.765971: block_rq_issue: 8,0 RA 12288 () 106937224 + 24 [UnityMain]
+       UnityMain-31334   [005] ..s.. 86325.766022: block_rq_complete: 8,0 RA () 106937144 + 24 [0]
+       UnityMain-31334   [005] ..... 86325.766058: block_rq_issue: 8,0 RA 12288 () 106937248 + 24 [UnityMain]
+       UnityMain-31334   [005] ..... 86325.766061: block_rq_issue: 8,0 RA 12288 () 106937272 + 24 [UnityMain]
+          <idle>-0       [005] ..s1. 86325.766079: block_rq_complete: 8,0 RA () 106937144 + 24 [0]
+          <idle>-0       [005] ..s1. 86325.766117: block_rq_complete: 8,0 RA () 106937136 + 8 [0]
+          <idle>-0       [005] ..s1. 86325.766120: block_rq_complete: 8,0 RA () 106937224 + 24 [0]
+          <idle>-0       [005] ..s1. 86325.766168: block_rq_complete: 8,0 RA () 106937272 + 24 [0]
+          <idle>-0       [005] ..s1. 86325.766183: block_rq_complete: 8,0 RA () 106937168 + 56 [0]
+       UnityMain-31334   [005] ..s.. 86325.766233: block_rq_complete: 8,0 RA () 106937248 + 24 [0]
+    binder:600_3-1965    [000] ..... 86325.769657: binder_transaction_received: transaction=3913375
+    binder:600_3-1965    [000] ..... 86325.769709: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [002] ..... 86325.770636: binder_transaction: transaction=3913376 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [002] ..... 86325.770690: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [002] ..... 86325.770703: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.770734: binder_transaction_received: transaction=3913376
+    binder:602_2-602     [002] ..... 86325.771605: binder_transaction: transaction=3913381 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [002] ..... 86325.771647: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [002] ..... 86325.771677: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.771684: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [002] ..... 86325.771707: binder_transaction_received: transaction=3913381
+  BckgrndExec HP-707     [000] ..... 86325.772231: binder_transaction: transaction=3913382 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [000] ..... 86325.772287: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [000] ..... 86325.786409: binder_transaction_received: transaction=3913383
+    binder:600_3-1965    [000] ..... 86325.786453: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     thermal_MID-206     [001] ..... 86325.792898: thermal_temperature: thermal_zone=MID id=10 temp_prev=66000 temp=67000
+ UnityGfxDeviceW-31394   [007] ..... 86325.796772: binder_transaction: transaction=3913384 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86325.796820: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [002] ..... 86325.796875: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:600_3-1965    [000] ..... 86325.796921: binder_transaction_received: transaction=3913384
+    binder:600_3-1965    [000] ..... 86325.797173: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [000] ..... 86325.803214: binder_transaction: transaction=3913386 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+  surfaceflinger-600     [006] ..... 86325.803235: binder_transaction: transaction=3913387 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [006] ..... 86325.803257: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [006] ..... 86325.803262: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+       Thread-76-31418   [000] ..... 86325.803275: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [006] ..... 86325.803276: binder_transaction_received: transaction=3913387
+  binder:31215_3-31225   [002] ..... 86325.803370: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [006] ..... 86325.803582: binder_transaction: transaction=3913388 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [006] ..... 86325.803598: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [006] ..... 86325.803608: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [006] ..... 86325.803610: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [006] ..... 86325.803619: binder_transaction_received: transaction=3913388
+  BckgrndExec HP-707     [002] ..... 86325.803854: binder_transaction: transaction=3913389 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [002] ..... 86325.803938: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    kworker/5:5H-6727    [005] ..... 86325.813634: block_rq_issue: 8,0 R 4096 () 40000352 + 8 [kworker/5:5H]
+   kworker/u17:3-30045   [006] ..... 86325.814379: block_rq_issue: 8,0 R 4096 () 40000352 + 8 [kworker/u17:3]
+          <idle>-0       [005] ..s1. 86325.814640: block_rq_complete: 8,0 R () 40000352 + 8 [0]
+       Thread-76-31418   [000] ..... 86325.819781: binder_transaction: transaction=3913390 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86325.819836: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+     thermal_BIG-193     [000] ..... 86325.820952: thermal_temperature: thermal_zone=BIG id=9 temp_prev=84000 temp=73000
+     kworker/0:2-31147   [000] ...1. 86325.821116: thermal_pressure_update: cpu=6 thermal_pressure=63
+    binder:981_4-5355    [000] ..... 86325.821700: binder_transaction: transaction=3913391 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+  HwBinder:910_4-1884    [000] ..... 86325.821797: binder_transaction_received: transaction=3913391
+  HwBinder:910_4-1884    [000] ..... 86325.821878: binder_transaction: transaction=3913392 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [000] ..... 86325.821910: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [000] ..... 86325.821930: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.821949: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [000] ..... 86325.821952: binder_transaction_received: transaction=3913392
+    binder:981_4-5355    [000] ..... 86325.822024: binder_transaction: transaction=3913393 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  HwBinder:910_4-1884    [000] ..... 86325.822071: binder_transaction_received: transaction=3913393
+  HwBinder:910_4-1884    [000] ..... 86325.822113: binder_transaction: transaction=3913394 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [000] ..... 86325.822139: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [000] ..... 86325.822153: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [000] ..... 86325.822170: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [000] ..... 86325.822173: binder_transaction_received: transaction=3913394
+ UnityGfxDeviceW-31394   [005] ..... 86325.830423: binder_transaction: transaction=3913395 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [000] ..... 86325.830455: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [005] ..... 86325.830472: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+       Thread-76-31418   [000] ..... 86325.836676: binder_transaction: transaction=3913397 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86325.836752: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [000] ..... 86325.837252: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [002] ..... 86325.837864: binder_transaction: transaction=3913398 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [002] ..... 86325.837928: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [002] ..... 86325.837944: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.837979: binder_transaction_received: transaction=3913398
+  decon0_kthread-294     [005] ..... 86325.838928: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [005] ..... 86325.838931: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [005] ..... 86325.838932: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8270
+  decon0_kthread-294     [005] ..... 86325.838933: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8270
+    binder:602_2-602     [002] ..... 86325.839036: binder_transaction: transaction=3913399 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [002] ..... 86325.839088: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [002] ..... 86325.839128: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [002] ..... 86325.839136: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [002] ..... 86325.839165: binder_transaction_received: transaction=3913399
+  BckgrndExec HP-707     [001] ..... 86325.839747: binder_transaction: transaction=3913400 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [001] ..... 86325.839806: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [000] ..... 86325.839817: binder_transaction_received: transaction=3913400
+  binder:31215_3-31225   [000] ..... 86325.840138: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [000] ..... 86325.853303: binder_transaction: transaction=3913401 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86325.853375: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ UnityGfxDeviceW-31394   [004] ..... 86325.863727: binder_transaction: transaction=3913402 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [000] ..... 86325.863764: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86325.863769: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+       Thread-76-31418   [000] ..... 86325.870343: binder_transaction: transaction=3913404 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86325.870412: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [000] ..... 86325.870569: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [001] ..... 86325.871242: binder_transaction: transaction=3913405 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [001] ..... 86325.871305: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [001] ..... 86325.871319: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.871382: binder_transaction_received: transaction=3913405
+  decon0_kthread-294     [000] ..... 86325.872319: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [000] ..... 86325.872323: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [000] ..... 86325.872325: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8271
+  decon0_kthread-294     [000] ..... 86325.872326: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8271
+    binder:981_4-5355    [004] ..... 86325.872340: binder_transaction: transaction=3913406 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+    binder:602_2-602     [001] ..... 86325.872365: binder_transaction: transaction=3913407 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:981_4-5355    [004] ..... 86325.872367: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  HwBinder:910_4-1884    [005] ..... 86325.872376: binder_transaction_received: transaction=3913406
+  HwBinder:910_4-1884    [005] ..... 86325.872430: binder_transaction: transaction=3913408 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [001] ..... 86325.872440: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [005] ..... 86325.872454: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [005] ..... 86325.872464: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [001] ..... 86325.872481: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [005] ..... 86325.872483: binder_transaction_received: transaction=3913408
+    binder:602_2-602     [001] ..... 86325.872489: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [001] ..... 86325.872520: binder_transaction_received: transaction=3913407
+    binder:981_4-5355    [005] ..... 86325.872528: binder_transaction: transaction=3913409 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+    binder:981_4-5355    [005] ..... 86325.872544: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  HwBinder:910_4-1884    [004] ..... 86325.872551: binder_transaction_received: transaction=3913409
+  HwBinder:910_4-1884    [004] ..... 86325.872579: binder_transaction: transaction=3913410 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [004] ..... 86325.872600: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [004] ..... 86325.872607: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [004] ..... 86325.872616: binder_transaction_received: transaction=3913410
+  binder:31215_3-31225   [001] ..... 86325.873429: binder_transaction_received: transaction=3913411
+  binder:31215_3-31225   [001] ..... 86325.873702: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   kworker/u17:3-30045   [001] ..... 86325.876048: block_rq_issue: 8,0 RM 4096 () 18358208 + 8 [kworker/u17:3]
+   kworker/u17:3-30045   [001] ..... 86325.876078: block_rq_issue: 8,0 W 4096 () 130298328 + 8 [kworker/u17:3]
+   kworker/u16:3-31166   [005] ..... 86325.876536: block_rq_issue: 8,0 W 4096 () 130298336 + 8 [kworker/u16:3]
+   kworker/u16:3-31166   [005] ..... 86325.876547: block_rq_issue: 8,0 W 327680 () 130298344 + 640 [kworker/u16:3]
+   kworker/u16:3-31166   [005] ..s.. 86325.876567: block_rq_complete: 8,0 W () 130298336 + 8 [0]
+     ksoftirqd/5-56      [005] ..s.. 86325.876873: block_rq_complete: 8,0 W () 130298344 + 640 [0]
+     thermal_BIG-193     [000] ..... 86325.876933: thermal_temperature: thermal_zone=BIG id=9 temp_prev=73000 temp=66000
+    kworker/5:5H-6727    [005] ..... 86325.876991: block_rq_issue: 8,0 RM 4096 () 18358592 + 8 [kworker/5:5H]
+    kworker/5:5H-6727    [005] ..... 86325.876995: block_rq_issue: 8,0 W 4096 () 130298984 + 8 [kworker/5:5H]
+    kworker/5:5H-6727    [005] ..... 86325.876999: block_rq_issue: 8,0 W 20480 () 130298992 + 40 [kworker/5:5H]
+    kworker/5:5H-6727    [005] ..... 86325.877001: block_rq_issue: 8,0 W 4096 () 130299032 + 8 [kworker/5:5H]
+    kworker/5:5H-6727    [005] ..... 86325.877004: block_rq_issue: 8,0 W 4096 () 130299040 + 8 [kworker/5:5H]
+    kworker/5:5H-6727    [005] ..... 86325.877008: block_rq_issue: 8,0 WM 114688 () 42702784 + 224 [kworker/5:5H]
+      tracepilot-7012    [005] ..s1. 86325.877053: block_rq_complete: 8,0 W () 130298984 + 8 [0]
+      tracepilot-7012    [005] ..s1. 86325.877060: block_rq_complete: 8,0 W () 130298992 + 40 [0]
+      tracepilot-7012    [005] ..s1. 86325.877065: block_rq_complete: 8,0 W () 130299032 + 8 [0]
+      tracepilot-7012    [005] ..s1. 86325.877067: block_rq_complete: 8,0 W () 130299040 + 8 [0]
+      tracepilot-7012    [005] ..s1. 86325.877071: block_rq_complete: 8,0 RM () 18358592 + 8 [0]
+      tracepilot-7012    [005] ..s.. 86325.877114: block_rq_complete: 8,0 WM () 42702784 + 224 [0]
+     kworker/0:2-31147   [000] ...1. 86325.877448: thermal_pressure_update: cpu=6 thermal_pressure=36
+   kworker/u16:3-31166   [007] ..... 86325.877603: block_rq_issue: 8,0 W 8192 () 130299048 + 16 [kworker/u16:3]
+          <idle>-0       [007] ..s1. 86325.877642: block_rq_complete: 8,0 W () 130299048 + 16 [0]
+       Thread-76-31418   [001] ..... 86325.886679: binder_transaction: transaction=3913412 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [001] ..... 86325.886754: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [004] ..... 86325.886758: binder_transaction_received: transaction=3913412
+    binder:600_3-1965    [004] ..... 86325.886780: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86325.896208: binder_transaction: transaction=3913413 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [001] ..... 86325.896222: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86325.896245: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [007] ..... 86325.896261: binder_transaction_received: transaction=3913413
+   kworker/u17:3-30045   [005] ..... 86325.896388: block_rq_issue: 8,0 W 524288 () 130299064 + 1024 [kworker/u17:3]
+    binder:600_3-1965    [007] ..... 86325.896418: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [002] ..... 86325.903692: binder_transaction: transaction=3913415 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [002] ..... 86325.903756: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [004] ..... 86325.903784: binder_transaction_received: transaction=3913415
+    binder:600_3-1965    [004] ..... 86325.903809: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [001] ..... 86325.903983: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_8-5283    [005] ..... 86325.903999: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [000] ..... 86325.904598: binder_transaction: transaction=3913416 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [000] ..... 86325.904684: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [000] ..... 86325.904699: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [000] ..... 86325.904734: binder_transaction_received: transaction=3913416
+     thermal_MID-206     [004] ..... 86325.904899: thermal_temperature: thermal_zone=MID id=10 temp_prev=64000 temp=65000
+  decon0_kthread-294     [004] ..... 86325.905780: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [004] ..... 86325.905782: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [004] ..... 86325.905783: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8272
+  decon0_kthread-294     [004] ..... 86325.905783: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8272
+    binder:602_2-602     [000] ..... 86325.906017: binder_transaction: transaction=3913417 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [000] ..... 86325.906076: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [000] ..... 86325.906117: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [000] ..... 86325.906125: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [000] ..... 86325.906154: binder_transaction_received: transaction=3913417
+  BckgrndExec HP-707     [001] ..... 86325.906716: binder_transaction: transaction=3913418 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [001] ..... 86325.906797: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_8-5283    [007] ..... 86325.906803: binder_transaction_received: transaction=3913418
+  binder:31215_8-5283    [007] ..... 86325.906910: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [002] ..... 86325.920092: binder_transaction: transaction=3913419 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [002] ..... 86325.920149: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [000] ..... 86325.920169: binder_transaction_received: transaction=3913419
+    binder:600_3-1965    [000] ..... 86325.920208: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [004] ..... 86325.922930: binder_transaction: transaction=3913420 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+    binder:981_4-5355    [004] ..... 86325.922955: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  HwBinder:910_4-1884    [005] ..... 86325.922964: binder_transaction_received: transaction=3913420
+  HwBinder:910_4-1884    [005] ..... 86325.923018: binder_transaction: transaction=3913421 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [005] ..... 86325.923044: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [005] ..... 86325.923053: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [005] ..... 86325.923064: binder_transaction_received: transaction=3913421
+    binder:981_4-5355    [005] ..... 86325.923108: binder_transaction: transaction=3913422 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  HwBinder:910_4-1884    [005] ..... 86325.923132: binder_transaction_received: transaction=3913422
+  HwBinder:910_4-1884    [005] ..... 86325.923156: binder_transaction: transaction=3913423 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [005] ..... 86325.923169: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [005] ..... 86325.923174: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [005] ..... 86325.923181: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [005] ..... 86325.923183: binder_transaction_received: transaction=3913423
+##### CPU 3 buffer started ####
+   kworker/u16:3-31166   [003] ..s.. 86325.925311: block_rq_complete: 8,0 W () 130316472 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.925575: block_rq_issue: 8,0 W 524288 () 130319544 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.926763: block_rq_issue: 8,0 W 524288 () 130320568 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s1. 86325.927089: block_rq_complete: 8,0 W () 130317496 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.928173: block_rq_issue: 8,0 W 524288 () 130321592 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.928690: block_rq_complete: 8,0 W () 130318520 + 1024 [0]
+ UnityGfxDeviceW-31394   [007] ..... 86325.928832: binder_transaction: transaction=3913424 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86325.928875: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [005] ..... 86325.928884: binder_transaction_received: transaction=3913424
+    binder:600_3-1965    [005] ..... 86325.929015: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   kworker/u16:3-31166   [003] ..... 86325.929628: block_rq_issue: 8,0 W 524288 () 130322616 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s1. 86325.929901: block_rq_complete: 8,0 W () 130319544 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.931076: block_rq_issue: 8,0 W 524288 () 130323640 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.931747: block_rq_complete: 8,0 W () 130320568 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.932598: block_rq_issue: 8,0 W 524288 () 130324664 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.933244: block_rq_complete: 8,0 W () 130321592 + 1024 [0]
+     thermal_BIG-193     [002] ..... 86325.933366: thermal_temperature: thermal_zone=BIG id=9 temp_prev=66000 temp=64000
+   kworker/u16:3-31166   [003] ..... 86325.934076: block_rq_issue: 8,0 W 524288 () 130325688 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s1. 86325.934490: block_rq_complete: 8,0 W () 130322616 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.935463: block_rq_issue: 8,0 W 524288 () 130326712 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s1. 86325.936402: block_rq_complete: 8,0 W () 130323640 + 1024 [0]
+       Thread-76-31418   [002] ..... 86325.936890: binder_transaction: transaction=3913427 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [002] ..... 86325.936957: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [001] ..... 86325.936971: binder_transaction_received: transaction=3913427
+   kworker/u16:3-31166   [003] ..... 86325.936994: block_rq_issue: 8,0 W 524288 () 130327736 + 1024 [kworker/u16:3]
+    binder:600_3-1965    [001] ..... 86325.937027: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  thermal_LITTLE-219     [006] ..... 86325.937038: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=65000 temp=65000
+   kworker/u16:3-31166   [003] ..s.. 86325.937806: block_rq_complete: 8,0 W () 130324664 + 1024 [0]
+  surfaceflinger-600     [000] ..... 86325.937897: binder_transaction: transaction=3913428 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [000] ..... 86325.937955: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [000] ..... 86325.937968: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [000] ..... 86325.937998: binder_transaction_received: transaction=3913428
+   kworker/u16:3-31166   [003] ..... 86325.938254: block_rq_issue: 8,0 W 524288 () 130328760 + 1024 [kworker/u16:3]
+  decon0_kthread-294     [006] ..... 86325.938973: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [006] ..... 86325.938975: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [006] ..... 86325.938975: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8273
+  decon0_kthread-294     [006] ..... 86325.938976: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8273
+   kworker/u16:3-31166   [003] ..s.. 86325.939023: block_rq_complete: 8,0 W () 130325688 + 1024 [0]
+    binder:602_2-602     [000] ..... 86325.939101: binder_transaction: transaction=3913429 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [000] ..... 86325.939176: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [000] ..... 86325.939317: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [000] ..... 86325.939325: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [000] ..... 86325.939387: binder_transaction_received: transaction=3913429
+  BckgrndExec HP-707     [006] ..... 86325.939928: binder_transaction: transaction=3913430 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+   kworker/u16:3-31166   [003] ..... 86325.939967: block_rq_issue: 8,0 W 524288 () 130329784 + 1024 [kworker/u16:3]
+  BckgrndExec HP-707     [006] ..... 86325.939968: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_8-5283    [007] ..... 86325.939979: binder_transaction_received: transaction=3913430
+  binder:31215_8-5283    [007] ..... 86325.940088: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   kworker/u16:3-31166   [003] ..... 86325.941002: block_rq_issue: 8,0 W 524288 () 130330808 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.941057: block_rq_complete: 8,0 W () 130326712 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.942169: block_rq_issue: 8,0 W 524288 () 130331832 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.942380: block_rq_complete: 8,0 W () 130327736 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.943354: block_rq_issue: 8,0 W 524288 () 130332856 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s1. 86325.943663: block_rq_complete: 8,0 W () 130328760 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.944503: block_rq_issue: 8,0 W 524288 () 130333880 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.945536: block_rq_issue: 8,0 W 524288 () 130334904 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.945979: block_rq_complete: 8,0 W () 130329784 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.946855: block_rq_issue: 8,0 W 524288 () 130335928 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.947297: block_rq_complete: 8,0 W () 130330808 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.948081: block_rq_issue: 8,0 W 524288 () 130336952 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.948610: block_rq_complete: 8,0 W () 130331832 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.949083: block_rq_issue: 8,0 W 524288 () 130337976 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.949904: block_rq_issue: 8,0 W 524288 () 130339000 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.950720: block_rq_issue: 8,0 W 524288 () 130340024 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.950963: block_rq_complete: 8,0 W () 130332856 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.951689: block_rq_issue: 8,0 W 524288 () 130341048 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s1. 86325.952202: block_rq_complete: 8,0 W () 130333880 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.952647: block_rq_issue: 8,0 W 524288 () 130342072 + 1024 [kworker/u16:3]
+       Thread-76-31418   [002] ..... 86325.953445: binder_transaction: transaction=3913431 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+   kworker/u16:3-31166   [003] ..s1. 86325.953498: block_rq_complete: 8,0 W () 130334904 + 1024 [0]
+    binder:600_3-1965    [006] ..... 86325.953510: binder_transaction_received: transaction=3913431
+       Thread-76-31418   [002] ..... 86325.953510: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [006] ..... 86325.953538: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   kworker/u16:3-31166   [003] ..... 86325.953652: block_rq_issue: 8,0 W 524288 () 130343096 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.954470: block_rq_issue: 8,0 W 524288 () 130344120 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.955309: block_rq_issue: 8,0 W 524288 () 130345144 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.955899: block_rq_complete: 8,0 W () 130335928 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.956279: block_rq_issue: 8,0 W 524288 () 130346168 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.957138: block_rq_complete: 8,0 W () 130336952 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.957322: block_rq_issue: 8,0 W 524288 () 130347192 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.958049: block_rq_issue: 8,0 W 524288 () 130348216 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.958438: block_rq_complete: 8,0 W () 130337976 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.958927: block_rq_issue: 8,0 W 524288 () 130349240 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.959665: block_rq_issue: 8,0 W 524288 () 130350264 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.960393: block_rq_issue: 8,0 W 524288 () 130351288 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.960750: block_rq_complete: 8,0 W () 130339000 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.961371: block_rq_issue: 8,0 W 524288 () 130352312 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.962050: block_rq_complete: 8,0 W () 130340024 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.962276: block_rq_issue: 8,0 W 524288 () 130353336 + 1024 [kworker/u16:3]
+ UnityGfxDeviceW-31394   [004] ..... 86325.962580: binder_transaction: transaction=3913432 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_8-5283    [001] ..... 86325.962727: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86325.962765: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [006] ..... 86325.962774: binder_transaction_received: transaction=3913432
+    binder:600_3-1965    [006] ..... 86325.962921: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   kworker/u16:3-31166   [003] ..... 86325.963020: block_rq_issue: 8,0 W 524288 () 130354360 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..s.. 86325.963417: block_rq_complete: 8,0 W () 130341048 + 1024 [0]
+   kworker/u16:3-31166   [003] ..... 86325.963896: block_rq_issue: 8,0 W 524288 () 130355384 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [003] ..... 86325.964629: block_rq_issue: 8,0 W 524288 () 130356408 + 1024 [kworker/u16:3]
+     thermal_MID-206     [006] ..... 86325.964872: thermal_temperature: thermal_zone=MID id=10 temp_prev=65000 temp=64000
+   kworker/u16:3-31166   [007] ..... 86325.965387: block_rq_issue: 8,0 W 524288 () 130357432 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.965685: block_rq_issue: 8,0 W 524288 () 130358456 + 1024 [kworker/u16:3]
+    Job.worker 1-31377   [003] ..s.. 86325.965687: block_rq_complete: 8,0 W () 130342072 + 1024 [0]
+   kworker/u16:3-31166   [007] ..... 86325.966014: block_rq_issue: 8,0 W 524288 () 130359480 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.966609: block_rq_issue: 8,0 W 524288 () 130360504 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.966903: block_rq_issue: 8,0 W 524288 () 130361528 + 1024 [kworker/u16:3]
+    Job.worker 1-31377   [003] ..s.. 86325.966976: block_rq_complete: 8,0 W () 130343096 + 1024 [0]
+          <idle>-0       [003] ..s1. 86325.968274: block_rq_complete: 8,0 W () 130344120 + 1024 [0]
+   kworker/u16:3-31166   [007] ..... 86325.968623: block_rq_issue: 8,0 W 524288 () 130362552 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.968743: block_rq_issue: 8,0 W 524288 () 130363576 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.969225: block_rq_issue: 8,0 W 4096 () 130364600 + 8 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.969227: block_rq_issue: 8,0 W 4096 () 130364608 + 8 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.969233: block_rq_issue: 8,0 W 458752 () 130364616 + 896 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.969496: block_rq_issue: 8,0 W 327680 () 130365512 + 640 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.969791: block_rq_issue: 8,0 W 458752 () 130366152 + 896 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.970083: block_rq_issue: 8,0 W 524288 () 130367048 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.970373: block_rq_issue: 8,0 W 524288 () 130368072 + 1024 [kworker/u16:3]
+       Thread-76-31418   [002] ..... 86325.970516: binder_transaction: transaction=3913435 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [002] ..... 86325.970600: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [000] ..... 86325.970613: binder_transaction_received: transaction=3913435
+    binder:600_3-1965    [000] ..... 86325.970675: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   kworker/u16:3-31166   [007] ..... 86325.970683: block_rq_issue: 8,0 W 524288 () 130369096 + 1024 [kworker/u16:3]
+  surfaceflinger-600     [003] ..... 86325.971575: binder_transaction: transaction=3913436 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [003] ..... 86325.971651: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [003] ..... 86325.971668: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+   kworker/u16:3-31166   [007] ..... 86325.971698: block_rq_issue: 8,0 W 524288 () 130370120 + 1024 [kworker/u16:3]
+    binder:602_2-602     [003] ..... 86325.971756: binder_transaction_received: transaction=3913436
+  decon0_kthread-294     [006] ..... 86325.972635: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [006] ..... 86325.972637: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [006] ..... 86325.972638: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8274
+  decon0_kthread-294     [006] ..... 86325.972638: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8274
+    binder:602_2-602     [003] ..... 86325.972765: binder_transaction: transaction=3913437 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [003] ..... 86325.972899: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [003] ..... 86325.972952: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [003] ..... 86325.972961: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [003] ..... 86325.972991: binder_transaction_received: transaction=3913437
+  BckgrndExec HP-707     [006] ..... 86325.973643: binder_transaction: transaction=3913438 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [006] ..... 86325.973669: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+     ksoftirqd/3-41      [003] ..s.. 86325.973680: block_rq_complete: 8,0 W () 130345144 + 1024 [0]
+  binder:31215_8-5283    [001] ..... 86325.973787: binder_transaction_received: transaction=3913438
+    binder:981_4-5355    [004] ..... 86325.973834: binder_transaction: transaction=3913439 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+  HwBinder:910_4-1884    [004] ..... 86325.973885: binder_transaction_received: transaction=3913439
+     ksoftirqd/3-41      [003] ..s.. 86325.973928: block_rq_complete: 8,0 W () 130346168 + 1024 [0]
+  HwBinder:910_4-1884    [004] ..... 86325.973953: binder_transaction: transaction=3913440 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [004] ..... 86325.973978: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [004] ..... 86325.973988: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [004] ..... 86325.974002: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [004] ..... 86325.974005: binder_transaction_received: transaction=3913440
+    binder:981_4-5355    [004] ..... 86325.974057: binder_transaction: transaction=3913441 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  binder:31215_8-5283    [001] ..... 86325.974061: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  HwBinder:910_4-1884    [004] ..... 86325.974087: binder_transaction_received: transaction=3913441
+  HwBinder:910_4-1884    [004] ..... 86325.974119: binder_transaction: transaction=3913442 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+     ksoftirqd/3-41      [003] ..s.. 86325.974125: block_rq_complete: 8,0 W () 130347192 + 1024 [0]
+  HwBinder:910_4-1884    [004] ..... 86325.974138: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [004] ..... 86325.974146: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [004] ..... 86325.974159: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [004] ..... 86325.974161: binder_transaction_received: transaction=3913442
+   kworker/u16:3-31166   [007] ..... 86325.974169: block_rq_issue: 8,0 W 393216 () 130371144 + 768 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.975318: block_rq_issue: 8,0 W 524288 () 130371912 + 1024 [kworker/u16:3]
+          <idle>-0       [003] ..s1. 86325.975645: block_rq_complete: 8,0 W () 130348216 + 1024 [0]
+   kworker/u16:3-31166   [007] ..... 86325.975911: block_rq_issue: 8,0 W 524288 () 130372936 + 1024 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.976374: block_rq_issue: 8,0 W 524288 () 130373960 + 1024 [kworker/u16:3]
+          <idle>-0       [003] ..s1. 86325.976966: block_rq_complete: 8,0 W () 130349240 + 1024 [0]
+          <idle>-0       [003] ..s1. 86325.978297: block_rq_complete: 8,0 W () 130350264 + 1024 [0]
+   kworker/u16:3-31166   [007] ..... 86325.978473: block_rq_issue: 8,0 W 65536 () 130374984 + 128 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.978542: block_rq_issue: 8,0 W 327680 () 130375112 + 640 [kworker/u16:3]
+          <idle>-0       [003] ..s1. 86325.980666: block_rq_complete: 8,0 W () 130351288 + 1024 [0]
+   kworker/u16:3-31166   [007] ..... 86325.980929: block_rq_issue: 8,0 W 393216 () 130375752 + 768 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.982024: block_rq_issue: 8,0 W 524288 () 130376520 + 1024 [kworker/u16:3]
+     ksoftirqd/3-41      [003] ..s.. 86325.982043: block_rq_complete: 8,0 W () 130352312 + 1024 [0]
+   kworker/u16:3-31166   [007] ..... 86325.982047: block_rq_issue: 8,0 W 131072 () 130377544 + 256 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.982174: block_rq_issue: 8,0 W 20480 () 130377800 + 40 [kworker/u16:3]
+   kworker/u16:3-31166   [007] ..... 86325.982261: block_rq_issue: 8,0 W 196608 () 130377840 + 384 [kworker/u16:3]
+          <idle>-0       [003] ..s1. 86325.984876: block_rq_complete: 8,0 W () 130353336 + 1024 [0]
+    kworker/3:4H-32449   [003] ..... 86325.985099: block_rq_issue: 8,0 W 8192 () 130378224 + 16 [kworker/3:4H]
+       Thread-76-31418   [001] ..... 86325.987099: binder_transaction: transaction=3913443 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+          <idle>-0       [003] ..s1. 86325.987202: block_rq_complete: 8,0 W () 130354360 + 1024 [0]
+    binder:600_3-1965    [000] ..... 86325.987256: binder_transaction_received: transaction=3913443
+       Thread-76-31418   [001] ..... 86325.987256: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [000] ..... 86325.987301: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    kworker/3:4H-32449   [003] ..... 86325.987482: block_rq_issue: 8,0 W 4096 () 130378240 + 8 [kworker/3:4H]
+     thermal_BIG-193     [002] ..... 86325.989072: thermal_temperature: thermal_zone=BIG id=9 temp_prev=64000 temp=69000
+     kworker/2:0-1826    [002] ...1. 86325.989181: thermal_pressure_update: cpu=6 thermal_pressure=63
+          <idle>-0       [003] ..s1. 86325.989246: block_rq_complete: 8,0 W () 130355384 + 1024 [0]
+          <idle>-0       [003] ..s1. 86325.990475: block_rq_complete: 8,0 W () 130356408 + 1024 [0]
+          <idle>-0       [003] ..s1. 86325.992105: block_rq_complete: 8,0 W () 130357432 + 1024 [0]
+  thermal_LITTLE-219     [003] ..... 86325.993268: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=65000 temp=65000
+          <idle>-0       [007] ..s1. 86325.993823: block_rq_complete: 8,0 W () 130358456 + 1024 [0]
+          <idle>-0       [007] ..s1. 86325.995035: block_rq_complete: 8,0 W () 130359480 + 1024 [0]
+ UnityGfxDeviceW-31394   [004] ..... 86325.995138: binder_transaction: transaction=3913444 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_8-5283    [001] ..... 86325.995153: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86325.995177: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [000] ..... 86325.995208: binder_transaction_received: transaction=3913444
+    binder:600_3-1965    [000] ..... 86325.995485: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+          <idle>-0       [007] ..s1. 86325.997009: block_rq_complete: 8,0 W () 130360504 + 1024 [0]
+          <idle>-0       [007] ..s1. 86325.998418: block_rq_complete: 8,0 W () 130361528 + 1024 [0]
+          <idle>-0       [007] ..s1. 86325.999610: block_rq_complete: 8,0 W () 130362552 + 1024 [0]
+          <idle>-0       [007] ..s1. 86326.001715: block_rq_complete: 8,0 W () 130364608 + 8 [0]
+          <idle>-0       [007] ..s1. 86326.001726: block_rq_complete: 8,0 W () 130364600 + 8 [0]
+          <idle>-0       [007] ..s1. 86326.001730: block_rq_complete: 8,0 W () 130363576 + 1024 [0]
+          <idle>-0       [007] ..s1. 86326.002950: block_rq_complete: 8,0 W () 130364616 + 896 [0]
+       Thread-76-31418   [000] ..... 86326.003829: binder_transaction: transaction=3913446 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86326.003918: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [003] ..... 86326.003928: binder_transaction_received: transaction=3913446
+    binder:600_3-1965    [003] ..... 86326.003984: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+          <idle>-0       [007] ..s1. 86326.004048: block_rq_complete: 8,0 W () 130365512 + 640 [0]
+  binder:31215_8-5283    [007] ..... 86326.004411: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [005] ..... 86326.004423: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [001] ..... 86326.005174: binder_transaction: transaction=3913447 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [001] ..... 86326.005237: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [001] ..... 86326.005251: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+          <idle>-0       [007] ..s1. 86326.005265: block_rq_complete: 8,0 W () 130366152 + 896 [0]
+    binder:602_2-602     [001] ..... 86326.005285: binder_transaction_received: transaction=3913447
+  decon0_kthread-294     [003] ..... 86326.006209: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [003] ..... 86326.006214: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [003] ..... 86326.006215: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8275
+  decon0_kthread-294     [003] ..... 86326.006217: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8275
+    binder:602_2-602     [001] ..... 86326.006334: binder_transaction: transaction=3913448 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [001] ..... 86326.006388: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [001] ..... 86326.006440: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [001] ..... 86326.006448: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+          <idle>-0       [007] ..s1. 86326.006484: block_rq_complete: 8,0 W () 130367048 + 1024 [0]
+  surfaceflinger-600     [001] ..... 86326.006501: binder_transaction_received: transaction=3913448
+  BckgrndExec HP-707     [003] ..... 86326.007134: binder_transaction: transaction=3913449 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [003] ..... 86326.007205: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [005] ..... 86326.007207: binder_transaction_received: transaction=3913449
+  binder:31215_3-31225   [005] ..... 86326.007376: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+          <idle>-0       [007] ..s1. 86326.008671: block_rq_complete: 8,0 W () 130368072 + 1024 [0]
+          <idle>-0       [007] ..s1. 86326.009903: block_rq_complete: 8,0 W () 130369096 + 1024 [0]
+          <idle>-0       [007] ..s1. 86326.011136: block_rq_complete: 8,0 W () 130370120 + 1024 [0]
+          <idle>-0       [007] ..s1. 86326.012300: block_rq_complete: 8,0 W () 130371144 + 768 [0]
+      tracepilot-7012    [007] ..s.. 86326.014489: block_rq_complete: 8,0 W () 130371912 + 1024 [0]
+          <idle>-0       [007] .Ns1. 86326.015728: block_rq_complete: 8,0 W () 130372936 + 1024 [0]
+          <idle>-0       [007] ..s1. 86326.016959: block_rq_complete: 8,0 W () 130373960 + 1024 [0]
+          <idle>-0       [007] ..s1. 86326.017936: block_rq_complete: 8,0 W () 130374984 + 128 [0]
+          <idle>-0       [007] ..s1. 86326.018121: block_rq_complete: 8,0 W () 130375112 + 640 [0]
+       pcdn_http-31688   [007] ..s1. 86326.019317: block_rq_complete: 8,0 W () 130375752 + 768 [0]
+       Thread-76-31418   [000] ..... 86326.020331: binder_transaction: transaction=3913450 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [000] ..... 86326.020384: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [003] ..... 86326.020398: binder_transaction_received: transaction=3913450
+    binder:600_3-1965    [003] ..... 86326.020437: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     thermal_MID-206     [003] ..... 86326.020963: thermal_temperature: thermal_zone=MID id=10 temp_prev=64000 temp=63000
+     thermal_G3D-228     [001] ..... 86326.021320: thermal_temperature: thermal_zone=G3D id=12 temp_prev=57000 temp=57000
+     thermal_G3D-228     [001] ..... 86326.021430: thermal_temperature: thermal_zone=G3D id=12 temp_prev=57000 temp=57000
+          <idle>-0       [007] ..s1. 86326.021470: block_rq_complete: 8,0 W () 130376520 + 1024 [0]
+          <idle>-0       [007] ..s1. 86326.021548: block_rq_complete: 8,0 W () 130377544 + 256 [0]
+          <idle>-0       [007] .Ns1. 86326.021572: block_rq_complete: 8,0 W () 130377800 + 40 [0]
+      tracepilot-7012    [007] ..s.. 86326.022606: block_rq_complete: 8,0 W () 130377840 + 384 [0]
+     ksoftirqd/7-70      [007] ..s.. 86326.022660: block_rq_complete: 8,0 W () 130378224 + 16 [0]
+     ksoftirqd/7-70      [007] ..s.. 86326.022667: block_rq_complete: 8,0 W () 130378240 + 8 [0]
+    binder:981_4-5355    [004] ..... 86326.025057: binder_transaction: transaction=3913451 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+    binder:981_4-5355    [004] ..... 86326.025127: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  HwBinder:910_4-1884    [000] .n... 86326.025136: binder_transaction_received: transaction=3913451
+  HwBinder:910_4-1884    [005] ..... 86326.025272: binder_transaction: transaction=3913452 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [005] ..... 86326.025341: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [005] ..... 86326.025361: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [005] ..... 86326.025381: binder_transaction_received: transaction=3913452
+    binder:981_4-5355    [005] ..... 86326.025451: binder_transaction: transaction=3913453 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  HwBinder:910_4-1884    [005] ..... 86326.025517: binder_transaction_received: transaction=3913453
+  HwBinder:910_4-1884    [005] ..... 86326.025556: binder_transaction: transaction=3913454 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [005] ..... 86326.025578: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [005] ..... 86326.025589: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [005] ..... 86326.025602: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [005] ..... 86326.025605: binder_transaction_received: transaction=3913454
+ UnityGfxDeviceW-31394   [007] ..... 86326.028231: binder_transaction: transaction=3913455 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+ UnityGfxDeviceW-31394   [007] ..... 86326.028272: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [003] ..... 86326.028295: binder_transaction_received: transaction=3913455
+    binder:600_3-1965    [003] ..... 86326.028572: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [005] ..... 86326.037104: binder_transaction: transaction=3913458 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [005] ..... 86326.037139: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [001] ..... 86326.037154: binder_transaction_received: transaction=3913458
+    binder:600_3-1965    [001] ..... 86326.037211: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [000] ..... 86326.038525: binder_transaction: transaction=3913459 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [000] ..... 86326.038586: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [000] ..... 86326.038601: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [000] ..... 86326.038746: binder_transaction_received: transaction=3913459
+  decon0_kthread-294     [003] ..... 86326.039611: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [003] ..... 86326.039617: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [003] ..... 86326.039618: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8276
+  decon0_kthread-294     [003] ..... 86326.039620: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8276
+    binder:602_2-602     [000] ..... 86326.039711: binder_transaction: transaction=3913460 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [000] ..... 86326.039764: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [000] ..... 86326.039814: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [000] ..... 86326.039822: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [000] ..... 86326.039854: binder_transaction_received: transaction=3913460
+  BckgrndExec HP-707     [003] ..... 86326.040420: binder_transaction: transaction=3913461 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [003] ..... 86326.040477: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [005] ..... 86326.040485: binder_transaction_received: transaction=3913461
+  binder:31215_3-31225   [005] ..... 86326.040617: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     thermal_BIG-193     [002] ..... 86326.045246: thermal_temperature: thermal_zone=BIG id=9 temp_prev=69000 temp=65000
+     kworker/2:0-1826    [002] ...1. 86326.045377: thermal_pressure_update: cpu=6 thermal_pressure=36
+  thermal_LITTLE-219     [003] ..... 86326.048948: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=65000 temp=64000
+       Thread-76-31418   [000] ..... 86326.053834: binder_transaction: transaction=3913462 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+    binder:600_3-1965    [001] ..... 86326.053942: binder_transaction_received: transaction=3913462
+       Thread-76-31418   [000] ..... 86326.053942: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [001] ..... 86326.053981: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86326.061489: binder_transaction: transaction=3913463 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [006] ..... 86326.061505: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86326.061552: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [000] ..... 86326.061582: binder_transaction_received: transaction=3913463
+    binder:600_3-1965    [000] ..... 86326.061944: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [003] ..... 86326.070941: binder_transaction: transaction=3913466 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [003] ..... 86326.071060: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [007] ..... 86326.071100: binder_transaction_received: transaction=3913466
+    binder:600_3-1965    [007] ..... 86326.071187: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [000] ..... 86326.073461: binder_transaction: transaction=3913467 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [000] ..... 86326.073545: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [000] ..... 86326.073567: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [000] ..... 86326.073619: binder_transaction_received: transaction=3913467
+  decon0_kthread-294     [001] ..... 86326.074973: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [001] ..... 86326.074981: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [001] ..... 86326.074984: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8277
+  decon0_kthread-294     [001] ..... 86326.074985: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8277
+    binder:602_2-602     [000] ..... 86326.075132: binder_transaction: transaction=3913468 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [000] ..... 86326.075211: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [000] ..... 86326.075290: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [000] ..... 86326.075303: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [000] ..... 86326.075349: binder_transaction_received: transaction=3913468
+    binder:981_4-5355    [001] ..... 86326.075426: binder_transaction: transaction=3913469 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+  HwBinder:910_4-1884    [001] ..... 86326.075538: binder_transaction_received: transaction=3913469
+  HwBinder:910_4-1884    [001] ..... 86326.075681: binder_transaction: transaction=3913470 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [001] ..... 86326.075729: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [001] ..... 86326.075759: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [001] ..... 86326.075789: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [001] ..... 86326.075794: binder_transaction_received: transaction=3913470
+    binder:981_4-5355    [001] ..... 86326.075911: binder_transaction: transaction=3913471 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  HwBinder:910_4-1884    [001] ..... 86326.075970: binder_transaction_received: transaction=3913471
+  HwBinder:910_4-1884    [001] ..... 86326.076036: binder_transaction: transaction=3913472 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [001] ..... 86326.076076: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [001] ..... 86326.076098: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [001] ..... 86326.076124: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  BckgrndExec HP-707     [005] ..... 86326.076125: binder_transaction: transaction=3913473 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+    binder:981_4-5355    [001] ..... 86326.076129: binder_transaction_received: transaction=3913472
+  BckgrndExec HP-707     [005] ..... 86326.076173: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [006] ..... 86326.076185: binder_transaction_received: transaction=3913473
+  binder:31215_3-31225   [006] ..... 86326.076327: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     thermal_MID-206     [001] ..... 86326.077019: thermal_temperature: thermal_zone=MID id=10 temp_prev=63000 temp=62000
+       Thread-76-31418   [003] ..... 86326.087541: binder_transaction: transaction=3913474 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [003] ..... 86326.087639: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [001] ..... 86326.087659: binder_transaction_received: transaction=3913474
+    binder:600_3-1965    [001] ..... 86326.087726: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86326.095051: binder_transaction: transaction=3913475 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [006] ..... 86326.095065: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86326.095129: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [001] ..... 86326.095165: binder_transaction_received: transaction=3913475
+    binder:600_3-1965    [001] ..... 86326.095595: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [003] ..... 86326.104446: binder_transaction: transaction=3913478 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [003] ..... 86326.104562: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [001] ..... 86326.104581: binder_transaction_received: transaction=3913478
+    binder:600_3-1965    [001] ..... 86326.104660: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     thermal_BIG-193     [002] ..... 86326.105001: thermal_temperature: thermal_zone=BIG id=9 temp_prev=65000 temp=61000
+  thermal_LITTLE-219     [003] ..... 86326.105014: thermal_temperature: thermal_zone=LITTLE id=11 temp_prev=64000 temp=62000
+  surfaceflinger-600     [000] ..... 86326.106698: binder_transaction: transaction=3913479 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+  surfaceflinger-600     [000] ..... 86326.106805: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  surfaceflinger-600     [000] ..... 86326.106830: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+    binder:602_2-602     [000] ..... 86326.106899: binder_transaction_received: transaction=3913479
+  decon0_kthread-294     [005] ..... 86326.108737: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [005] ..... 86326.108743: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [005] ..... 86326.108744: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8278
+  decon0_kthread-294     [005] ..... 86326.108745: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8278
+    binder:602_2-602     [000] ..... 86326.109141: binder_transaction: transaction=3913480 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [000] ..... 86326.109242: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [000] ..... 86326.109336: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [000] ..... 86326.109353: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [000] ..... 86326.109408: binder_transaction_received: transaction=3913480
+  BckgrndExec HP-707     [002] ..... 86326.110389: binder_transaction: transaction=3913481 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [002] ..... 86326.110531: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [007] ..... 86326.110550: binder_transaction_received: transaction=3913481
+  binder:31215_3-31225   [007] ..... 86326.110785: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+       Thread-76-31418   [005] ..... 86326.120734: binder_transaction: transaction=3913482 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [005] ..... 86326.120786: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [001] ..... 86326.120895: binder_transaction_received: transaction=3913482
+    binder:600_3-1965    [001] ..... 86326.120967: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [003] ..... 86326.125649: binder_transaction: transaction=3913483 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x12
+  HwBinder:910_4-1884    [003] ..... 86326.125768: binder_transaction_received: transaction=3913483
+  HwBinder:910_4-1884    [003] ..... 86326.125970: binder_transaction: transaction=3913484 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [003] ..... 86326.126034: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [003] ..... 86326.126073: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [003] ..... 86326.126110: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [003] ..... 86326.126117: binder_transaction_received: transaction=3913484
+    binder:981_4-5355    [003] ..... 86326.126236: binder_transaction: transaction=3913485 dest_node=3857176 dest_proc=910 dest_thread=0 reply=0 flags=0x10 code=0x23
+  HwBinder:910_4-1884    [003] ..... 86326.126309: binder_transaction_received: transaction=3913485
+  HwBinder:910_4-1884    [003] ..... 86326.126384: binder_transaction: transaction=3913486 dest_node=0 dest_proc=981 dest_thread=5355 reply=1 flags=0x0 code=0x0
+  HwBinder:910_4-1884    [003] ..... 86326.126436: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  HwBinder:910_4-1884    [003] ..... 86326.126463: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:981_4-5355    [003] ..... 86326.126497: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:981_4-5355    [003] ..... 86326.126503: binder_transaction_received: transaction=3913486
+   binder:1385_2-1742    [006] ..... 86326.126928: binder_transaction: transaction=3913487 dest_node=2650 dest_proc=1209 dest_thread=0 reply=0 flags=0x11 code=0x1
+   binder:1385_2-1742    [006] ..... 86326.126958: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:1209_8-2322    [001] ..... 86326.126993: binder_transaction_received: transaction=3913487
+   binder:1209_8-2322    [001] ..... 86326.127194: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  InputProcessor-2285    [000] ..... 86326.127803: binder_transaction: transaction=3913488 dest_node=12527 dest_proc=1982 dest_thread=0 reply=0 flags=0x10 code=0x1
+  InputProcessor-2285    [000] ..... 86326.127934: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+ android.hardwar-1982    [000] ..... 86326.127990: binder_transaction_received: transaction=3913488
+ android.hardwar-1982    [000] ..... 86326.128343: binder_transaction: transaction=3913489 dest_node=0 dest_proc=1209 dest_thread=2285 reply=1 flags=0x0 code=0x0
+  InputProcessor-2285    [000] ..... 86326.128442: binder_transaction_received: transaction=3913489
+ android.hardwar-1982    [000] ..... 86326.128549: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-1982    [000] ..... 86326.128574: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ InputDispatcher-1806    [004] ..... 86326.128622: binder_transaction: transaction=3913490 dest_node=541 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x34
+ InputDispatcher-1806    [004] ..... 86326.128673: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [003] ..... 86326.128707: binder_transaction_received: transaction=3913490
+    binder:600_3-1965    [003] ..... 86326.128958: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+   system_server-1209    [005] ..... 86326.129376: binder_transaction: transaction=3913491 dest_node=30429 dest_proc=2214 dest_thread=0 reply=0 flags=0x11 code=0x120
+   system_server-1209    [005] ..... 86326.129411: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+   binder:2214_E-10281   [003] ..... 86326.129443: binder_transaction_received: transaction=3913491
+   binder:2214_E-10281   [003] ..... 86326.129669: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86326.131046: binder_transaction: transaction=3913492 dest_node=535 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x8
+  binder:31215_3-31225   [000] ..... 86326.131071: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ UnityGfxDeviceW-31394   [004] ..... 86326.131187: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [003] ..... 86326.131219: binder_transaction_received: transaction=3913492
+    binder:600_3-1965    [003] ..... 86326.131638: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+     thermal_MID-206     [003] ..... 86326.136982: thermal_temperature: thermal_zone=MID id=10 temp_prev=62000 temp=61000
+       Thread-76-31418   [002] ..... 86326.137851: binder_transaction: transaction=3913494 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+       Thread-76-31418   [002] ..... 86326.137968: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [004] ..... 86326.137974: binder_transaction_received: transaction=3913494
+    binder:600_3-1965    [004] ..... 86326.138029: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  binder:31215_3-31225   [004] ..... 86326.138731: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  InputProcessor-2285    [006] ..... 86326.139658: binder_transaction: transaction=3913495 dest_node=12527 dest_proc=1982 dest_thread=0 reply=0 flags=0x10 code=0x1
+  InputProcessor-2285    [006] ..... 86326.139691: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+ android.hardwar-1982    [006] ..... 86326.139712: binder_transaction_received: transaction=3913495
+  surfaceflinger-600     [003] ..... 86326.139729: binder_transaction: transaction=3913496 dest_node=444 dest_proc=602 dest_thread=0 reply=0 flags=0x10 code=0x23
+ android.hardwar-1982    [006] ..... 86326.139788: binder_transaction: transaction=3913497 dest_node=0 dest_proc=1209 dest_thread=2285 reply=1 flags=0x0 code=0x0
+  surfaceflinger-600     [003] ..... 86326.139824: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+  InputProcessor-2285    [006] ..... 86326.139831: binder_transaction_received: transaction=3913497
+  surfaceflinger-600     [003] ..... 86326.139848: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=0
+ android.hardwar-1982    [006] ..... 86326.139873: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-1982    [006] ..... 86326.139883: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [003] ..... 86326.139909: binder_transaction_received: transaction=3913496
+ cent.tmgp.sgame-31215   [007] ..... 86326.140380: binder_transaction: transaction=3913498 dest_node=3487205 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+ cent.tmgp.sgame-31215   [007] ..... 86326.140412: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_3-1965    [002] ..... 86326.140442: binder_transaction_received: transaction=3913498
+    binder:600_3-1965    [002] ..... 86326.140545: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+ s.nexuslauncher-2224    [001] ..... 86326.140604: binder_transaction: transaction=3913499 dest_node=19411 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+ s.nexuslauncher-2224    [001] ..... 86326.140694: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:600_1-649     [005] ..... 86326.140707: binder_transaction_received: transaction=3913499
+    binder:600_1-649     [005] ..... 86326.140770: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  decon0_kthread-294     [002] ..... 86326.141428: dma_fence_wait_start: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86326.141436: dma_fence_wait_end: driver=mali timeline=mali.timeline context=17 seqno=382
+  decon0_kthread-294     [002] ..... 86326.141439: dma_fence_wait_start: driver=mali timeline=mali.timeline context=22776 seqno=8279
+  decon0_kthread-294     [002] ..... 86326.141442: dma_fence_wait_end: driver=mali timeline=mali.timeline context=22776 seqno=8279
+    binder:602_2-602     [003] ..... 86326.141602: binder_transaction: transaction=3913500 dest_node=0 dest_proc=600 dest_thread=600 reply=1 flags=0x0 code=0x0
+    binder:602_2-602     [003] ..... 86326.141692: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+    binder:602_2-602     [003] ..... 86326.141786: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    binder:602_2-602     [003] ..... 86326.141801: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  surfaceflinger-600     [003] ..... 86326.141944: binder_transaction_received: transaction=3913500
+  BckgrndExec HP-707     [002] ..... 86326.142817: binder_transaction: transaction=3913501 dest_node=3487661 dest_proc=31215 dest_thread=0 reply=0 flags=0x11 code=0x1
+  BckgrndExec HP-707     [002] ..... 86326.142948: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  binder:31215_3-31225   [001] ..... 86326.142978: binder_transaction_received: transaction=3913501
+  binder:31215_3-31225   [001] ..... 86326.143317: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  InputProcessor-2285    [004] ..... 86326.143922: binder_transaction: transaction=3913502 dest_node=12527 dest_proc=1982 dest_thread=0 reply=0 flags=0x10 code=0x1
+  InputProcessor-2285    [004] ..... 86326.143997: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+ android.hardwar-1982    [004] ..... 86326.144126: binder_transaction_received: transaction=3913502
+ android.hardwar-1982    [004] ..... 86326.144331: binder_transaction: transaction=3913503 dest_node=0 dest_proc=1209 dest_thread=2285 reply=1 flags=0x0 code=0x0
+  InputProcessor-2285    [004] ..... 86326.144372: binder_transaction_received: transaction=3913503
+ android.hardwar-1982    [004] ..... 86326.144427: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-1982    [004] ..... 86326.144439: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+  InputProcessor-2285    [004] ..... 86326.149691: binder_transaction: transaction=3913504 dest_node=12527 dest_proc=1982 dest_thread=0 reply=0 flags=0x10 code=0x1
+  InputProcessor-2285    [004] ..... 86326.149717: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+ android.hardwar-1982    [004] ..... 86326.149735: binder_transaction_received: transaction=3913504
+ android.hardwar-1982    [004] ..... 86326.149894: binder_transaction: transaction=3913505 dest_node=0 dest_proc=1209 dest_thread=2285 reply=1 flags=0x0 code=0x0
+  InputProcessor-2285    [004] ..... 86326.149932: binder_transaction_received: transaction=3913505
+ android.hardwar-1982    [004] ..... 86326.149978: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+ android.hardwar-1982    [004] ..... 86326.149988: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0
+    kworker/5:5H-6727    [005] ..... 86326.150916: block_rq_issue: 8,0 R 8192 () 3741128 + 16 [kworker/5:5H]
+   kworker/u17:1-3871    [007] ..... 86326.151683: block_rq_issue: 8,0 R 8192 () 3741128 + 16 [kworker/u17:1]
+   kworker/u17:1-3871    [007] ..... 86326.151716: block_rq_issue: 8,0 RA 131072 () 2385640 + 256 [kworker/u17:1]
+          <idle>-0       [005] ..s1. 86326.151892: block_rq_complete: 8,0 R () 3741128 + 16 [0]
+          <idle>-0       [005] ..s1. 86326.152015: block_rq_complete: 8,0 RA () 2385640 + 256 [0]
+              sh-6929    [004] ..... 86326.152702: block_rq_issue: 8,0 RA 73728 () 2385896 + 144 [sh]
+          <idle>-0       [004] ..s1. 86326.152869: block_rq_complete: 8,0 RA () 2385896 + 144 [0]
+              sh-6929    [004] ..... 86326.153532: block_rq_issue: 8,0 RA 106496 () 2385432 + 208 [sh]
+          <idle>-0       [004] ..s1. 86326.153748: block_rq_complete: 8,0 RA () 2385432 + 208 [0]
+       Thread-76-31418   [001] ..... 86326.154779: binder_transaction: transaction=3913506 dest_node=3492248 dest_proc=600 dest_thread=0 reply=0 flags=0x11 code=0x3
+  InputProcessor-2285    [005] ..... 86326.154832: binder_transaction: transaction=3913507 dest_node=12527 dest_proc=1982 dest_thread=0 reply=0 flags=0x10 code=0x1
+       Thread-76-31418   [001] ..... 86326.154851: binder_wait_for_work: proc_work=0 transaction_stack=0 thread_todo=1
+  InputProcessor-2285    [005] ..... 86326.154863: binder_wait_for_work: proc_work=0 transaction_stack=1 thread_todo=1
+    binder:600_1-649     [007] ..... 86326.154865: binder_transaction_received: transaction=3913506
+ android.hardwar-1982    [005] ..... 86326.154882: binder_transaction_received: transaction=3913507
+    binder:600_1-649     [007] ..... 86326.154921: binder_wait_for_work: proc_work=1 transaction_stack=0 thread_todo=0

@@ -1,0 +1,29 @@
+{
+  "framestats": "D:\\code\\011705.OSH\\OSH_2026_labs\\TracePilot_work\\data\\raw\\game_match_sgame_20260601_120627\\game_match_sgame_20260601_120627_framestats.txt",
+  "frame_count": 0,
+  "janky_frame_count_16_6ms": 0,
+  "jank_rate_16_6ms": 0,
+  "deadline_missed_count": 0,
+  "deadline_missed_rate": 0,
+  "frame_time_avg_ms": 0,
+  "frame_time_p50_ms": 0.0,
+  "frame_time_p95_ms": 0.0,
+  "frame_time_p99_ms": 0.0,
+  "input_to_complete_p95_ms": 0.0,
+  "draw_phase_p95_ms": 0.0,
+  "budget_ms": 16.666,
+  "reported_gfxinfo_summary": {
+    "reported_total_frames": 0,
+    "reported_janky_frames": 0,
+    "reported_jank_rate": 0.0,
+    "reported_frame_p50_ms": 4950,
+    "reported_frame_p90_ms": 4950,
+    "reported_frame_p95_ms": 4950,
+    "reported_frame_p99_ms": 4950,
+    "reported_missed_vsync": 0,
+    "reported_slow_ui_thread": 0,
+    "reported_slow_issue_draw_commands": 0,
+    "reported_frame_deadline_missed": 0
+  },
+  "frames_csv": "D:\\code\\011705.OSH\\OSH_2026_labs\\TracePilot_work\\data\\raw\\game_match_sgame_20260601_120627\\game_match_sgame_20260601_120627_frames.csv"
+}

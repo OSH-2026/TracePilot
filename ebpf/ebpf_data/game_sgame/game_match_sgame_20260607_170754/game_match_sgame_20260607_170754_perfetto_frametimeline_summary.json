@@ -1,0 +1,14 @@
+{
+  "trace": "/tmp/tracepilot_repo/ebpf/ebpf_data/game_sgame/game_match_sgame_20260607_170754/game_match_sgame_20260607_170754.perfetto-trace",
+  "package": "com.tencent.tmgp.sgame",
+  "source_filter": "all_frametimeline_rows_fallback",
+  "frames_csv": "/tmp/tracepilot_repo/ebpf/ebpf_data/game_sgame/game_match_sgame_20260607_170754/game_match_sgame_20260607_170754_perfetto_frametimeline_frames.csv",
+  "frame_count": 923,
+  "deadline_missed_count": 2,
+  "deadline_missed_rate": 0.0022,
+  "frame_time_avg_ms": 16.316,
+  "frame_time_p50_ms": 16.181,
+  "frame_time_p95_ms": 16.318,
+  "frame_time_p99_ms": 16.389,
+  "window_margin_ms": 2.0
+}

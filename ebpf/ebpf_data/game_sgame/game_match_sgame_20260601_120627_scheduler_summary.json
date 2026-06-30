@@ -1,0 +1,140 @@
+{
+  "duration_s": 59.178,
+  "event_counts": {
+    "sched_switch": 3293166,
+    "sched_waking": 1716093,
+    "sched_wakeup": 1716058,
+    "cpu_frequency": 54041
+  },
+  "target_thread_count": 31,
+  "target_on_cpu_ms": 39670.538,
+  "wakeup_to_run_count": 46066,
+  "wakeup_to_run_p95_ms": 0.153,
+  "wakeup_to_run_p99_ms": 0.589,
+  "runnable_delay_count": 4221,
+  "runnable_delay_p95_ms": 0.664,
+  "runnable_delay_p99_ms": 1.995,
+  "migration_count": 20098,
+  "top_threads_by_on_cpu_ms": [
+    {
+      "tid": 31334,
+      "comm": "UnityMain",
+      "on_cpu_ms": 22042.669,
+      "migrations": 1183
+    },
+    {
+      "tid": 31394,
+      "comm": "UnityGfxDeviceW",
+      "on_cpu_ms": 10231.31,
+      "migrations": 4411
+    },
+    {
+      "tid": 600,
+      "comm": "surfaceflinger",
+      "on_cpu_ms": 4527.546,
+      "migrations": 1879
+    },
+    {
+      "tid": 31215,
+      "comm": "cent.tmgp.sgame",
+      "on_cpu_ms": 2047.678,
+      "migrations": 6113
+    },
+    {
+      "tid": 2044,
+      "comm": "RenderThread",
+      "on_cpu_ms": 257.2,
+      "migrations": 238
+    },
+    {
+      "tid": 31235,
+      "comm": "RenderThread",
+      "on_cpu_ms": 124.964,
+      "migrations": 1817
+    },
+    {
+      "tid": 31269,
+      "comm": "cent.tmgp.sgame",
+      "on_cpu_ms": 113.548,
+      "migrations": 1424
+    },
+    {
+      "tid": 31372,
+      "comm": "UnityMain",
+      "on_cpu_ms": 97.459,
+      "migrations": 790
+    },
+    {
+      "tid": 686,
+      "comm": "surfaceflinger",
+      "on_cpu_ms": 64.049,
+      "migrations": 1314
+    },
+    {
+      "tid": 31416,
+      "comm": "UnityMain",
+      "on_cpu_ms": 56.722,
+      "migrations": 457
+    },
+    {
+      "tid": 6170,
+      "comm": "sgame:estPlugin",
+      "on_cpu_ms": 39.952,
+      "migrations": 36
+    },
+    {
+      "tid": 6182,
+      "comm": "sgame:estPlugin",
+      "on_cpu_ms": 32.655,
+      "migrations": 289
+    },
+    {
+      "tid": 5414,
+      "comm": "CrGpuMain",
+      "on_cpu_ms": 19.06,
+      "migrations": 36
+    },
+    {
+      "tid": 31228,
+      "comm": "cent.tmgp.sgame",
+      "on_cpu_ms": 5.997,
+      "migrations": 72
+    },
+    {
+      "tid": 5507,
+      "comm": "CompositorGpuTh",
+      "on_cpu_ms": 4.575,
+      "migrations": 15
+    },
+    {
+      "tid": 8477,
+      "comm": "allocateBuffers",
+      "on_cpu_ms": 1.243,
+      "migrations": 2
+    },
+    {
+      "tid": 31441,
+      "comm": "UnityGfxDeviceW",
+      "on_cpu_ms": 1.092,
+      "migrations": 1
+    },
+    {
+      "tid": 10994,
+      "comm": "RenderThread",
+      "on_cpu_ms": 0.67,
+      "migrations": 5
+    },
+    {
+      "tid": 8509,
+      "comm": "allocateBuffers",
+      "on_cpu_ms": 0.422,
+      "migrations": 0
+    },
+    {
+      "tid": 8153,
+      "comm": "UnityMain",
+      "on_cpu_ms": 0.314,
+      "migrations": 1
+    }
+  ]
+}

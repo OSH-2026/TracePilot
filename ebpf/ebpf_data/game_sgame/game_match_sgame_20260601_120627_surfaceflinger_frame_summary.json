@@ -1,0 +1,18 @@
+{
+  "source": "SurfaceFlinger --latency selected app layer",
+  "layer": "RequestedLayerState{Background for 4a69168 SurfaceView[com.tencent.tmgp.sgame/com.tencent.tmgp.sgame.SGameActivity]#1702 parentId=1700 relativeParentId=1698 z=-2147483648}",
+  "latency_trace": "D:\\code\\011705.OSH\\OSH_2026_labs\\TracePilot_work\\data\\raw\\game_match_sgame_20260601_120627\\game_match_sgame_20260601_120627_surfaceflinger_latency.txt",
+  "frames_csv": "D:\\code\\011705.OSH\\OSH_2026_labs\\TracePilot_work\\data\\raw\\game_match_sgame_20260601_120627\\game_match_sgame_20260601_120627_surfaceflinger_frames.csv",
+  "refresh_period_ns": 16666667,
+  "refresh_period_ms": 16.667,
+  "classification_rule": "presentation interval > 1.5 * refresh period",
+  "frame_count": 0,
+  "deadline_missed_count": 0,
+  "deadline_missed_rate": 0,
+  "frame_time_avg_ms": 0,
+  "frame_time_p50_ms": 0.0,
+  "frame_time_p95_ms": 0.0,
+  "frame_time_p99_ms": 0.0,
+  "reported_gfxinfo_summary": {},
+  "note": "SurfaceFlinger presentation intervals cover the selected app surface; labels are interval-based suspected jank, not app FrameDeadline verdicts."
+}

@@ -1,0 +1,8 @@
+{
+  "tag": "game_play_sgame_20260601_1200",
+  "package": "com.tencent.tmgp.sgame",
+  "duration_s": 25,
+  "captured_at": "2026-06-01T12:00:44.301180+08:00",
+  "foreground_at_start": "com.tencent.tmgp.sgame",
+  "device_script": "/data/local/tmp/android_game_aligned_capture.sh"
+}

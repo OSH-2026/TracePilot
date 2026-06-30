@@ -242,6 +242,7 @@ User Interaction
 | 页面切换（基础版） | [ebpf/ebpf_data/页面切换-基础版数据/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88%E6%95%B0%E6%8D%AE) | 基础页面切换场景的 perfetto trace 与事件记录 |
 | 信息流滚动 | [ebpf/ebpf_data/feed_scroll/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/feed_scroll) | Chrome 信息流滚动场景的帧统计、线程分析、Binder/ftrace 补充数据与 CriticalScore 评分 |
 | 相机 | [ebpf/src/camera/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/src/camera) | **Google Camera 拍照**: 13 探针 + 36MB buffer + 内核内延迟计算 + 8维评分 + 6信号归因 + 图可视化 + 多会话对比 + 全自动 Pipeline |
+| 游戏（王者荣耀） | [ebpf/ebpf_data/game_sgame/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/game_sgame) | 王者荣耀对局场景的 Perfetto FrameTimeline、eBPF/TracePilot 事件、Binder/Futex 候选图、CPU frequency/big-little 帧窗口归因与 Step1/Step2 汇总 |
 | 页面切换-视频浏览 | [ebpf/ebpf_data/页面切换-视频浏览数据/](https://github.com/OSH-2026/TracePilot/tree/main/ebpf/ebpf_data/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E8%A7%86%E9%A2%91%E6%B5%8F%E8%A7%88%E6%95%B0%E6%8D%AE) | 页面切换 + 视频浏览双场景，含 Perfetto trace、eBPF 事件、CriticalPath 图、Inference 证据链、多会话对比报告 |
 
 ### 各场景数据类型
@@ -258,6 +259,7 @@ User Interaction
 | 页面切换场景数据分析报告 | [behavior_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/behavior_analysis_report.md) |
 | 页面切换-基础版数据分析报告 | [页面切换-基础版数据分析报告.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E5%9F%BA%E7%A1%80%E7%89%88%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.md) |
 | 信息流滚动场景数据分析报告 | [feed_scroll_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/feed_scroll_analysis_report.md) |
+| 游戏（王者荣耀）场景分析报告 | [sgame_gameplay_analysis_report.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/sgame_gameplay_analysis_report.md) |
 | 页面切换-视频浏览综合分析报告 | [页面切换-视频浏览综合分析报告.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E8%A7%86%E9%A2%91%E6%B5%8F%E8%A7%88%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.md) |
 | 页面切换-视频浏览技术报告 | [页面切换-视频浏览技术报告.md](https://github.com/OSH-2026/TracePilot/blob/main/doc/report/%E9%A1%B5%E9%9D%A2%E5%88%87%E6%8D%A2-%E8%A7%86%E9%A2%91%E6%B5%8F%E8%A7%88%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A.md) |
 

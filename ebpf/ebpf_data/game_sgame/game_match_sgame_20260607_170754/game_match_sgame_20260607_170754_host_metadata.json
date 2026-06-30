@@ -1,0 +1,27 @@
+{
+  "tag": "game_match_sgame_20260607_170754",
+  "package": "com.tencent.tmgp.sgame",
+  "duration_s": 60,
+  "captured_at": "2026-06-07T17:07:55.233353+08:00",
+  "foreground_at_start": "com.tencent.tmgp.sgame",
+  "device_script": "/data/local/tmp/android_game_aligned_capture.sh",
+  "perfetto_config": "game_match_sgame_20260607_170754_perfetto.pbtx",
+  "perfetto_remote_config": "/data/local/tmp/game_match_sgame_20260607_170754_perfetto.pbtx",
+  "perfetto_remote_trace": "/data/misc/perfetto-traces/game_match_sgame_20260607_170754.perfetto-trace",
+  "perfetto_trace_file": "game_match_sgame_20260607_170754.perfetto-trace",
+  "perfetto_trace_size_bytes": 134120931,
+  "perfetto_wait_output": "",
+  "perfetto_pull_output": "pulled via adb exec-out su base64 decode because direct adb pull was permission denied",
+  "trace_file": "game_match_sgame_20260607_170754_events.bin",
+  "trace_format": "tracepilot_events_bin",
+  "trace_size_bytes": 1027831224,
+  "postprocess_notes": [
+    "The device tracepilot produced events.bin instead of JSONL; JSONL postprocessing was skipped."
+  ],
+  "perfetto_frametimeline_frames_csv": "game_match_sgame_20260607_170754_perfetto_frametimeline_frames.csv",
+  "perfetto_frametimeline_summary_json": "game_match_sgame_20260607_170754_perfetto_frametimeline_summary.json",
+  "perfetto_frame_count": 923,
+  "perfetto_deadline_missed_count": 2,
+  "perfetto_deadline_missed_rate": 0.0022,
+  "perfetto_frame_time_p95_ms": 16.318
+}
