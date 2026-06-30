@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 移动端 eBPF 行为特征数据分析报告
 
 **生成说明**：本报告由 `behavior_features.csv` 自动汇总与解读生成；附录包含完整原始数据（未删减）。
@@ -829,7 +828,6 @@ com.google.android.apps.nbu.files,2,3,2,1.5,1.5
 ```
 
 ---
-=======
 # 移动端 eBPF 行为特征数据分析报告
 
 **生成说明**：本报告由 `behavior_features.csv` 自动汇总与解读生成；附录包含完整原始数据（未删减）。
@@ -1658,7 +1656,6 @@ com.google.android.apps.nbu.files,2,3,2,1.5,1.5
 "1777046809","com.tencent.mobileqq:MSF","1","1","1","1"
 "1777046809","com.termux","1","1","1","1"
 ```
-
 ---
 >>>>>>> e021c6bfb877fb5165df1fee7abfb3908cb1bfd0
 *报告结束*
