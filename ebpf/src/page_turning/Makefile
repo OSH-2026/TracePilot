@@ -1,5 +1,6 @@
 # page_turning Makefile
 # Cross-compile for Android aarch64 (Pixel 6a)
+# Builds BPF bytecode (page_turning.bpf.o) and Android loader binary.
 #
 # Environment variables (set by Dockerfile or manually):
 #   ANDROID_NDK  - path to Android NDK r26b

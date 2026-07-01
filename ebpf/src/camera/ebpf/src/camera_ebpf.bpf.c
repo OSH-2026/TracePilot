@@ -1,3 +1,9 @@
+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
+/*
+ * camera_ebpf.bpf.c — Camera 场景 eBPF 内核探针 (13 探针)
+ * 挂载 sched/binder/futex/cpu_freq/thermal/irq/softirq/mem_reclaim，
+ * 内核内完成 wakeup→switch 延迟配对，通过双 ringbuf 输出。
+ */
 #include "vmlinux.h"
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
