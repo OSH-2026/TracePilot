@@ -1,0 +1,24 @@
+{
+  "session_id": "71e95152-ea91-4f9c-9d1e-c732bc20a7b9-184628",
+  "package": "com.android.chrome",
+  "hint_count": 1,
+  "default_ttl_ms": 300,
+  "hints": [
+    {
+      "hint_id": "hint-1-1748889501",
+      "type": "PROTECT_UI_CHAIN",
+      "target": {
+        "tid": 606,
+        "pid": 606,
+        "comm": "surfaceflinger",
+        "package": "com.android.chrome"
+      },
+      "ttl_ms": 300,
+      "rollback": {"action":"restore_affinity","mask":"all"},
+      "reason": "Protect UI compositor chain during interaction jank burst",
+      "critical_score": 0.2841,
+      "runnable_delay_p95_ns": 0,
+      "created_at_ns": 1748889501445210325
+    }
+  ]
+}
