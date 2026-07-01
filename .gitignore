@@ -58,3 +58,7 @@ Thumbs.db
 .vscode/
 
 env/
+
+# ── Screenshots & temporary files ──
+temp/
+*.png
