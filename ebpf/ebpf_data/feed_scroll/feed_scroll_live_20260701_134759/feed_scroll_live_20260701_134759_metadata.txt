@@ -1,0 +1,9 @@
+package=com.android.chrome
+duration_s=40
+started_at=2025-06-03T02:28:17+0800
+  mCurrentFocus=Window{168b0cf u0 com.android.chrome/com.google.android.apps.chrome.Main}
+  mFocusedApp=ActivityRecord{177364476 u0 com.android.chrome/com.google.android.apps.chrome.Main t299}
+finished_at=2025-06-03T02:28:59+0800
+tracepilot_status=0
+  mCurrentFocus=Window{168b0cf u0 com.android.chrome/com.google.android.apps.chrome.Main}
+  mFocusedApp=ActivityRecord{177364476 u0 com.android.chrome/com.google.android.apps.chrome.Main t299}
