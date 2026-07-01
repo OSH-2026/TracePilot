@@ -1,5 +1,10 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 /*
+ * hint_engine.c — Safe scheduling hint engine
+ * Generates BOOST_THREAD / UCLAMP_MIN / PROTECT_UI_CHAIN hints
+ * with TTL expiration, spin-protection, blacklist, and audit log.
+ */
+/*
  * Safe Hint Engine — generate temporary scheduling hints with TTL + rollback.
  * Offline mode uses dry-run actuator (audit log only).
  */

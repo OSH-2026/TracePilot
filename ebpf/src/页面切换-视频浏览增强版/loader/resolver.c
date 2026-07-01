@@ -1,13 +1,11 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 /*
- * PID → UID → package_name resolver.
+ * resolver.c — PID to UID to package_name resolver
  *
  * Resolution chain:
  *   1. /proc/<pid>/cmdline  →  may contain package name directly
  *   2. /proc/<pid>/status    →  uid
  *   3. pm list packages -U   →  uid → package_name
- *
- * Uses an in-memory array cache for fast uid→package lookups.
  */
 
 #include <stdio.h>

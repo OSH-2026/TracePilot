@@ -1,5 +1,10 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 /*
+ * frame_aggregator.c — Per-frame event aggregation engine
+ * Groups eBPF raw events by Perfetto frame windows,
+ * computes per-frame runnable delay, binder depth, futex intensity.
+ */
+/*
  * Frame-window aggregation engine — Enhanced with Interaction Critical Path Graph.
  *
  * New capabilities (v2):

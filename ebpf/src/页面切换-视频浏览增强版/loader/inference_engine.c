@@ -1,4 +1,9 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
+/*
+ * inference_engine.c — Multi-signal evidence fusion engine
+ * Weighted fusion of runnable_delay / binder / futex / thermal /
+ * decode_late / system_irq → hypothesis + confidence → hint mapping.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>

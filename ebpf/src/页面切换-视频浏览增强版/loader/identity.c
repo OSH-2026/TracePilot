@@ -1,5 +1,10 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 /*
+ * identity.c — Thread identity resolver
+ * Maps TID to Session / ProcessInstanceId / ThreadKey using
+ * /proc filesystem and Perfetto static lineage data.
+ */
+/*
  * Identity layer: App Session, ProcessInstanceId, ThreadKey, FrameKey.
  * Supports offline sidecar JSON beside events.bin.
  */

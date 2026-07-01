@@ -1,4 +1,10 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
+/*
+ * session_compare.c — Multi-session comparison engine
+ * Reads multiple result.json snapshots, computes jank rate,
+ * root-cause distribution, Top-5 overlap matrix,
+ * outputs compare_report.json.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>

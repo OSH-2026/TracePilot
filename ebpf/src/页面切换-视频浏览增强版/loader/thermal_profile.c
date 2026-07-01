@@ -1,4 +1,10 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
+/*
+ * thermal_profile.c — Thermal profile loader and aggregator
+ * Reads thermal_profile.txt from Perfetto SQL extraction,
+ * computes per-jank-window temperature rise, peak, and
+ * freq_throttle_ratio for graph integration.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
