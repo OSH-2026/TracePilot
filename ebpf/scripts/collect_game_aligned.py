@@ -239,14 +239,21 @@ def main():
     device_prefix = f"/data/local/tmp/{tag}"
     adb(adb_path, ["push", str(DEVICE_SCRIPT), device_script], timeout=60)
     shell(adb_path, f"chmod 755 {device_script}", timeout=30, root=True)
+    device_dependency_note = ""
     dependency_check = shell(
         adb_path,
-        "test -x /data/local/tmp/tracepilot && test -r /data/local/tmp/tracepilot.bpf.o && echo ready",
+        "test -x /data/local/tmp/tracepilot && echo tracepilot_ready; "
+        "test -r /data/local/tmp/tracepilot.bpf.o && echo bpf_obj_ready",
         timeout=30,
         root=True,
     )
-    if "ready" not in dependency_check:
-        raise SystemExit("tracepilot or tracepilot.bpf.o is missing on the device.")
+    if "tracepilot_ready" not in dependency_check:
+        raise SystemExit("tracepilot is missing on the device.")
+    if "bpf_obj_ready" not in dependency_check:
+        device_dependency_note = (
+            "tracepilot.bpf.o is missing; android_game_aligned_capture.sh will use "
+            "the newer tracepilot -p/-e events.bin fallback path."
+        )
 
     metadata = {
         "tag": tag,
@@ -255,6 +262,7 @@ def main():
         "captured_at": datetime.now().astimezone().isoformat(),
         "foreground_at_start": active_package,
         "device_script": device_script,
+        "device_dependency_note": device_dependency_note,
     }
     perfetto_info = {}
     if args.perfetto:
