@@ -118,7 +118,9 @@ ftrace 结果说明：对局窗口中 Binder 相关事件增加，符合游戏�
 3. 下一轮补充 Perfetto，对齐 `sched`、`freq`、`binder`、`surfaceflinger/frame timeline`，建立帧级 ground truth。
 4. 基于 `threads_summary.csv` 进一步做关键线程评分，将 `UnityMain`、`UnityGfxDeviceW`、`surfaceflinger`、`RenderThread` 作为正样本候选。
 
-## 9. Step1：基础部分补齐
+## 9. Step1：基础部分补齐（2026-06-01 旧样本状态）
+
+本节记录 2026-06-01 两组游戏样本的 Step1 补齐情况，属于早期旧样本状态。第 12 节已经用 2026-06-07 同步采集样本补充 Perfetto FrameTimeline、Perfetto sched/cpu frame-window 分析和 TracePilot dry-run 结果；因此当前最终口径以第 12.5 和第 12.6 节为准。
 
 本轮在现有两组游戏样本上补充生成了 Step1 汇总产物：
 
@@ -127,7 +129,7 @@ ftrace 结果说明：对局窗口中 Binder 相关事件增加，符合游戏�
 | `game_play_sgame_20260601_1200` | `game_play_sgame_20260601_1200_step1_summary.json` | `game_play_sgame_20260601_1200_threads_scored.csv` |
 | `game_match_sgame_20260601_120627` | `game_match_sgame_20260601_120627_step1_summary.json` | `game_match_sgame_20260601_120627_threads_scored.csv` |
 
-对照 Step1 的 7 项要求，当前状态如下：
+对照 Step1 的 7 项要求，当时状态如下：
 
 | Step1 项 | 游戏场景当前状态 | 说明 |
 |---|---|---|
@@ -151,7 +153,7 @@ ftrace 结果说明：对局窗口中 Binder 相关事件增加，符合游戏�
 
 解释：`UnityGfxDeviceW` 在对局窗口中同时具备较高 CPU 消耗、较高迁移次数和较明显的 runnable delay，因此在归一化评分中超过 `UnityMain`，成为当前最强的调度候选目标。`cent.tmgp.sgame` 的 runnable p95 和迁移数也偏高，适合作为游戏主进程侧候选线程。
 
-## 10. Step2：增强分析补齐
+## 10. Step2：增强分析补齐（2026-06-01 旧样本状态）
 
 本轮新增脚本 `ebpf/scripts/build_game_step_analysis.py`，用于对游戏样本生成 Step1/Step2 分析产物。对每个样本新增的 Step2 文件包括：
 
@@ -238,7 +240,9 @@ blocked_without_frame_ground_truth
 
 结论：`cpu_only` 会稳定选到主负载线程，但不关注尾部 runnable delay；`latency_only` 容易偏向短时尾延迟线程；`pipeline_critical_score` 更符合游戏渲染链路，能同时覆盖 `UnityGfxDeviceW`、`UnityMain`、游戏主进程线程与 `surfaceflinger`。因此当前建议将 `pipeline_critical_score` 作为后续 hint target selection 的默认策略。
 
-## 11. 当前 Step1/Step2 完成状态
+## 11. 2026-06-01 旧样本 Step1/Step2 完成状态
+
+下表只描述 2026-06-01 两个早期游戏样本的状态，保留它的目的在于说明项目如何从“缺帧级 ground truth”推进到第 12 节的同步采集版本。答辩时应优先使用第 12 节的当前最终状态。
 
 | 阶段 | 状态 | 可用于答辩的说法 |
 |---|---|---|
@@ -438,7 +442,27 @@ TracePilot dry-run hint 输出 1 条建议：
 | Step2 jank cause classifier | 低置信度候选分类 | 2 个 jank frame 均候选为 `CPU_CONTENTION`，但 confidence=0.0 且 evidence 为空 |
 | Step2 启发式策略对比 | smoke test 可用 | graph/heuristic AP@K 与 Top-K overlap 已输出，但样本只有 2 个 missed frame |
 
-### 12.6 提交数据说明
+### 12.6 当前最终答辩口径
+
+当前王者荣耀场景可以表述为：**Step1/Step2 的离线分析链路已经跑通，且 2026-06-07 样本补齐了帧窗口级证据；但真实 hint 下发和严格因果证明仍未完成。**
+
+可直接展示的完成项：
+
+- Step1 已有 923 个 Perfetto FrameTimeline frame 和 2 个 deadline missed，可以作为本轮游戏前台窗口不变条件下的帧级标签。
+- Step1 已通过 Perfetto `thread_state` 完成 frame-window 内 Running/Runnable 聚合，Top 线程包括 `UnityMain`、`CoreThread`、`surfaceflinger`、`NativeThread`。
+- Step2 已生成 Binder/Futex 候选图和增强事件归属：Binder call 42,250 次，Futex wait 528,421 次。
+- Step2 已完成 frame-window 级 CPU frequency / big-little 归因，`UnityMain` 和 `UnityGfxDeviceW` 在本轮帧窗口内全部运行在 middle/big cluster。
+- Hint Engine 已有 dry-run schema：`PROTECT_UI_CHAIN -> surfaceflinger`，TTL 300 ms，包含 rollback 字段。
+
+必须保守说明的限制：
+
+- FrameTimeline 使用 `all_frametimeline_rows_fallback`，不是按游戏进程精确绑定。
+- TracePilot 离线 graph 的 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边仍为 0，调度归因主要依赖 Perfetto crosscheck。
+- `hints.json` 的 package 继承了 `com.luna.music` 自动误判，不能直接用于真实下发。
+- Jank cause classifier 目前只是低置信度候选，2 个 jank frame 均为 `CPU_CONTENTION` 且 confidence=0.0。
+- 尚未做 baseline vs intervention 的真实干预效果对比。
+
+### 12.7 提交数据说明
 
 为避免将几个 GB 的原始散文件直接提交，本轮将 raw/replay 输入打包为单个归档，并用 manifest 记录内容和 SHA256：
 
