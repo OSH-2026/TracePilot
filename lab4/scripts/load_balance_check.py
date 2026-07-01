@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+load_balance_check.py — Ray 分布式负载均衡检查
+验证多节点 Ray 推理任务的任务分配均衡性，
+输出各节点吞吐量分布和 load_balance_result.txt。
+"""
 """Lab4 Ray分布式 - 负载均衡策略校验"""
 
 import math

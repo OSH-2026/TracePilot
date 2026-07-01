@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 """
 Lab 4 - Ray 选做：负载均衡调度对比
+对比默认调度与自定义吞吐量感知调度在各节点的任务分配
+和吞吐量差异，输出 load_balance_result.txt。
+
+参数:
+  --num-workers    工作节点数 (默认: 2)
+  --batch-size     每批推理请求数 (默认: 8)
+  --duration       压力测试持续时间/秒 (默认: 60)
+"""
 策略1: 轮询 (round-robin)
 策略2: 按历史平均延迟分配 (latency-aware)
 

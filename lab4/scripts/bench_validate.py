@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+bench_validate.py — llama.cpp 推理性能基准验证
+测量本地模型在不同参数配置下的 tokens/s 和内存占用，
+输出 benchmark_results.txt 供性能对比分析。
+"""
 """Lab4 llama.cpp - 本地推理性能基准测试辅助"""
 
 import subprocess

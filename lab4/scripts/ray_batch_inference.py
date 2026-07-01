@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
 Lab 4 - Ray 多机批量推理任务调度
+使用 Ray 框架在多节点(Mac M5 + Windows RTX4060)上并行执行
+llama.cpp 批量推理，输出各节点吞吐量(tokens/s)和延迟分布。
+"""
 使用 Ray 将 prompt 分发给多台机器的 llama-server
 支持串行、单机并行(ThreadPool)、Ray并行(轮询)、Ray并行(固定分配) 四种模式
 """

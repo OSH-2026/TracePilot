@@ -1,5 +1,13 @@
-# Lab 4 - 从机 (Windows Slave) 一键部署脚本
-# 在 Windows PowerShell (管理员) 中运行
+<# 
+.SYNOPSIS
+    Lab 4 - 从机 (Windows Slave) 一键部署脚本
+.DESCRIPTION
+    在 Windows 从机上通过 WSL2 启动 llama.cpp RPC server，
+    配置 CUDA 后端并开放指定端口供 Mac 主机调用。
+.NOTES
+    要求：WSL2 Ubuntu 24.04 + NVIDIA GPU + CUDA 12.6
+    在 Windows PowerShell (管理员) 中运行
+#>
 
 $WSL2_USER="pzy"
 $WSL2_TAILSCALE="100.107.8.1"     # WSL2 Tailscale IP (推荐)
