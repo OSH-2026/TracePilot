@@ -322,6 +322,8 @@ Top critical threads 如下：
 
 本机当前 Chrome 将网页滚动绘制提交给独立合成 surface，`dumpsys gfxinfo com.android.chrome` 在滚动窗口中仅报告 1 帧，不能作为网页内容的帧真值。因此本轮将帧证据切换为 SurfaceFlinger 的 `com.android.chrome/ChromeChildSurface` 呈现时间戳；`gfxinfo` 原始输出仍保留为该限制的辅助证据。
 
+答辩口径上，这一项应表述为**网页滚动场景下的代理帧证据**：SurfaceFlinger interval 能覆盖实际被合成显示的网页 surface，适合做离线窗口对齐和异常呈现间隔筛查；但它不是完整的 app FrameTimeline 标签，不能单独证明某个 Binder 或调度事件就是 jank 根因。
+
 ### 9.1 同步采集数据概况
 
 | 指标 | 数值 |
@@ -380,6 +382,8 @@ VizCompositorTh / CompositorGpuTh -> surfaceflinger -> display composition
 
 因此，本场景的 futex wait graph 在当前设备内核配置下无法用真实事件构建。该项记录为**设备观测能力限制**，而不是将缺失数据替换为推断结果。
 
+这条结论本身也是工程结果：当前采集链路已经完成了设备能力探测，并明确 futex wait/wake 在该 Pixel 6a 配置下不能通过标准 tracepoint 获得。后续如果要补 futex，需要在真机上验证 raw syscall tracepoint、可写 kprobe 或 TracePilot 增强事件方案，而不是在离线报告中用推断值代替真实事件。
+
 ### 9.4 CPU frequency / big-little 归因
 
 依据 Pixel 6a Tensor CPU 拓扑，将 CPU 0-3 视为 little cluster，CPU 4-5 视为 middle cluster，CPU 6-7 视为 big cluster。本轮 Chrome/渲染/system 相关线程的聚合结果如下：
@@ -428,3 +432,22 @@ VizCompositorTh / CompositorGpuTh -> surfaceflinger -> display composition
 | 与启发式策略对比 | 已完成离线候选线程选择对比；执行效果实验需后续 actuator/hint 支持 |
 
 ---
+
+### 9.8 当前答辩口径
+
+信息流滚动场景可以表述为：**Step1/Step2 的离线观测和候选分析已经完成到代理帧窗口级别；缺口集中在完整 FrameTimeline 标签、futex 真机能力和真实 hint 干预实验。**
+
+可直接展示的完成项：
+
+- Step1 已完成 eBPF 调度事件采集：39.353 s 内采集 4,328,470 条原始事件，其中 `sched_switch` 2,106,384 条，`sched_waking/wakeup` 各 1,084,486 条。
+- Step1 已完成 Chrome 渲染链路关键线程识别和 CriticalScore 排序，Top 线程包括 `Compositor`、`VizCompositorTh`、`CompositorGpuTh`、`CrRendererMain`、`.android.chrome`。
+- Step2 已生成 32 条 Binder 依赖边，能说明 `VizCompositorTh / CompositorGpuTh -> surfaceflinger -> display composition` 的合成链路。
+- Step2 已完成 CPU frequency / big-little 归因，big cluster 的目标线程 on-CPU 时间最高，为 6,715.341 ms。
+- Step2 已完成离线候选策略对比，`Pipeline CriticalScore` 相比纯 latency 更贴近 Chrome 渲染链路。
+
+必须保守说明的限制：
+
+- 当前帧证据是 `ChromeChildSurface` 的 SurfaceFlinger interval，不是完整 Perfetto FrameTimeline。
+- 2 个异常长间隔候选只能说明与 Binder 活动共现，不能证明 Binder 是唯一原因。
+- futex wait graph 是设备观测能力限制，当前没有真实 futex 事件源。
+- 离线策略对比只比较候选目标，没有实际下发 hint，也不能声称改善帧性能。

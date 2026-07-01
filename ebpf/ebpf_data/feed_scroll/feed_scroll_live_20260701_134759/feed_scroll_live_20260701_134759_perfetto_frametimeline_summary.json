@@ -1,0 +1,14 @@
+{
+  "trace": "ebpf/ebpf_data/feed_scroll/feed_scroll_live_20260701_134759/feed_scroll_live_20260701_134759.perfetto-trace",
+  "package": "com.android.chrome",
+  "source_filter": "package_filter",
+  "frames_csv": "ebpf/ebpf_data/feed_scroll/feed_scroll_live_20260701_134759/feed_scroll_live_20260701_134759_perfetto_frametimeline_frames.csv",
+  "frame_count": 1768,
+  "deadline_missed_count": 24,
+  "deadline_missed_rate": 0.0136,
+  "frame_time_avg_ms": 3.215,
+  "frame_time_p50_ms": 2.93,
+  "frame_time_p95_ms": 4.069,
+  "frame_time_p99_ms": 16.815,
+  "window_margin_ms": 2.0
+}

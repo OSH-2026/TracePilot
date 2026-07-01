@@ -1,0 +1,22 @@
+{
+  "tag": "feed_scroll_live_20260701_134759",
+  "package": "com.android.chrome",
+  "duration_s": 40,
+  "captured_at": "2026-07-01T13:48:27.434625+08:00",
+  "foreground_at_start": "com.android.chrome",
+  "device_script": "/data/local/tmp/android_game_aligned_capture.sh",
+  "device_dependency_note": "",
+  "perfetto_config": "feed_scroll_live_20260701_134759_perfetto.pbtx",
+  "perfetto_remote_config": "/data/local/tmp/feed_scroll_live_20260701_134759_perfetto.pbtx",
+  "perfetto_remote_trace": "/data/misc/perfetto-traces/feed_scroll_live_20260701_134759.perfetto-trace",
+  "perfetto_trace_file": "feed_scroll_live_20260701_134759.perfetto-trace",
+  "perfetto_trace_size_bytes": 127725462,
+  "perfetto_wait_output": "",
+  "perfetto_pull_output": "adb: error: failed to copy '/data/misc/perfetto-traces/feed_scroll_live_20260701_134759.perfetto-trace' to 'ebpf/ebpf_data/feed_scroll/feed_scroll_live_20260701_134759/feed_scroll_live_20260701_134759.perfetto-trace': remote open failed: Permission denied\nbase64 exec-out fallback stderr=",
+  "trace_file": "feed_scroll_live_20260701_134759_events.bin",
+  "trace_format": "tracepilot_events_bin",
+  "trace_size_bytes": 471087488,
+  "postprocess_notes": [
+    "The device tracepilot produced events.bin instead of JSONL; JSONL postprocessing was skipped."
+  ]
+}

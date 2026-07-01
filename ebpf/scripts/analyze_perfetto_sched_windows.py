@@ -184,6 +184,14 @@ def as_int(row, key):
         return 0
 
 
+def is_int(value):
+    try:
+        int(value)
+        return True
+    except (TypeError, ValueError):
+        return False
+
+
 def build_summaries(rows, top_k, exclude_comm_regex):
     thread_stats = {}
     frame_stats = defaultdict(lambda: {
@@ -298,7 +306,10 @@ def main():
         raise SystemExit(f"No usable frame windows found in {args.frames_csv}")
 
     output = run_trace_processor(trace_processor, Path(args.trace), build_query(frames))
-    rows = parse_csv_output(output)
+    rows = [
+        row for row in parse_csv_output(output)
+        if is_int(row.get("frame_index"))
+    ]
     write_csv(
         args.frame_thread_csv_out,
         rows,
