@@ -216,16 +216,17 @@ TracePilot 团队 · 潘智勇 李松茂 邵晨轩 贺小轩 杨子皓 · 2026 �
 
 **探针一览表：**
 
-| 探针 | 挂载点 | 采集内容 | 用途 |
-|------|--------|---------|------|
-| `sched_switch` | tracepoint | 线程切换 prev/next TID、运行时长、runnable delay | 计算就绪等待延迟 |
-| `sched_wakeup` | tracepoint | 唤醒延迟 | wakeup-to-run latency |
-| `binder_transaction` | **kprobe** ⚠️ | Binder IPC 调用发起/接收 | 跨进程依赖分析 |
-| `futex` wait/wake | tracepoint | 锁等待 | 同步阻塞识别 |
-| `cpu_frequency` | tracepoint | CPU 频率变化 | 大小核调频分析 |
-| `thermal_temperature` | tracepoint | 温控温度 | 降频归因 |
+| 探针 | 挂载点 | 写入 CSV | 30s 数据量 | 用途 |
+|------|--------|---------|:---:|------|
+| `sched_switch` / `sched_wakeup` | tracepoint | `sched_events.csv` | ~200 万行 | 计算就绪等待延迟 |
+| `binder_transaction` / `binder_received` | **kprobe** ⚠️ | `binder_futex_events.csv` | ~16 万行 | Binder IPC 跨进程依赖 |
+| `futex` wait/wake | tracepoint | `binder_futex_events.csv` | ~27 万行 | 锁竞争识别 |
+| `cpu_frequency` | tracepoint | `binder_futex_events.csv` | ~1 万行 | 大小核调频分析 |
+| `thermal_temperature` | tracepoint | `binder_futex_events.csv` | — | 温控降频归因 |
+| `irq/softirq` | tp_btf | `irq_events.csv` | ~210 万行 | 中断扰动分析 |
 
 > ⚠️ binder 用 kprobe 而非 tracepoint：Android GKI 内核未暴露 binder tracepoint
+> 所有事件统一为 10 字段 CSV 格式（ts/event/tid/prev_tid/tgid/uid/extra/ret/comm + debug_id），跨探针复用相同字段布局
 
 **编译部署流程：**
 ```
@@ -253,21 +254,21 @@ Docker(NDK r26b + clang) → 交叉编译 → tracepilot.bpf.o + tracepilot-aarc
 
 ### 内容文案
 
-**主标题：** 四大采集场景覆盖
+**主标题：** 五大采集场景覆盖
 
-**四个场景卡片：**
+**五个场景卡片：**
 
 ```
-┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
-│ 页面切换     │  │ 视频浏览     │  │ 信息流滚动   │  │ 相机场景     │
-│ (基础版)     │  │ (增强版)     │  │ (Chrome)    │  │ (Camera)    │
-│─────────────│  │─────────────│  │─────────────│  │─────────────│
-│ QQ          │  │ 微信/抖音    │  │ Chrome      │  │ Google Cam  │
-│ 690MB events│  │ 451MB events│  │ 261万/34s   │  │ 13探针 36MB │
-│ IRQ/softirq │  │ Binder/Futex│  │ 秒级聚合     │  │ 内核内延迟  │
-│ 辅助分析     │  │ Jank分类    │  │ 34线程级汇总  │  │ 6信号归因   │
-│             │  │ Hint Engine │  │ ftrace补充   │  │ 9维卡顿分类 │
-└─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│ 页面切换     │  │ 视频浏览     │  │ 信息流滚动   │  │ 相机场景     │  │ 游戏场景     │
+│ (基础版)     │  │ (增强版)     │  │ (Chrome)    │  │ (Camera)    │  │ (sgame)     │
+│─────────────│  │─────────────│  │─────────────│  │─────────────│  │─────────────│
+│ QQ          │  │ 微信/抖音    │  │ Chrome      │  │ Google Cam  │  │ 王者荣耀     │
+│ 690MB events│  │ 451MB events│  │ 261万/34s   │  │ 13探针 36MB │  │ 2.1GB / 60s │
+│ IRQ/softirq │  │ Binder/Futex│  │ 秒级聚合     │  │ 内核内延迟  │  │ Unity引擎   │
+│ 辅助分析     │  │ Jank分类    │  │ 34线程级汇总  │  │ 6信号归因   │  │ Step1/2     │
+│             │  │ Hint Engine │  │ Step2 Binder │  │ 9维卡顿分类 │  │ 图拓扑      │
+└─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘
 ```
 
 **底部补充：QQ 行为特征分析**
@@ -280,7 +281,7 @@ Docker(NDK r26b + clang) → 交叉编译 → tracepilot.bpf.o + tracepilot-aarc
 - 不同场景用不同颜色区分
 
 ### 演讲要点
-> "我们覆盖了 4 个典型交互场景。页面切换是核心，视频浏览增加了解码分析维度，信息流滚动验证了高事件率下的可行性，相机场景则实现了全自动 Pipeline。"
+> "我们覆盖了 5 个典型交互场景。页面切换是核心、视频浏览增加了解码维度、信息流滚动验证了高事件率下的可行性、相机场景实现了全自动 Pipeline、游戏场景则拓展到了 Unity 引擎这类非传统 UI 模型。"
 
 ---
 
@@ -381,6 +382,15 @@ $$CriticalScore(T) = \alpha \times CriticalPosition(T) + \beta \times \frac{Runn
 - 三层子图：Binder / Futex / 关键路径
 - 颜色编码区分角色
 
+### 两条独立分析路径（架构解耦）
+
+| 路径 | 方法 | 回答 | 不依赖对方 |
+|------|------|------|:---:|
+| **CriticalScore 路径** | 5 维全局加权排名 | 哪个线程全局最可疑？ | ✅ |
+| **根因归因路径** | 帧内时间占比直接判定 | 每帧卡顿的主因是什么？ | ✅ |
+
+> 两条路径独立计算、报告中合并呈现——如果一条路径出错，另一条仍可提供有效结论
+
 ### 插图建议
 - 左侧展示一个简化的小图例（3-4 个节点 + 边）
 - 右侧展示实际报告的 SVG 图缩略（Binder 图或 Futex 图）
@@ -419,14 +429,30 @@ $$CriticalScore(T) = \alpha \times CriticalPosition(T) + \beta \times \frac{Runn
 | Run 2 | RUNNABLE_DELAY | **UCLAMP_MIN_TEMPORARY** | 0.9999 |
 | 视频 | RUNNABLE_DELAY | BOOST_THREAD | 0.9999 |
 
-**三条关键发现：**
-1. Run 2 温度升高+降频（throttle=0.47），推荐策略从 PROTECT 升级为 **UCLAMP**
-2. 视频浏览温度 **52.3°C**，完全降频（throttle=1.00），典型的温控场景
-3. Top-5 嫌疑线程含 rcuop、kworker 等系统线程，说明卡顿涉及 **系统级资源竞争**
+**关键发现与洞察：**
+
+| 数据 | 洞察 |
+|------|------|
+| Run1 Jank 72.5% / 温控 0.00 | → 即使无温控，**调度竞争本身**就是主要瓶颈 |
+| Run2 Jank 96.6% / 温控 0.47 | → 温度升高降频介入，**温控是雪上加霜** |
+| 视频 Jank 71.2% / 温控 1.00 | → 温控最严重但 Jank 率非最高，**视频有额外延迟容忍** |
+
+**处理规模（Camera 场景单次分析）：**
+> **30 秒 Google Camera 拍照采集** → 约 460 万行 eBPF 事件 → 631 个线程评分 → 16 帧卡顿分析 → 生成 9 章约 750 行 Markdown 报告
 
 ### 插图建议
 - 三个场景的数据对比可以用柱状图或热力图展示
 - SVG 图缩略（Binder 图、Futex 图、关键路径图）
+
+### 游戏场景关键发现（王者荣耀）
+| 指标 | 短窗口 (24.8s) | 对局窗口 (59.2s) |
+|------|:---:|:---:|
+| CPU 负载 | 379.9 ms/s | **670.3 ms/s (1.76x)** |
+| runnable delay p95 | 0.304 ms | **0.664 ms** |
+| UnityGfxDeviceW p95 | 0.299 ms | **1.584 ms (5x)** |
+| 线程迁移 | 258/s | **339/s** |
+
+> 对局场景负载显著高于短窗口，Unity 引擎线程（非传统 UI/Render 模型）是主要瓶颈——验证了 Frame-Centric 方法对不同类型应用的通用性
 
 ### 演讲要点
 > "这是我们最核心的实验结果。三次采集覆盖了不同的温度和降频条件，Jank 率从 72% 到 97% 不等。注意 Run 2 由于温度升高，Hint Engine 自动把推荐策略从 PROTECT 升级成了 UCLAMP——这体现了我们的 Hint Engine 能根据环境条件自适应调整。"
@@ -481,6 +507,14 @@ $$CriticalScore(T) = \alpha \times CriticalPosition(T) + \beta \times \frac{Runn
 ### 内容文案
 
 **主标题：** Step 2 — 增强能力实现
+
+**三问题框架：从"谁慢了"到"为什么慢了"**
+
+| 问题 | 方法 | 输出 |
+|------|------|------|
+| **谁慢了？** | CriticalScore 5 维加权排名 | Top-K 关键线程表 |
+| **怎么阻塞的？** | DAG 关键路径图（4 种边） | Binder/Futex/关键路径 SVG 图 |
+| **为什么卡？** | 6 信号根因归因 | `root_cause_analysis.json` + 报告第六章 |
 
 **① Binder / Futex 图分析**
 - Binder 图 → 跨进程 IPC 依赖关系（`graph_binder.svg`）
@@ -613,12 +647,23 @@ $$CriticalScore(T) = \alpha \times CriticalPosition(T) + \beta \times \frac{Runn
 | `session_compare.py` | 多会话对比 (Top-1 重叠 + 根因分布) |
 | `generate_report.py` | Markdown 报告 (10 章) |
 
+### 游戏场景新增脚本 (7 个)
+| 脚本 | 功能 |
+|------|------|
+| `collect_game_aligned.py` | 游戏场景对齐采集器 |
+| `android_game_aligned_capture.sh` | 游戏场景一键采集部署 |
+| `parse_perfetto_frametimeline.py` | Perfetto FrameTimeline 解析 |
+| `analyze_perfetto_sched_windows.py` | 帧窗口内调度事件分析 |
+| `analyze_perfetto_cpu_freq_windows.py` | CPU 大小核帧窗口归因 |
+| `build_tracepilot_offline_step_summary.py` | Step1/Step2 离线汇总 |
+| `package_game_raw_data.py` | 原始数据打包归档 |
+
 ### 插图建议
 - 以"工具箱"的视觉风格展示，每个脚本是一个工具图标
 - 或按 Pipeline 流程标注每个脚本的位置
 
 ### 演讲要点
-> "我们开发了 18 个脚本工具，覆盖了从部署采集到分析报告的全流程。注意部署脚本同时支持 Linux bash 和 Windows PowerShell，适配不同开发环境。"
+> "我们开发了 25 个脚本工具，覆盖了从部署采集到分析报告的全流程，横跨 5 个场景。注意部署脚本同时支持 Linux bash 和 Windows PowerShell，适配不同开发环境。"
 
 ---
 
@@ -635,7 +680,7 @@ $$CriticalScore(T) = \alpha \times CriticalPosition(T) + \beta \times \frac{Runn
 
 | # | 成果 |
 |:-:|------|
-| ✅ | **完整数据采集 Pipeline**：eBPF + Perfetto 覆盖四大场景 |
+| ✅ | **完整数据采集 Pipeline**：eBPF + Perfetto 覆盖页面切换、视频、信息流、相机、游戏五大场景 |
 | ✅ | **身份解析与图构建**：帧窗口内的依赖关键路径图 |
 | ✅ | **多维度特征提取**：6 维特征，涵盖调度、IPC、锁、温控、解码、中断 |
 | ✅ | **自动标注 + 决策树分类**：端到端 Jank 根因分类 Pipeline |
@@ -644,6 +689,7 @@ $$CriticalScore(T) = \alpha \times CriticalPosition(T) + \beta \times \frac{Runn
 | ✅ | **信息流滚动补充分析**：线程分类 + 评分 + ftrace 融合 |
 | ✅ | **自动化部署与分析**：一键式脚本，从编译到报告全自动 |
 | ✅ | **相机模块深化**：13 探针 + 36MB buffer + 内核内延迟计算 + 6 信号归因 + 9 维分类 + DOT 图导出 |
+| ✅ | **全链路正确性验证**：10 个测试脚本覆盖 eBPF 探针到决策树的全链路校验 |
 | ✅ | **项目文档**：4 份调研报告 + 5 次会议记录 + 7 份分析报告 |
 
 **下一步扩展方向：**
@@ -697,4 +743,4 @@ $$CriticalScore(T) = \alpha \times CriticalPosition(T) + \beta \times \frac{Runn
 
 ---
 
-> **完整 16 页内容编写完毕。每页均包含布局建议、文案内容、插图建议、演讲要点。可根据汇报时间长短选择性使用，核心推荐重点精讲第 2、5、8~10、13 页。**
+> **完整 16 页内容编写完毕。每页均包含布局建议、文案内容、插图建议、演讲要点。可根据汇报时间长短选择性使用，核心推荐重点精讲第 2 页（背景）、第 8~9 页（对齐+图构建）、第 10 页（核心成果）、第 12 页（Step 2 三问题框架），其余作为补充。**

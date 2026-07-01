@@ -49,7 +49,7 @@ FrameTimeline 定义问题 → eBPF 提供原因 → Graph 找关键路径 → H
 |------|------|------|
 | **前期调研** | 4 份调研报告/可行性分析，明确技术路线 | ✅ 已完成 |
 | **Step 1** | FrameTimeline + sched + 身份层 + delay 聚合 + Hint Engine | ✅ 已完成 |
-| **Step 2** | Binder/Futex 图 + CPU 频率 + Jank 分类 + 启发式对比 + 视频场景扩展 | ✅ 已完成 |
+| **Step 2** | Binder/Futex 图 + CPU 频率 + Jank 分类 + 视频+游戏场景扩展 | ✅ 已完成 |
 | **Step 3** | Thermal 深化 + Inference-aware + Multi-session 对比 | ✅ 已完成 |
 | **Step 3+** | Learned policy、Cuttlefish、sched_ext | ⏸ 未做（研究扩展） |
 
@@ -99,29 +99,31 @@ FrameTimeline 定义问题 → eBPF 提供原因 → Graph 找关键路径 → H
 
 ### 探针一览
 
-| 探针 | 挂载点 | 采集内容 | 用途 |
-|------|--------|---------|------|
-| `sched_switch` | tracepoint | 线程切换 prev/next TID、运行时长、runnable delay | 计算就绪等待延迟 |
-| `sched_wakeup` | tracepoint | 唤醒延迟 | wakeup-to-run latency |
-| `binder_transaction` | **kprobe** ⚠️ | Binder IPC 调用发起/接收 | 跨进程依赖分析 |
-| `futex` wait/wake | tracepoint | 锁等待 | 同步阻塞识别 |
-| `cpu_frequency` | tracepoint | CPU 频率变化 | 大小核调频分析 |
-| `thermal_temperature` | tracepoint | 温控温度 | 降频归因 |
+| 探针 | 挂载点 | 写入 CSV | 30s 数据量 | 用途 |
+|------|--------|---------|:---:|------|
+| `sched_switch/wakeup` | tracepoint | `sched_events.csv` | ~200 万行 | 计算就绪等待延迟 |
+| `binder_tx/rx` | **kprobe** ⚠️ | `binder_futex_events.csv` | ~16 万行 | Binder IPC 跨进程依赖 |
+| `futex_wait/wake` | tracepoint | `binder_futex_events.csv` | ~27 万行 | 锁竞争识别 |
+| `cpu_frequency` | tracepoint | `binder_futex_events.csv` | ~1 万行 | 大小核调频分析 |
+| `thermal_temperature` | tracepoint | `binder_futex_events.csv` | — | 温控降频归因 |
+| `irq/softirq` | tp_btf | `irq_events.csv` | ~210 万行 | 中断扰动分析 |
 
 > ⚠️ binder 用 kprobe 而非 tracepoint：Android GKI 内核未暴露 binder tracepoint
+> 所有事件统一为 10 字段 CSV 格式（ts/event/tid/prev_tid/tgid/uid/extra/ret/comm + debug_id），跨探针复用相同字段布局
 
-跨平台编译：Docker → clang 交叉编译为 BPF 字节码 → `bpf()` 系统加载 → ringbuf 输出 events.bin
+编译与部署：Docker(NDK r26b+clang) → 交叉编译 ARM64 → adb push → bpf() 加载 → ringbuf 输出
 
 ---
 
-## 📄 第 7 页 — 覆盖的四大场景
+## 📄 第 7 页 — 覆盖的五大场景
 
 | 场景 | 测试应用 | 数据量 | 分析特点 |
 |------|---------|--------|---------|
 | **页面切换** (基础版) | QQ | 最高 690MB events.bin | 基础 eBPF + Perfetto 帧分析，IRQ/softirq 辅助 |
 | **页面切换+视频浏览** (增强版) | 微信 / 抖音 | 459~451 MB events.bin | 双场景对照，Binder/Futex 图，Jank 分类，Hint Engine |
-| **信息流滚动** | Chrome | 261 万事件 / 34s | 秒级聚合 + 34 线程级汇总 + 补充 ftrace 分析 |
-| **相机场景** | Google Camera | — | 全自动 Pipeline: 编译→部署→采集→分析→报告 |
+| **信息流滚动** | Chrome | 261 万事件 / 34s | 秒级聚合 + 34 线程级汇总 + Step 2 Binder/启发式对比 |
+| **相机场景** | Google Camera | 460 万事件 / 30s | 13 探针 + 内核内延迟 + 6 信号归因 + 全自动 Pipeline |
+| **游戏场景** | 王者荣耀 | 2.1GB 原始数据 / 60s | Unity 引擎线程分析 + FrameTimeline + 图拓扑 + Step1/2 |
 
 ### 补充：QQ 行为特征分析
 - 采集 `behavior_features.csv`（578 行），按秒级窗口 + 包名聚合
@@ -201,6 +203,15 @@ CriticalScore(T) = α × CriticalPosition(T) + β × RunnableDelayShare(T) + γ 
 - 三层子图：`graph_binder.svg`(仅 Binder 边) / `graph_futex.svg`(仅 Futex 边) / `graph_critical.svg`(全图+关键路径高亮)
 - 颜色编码：每种角色映射固定颜色（SurfaceFlinger=红, UI=紫, Render=蓝, GPU=橙...）
 
+### 两条独立分析路径（架构解耦）
+
+| 路径 | 方法 | 回答 | 不依赖对方 |
+|------|------|------|:---:|
+| **CriticalScore 路径** | 5 维全局加权排名 | 哪个线程全局最可疑？ | ✅ |
+| **根因归因路径** | 帧内时间占比直接判定 | 每帧卡顿的主因是什么？ | ✅ |
+
+> 两条路径独立计算、报告中合并呈现——如果一条路径出错，另一条仍可提供有效结论
+
 ---
 
 ## 📄 第 10 页 — 核心分析成果（页面切换 + 视频浏览）
@@ -231,6 +242,19 @@ CriticalScore(T) = α × CriticalPosition(T) + β × RunnableDelayShare(T) + γ 
 | Run1 Jank 率 72.5%，温控 0.00 | → 即使没有温度问题，**调度竞争本身**就是主要瓶颈 |
 | Run2 Jank 率 96.6%，温控 0.47 | → 温度升高后降频介入，Jank 率进一步恶化——**温控是雪上加霜** |
 | 视频 Jank 率 71.2%，温控 1.00 | → 温控最严重但 Jank 率并非最高——**视频场景有额外延迟容忍** |
+
+### 处理规模（Camera 场景单次分析）
+> **30 秒 Google Camera 拍照采集** → 约 460 万行 eBPF 事件 → 631 个线程评分 → 16 帧卡顿分析 → 生成 9 章约 750 行 Markdown 报告
+
+### 游戏场景关键发现（王者荣耀）
+| 指标 | 短窗口 (24.8s) | 对局窗口 (59.2s) |
+|------|:---:|:---:|
+| CPU 负载 | 379.9 ms/s | **670.3 ms/s (1.76x)** |
+| runnable delay p95 | 0.304 ms | **0.664 ms** |
+| UnityGfxDeviceW p95 | 0.299 ms | **1.584 ms (5x)** |
+| 线程迁移 | 258/s | **339/s** |
+
+> 对局场景负载显著高于短窗口，Unity 引擎线程（非传统 UI/Render 模型）是主要瓶颈
 
 - Top-5 嫌疑线程中包含 rcuop、kworker 等系统线程，说明卡顿涉及系统级资源竞争
 
@@ -264,37 +288,34 @@ Hint Engine 的设计遵循"安全优先"原则，确保即使 hint 注入不当
 
 ## 📄 第 12 页 — Step 2：增强能力实现
 
+### 三问题框架：从"谁慢了"到"为什么慢了"
+
+| 问题 | 方法 | 输出 |
+|------|------|------|
+| **谁慢了？** | CriticalScore 5 维加权排名 | Top-K 关键线程表 |
+| **怎么阻塞的？** | DAG 关键路径图（4 种边） | Binder/Futex/关键路径 SVG 图 |
+| **为什么卡？** | 6 信号根因归因 | `root_cause_analysis.json` + 报告第六章 |
+
 ### Binder / Futex 图分析
-- Binder 图：展示跨进程 IPC 依赖关系，识别 Binder 瓶颈
-- Futex 图：展示锁竞争关系，识别 Futex 阻塞
-- 图可视化：自动生成 SVG 图（`graph_binder.svg`、`graph_futex.svg`、`graph_critical.svg`）
+- Binder 图 → 跨进程 IPC 依赖关系（`graph_binder.svg`）
+- Futex 图 → 锁竞争热点（`graph_futex.svg`）
+- 关键路径图 → 全链路瓶颈（`graph_critical.svg`）
+- SVG 自动导出，颜色编码角色
 
-### Jank 分类器
+### Jank 分类器（决策树）
 - 6 维特征空间 → 决策树分类（sklearn DecisionTreeClassifier）
-- 自动标注（`auto_label.py`）→ 可疑帧筛选（`suspect_frames.py`）→ 人工复核 → 模型训练
-- 分类结果嵌入 C 头文件（`learned_model.h`），loader 内直接运行
-- 评估方式：LeaveOneOut 交叉验证 + confusion matrix
+- 自动标注 → 可疑帧筛选 → 人工复核 → 模型训练
+- LeaveOneOut 交叉验证 → 导出 C 头文件 `learned_model.h`，嵌入 loader
 
-### Camera 场景：延迟分解方法
-Camera 场景实现了最精细的延迟归因，将 Top-K 线程的总阻塞时间拆解为三大组成部分：
-
-```python
-总阻塞时间 = 调度竞争（Runnable Delay） + Binder IPC 等待 + Futex 锁等待
-```
-
-- **角色识别**：基于 comm 字段的 12 类线程角色自动标注
-- **DAG 关键路径构建**（`critical_path.py`）：以帧为窗口，BFS 分层，ThreadKey 去重
-- **根因归因**（`root_cause.py`）：每个 Top-K 线程的延迟百分比分布
-- **安全调优**（`safe_hint_engine.py`）：黑名单过滤（system_server/surfaceflinger 等）+ 置信度阈值 0.6 + adb shell 命令生成
+### Camera 延迟分解方法
+$$总阻塞时间 = 调度竞争(RunnableDelay) + Binder\ IPC\ 等待 + Futex\ 锁等待$$
 
 ### 信息流滚动：两种聚合策略对比
 
 | 聚合策略 | 适用场景 | 压缩效果 | 代表字段 |
 |---------|---------|---------|---------|
-| **帧级窗口**（页面/视频） | 需要帧精确对齐 | 帧数级（~2000行） | runnable_delay, 边分布 |
-| **秒级窗口**（信息流） | 快速观察宏观趋势 | 秒数级（~35行） | total_events, sched_switch 频次 |
-
-综合报告对两种策略进行了对比分析，指出秒级窗口适合概览，帧级窗口适合微观归因。
+| **帧级窗口** | 页面/视频（需帧精确） | ~2000 行 | runnable_delay, 边分布 |
+| **秒级窗口** | 信息流（宏观趋势） | ~35 行 | total_events, sched_switch 频次 |
 
 ---
 
@@ -363,6 +384,17 @@ Camera 场景实现了最精细的延迟归因，将 Top-K 线程的总阻塞时
 | `safe_hint_engine.py` | 安全调优配置 + shell 脚本 |
 | `generate_report.py` | 生成 MD 报告 |
 
+### 游戏场景新增脚本 (7 个)
+| 脚本 | 功能 |
+|------|------|
+| `collect_game_aligned.py` | 游戏场景对齐采集器 |
+| `android_game_aligned_capture.sh` | 游戏场景一键采集部署 |
+| `parse_perfetto_frametimeline.py` | Perfetto FrameTimeline 解析 |
+| `analyze_perfetto_sched_windows.py` | 帧窗口内调度事件分析 |
+| `analyze_perfetto_cpu_freq_windows.py` | CPU 大小核帧窗口归因 |
+| `build_tracepilot_offline_step_summary.py` | Step1/Step2 离线汇总 |
+| `package_game_raw_data.py` | 原始数据打包归档 |
+
 ---
 
 ## 📄 第 15 页 — 总结与展望
@@ -370,10 +402,11 @@ Camera 场景实现了最精细的延迟归因，将 Top-K 线程的总阻塞时
 ### 我们做了什么
 | # | 成果 |
 |:-:|------|
-| ✅ | **eBPF + Perfetto 双通道采集**：覆盖页面切换、视频、信息流、相机四大场景 |
-| ✅ | **帧对齐 + 依赖图构建**：~7000 节点 / ~5000 边的关键路径图 |
+| ✅ | **eBPF + Perfetto 双通道采集**：覆盖页面切换、视频、信息流、相机、游戏五大场景 |
+| ✅ | **帧对齐 + 依赖图构建**：~7000 节点 / ~5000 边的关键路径图，两条独立验证路径 |
 | ✅ | **6 维特征 + 决策树分类**：端到端 Jank 根因自动分类 Pipeline |
 | ✅ | **Hint Engine**：安全调度建议（TTL / 自旋保护 / 黑名单 / 置信度阈值） |
+| ✅ | **10 个测试脚本**：覆盖 eBPF 探针到决策树的全链路正确性校验 |
 
 ### 我们发现了什么
 | 发现 | 含义 |
