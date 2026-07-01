@@ -1,0 +1,118 @@
+{
+  "tag": "feed_scroll_live_20260701_134759",
+  "scenario": "feed_scroll",
+  "package": "com.android.chrome",
+  "relative_dataset_dir": "ebpf/ebpf_data/feed_scroll/feed_scroll_live_20260701_134759",
+  "created_at_utc": "2026-07-01T12:29:45.753333+00:00",
+  "purpose": "Packaged raw/replay inputs for feed_scroll live capture. Large loose files should stay out of git until upload policy is chosen.",
+  "report_path": "ebpf/ebpf_data/feed_scroll/feed_scroll_live_20260701_134759/README.md",
+  "files": [
+    {
+      "path": "feed_scroll_live_20260701_134759_events.bin",
+      "role": "raw_tracepilot_events_bin",
+      "size_bytes": 471087488,
+      "sha256": "7a76fe0d93f8ee43980cfab6c38acccf8bff135fc65ebe2ab061672deb205a55"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759.perfetto-trace",
+      "role": "raw_perfetto_trace",
+      "size_bytes": 127725462,
+      "sha256": "cfd650dcb5968bac1964e2d8a98af6f6fbe036a6f467afee30b0f32e20f40132"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_tracepilot_stdout.txt",
+      "role": "raw_tracepilot_stdout",
+      "size_bytes": 1712,
+      "sha256": "025c45679bebdba633c486bd8672a15967870050d518ae1f41b5d7a35afdcb7c"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_device_stdout.txt",
+      "role": "raw_capture_stdout",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_host_metadata.json",
+      "role": "capture_host_metadata",
+      "size_bytes": 1310,
+      "sha256": "f3652387b2a98990e08041370527e0d13be0b56a355fc8b72860cad1455a3dfe"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_metadata.txt",
+      "role": "capture_device_metadata",
+      "size_bytes": 520,
+      "sha256": "bd5d2426e676d0aca5d9926939d42e0ded21f210ef1a3f5a579e3bd55ad172d2"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_perfetto.pbtx",
+      "role": "perfetto_config_used",
+      "size_bytes": 1490,
+      "sha256": "fb7871567b0932c60d8ee7d5c188438f8ee86c658e2f9138dd3182429efa26b7"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_ftrace.txt",
+      "role": "raw_ftrace_snapshot",
+      "size_bytes": 230367,
+      "sha256": "68fd6d53466e77007d4078573f3185f8f3db6f59aab45e6e19d5a525899a4a69"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_framestats.txt",
+      "role": "raw_dumpsys_gfxinfo_framestats",
+      "size_bytes": 6576,
+      "sha256": "127380dd82a2e9756645085d9b6489d034e2d447b3a3fe6e2755ff76261d812f"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_surfaceflinger_layer.txt",
+      "role": "surfaceflinger_layer_name",
+      "size_bytes": 78,
+      "sha256": "389064967c3f550688b5dc36956527be5bca40feb583fb50b67da4bb47547e91"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_surfaceflinger_latency.txt",
+      "role": "raw_surfaceflinger_latency",
+      "size_bytes": 9,
+      "sha256": "bca9d08807dc16fb516fe123c19f05284bc5c24d426aca6bedf9a5b6ff7bb11d"
+    },
+    {
+      "path": "feed_scroll_live_20260701_134759_frames.txt",
+      "role": "tracepilot_replay_frame_input",
+      "size_bytes": 152098,
+      "sha256": "235c0ef30b22273679750c1d8a24525bc2ab2e04837f7669e94bb53d6ad48af2"
+    }
+  ],
+  "analysis_outputs_kept_outside_raw_package": [
+    "feed_scroll_live_20260701_134759_perfetto_frametimeline_summary.json",
+    "feed_scroll_live_20260701_134759_perfetto_frametimeline_frames.csv",
+    "feed_scroll_live_20260701_134759_perfetto_sched_summary.json",
+    "feed_scroll_live_20260701_134759_perfetto_thread_sched_summary.csv",
+    "feed_scroll_live_20260701_134759_perfetto_frame_sched_summary.csv",
+    "feed_scroll_live_20260701_134759_perfetto_frame_thread_sched.csv",
+    "feed_scroll_live_20260701_134759_perfetto_cpu_freq_summary.json",
+    "feed_scroll_live_20260701_134759_perfetto_frame_cpu_freq.csv",
+    "feed_scroll_live_20260701_134759_perfetto_thread_cpu_cluster.csv",
+    "feed_scroll_live_20260701_134759_ftrace_quick_summary.json",
+    "feed_scroll_live_20260701_134759_result.json",
+    "feed_scroll_live_20260701_134759_graph_topology.json",
+    "feed_scroll_live_20260701_134759_graph_subgraph.dot",
+    "feed_scroll_live_20260701_134759_hints.json"
+  ],
+  "replay_commands": {
+    "perfetto_frametimeline": "python3 ebpf/scripts/parse_perfetto_frametimeline.py feed_scroll_live_20260701_134759.perfetto-trace --package com.android.chrome --trace-processor /path/to/trace_processor --csv-out feed_scroll_live_20260701_134759_perfetto_frametimeline_frames.csv --summary-out feed_scroll_live_20260701_134759_perfetto_frametimeline_summary.json",
+    "perfetto_sched_windows": "python3 ebpf/scripts/analyze_perfetto_sched_windows.py feed_scroll_live_20260701_134759.perfetto-trace --frames-csv feed_scroll_live_20260701_134759_perfetto_frametimeline_frames.csv --trace-processor /path/to/trace_processor --frame-thread-csv-out feed_scroll_live_20260701_134759_perfetto_frame_thread_sched.csv --thread-summary-csv-out feed_scroll_live_20260701_134759_perfetto_thread_sched_summary.csv --frame-summary-csv-out feed_scroll_live_20260701_134759_perfetto_frame_sched_summary.csv --summary-out feed_scroll_live_20260701_134759_perfetto_sched_summary.json",
+    "perfetto_cpu_freq_windows": "python3 ebpf/scripts/analyze_perfetto_cpu_freq_windows.py feed_scroll_live_20260701_134759.perfetto-trace --frames-csv feed_scroll_live_20260701_134759_perfetto_frametimeline_frames.csv --trace-processor /path/to/trace_processor --frame-cluster-csv-out feed_scroll_live_20260701_134759_perfetto_frame_cpu_freq.csv --thread-cluster-csv-out feed_scroll_live_20260701_134759_perfetto_thread_cpu_cluster.csv --summary-out feed_scroll_live_20260701_134759_perfetto_cpu_freq_summary.json",
+    "tracepilot_offline_device": "adb shell su -c '/data/local/tmp/tracepilot -p com.android.chrome -s page_switch -i /data/local/tmp/feed_scroll_live_20260701_134759_events.bin -f /data/local/tmp/feed_scroll_live_20260701_134759_frames.txt -o /data/local/tmp/feed_scroll_live_20260701_134759_result.json -G -k 10 --graph-json /data/local/tmp/feed_scroll_live_20260701_134759_graph_topology.json --graph-dot /data/local/tmp/feed_scroll_live_20260701_134759_graph_subgraph.dot --hints-json /data/local/tmp/feed_scroll_live_20260701_134759_hints.json'"
+  },
+  "known_limitations": [
+    "This package contains raw baseline/dry-run replay inputs only; no --hint-apply intervention was executed.",
+    "gfxinfo reported only 1 frame, so Chrome FrameTimeline from Perfetto is the primary frame evidence.",
+    "SurfaceFlinger latency file is 9 bytes and is not used as the primary frame source for this capture.",
+    "TracePilot offline graph still has WAKEUP/RUNNABLE_WAIT/CPU_RUN edge counts at zero; use Perfetto sched frame-window outputs for scheduling evidence."
+  ],
+  "missing_optional_files": [],
+  "archive_policy": "Upload the zip or place it in an external artifact store; commit lightweight JSON/CSV/README analysis outputs separately if needed.",
+  "archive": {
+    "path": "ebpf/ebpf_data/feed_scroll/raw_packages/feed_scroll_live_20260701_134759_raw_replay_package.zip",
+    "size_bytes": 73516488,
+    "sha256": "9be3e7f9906aad9bd77b85ecc633a6ebc43b8e20b0f31a01f94c5f3543fd1bd4"
+  }
+}
