@@ -41,6 +41,15 @@ ebpf/ebpf_data/game_sgame/**/*_surfaceflinger_latency.txt
 ebpf/ebpf_data/game_sgame/game_match_sgame_20260607_170339/
 ebpf/ebpf_data/game_sgame/game_match_sgame_20260607_170412/
 
+# Feed-scroll intervention raw run folders; keep parent README/manifest/summary trackable.
+ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_*/feed_scroll_intervention_*_baseline_*/
+ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_*/feed_scroll_intervention_*_intervention_*/
+
+# SGame resolver/guard smoke raw captures; keep sgame_resolver_guard_report.json trackable.
+ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_*/capture_stdout.txt
+ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_*/window_dump.txt
+ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_*/sgame_resolver_smoke_*/
+
 # ── Compressed source (already extracted) ──
 *.zip
 !*.jsonl.gz
