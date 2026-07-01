@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
 /*
  * page_turning.bpf.c — Page Turning 场景 eBPF 内核探针
- * 挂载 sched_switch / binder_transaction 等 tracepoint，
- * 通过 ringbuf 输出事件到用户态 loader。
+ * 挂载 exec 和 binder_transaction tracepoint，
+ * 通过 16MB ringbuf 输出事件到用户态 loader。
  */
 #include "vmlinux.h"
 #include <bpf/bpf_helpers.h>

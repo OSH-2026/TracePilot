@@ -1,4 +1,8 @@
 /* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+/*
+ * tracepilot.bpf.h — BPF 侧共享结构体定义 (增强版)
+ * 定义 events.bin v3 事件结构体和 BPF maps。
+ */
 #ifndef __TRACEPILOT_BPF_H__
 #define __TRACEPILOT_BPF_H__
 

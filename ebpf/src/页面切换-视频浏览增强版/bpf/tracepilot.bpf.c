@@ -1,4 +1,9 @@
 /* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+/*
+ * tracepilot.bpf.c — 页面切换+视频浏览增强版 BPF 内核探针 (13 探针)
+ * 挂载 sched/binder/futex/cpu_freq/thermal/irq/softirq/mem_reclaim，
+ * 输出 events.bin v3 格式 (sched + sys + enhanced 三类事件)。
+ */
 #include "vmlinux.h"
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_core_read.h>

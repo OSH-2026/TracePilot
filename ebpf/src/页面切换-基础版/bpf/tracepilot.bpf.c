@@ -1,4 +1,9 @@
 /* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+/*
+ * tracepilot.bpf.c — 页面切换基础版 BPF 内核探针 (6 探针)
+ * 挂载 sched_switch / sched_wakeup / binder_transaction / futex /
+ * cpu_frequency / thermal_temperature，输出 events.bin v2 格式。
+ */
 #include "vmlinux.h"
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_core_read.h>
