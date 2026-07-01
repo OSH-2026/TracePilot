@@ -1,0 +1,34 @@
+tracepilot: unrecognized option `--bpf'
+Usage: /data/local/tmp/tracepilot [OPTIONS]
+Options:
+  -p, --package NAME       Target app package name
+  -d, --duration SEC       Collection duration in seconds (default: 30)
+  -f, --frame-data FILE    Frame data from Perfetto
+  -o, --output FILE        Output JSON file
+  -e, --events-out FILE    Save raw events to binary file
+  -i, --events-in FILE     Load raw events (offline mode)
+  -k, --top-k N            Number of top threads (default: 10)
+  -G, --graph              Enable graph-based critical path analysis
+  --graph-json FILE        Export full graph topology (JSON)
+  --graph-subgraph FILE    Export Top-K subgraph (JSON, for viz)
+  --graph-dot FILE         Export Top-K subgraph (Graphviz DOT)
+  --hints-json FILE        Export scheduling hints (JSON)
+  --hint-apply             Apply hints on device (default: dry-run audit only)
+  --thermal-data FILE      Thermal profile (from thermal_query.sql)
+  --compare-dir DIR        Compare result.json under subdirs (Step 3)
+  --compare-out FILE       Multi-session compare report output
+  -s, --scenario MODE       Analysis scenario: page_switch (default) or video
+  -D, --debug              Enable debug output
+  -h, --help               Show this help
+
+On-device collection:
+  /data/local/tmp/tracepilot -d 30 -e events.bin -G -D
+
+Offline analysis (host):
+  /data/local/tmp/tracepilot -i events.bin -f frames.txt -o result.json -G
+  /data/local/tmp/tracepilot -i events.bin -f frames.txt -o result.json -G -k 10 \
+      --graph-json graph_topology.json --graph-dot graph_subgraph.dot
+
+Multi-session compare (Step 3):
+  /data/local/tmp/tracepilot --compare-dir output --compare-out output/compare_report.json
+
