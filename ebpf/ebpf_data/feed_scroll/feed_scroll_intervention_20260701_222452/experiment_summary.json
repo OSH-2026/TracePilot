@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "runs": 3,
+    "avg_frame_count": 962.0,
+    "avg_deadline_missed_count": 2.0,
+    "avg_deadline_missed_rate": 0.0022,
+    "avg_frame_time_p95_ms": 3.7353,
+    "avg_frame_time_p99_ms": 4.7803
+  },
+  "intervention": {
+    "runs": 3,
+    "avg_frame_count": 892.0,
+    "avg_deadline_missed_count": 1.6667,
+    "avg_deadline_missed_rate": 0.0018,
+    "avg_frame_time_p95_ms": 4.2443,
+    "avg_frame_time_p99_ms": 5.3727
+  },
+  "delta_intervention_minus_baseline": {
+    "deadline_missed_rate": -0.0004,
+    "frame_time_p95_ms": 0.509,
+    "frame_time_p99_ms": 0.5924
+  }
+}
