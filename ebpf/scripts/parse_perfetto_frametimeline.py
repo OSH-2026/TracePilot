@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+parse_perfetto_frametimeline.py — Perfetto FrameTimeline 帧提取解析
+通过 trace_processor_shell 执行 SQL 查询，从 Perfetto trace 中
+提取 SF/VD/VF/AP 帧的 expected_start / actual_end / jank 标记。
+
+用法:
+  python parse_perfetto_frametimeline.py <perfetto_trace> <output_frames.txt>
+"""
 import argparse
 import csv
 import json

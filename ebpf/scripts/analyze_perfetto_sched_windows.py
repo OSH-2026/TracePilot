@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+analyze_perfetto_sched_windows.py — Perfetto 帧窗口调度事件分析
+读取 Perfetto trace 中的 sched_switch / sched_wakeup 事件，
+按 jank 帧窗口聚合 runnable delay 和 wakeup-to-run latency。
+
+用法:
+  python analyze_perfetto_sched_windows.py <trace_file> <frames.txt> <output.csv>
+"""
 import argparse
 import csv
 import json

@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+analyze_perfetto_cpu_freq_windows.py — CPU 大小核帧窗口频率归因
+读取 Perfetto trace 中的 cpu_frequency 事件，按 jank 帧窗口
+聚合 little/big 核心频率分布，输出 freq_throttle_ratio。
+
+用法:
+  python analyze_perfetto_cpu_freq_windows.py <trace_file> <frames.txt> <output.json>
+"""
 import argparse
 import csv
 import json

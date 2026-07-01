@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+parse_surfaceflinger_latency.py — SurfaceFlinger 延迟解析
+从 Perfetto trace 中提取 SurfaceFlinger 的帧延迟数据，
+用于辅助分析渲染管线瓶颈。
+
+用法:
+  python parse_surfaceflinger_latency.py <perfetto_trace> <output.txt>
+"""
 import argparse
 import csv
 import json

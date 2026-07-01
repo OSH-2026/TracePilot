@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+"""
+export_trace_csv.py — Trace 原始事件导出为 CSV
+读取 TracePilot events.bin 或 jsonl.gz 原始数据，
+将 sched_switch / sched_waking / sched_wakeup / cpu_frequency
+事件导出为按秒级窗口聚合的 CSV 文件。
+
+用法:
+  python export_trace_csv.py <input.jsonl.gz> <output.csv>
+"""
 import argparse
 import csv
 import gzip
