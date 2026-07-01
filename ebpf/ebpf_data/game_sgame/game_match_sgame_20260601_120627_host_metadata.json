@@ -1,0 +1,16 @@
+{
+  "tag": "game_match_sgame_20260601_120627",
+  "package": "com.tencent.tmgp.sgame",
+  "duration_s": 60,
+  "captured_at": "2026-06-01T12:06:28.302009+08:00",
+  "foreground_at_start": "com.tencent.tmgp.sgame",
+  "device_script": "/data/local/tmp/android_game_aligned_capture.sh",
+  "trace_file": "game_match_sgame_20260601_120627.jsonl.gz",
+  "trace_size_bytes": 73374954,
+  "raw_trace_cleanup": "kept: [WinError 5] 拒绝访问。: 'D:\\\\code\\\\011705.OSH\\\\OSH_2026_labs\\\\TracePilot_work\\\\data\\\\raw\\\\game_match_sgame_20260601_120627\\\\game_match_sgame_20260601_120627.jsonl'",
+  "comm_regex": "com\\.tencent\\.tmg|sgame|RenderThread|Unity|GPU|surfaceflinger",
+  "frame_sources": [
+    "gfxinfo",
+    "surfaceflinger"
+  ]
+}

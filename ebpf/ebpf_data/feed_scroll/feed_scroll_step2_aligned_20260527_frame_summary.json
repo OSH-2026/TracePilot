@@ -1,0 +1,18 @@
+{
+  "source": "SurfaceFlinger --latency ChromeChildSurface",
+  "layer": "com.android.chrome/ChromeChildSurface#500",
+  "latency_trace": ".\\TracePilot\\ebpf\\ebpf_data\\feed_scroll\\feed_scroll_step2_aligned_20260527_surfaceflinger_latency.txt",
+  "frames_csv": ".\\TracePilot\\ebpf\\ebpf_data\\feed_scroll\\feed_scroll_step2_aligned_20260527_frames.csv",
+  "refresh_period_ns": 16666667,
+  "refresh_period_ms": 16.667,
+  "classification_rule": "presentation interval > 1.5 * refresh period",
+  "frame_count": 126,
+  "deadline_missed_count": 2,
+  "deadline_missed_rate": 0.0159,
+  "frame_time_avg_ms": 19.113,
+  "frame_time_p50_ms": 16.723,
+  "frame_time_p95_ms": 16.816,
+  "frame_time_p99_ms": 33.57,
+  "reported_gfxinfo_summary": {},
+  "note": "SurfaceFlinger presentation intervals cover rendered web content; labels are interval-based suspected jank, not app FrameDeadline verdicts."
+}

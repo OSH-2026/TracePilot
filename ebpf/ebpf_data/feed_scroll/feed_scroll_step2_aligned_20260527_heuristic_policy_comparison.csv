@@ -1,0 +1,4 @@
+﻿policy,top5_threads,pipeline_role_count,system_thread_count,selected_on_cpu_ms,selected_max_runnable_p95_ms,interpretation
+cpu_only,"CompositorGpuTh, Compositor, VizCompositorTh, .android.chrome, CrRendererMain",5,0,10562.885,0.172,candidate hint targets; no actuator applied and no performance improvement claimed
+latency_only,"CronetInit, VizWebView, Chrome_ProcessL, Chrome_IOThread, scroll-bg-task",0,0,2.81,1.477,candidate hint targets; no actuator applied and no performance improvement claimed
+pipeline_critical_score,"CrRendererMain, .android.chrome, Compositor, VizCompositorTh, CompositorGpuTh",5,0,10562.885,0.172,candidate hint targets; no actuator applied and no performance improvement claimed

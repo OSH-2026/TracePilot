@@ -315,3 +315,116 @@ Top critical threads 如下：
 本轮补充采集后，信息流滚动场景已经从单纯线程调度统计推进到“帧级 ground truth + Binder/ftrace 依赖证据 + CriticalScore 关键线程排名”。后续最值得继续做的是将 frame window 与 eBPF/ftrace 事件按时间戳对齐，输出每个 frame 的 top blocking threads 和系统依赖链。
 
 ---
+
+## 九、Step 2 同步对齐增强分析（2026-05-27）
+
+为进一步完成 Binder dependency graph、CPU frequency / big-little 归因、规则版 jank cause 分类和启发式目标选择对比，本轮在固定长页面 `TracePilot 固定信息流` 上执行自动滚动，将 eBPF 调度事件、ftrace 系统依赖事件与屏幕合成帧置于同一个采集窗口中。正式数据文件名前缀为 `feed_scroll_step2_aligned_20260527`，仍统一存放在 `ebpf/ebpf_data/feed_scroll/` 下。
+
+本机当前 Chrome 将网页滚动绘制提交给独立合成 surface，`dumpsys gfxinfo com.android.chrome` 在滚动窗口中仅报告 1 帧，不能作为网页内容的帧真值。因此本轮将帧证据切换为 SurfaceFlinger 的 `com.android.chrome/ChromeChildSurface` 呈现时间戳；`gfxinfo` 原始输出仍保留为该限制的辅助证据。
+
+### 9.1 同步采集数据概况
+
+| 指标 | 数值 |
+|------|------|
+| 采集时长 | 39.353 s |
+| eBPF 原始事件 | 4,328,470 |
+| `sched_switch` | 2,106,384 |
+| `sched_waking` | 1,084,486 |
+| `sched_wakeup` | 1,084,486 |
+| `cpu_frequency` | 53,114 |
+| 相关线程数 | 53 |
+| wakeup-to-run P95 / P99 | 0.197 / 0.442 ms |
+| runnable delay P95 / P99 | 0.150 / 0.297 ms |
+| CPU migration count | 30,134 |
+| 关键 / 非关键线程数 | 20 / 33 |
+
+合成层帧窗口摘要如下。SurfaceFlinger 的 `--latency` 为环形窗口，因此这里覆盖的是采集期间最近的一段有效滚动呈现记录，而不是完整 40 秒的逐帧全集。
+
+| 指标 | 数值 |
+|------|------|
+| 帧证据层 | `ChromeChildSurface` |
+| 刷新周期 | 16.667 ms |
+| 保留的呈现间隔 | 126 |
+| P50 / P95 / P99 interval | 16.723 / 16.816 / 33.570 ms |
+| 异常长间隔候选（`interval > 1.5 x refresh`） | 2（1.59%） |
+| 与 eBPF/ftrace 时间窗对齐的记录 | 126 |
+| `gfxinfo` 主进程辅助记录 | 1 frame，不作为滚动真值 |
+
+### 9.2 Binder dependency graph
+
+通过 `binder_transaction`、`binder_transaction_received` 和 `binder_wait_for_work` 构建 Binder 边表，得到 32 条可观测依赖边。主要依赖边如下：
+
+| Source | Target | transaction count | matched latency P95 ms |
+|--------|--------|------------------:|-----------------------:|
+| `VizCompositorTh` | `surfaceflinger` | 112 | - |
+| `CompositorGpuTh` | `surfaceflinger` | 98 | - |
+| `binder:600_1` | `proc_5364` | 52 | - |
+| `HwBinder:602_2` | `surfaceflinger` | 40 | 0.149 |
+| `surfaceflinger` | `proc_602` | 38 | - |
+| `BckgrndExec HP` | `proc_5364` | 33 | - |
+
+其中最清晰的滚动合成依赖路径为：
+
+```text
+VizCompositorTh / CompositorGpuTh -> surfaceflinger -> display composition
+```
+
+这说明固定信息流滚动负载中，Chrome 的 Viz/GPU 合成线程持续向系统合成服务提交工作。完整边表见 `feed_scroll_step2_aligned_20260527_binder_dependency_edges.csv`。
+
+### 9.3 futex wait graph 可用性结论
+
+本轮再次核查了 Pixel 6a 当前内核提供的事件源：
+
+- `available_events` 中没有标准 futex wait/wake tracepoint。
+- 动态 `kprobe_events` 在设备上不可写，无法安全补挂 `futex_wait` / `futex_wake`。
+
+因此，本场景的 futex wait graph 在当前设备内核配置下无法用真实事件构建。该项记录为**设备观测能力限制**，而不是将缺失数据替换为推断结果。
+
+### 9.4 CPU frequency / big-little 归因
+
+依据 Pixel 6a Tensor CPU 拓扑，将 CPU 0-3 视为 little cluster，CPU 4-5 视为 middle cluster，CPU 6-7 视为 big cluster。本轮 Chrome/渲染/system 相关线程的聚合结果如下：
+
+| Cluster | Target on-CPU ms | Frequency events | Avg frequency kHz | P95 frequency kHz | Max frequency kHz |
+|---------|-----------------:|-----------------:|------------------:|------------------:|------------------:|
+| little_0_3 | 4,017.744 | 31,844 | 1,243,992.6 | 1,803,000 | 1,803,000 |
+| middle_4_5 | 5,238.898 | 12,340 | 1,190,027.1 | 2,130,000 | 2,253,000 |
+| big_6_7 | 6,715.341 | 8,930 | 949,893.2 | 1,745,000 | 2,802,000 |
+
+结果显示本轮渲染链路明显使用了性能核：big cluster 的目标线程 on-CPU 时间最高（6,715.341 ms），并观察到最高 2,802,000 kHz 的频率采样。
+
+### 9.5 规则版 jank cause classifier
+
+本轮基于 SurfaceFlinger 呈现间隔建立同步 frame window，对窗口内的 Binder、display fence 和 block I/O 事件进行聚合，生成 `feed_scroll_step2_aligned_20260527_frame_dependency_join.csv`。
+
+126 条呈现间隔记录均能够与 eBPF/ftrace 窗口对齐，其分类结果为：
+
+| 证据类别 | Frame windows |
+|----------|--------------:|
+| Binder dependency | 95 |
+| scheduler / render work | 31 |
+
+其中 2 个异常长呈现间隔候选分别为 33.570 ms 与 300.984 ms，规则分类均落在 `binder_dependency` 窗口，窗口内主要可见 `binder:600_1` 活动。需要强调：这表示“异常长呈现间隔与 Binder 活动共现”，并不能证明 Binder 是卡顿原因；尤其 300.984 ms 还可能包含相邻手势之间的无新帧空档。若要形成真实 jank 标签及因果归因，仍需引入完整 Perfetto FrameTimeline。
+
+### 9.6 启发式目标选择对比
+
+本轮对三种离线线程选择规则进行比较。该对比用于判断不同规则会挑选哪些候选关键线程，**没有实际执行调度 hint，也不声称改善帧性能**。
+
+| Policy | Top-5 selected threads | Pipeline-role count | System-thread count |
+|--------|------------------------|--------------------:|--------------------:|
+| CPU only | `CompositorGpuTh`, `Compositor`, `VizCompositorTh`, `.android.chrome`, `CrRendererMain` | 5 | 0 |
+| Latency only | `CronetInit`, `VizWebView`, `Chrome_ProcessL`, `Chrome_IOThread`, `scroll-bg-task` | 0 | 0 |
+| Pipeline CriticalScore | `CrRendererMain`, `.android.chrome`, `Compositor`, `VizCompositorTh`, `CompositorGpuTh` | 5 | 0 |
+
+对比结果表明，仅按延迟排序容易挑中低负载、与主渲染链路关系较弱的线程；结合渲染角色、CPU 时间、迁核和延迟的 `Pipeline CriticalScore` 更适合输出信息流滚动场景下的候选保护线程。
+
+### 9.7 Step 2 完成状态
+
+| Step 2 项目 | 当前结果 |
+|-------------|----------|
+| Binder dependency graph | 已生成 Binder 依赖边表和主要合成依赖链 |
+| futex wait graph | 设备内核无可用事件源，记录为观测限制 |
+| CPU frequency / big-little 归因 | 已完成三档 cluster 的 on-CPU 与频率统计 |
+| jank cause classifier | 已实现 SurfaceFlinger 呈现窗口规则分类；真实 jank 根因仍需 Perfetto FrameTimeline 标签 |
+| 与启发式策略对比 | 已完成离线候选线程选择对比；执行效果实验需后续 actuator/hint 支持 |
+
+---

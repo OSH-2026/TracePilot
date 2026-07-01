@@ -1,0 +1,1 @@
+tracepilot collecting for 60 sec -> /data/local/tmp/game_match_sgame_20260601_120627.jsonl

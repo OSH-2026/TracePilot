@@ -1,0 +1,1 @@
+RequestedLayerState{Background for 4a69168 SurfaceView[com.tencent.tmgp.sgame/com.tencent.tmgp.sgame.SGameActivity]#1702 parentId=1700 relativeParentId=1698 z=-2147483648}

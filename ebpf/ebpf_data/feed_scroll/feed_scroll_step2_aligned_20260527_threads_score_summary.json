@@ -1,0 +1,157 @@
+{
+  "input": "TracePilot\\ebpf\\ebpf_data\\feed_scroll\\feed_scroll_step2_aligned_20260527_threads_summary.csv",
+  "output": "TracePilot\\ebpf\\ebpf_data\\feed_scroll\\feed_scroll_step2_aligned_20260527_threads_scored.csv",
+  "top_critical_threads": [
+    {
+      "rank": 1,
+      "tid": "16550",
+      "comm": "Compositor",
+      "critical_score": 92.765,
+      "on_cpu_ms": 2364.842,
+      "wakeup_to_run_p95_ms": 0.217,
+      "runnable_delay_p95_ms": 0.136,
+      "migration_count": 6097.0
+    },
+    {
+      "rank": 2,
+      "tid": "5488",
+      "comm": "VizCompositorTh",
+      "critical_score": 91.887,
+      "on_cpu_ms": 2185.825,
+      "wakeup_to_run_p95_ms": 0.174,
+      "runnable_delay_p95_ms": 0.114,
+      "migration_count": 5200.0
+    },
+    {
+      "rank": 3,
+      "tid": "5507",
+      "comm": "CompositorGpuTh",
+      "critical_score": 91.56,
+      "on_cpu_ms": 2885.912,
+      "wakeup_to_run_p95_ms": 0.055,
+      "runnable_delay_p95_ms": 0.14,
+      "migration_count": 5303.0
+    },
+    {
+      "rank": 4,
+      "tid": "16544",
+      "comm": "CrRendererMain",
+      "critical_score": 86.056,
+      "on_cpu_ms": 1392.556,
+      "wakeup_to_run_p95_ms": 0.286,
+      "runnable_delay_p95_ms": 0.172,
+      "migration_count": 3063.0
+    },
+    {
+      "rank": 5,
+      "tid": "3719",
+      "comm": ".android.chrome",
+      "critical_score": 85.621,
+      "on_cpu_ms": 1733.75,
+      "wakeup_to_run_p95_ms": 0.263,
+      "runnable_delay_p95_ms": 0.128,
+      "migration_count": 3627.0
+    },
+    {
+      "rank": 6,
+      "tid": "652",
+      "comm": "RenderEngine",
+      "critical_score": 84.762,
+      "on_cpu_ms": 739.978,
+      "wakeup_to_run_p95_ms": 0.066,
+      "runnable_delay_p95_ms": 0.047,
+      "migration_count": 709.0
+    },
+    {
+      "rank": 7,
+      "tid": "5414",
+      "comm": "CrGpuMain",
+      "critical_score": 80.739,
+      "on_cpu_ms": 361.197,
+      "wakeup_to_run_p95_ms": 0.119,
+      "runnable_delay_p95_ms": 0.193,
+      "migration_count": 1261.0
+    },
+    {
+      "rank": 8,
+      "tid": "4077",
+      "comm": "Chrome_IOThread",
+      "critical_score": 76.882,
+      "on_cpu_ms": 428.633,
+      "wakeup_to_run_p95_ms": 0.3,
+      "runnable_delay_p95_ms": 0.115,
+      "migration_count": 2570.0
+    },
+    {
+      "rank": 9,
+      "tid": "2044",
+      "comm": "RenderThread",
+      "critical_score": 75.63,
+      "on_cpu_ms": 80.614,
+      "wakeup_to_run_p95_ms": 0.188,
+      "runnable_delay_p95_ms": 0.27,
+      "migration_count": 90.0
+    },
+    {
+      "rank": 10,
+      "tid": "5487",
+      "comm": "Chrome_ChildIOT",
+      "critical_score": 73.81,
+      "on_cpu_ms": 244.816,
+      "wakeup_to_run_p95_ms": 0.176,
+      "runnable_delay_p95_ms": 0.19,
+      "migration_count": 1729.0
+    },
+    {
+      "rank": 11,
+      "tid": "16548",
+      "comm": "Chrome_ChildIOT",
+      "critical_score": 63.7,
+      "on_cpu_ms": 58.824,
+      "wakeup_to_run_p95_ms": 0.19,
+      "runnable_delay_p95_ms": 0.098,
+      "migration_count": 443.0
+    },
+    {
+      "rank": 12,
+      "tid": "3960",
+      "comm": "RenderThread",
+      "critical_score": 61.598,
+      "on_cpu_ms": 0.271,
+      "wakeup_to_run_p95_ms": 3.473,
+      "runnable_delay_p95_ms": 0.0,
+      "migration_count": 3.0
+    },
+    {
+      "rank": 13,
+      "tid": "10994",
+      "comm": "RenderThread",
+      "critical_score": 59.412,
+      "on_cpu_ms": 3.357,
+      "wakeup_to_run_p95_ms": 0.141,
+      "runnable_delay_p95_ms": 0.233,
+      "migration_count": 24.0
+    },
+    {
+      "rank": 14,
+      "tid": "4639",
+      "comm": "RenderThread",
+      "critical_score": 59.373,
+      "on_cpu_ms": 0.065,
+      "wakeup_to_run_p95_ms": 6.424,
+      "runnable_delay_p95_ms": 0.0,
+      "migration_count": 2.0
+    },
+    {
+      "rank": 15,
+      "tid": "12482",
+      "comm": "RenderThread",
+      "critical_score": 53.955,
+      "on_cpu_ms": 0.026,
+      "wakeup_to_run_p95_ms": 2.172,
+      "runnable_delay_p95_ms": 0.0,
+      "migration_count": 0.0
+    }
+  ],
+  "formula": "score = render_path_role + wakeup_to_run_p95 + runnable_delay_p95 + log(on_cpu_ms) + log(migration_count) + log(wakeup_count) - background_penalty"
+}

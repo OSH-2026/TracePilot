@@ -1,0 +1,140 @@
+﻿{
+  "duration_s": 39.353,
+  "event_counts": {
+    "sched_waking": 1084486,
+    "sched_wakeup": 1084486,
+    "sched_switch": 2106384,
+    "cpu_frequency": 53114
+  },
+  "target_thread_count": 53,
+  "target_on_cpu_ms": 12500.061,
+  "wakeup_to_run_count": 50695,
+  "wakeup_to_run_p95_ms": 0.197,
+  "wakeup_to_run_p99_ms": 0.442,
+  "runnable_delay_count": 1496,
+  "runnable_delay_p95_ms": 0.15,
+  "runnable_delay_p99_ms": 0.297,
+  "migration_count": 30134,
+  "top_threads_by_on_cpu_ms": [
+    {
+      "tid": 5507,
+      "comm": "CompositorGpuTh",
+      "on_cpu_ms": 2885.912,
+      "migrations": 5303
+    },
+    {
+      "tid": 16550,
+      "comm": "Compositor",
+      "on_cpu_ms": 2364.842,
+      "migrations": 6097
+    },
+    {
+      "tid": 5488,
+      "comm": "VizCompositorTh",
+      "on_cpu_ms": 2185.825,
+      "migrations": 5200
+    },
+    {
+      "tid": 3719,
+      "comm": ".android.chrome",
+      "on_cpu_ms": 1733.75,
+      "migrations": 3627
+    },
+    {
+      "tid": 16544,
+      "comm": "CrRendererMain",
+      "on_cpu_ms": 1392.556,
+      "migrations": 3063
+    },
+    {
+      "tid": 652,
+      "comm": "RenderEngine",
+      "on_cpu_ms": 739.978,
+      "migrations": 709
+    },
+    {
+      "tid": 4077,
+      "comm": "Chrome_IOThread",
+      "on_cpu_ms": 428.633,
+      "migrations": 2570
+    },
+    {
+      "tid": 5414,
+      "comm": "CrGpuMain",
+      "on_cpu_ms": 361.197,
+      "migrations": 1261
+    },
+    {
+      "tid": 5487,
+      "comm": "Chrome_ChildIOT",
+      "on_cpu_ms": 244.816,
+      "migrations": 1729
+    },
+    {
+      "tid": 2044,
+      "comm": "RenderThread",
+      "on_cpu_ms": 80.614,
+      "migrations": 90
+    },
+    {
+      "tid": 16548,
+      "comm": "Chrome_ChildIOT",
+      "on_cpu_ms": 58.824,
+      "migrations": 443
+    },
+    {
+      "tid": 15405,
+      "comm": "CrRendererMain",
+      "on_cpu_ms": 5.45,
+      "migrations": 0
+    },
+    {
+      "tid": 15456,
+      "comm": "CrRendererMain",
+      "on_cpu_ms": 5.057,
+      "migrations": 3
+    },
+    {
+      "tid": 10994,
+      "comm": "RenderThread",
+      "on_cpu_ms": 3.357,
+      "migrations": 24
+    },
+    {
+      "tid": 16804,
+      "comm": "MemoryInfra",
+      "on_cpu_ms": 1.954,
+      "migrations": 0
+    },
+    {
+      "tid": 5290,
+      "comm": "CronetInit",
+      "on_cpu_ms": 1.825,
+      "migrations": 2
+    },
+    {
+      "tid": 15409,
+      "comm": "Chrome_ChildIOT",
+      "on_cpu_ms": 0.812,
+      "migrations": 0
+    },
+    {
+      "tid": 3374,
+      "comm": "CronetInit",
+      "on_cpu_ms": 0.781,
+      "migrations": 0
+    },
+    {
+      "tid": 15460,
+      "comm": "Chrome_ChildIOT",
+      "on_cpu_ms": 0.61,
+      "migrations": 1
+    },
+    {
+      "tid": 11633,
+      "comm": "Chrome_IOThread",
+      "on_cpu_ms": 0.556,
+      "migrations": 2
+    }
+  ]
+}

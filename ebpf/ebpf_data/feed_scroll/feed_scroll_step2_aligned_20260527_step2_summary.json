@@ -1,0 +1,159 @@
+{
+  "prefix": "feed_scroll_step2_aligned_20260527",
+  "binder_dependency_graph": {
+    "edge_count": 32,
+    "top_edges": [
+      {
+        "source": "VizCompositorTh",
+        "target": "surfaceflinger",
+        "transaction_count": 112,
+        "matched_latency_count": 0,
+        "latency_p95_ms": 0.0
+      },
+      {
+        "source": "CompositorGpuTh",
+        "target": "surfaceflinger",
+        "transaction_count": 98,
+        "matched_latency_count": 0,
+        "latency_p95_ms": 0.0
+      },
+      {
+        "source": "binder:600_1",
+        "target": "proc_5364",
+        "transaction_count": 52,
+        "matched_latency_count": 0,
+        "latency_p95_ms": 0.0
+      },
+      {
+        "source": "HwBinder:602_2",
+        "target": "surfaceflinger",
+        "transaction_count": 40,
+        "matched_latency_count": 40,
+        "latency_p95_ms": 0.149
+      },
+      {
+        "source": "surfaceflinger",
+        "target": "proc_602",
+        "transaction_count": 38,
+        "matched_latency_count": 0,
+        "latency_p95_ms": 0.0
+      },
+      {
+        "source": "BckgrndExec HP",
+        "target": "proc_5364",
+        "transaction_count": 33,
+        "matched_latency_count": 0,
+        "latency_p95_ms": 0.0
+      },
+      {
+        "source": "android.hardwar",
+        "target": "proc_2200",
+        "transaction_count": 27,
+        "matched_latency_count": 0,
+        "latency_p95_ms": 0.0
+      },
+      {
+        "source": "binder:2200_4",
+        "target": "proc_963",
+        "transaction_count": 27,
+        "matched_latency_count": 0,
+        "latency_p95_ms": 0.0
+      },
+      {
+        "source": "RegionSampling",
+        "target": "s.nexuslauncher",
+        "transaction_count": 16,
+        "matched_latency_count": 0,
+        "latency_p95_ms": 0.0
+      },
+      {
+        "source": "s.nexuslauncher",
+        "target": "surfaceflinger",
+        "transaction_count": 5,
+        "matched_latency_count": 0,
+        "latency_p95_ms": 0.0
+      }
+    ]
+  },
+  "futex_wait_graph": {
+    "status": "not_available_in_captured_tracepoints",
+    "reason": "No standard futex tracepoint was exposed by the device during capability inspection."
+  },
+  "cpu_frequency_big_little_attribution": {
+    "topology_assumption": "Pixel 6a Tensor: CPU 0-3 little, CPU 4-5 middle, CPU 6-7 big",
+    "cluster_summary": [
+      {
+        "cluster": "little_0_3",
+        "target_on_cpu_ms": 4017.744,
+        "frequency_event_count": 31844,
+        "frequency_avg_khz": 1243992.6,
+        "frequency_p95_khz": 1803000,
+        "frequency_max_khz": 1803000
+      },
+      {
+        "cluster": "middle_4_5",
+        "target_on_cpu_ms": 5238.898,
+        "frequency_event_count": 12340,
+        "frequency_avg_khz": 1190027.1,
+        "frequency_p95_khz": 2130000,
+        "frequency_max_khz": 2253000
+      },
+      {
+        "cluster": "big_6_7",
+        "target_on_cpu_ms": 6715.341,
+        "frequency_event_count": 8930,
+        "frequency_avg_khz": 949893.2,
+        "frequency_p95_khz": 1745000,
+        "frequency_max_khz": 2802000
+      }
+    ]
+  },
+  "jank_cause_classifier": {
+    "mode": "rule_based_surfaceflinger_interval_evidence",
+    "frame_evidence_source": "SurfaceFlinger --latency ChromeChildSurface",
+    "frames_in_table": 126,
+    "aligned_frames": 126,
+    "reported_janky_frames": 0,
+    "retained_aligned_deadline_missed_frames": 2,
+    "suspected_interval_jank_frames": 2,
+    "aligned_frame_cause_counts": {
+      "scheduler_or_render_work": 31,
+      "binder_dependency": 95
+    },
+    "status": "ready_interval_based_evidence",
+    "reason": "SurfaceFlinger presentation intervals cover the rendered web surface; suspected jank is interval-based rather than an application FrameDeadline verdict."
+  },
+  "heuristic_strategy_comparison": {
+    "mode": "offline_candidate_target_comparison",
+    "policies": [
+      {
+        "policy": "cpu_only",
+        "top5_threads": "CompositorGpuTh, Compositor, VizCompositorTh, .android.chrome, CrRendererMain",
+        "pipeline_role_count": 5,
+        "system_thread_count": 0,
+        "selected_on_cpu_ms": 10562.885,
+        "selected_max_runnable_p95_ms": 0.172,
+        "interpretation": "candidate hint targets; no actuator applied and no performance improvement claimed"
+      },
+      {
+        "policy": "latency_only",
+        "top5_threads": "CronetInit, VizWebView, Chrome_ProcessL, Chrome_IOThread, scroll-bg-task",
+        "pipeline_role_count": 0,
+        "system_thread_count": 0,
+        "selected_on_cpu_ms": 2.81,
+        "selected_max_runnable_p95_ms": 1.477,
+        "interpretation": "candidate hint targets; no actuator applied and no performance improvement claimed"
+      },
+      {
+        "policy": "pipeline_critical_score",
+        "top5_threads": "CrRendererMain, .android.chrome, Compositor, VizCompositorTh, CompositorGpuTh",
+        "pipeline_role_count": 5,
+        "system_thread_count": 0,
+        "selected_on_cpu_ms": 10562.885,
+        "selected_max_runnable_p95_ms": 0.172,
+        "interpretation": "candidate hint targets; no actuator applied and no performance improvement claimed"
+      }
+    ],
+    "limitation": "No scheduling hint was applied, so this is target-selection comparison only."
+  }
+}
