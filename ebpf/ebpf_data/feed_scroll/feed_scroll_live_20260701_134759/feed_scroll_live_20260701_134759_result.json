@@ -1,0 +1,530 @@
+{
+  "analysis_mode": "graph_based_critical_path",
+  "session_id": "71e95152-ea91-4f9c-9d1e-c732bc20a7b9-184628",
+  "target_package": "com.android.chrome",
+  "total_frames": 1768,
+  "jank_frames": 24,
+  "avg_jank_duration_ns": 15265383,
+  "total_nodes": 4270,
+  "total_edges": 1419,
+  "edge_type_distribution": {
+    "WAKEUP": 0,
+    "RUNNABLE_WAIT": 0,
+    "BINDER_CALL": 24,
+    "FUTEX_WAIT": 692,
+    "CPU_RUN": 0,
+    "PREEMPTED_BY": 0,
+    "FRAME_DEPENDENCY": 695,
+    "RESOURCE_STALL": 0,
+    "DECODE_DEPENDENCY": 0,
+    "BUFFER_QUEUE": 2,
+    "THERMAL_STALL": 0,
+    "NETWORK_WAIT": 6
+  },
+  "resource_stats": {
+    "avg_cpu_freq_little_khz": 1492459,
+    "avg_cpu_freq_big_khz": 1831292,
+    "min_cpu_freq_big_khz": 0,
+    "binder_call_count": 15420,
+    "total_binder_blocking_ns": 5680382,
+    "futex_wait_count": 102663,
+    "total_futex_wait_ns": 3775581954455,
+    "video_decoder_count": 0,
+    "video_frames": 0,
+    "detected_scenario": "video",
+    "freq_throttle_ratio": 0.0000,
+    "jank_system_overhead_ns": 0
+  },
+  "top_k_threads": [
+    {
+      "rank": 1,
+      "tid": 606,
+      "pid": 606,
+      "comm": "surfaceflinger",
+      "package": "",
+      "critical_score": 0.2841,
+      "score_components": {
+        "frame_window_overlap": 0.8750,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 1.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.8750,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0455,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 2,
+      "tid": 682,
+      "pid": 682,
+      "comm": "surfaceflinger",
+      "package": "",
+      "critical_score": 0.2417,
+      "score_components": {
+        "frame_window_overlap": 0.3750,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 1.0000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.3750,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.3333,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 3,
+      "tid": 5111,
+      "pid": 5111,
+      "comm": "CompositorGpuTh",
+      "package": "",
+      "critical_score": 0.2345,
+      "score_components": {
+        "frame_window_overlap": 0.8750,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.5000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.8750,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0476,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 4,
+      "tid": 609,
+      "pid": 609,
+      "comm": "binder:609_2",
+      "package": "",
+      "critical_score": 0.2337,
+      "score_components": {
+        "frame_window_overlap": 0.8750,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.5000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.8750,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0435,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 5,
+      "tid": 18201,
+      "pid": 18201,
+      "comm": "CCodecWatchdog",
+      "package": "",
+      "critical_score": 0.2333,
+      "score_components": {
+        "frame_window_overlap": 0.0000,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.0000,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 1.0000,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 6,
+      "tid": 654,
+      "pid": 654,
+      "comm": "binder:606_2",
+      "package": "",
+      "critical_score": 0.2174,
+      "score_components": {
+        "frame_window_overlap": 0.8750,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.3333,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.8750,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0455,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 7,
+      "tid": 676,
+      "pid": 676,
+      "comm": "app",
+      "package": "",
+      "critical_score": 0.2095,
+      "score_components": {
+        "frame_window_overlap": 0.8750,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.2500,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.8750,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0476,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 8,
+      "tid": 5098,
+      "pid": 5098,
+      "comm": "VizCompositorTh",
+      "package": "",
+      "critical_score": 0.2095,
+      "score_components": {
+        "frame_window_overlap": 0.8750,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.2500,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.8750,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0476,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 9,
+      "tid": 644,
+      "pid": 644,
+      "comm": "DisplayHints",
+      "package": "",
+      "critical_score": 0.2092,
+      "score_components": {
+        "frame_window_overlap": 0.9167,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.1250,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.9167,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0667,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    },
+    {
+      "rank": 10,
+      "tid": 2026,
+      "pid": 2026,
+      "comm": "android.hardwar",
+      "package": "",
+      "critical_score": 0.2061,
+      "score_components": {
+        "frame_window_overlap": 0.8750,
+        "binder_dependency_centrality": 0.0000,
+        "render_path_proximity": 0.2000,
+        "futex_wait_contribution": 0.0000,
+        "repeated_jank_cooccurrence": 0.8750,
+        "background_penalty": 0.0000,
+        "decode_path_proximity": 0.0556,
+        "thermal_proximity": 0.0000,
+        "buffer_underrun_contribution": 0.0000
+      },
+      "runnable_delay_p95_ns": 0,
+      "wakeup_latency_p95_ns": 0,
+      "total_runtime_ns": 0,
+      "dominant_cause": "CPU_CONTENTION"
+    }
+  ],
+  "jank_cause_distribution": {
+    "CPU_CONTENTION": 24,
+    "BINDER_BLOCKING": 0,
+    "FUTEX_BLOCKING": 0,
+    "IO_WAIT": 0,
+    "MEMORY_RECLAIM": 0,
+    "GPU_STALL": 0,
+    "RUNNABLE_DELAY": 0,
+    "UNKNOWN": 0,
+    "VIDEO_LATE_RENDER": 0,
+    "AUDIO_SYNC_DRIFT": 0,
+    "THERMAL_THROTTLE": 0
+  },
+  "hints": {
+    "count": 1,
+    "default_ttl_ms": 300,
+    "items": [
+      {
+        "hint_id": "hint-1-1748889501",
+        "type": "PROTECT_UI_CHAIN",
+        "tid": 606,
+        "pid": 606,
+        "comm": "surfaceflinger",
+        "package": "com.android.chrome",
+        "ttl_ms": 300,
+        "rollback": {"action":"restore_affinity","mask":"all"},
+        "reason": "Protect UI compositor chain during interaction jank burst",
+        "runnable_delay_p95_ns": 0
+      }
+    ]
+  },
+  "inference": {
+    "session_summary": "Inference over 24 jank frames: dominant=CPU_CONTENTION, scenario=page_switch, thermal_score=0.00",
+    "recommended_hint": "BOOST_THREAD",
+    "frame_inferences": [
+      {
+        "frame_id": 4040596,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4040608,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4040614,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056557,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056564,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056570,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056578,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056585,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056592,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056599,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056606,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056613,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056620,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056627,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056634,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056641,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056648,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056655,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056662,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056669,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056676,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056683,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056690,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      },
+      {
+        "frame_id": 4056697,
+        "hypothesis": "CPU_CONTENTION",
+        "secondary": "CPU_CONTENTION",
+        "confidence": 0.0000,
+        "summary": "CPU_CONTENTION (conf=0.00) over CPU_CONTENTION in page_switch scenario",
+        "evidence": [
+        ]
+      }
+    ]
+  },
+  "heuristics_comparison": {
+    "graph_avg_precision_at_k": 0.1000,
+    "heuristic_avg_precision_at_k": 0.1000,
+    "top_k_overlap_count": 1,
+    "graph_mean_signal_noise_ratio": 0.0055,
+    "heuristic_mean_signal_noise_ratio": 0.5000
+  }
+}
