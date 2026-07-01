@@ -435,7 +435,7 @@ VizCompositorTh / CompositorGpuTh -> surfaceflinger -> display composition
 
 ### 9.8 当前答辩口径
 
-信息流滚动场景可以表述为：**Step1/Step2 的离线观测和候选分析已经完成到代理帧窗口级别；缺口集中在完整 FrameTimeline 标签、futex 真机能力和真实 hint 干预实验。**
+信息流滚动场景在 2026-05-27 样本中可以表述为：**Step1/Step2 的离线观测和候选分析已经完成到代理帧窗口级别；当时的缺口集中在完整 FrameTimeline 标签、futex 真机能力和真实 hint 干预实验。**
 
 可直接展示的完成项：
 
@@ -451,3 +451,114 @@ VizCompositorTh / CompositorGpuTh -> surfaceflinger -> display composition
 - 2 个异常长间隔候选只能说明与 Binder 活动共现，不能证明 Binder 是唯一原因。
 - futex wait graph 是设备观测能力限制，当前没有真实 futex 事件源。
 - 离线策略对比只比较候选目标，没有实际下发 hint，也不能声称改善帧性能。
+
+---
+
+## 十、真机 Chrome FrameTimeline 补采与当前最终口径（2026-07-01）
+
+2026-07-01 在 Pixel 6a / Android 16 上补充了一轮 Chrome 信息流滚动真机采集，数据目录为 `ebpf/ebpf_data/feed_scroll/feed_scroll_live_20260701_134759/`。本轮由 ADB 自动执行约 32 次滚动手势，采集 40 s，同步保存 TracePilot `events.bin`、ftrace、gfxinfo、SurfaceFlinger、Perfetto trace，并完成 Perfetto FrameTimeline、sched frame-window、CPU frequency / big-little 和 TracePilot offline replay 分析。
+
+本轮最重要的变化是：Perfetto FrameTimeline 已经通过 `source_filter=package_filter` 命中 `com.android.chrome`，因此当前 feed_scroll 最终口径应优先使用 Chrome package-filtered FrameTimeline；第 9 节的 SurfaceFlinger interval 保留为早期代理帧证据和设备限制说明。
+
+### 10.1 FrameTimeline ground truth
+
+| 指标 | 数值 |
+|---|---:|
+| FrameTimeline source filter | `package_filter` |
+| 目标包名 | `com.android.chrome` |
+| Frame count | 1768 |
+| Deadline missed | 24 |
+| Deadline missed rate | 1.36% |
+| Frame time avg / p50 / p95 / p99 | 3.215 / 2.930 / 4.069 / 16.815 ms |
+
+这说明 Step1 中 “Perfetto FrameTimeline 采集 jank ground truth” 已从代理帧补证升级为 Chrome 包名过滤下的真实 FrameTimeline 证据。`gfxinfo` 在本设备上仍只报告 1 frame，因此本场景后续不再把 `gfxinfo` 作为网页内容滚动的主帧源。
+
+### 10.2 Perfetto sched frame-window 聚合
+
+基于 1768 个 FrameTimeline 窗口，`analyze_perfetto_sched_windows.py` 从 Perfetto `thread_state` 表聚合 Running 与 Runnable 状态，共输出 103343 条 frame-thread 记录。Top 线程如下：
+
+| Rank | Thread | on-CPU ms | Runnable wait ms | Runnable wait p95 ms |
+|---:|---|---:|---:|---:|
+| 1 | `surfaceflinger` | 5596.666 | 294.082 | 0.313 |
+| 2 | `VizCompositorTh` | 2408.481 | 730.452 | 0.974 |
+| 3 | `Compositor` | 2173.516 | 849.417 | 0.901 |
+| 4 | `CompositorGpuTh` | 2273.160 | 357.278 | 0.468 |
+| 5 | `CrRendererMain` | 1625.172 | 527.460 | 0.846 |
+| 6 | `.android.chrome` | 1754.590 | 390.000 | 0.582 |
+
+因此 feed_scroll 的 Step1 frame-window runnable/on-CPU 聚合现在有 Perfetto 侧直接证据；TracePilot offline graph 中 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边仍为 0，调度侧答辩应优先引用 Perfetto crosscheck。
+
+### 10.3 CPU frequency / big-little
+
+| Cluster | Avg freq kHz | Jank avg freq kHz | Max freq kHz |
+|---|---:|---:|---:|
+| big | 2,719,291.0 | 2,798,992.2 | 2,802,000 |
+| middle | 1,192,249.9 | 1,192,511.4 | 2,253,000 |
+| little | 1,484,302.1 | 1,558,555.7 | 1,803,000 |
+
+Chrome 渲染/合成线程主要运行在 middle/big cluster：`VizCompositorTh` 为 90.93%，`CompositorGpuTh` 为 98.97%，`Compositor` 为 98.22%，`CrRendererMain` 为 88.25%。
+
+### 10.4 TracePilot offline replay 与 dry-run hint
+
+TracePilot offline replay 使用 `com.android.chrome` 显式包名运行，输出如下：
+
+| 指标 | 数值 |
+|---|---:|
+| Total frames | 1768 |
+| Jank frames | 24 |
+| Total nodes / edges | 4270 / 1419 |
+| `BINDER_CALL` edges | 24 |
+| `FUTEX_WAIT` edges | 692 |
+| `FRAME_DEPENDENCY` edges | 695 |
+| Jank cause candidate | 24 个 frame 均为 `CPU_CONTENTION` |
+| Graph AP@K / heuristic AP@K | 0.1 / 0.1 |
+
+Dry-run hint 输出 `PROTECT_UI_CHAIN -> surfaceflinger`，TTL 300 ms，rollback 为 restore affinity。该结果证明 hint schema、目标选择和审计字段已经跑通，但本轮没有执行真实 `--hint-apply`，不能声称已经改善帧性能。
+
+### 10.5 当前最终答辩口径
+
+信息流滚动场景当前可以表述为：**Step1/Step2 的观测与离线分析链路已经跑通，并且已补齐 Chrome package-filtered FrameTimeline；baseline vs intervention 真实采集闭环已经初跑，但效果是 mixed，不能声称 hint 已稳定改善帧性能。**
+
+可直接展示的完成项：
+
+- Step1 已有 Chrome package-filtered Perfetto FrameTimeline：1768 帧，24 个 deadline missed，missed rate 1.36%。
+- Step1 已完成 frame-window 内 Running/Runnable 聚合，Top 线程覆盖 `surfaceflinger`、Chrome Viz/GPU/Compositor/Renderer 链路。
+- Step2 已完成 CPU frequency / big-little 归因，Chrome 渲染线程主要使用 middle/big cluster。
+- Step2 已有 TracePilot replay 图：`BINDER_CALL=24`、`FUTEX_WAIT=692`、`FRAME_DEPENDENCY=695`。
+- Hint Engine 已输出 dry-run `PROTECT_UI_CHAIN`，具备 TTL 与 rollback 字段。
+
+必须保守说明的限制：
+
+- 2026-07-01 的 3 baseline + 3 intervention 初跑没有形成稳定改善结论，不能声称 jank rate 或 p95/p99 已因 hint 改善。
+- TracePilot graph 内 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边仍为 0，调度归因主要依赖 Perfetto sched crosscheck。
+- 设备上 SurfaceFlinger 的 `sched_boost`/`uclamp` actuator 不可用，真实干预需要采用可回滚的 Chrome 渲染线程 priority/cpuset 方案，并单独报告 actuator 成功率。
+
+### 10.6 Baseline vs intervention 初跑结果
+
+2026-07-01 晚间补做了一轮真实 actuator 初跑，目录为 `ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/`。实验设置为 3 轮 baseline + 3 轮 intervention，每轮约 20 s；intervention 目标为 Chrome 渲染/合成相关线程，尝试临时调整 nice priority，并记录 actuator audit。
+
+聚合结果如下：
+
+| 模式 | Runs | Avg frames | Avg deadline missed | Avg missed rate | Avg p95 ms | Avg p99 ms |
+|---|---:|---:|---:|---:|---:|---:|
+| baseline | 3 | 962.0 | 2.0000 | 0.22% | 3.7353 | 4.7803 |
+| intervention | 3 | 892.0 | 1.6667 | 0.18% | 4.2443 | 5.3727 |
+| intervention - baseline | - | -70.0 | -0.3333 | -0.04 pp | +0.5090 | +0.5924 |
+
+逐轮 actuator audit：
+
+| Run | Mode | Frames | Missed rate | p95 / p99 ms | Unique targets | Renice success | Cpuset success |
+|---|---|---:|---:|---:|---:|---:|---:|
+| baseline 1 | baseline | 1010 | 0.40% | 3.728 / 5.047 | 0 | 0 | 0 |
+| intervention 1 | intervention | 1009 | 0.20% | 4.873 / 6.770 | 25 | 21 | 0 |
+| baseline 2 | baseline | 802 | 0.25% | 3.716 / 4.137 | 0 | 0 | 0 |
+| intervention 2 | intervention | 658 | 0.15% | 3.970 / 4.594 | 25 | 0 | 0 |
+| baseline 3 | baseline | 1074 | 0.00% | 3.762 / 5.157 | 0 | 0 | 0 |
+| intervention 3 | intervention | 1009 | 0.20% | 3.890 / 4.754 | 25 | 0 | 0 |
+
+结论要保守写：
+
+- 这轮已经证明真实干预实验的采集、滚动 workload、Perfetto 解析、FrameTimeline 指标聚合和 actuator audit 闭环可以跑通。
+- 指标本身不支持“稳定改善”结论：deadline missed rate 只有很小下降，但 p95/p99 frame time 反而上升。
+- `renice_success_count` 在第 2/3 轮变为 0，是因为第 1 轮后目标线程已经处在更高优先级状态；旧脚本使用 `renice -n`，在 Android toybox 上表现为相对调整，可能导致 nice 值累积下降。脚本已改为绝对 `renice <priority> -p <tid>` 并回查 `/proc/<tid>/stat`。
+- 因此本轮更适合作为“真实 actuator 初跑与限制说明”，不适合作为最终性能改善证据。若还需要更强结论，应先重启/强停 Chrome 清空线程状态，再用修正后的脚本复测；如果时间不够，答辩中直接说真实干预闭环已跑通但效果 mixed。
