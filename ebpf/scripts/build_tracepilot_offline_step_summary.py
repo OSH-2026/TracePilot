@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+build_tracepilot_offline_step_summary.py — Step1/Step2 离线汇总生成
+读取 Perfetto 帧数据与 eBPF 调度/CPU 频率数据，离线生成
+Step1(调度摘要)和 Step2(Binder/Futex/启发式策略对比)汇总 JSON。
+
+用法:
+  python build_tracepilot_offline_step_summary.py --data-dir <dir> --output <json>
+"""
 import argparse
 import json
 from pathlib import Path

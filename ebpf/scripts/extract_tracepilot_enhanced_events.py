@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+extract_tracepilot_enhanced_events.py — TracePilot enhanced 事件提取
+从 events.bin v3 中提取 enhanced 事件(binder/futex/cpu_freq/thermal)，
+输出为 CSV 格式供下游分析脚本消费。
+
+用法:
+  python extract_tracepilot_enhanced_events.py <events.bin> <output.csv>
+"""
 import argparse
 import csv
 import json

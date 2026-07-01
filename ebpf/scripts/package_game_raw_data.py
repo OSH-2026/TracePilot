@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+package_game_raw_data.py — 游戏原始数据打包归档
+将游戏场景采集的 Perfetto trace + eBPF events + 元数据打包为 zip，
+生成 SHA256 校验和用于数据完整性验证。
+
+用法:
+  python package_game_raw_data.py <data_dir> <output_package.zip>
+"""
 import argparse
 import hashlib
 import json

@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+collect_game_aligned.py — 游戏场景对齐采集器
+采集王者荣耀对局场景的 Perfetto FrameTimeline + eBPF/TracePilot 事件，
+输出帧对齐的调度数据用于 Step1/Step2 分析。
+
+用法:
+  python collect_game_aligned.py --package com.tencent.tmgp.sgame --duration 60
+"""
 import argparse
 import base64
 import gzip

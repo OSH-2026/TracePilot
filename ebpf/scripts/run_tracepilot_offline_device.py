@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+run_tracepilot_offline_device.py — 离线设备端 TracePilot 运行器
+在宿主机上通过 adb 远程控制 Pixel 6a 设备端 tracepilot 采集流程，
+自动完成 Perfetto 启动→eBPF 采集→数据拉取的全流程编排。
+
+用法:
+  python run_tracepilot_offline_device.py --scenario page_switch --duration 30
+"""
 import argparse
 import json
 import subprocess

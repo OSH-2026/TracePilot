@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Export Step 2 Binder / Futex filtered subgraphs from tracepilot graph JSON."""
+"""
+export_step2_graphs.py — Step 2 Binder/Futex 子图导出
+从 tracepilot graph JSON 中过滤 BINDER_CALL / FUTEX_WAIT 边，
+导出为 Graphviz DOT 格式并渲染为 SVG 图。
+
+用法:
+  python export_step2_graphs.py <graph_topology.json> <output_dir>
+"""
 
 from __future__ import annotations
 

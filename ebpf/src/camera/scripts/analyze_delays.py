@@ -1,3 +1,14 @@
+#!/usr/bin/env python3
+"""
+analyze_delays.py — Camera 场景延迟聚合分析
+读取 sched/binder_futex/irq CSV + Perfetto 帧窗口 JSON，
+逐帧聚合 runnable delay、Binder 配对延迟、Futex 统计、IRQ/CPU 归因，
+自动触发 critical_path.py 生成 CriticalScore 排名。
+
+用法:
+  python analyze_delays.py --json <windows.json> --csv <sched.csv>
+      --binder <binder.csv> --irq <irq.csv>
+"""
 import json
 import csv
 import os
