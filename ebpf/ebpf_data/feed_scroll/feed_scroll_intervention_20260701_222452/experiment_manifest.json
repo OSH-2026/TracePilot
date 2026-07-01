@@ -1,0 +1,568 @@
+{
+  "created_at": "2026-07-01T22:24:52.796966+08:00",
+  "package": "com.android.chrome",
+  "duration_s": 20,
+  "repetitions": 3,
+  "target_nice": -10,
+  "trace_processor": "/private/tmp/trace_processor",
+  "runs": [
+    {
+      "tag": "feed_scroll_intervention_20260701_222452_baseline_1",
+      "mode": "baseline",
+      "run_dir": "ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_baseline_1/capture",
+      "trace": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_baseline_1/capture/feed_scroll_intervention_20260701_222452_baseline_1.perfetto-trace",
+      "package": "com.android.chrome",
+      "source_filter": "package_filter",
+      "frames_csv": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_baseline_1/capture/feed_scroll_intervention_20260701_222452_baseline_1_perfetto_frametimeline_frames.csv",
+      "frame_count": 1010,
+      "deadline_missed_count": 4,
+      "deadline_missed_rate": 0.004,
+      "frame_time_avg_ms": 3.002,
+      "frame_time_p50_ms": 2.894,
+      "frame_time_p95_ms": 3.728,
+      "frame_time_p99_ms": 5.047,
+      "window_margin_ms": 2.0,
+      "top_threads": [
+        {
+          "rank": 1,
+          "comm": "binder:6409_F",
+          "on_cpu_ms": 0.037,
+          "runnable_wait_ms": 20567.162,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 2,
+          "comm": "binder:6409_D",
+          "on_cpu_ms": 0.016,
+          "runnable_wait_ms": 20567.146,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 3,
+          "comm": "binder:6409_C",
+          "on_cpu_ms": 0.024,
+          "runnable_wait_ms": 20567.122,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 4,
+          "comm": "GmsDynamite",
+          "on_cpu_ms": 0.022,
+          "runnable_wait_ms": 20566.966,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 5,
+          "comm": "arch_disk_io_3",
+          "on_cpu_ms": 0.094,
+          "runnable_wait_ms": 20565.833,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 6,
+          "comm": "mali-utility-wo",
+          "on_cpu_ms": 0.027,
+          "runnable_wait_ms": 20564.409,
+          "runnable_wait_p95_ms": 20.6
+        }
+      ],
+      "cpu_cluster_summary": {
+        "big": {
+          "avg_freq_khz": 2777742.8,
+          "jank_avg_freq_khz": 2783161.2,
+          "min_freq_khz": 0.0,
+          "max_freq_khz": 2802000.0,
+          "sampled_time_ns": 41617673580
+        },
+        "little": {
+          "avg_freq_khz": 1517729.3,
+          "jank_avg_freq_khz": 1629506.6,
+          "min_freq_khz": 738000.0,
+          "max_freq_khz": 1803000.0,
+          "sampled_time_ns": 83235347160
+        },
+        "middle": {
+          "avg_freq_khz": 1270508.9,
+          "jank_avg_freq_khz": 1813984.0,
+          "min_freq_khz": 400000.0,
+          "max_freq_khz": 2253000.0,
+          "sampled_time_ns": 41617673580
+        }
+      },
+      "intervention": {
+        "exists": false
+      }
+    },
+    {
+      "tag": "feed_scroll_intervention_20260701_222452_intervention_1",
+      "mode": "intervention",
+      "run_dir": "ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_intervention_1/capture",
+      "trace": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_intervention_1/capture/feed_scroll_intervention_20260701_222452_intervention_1.perfetto-trace",
+      "package": "com.android.chrome",
+      "source_filter": "package_filter",
+      "frames_csv": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_intervention_1/capture/feed_scroll_intervention_20260701_222452_intervention_1_perfetto_frametimeline_frames.csv",
+      "frame_count": 1009,
+      "deadline_missed_count": 2,
+      "deadline_missed_rate": 0.002,
+      "frame_time_avg_ms": 3.307,
+      "frame_time_p50_ms": 3.077,
+      "frame_time_p95_ms": 4.873,
+      "frame_time_p99_ms": 6.77,
+      "window_margin_ms": 2.0,
+      "top_threads": [
+        {
+          "rank": 1,
+          "comm": null,
+          "on_cpu_ms": 0.0,
+          "runnable_wait_ms": 0.0,
+          "runnable_wait_p95_ms": 0.0
+        },
+        {
+          "rank": 2,
+          "comm": "Thread_3",
+          "on_cpu_ms": 7664.399,
+          "runnable_wait_ms": 2077.363,
+          "runnable_wait_p95_ms": 6.927
+        },
+        {
+          "rank": 3,
+          "comm": "webview_service",
+          "on_cpu_ms": 0.032,
+          "runnable_wait_ms": 9681.981,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 4,
+          "comm": "perfetto_hprof_",
+          "on_cpu_ms": 0.038,
+          "runnable_wait_ms": 9681.949,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 5,
+          "comm": "surfaceflinger",
+          "on_cpu_ms": 3225.504,
+          "runnable_wait_ms": 174.448,
+          "runnable_wait_p95_ms": 0.331
+        },
+        {
+          "rank": 6,
+          "comm": "VizCompositorTh",
+          "on_cpu_ms": 1551.834,
+          "runnable_wait_ms": 547.719,
+          "runnable_wait_p95_ms": 1.441
+        }
+      ],
+      "cpu_cluster_summary": {
+        "big": {
+          "avg_freq_khz": 2779947.5,
+          "jank_avg_freq_khz": 2789935.6,
+          "min_freq_khz": 500000.0,
+          "max_freq_khz": 2802000.0,
+          "sampled_time_ns": 41570800000
+        },
+        "little": {
+          "avg_freq_khz": 1658452.4,
+          "jank_avg_freq_khz": 1728186.8,
+          "min_freq_khz": 0.0,
+          "max_freq_khz": 1803000.0,
+          "sampled_time_ns": 83141600000
+        },
+        "middle": {
+          "avg_freq_khz": 1463788.6,
+          "jank_avg_freq_khz": 2201210.1,
+          "min_freq_khz": 400000.0,
+          "max_freq_khz": 2253000.0,
+          "sampled_time_ns": 41570800000
+        }
+      },
+      "intervention": {
+        "exists": true,
+        "apply_ticks": 100,
+        "unique_targets": 25,
+        "renice_success_count": 21,
+        "cpuset_success_count": 0
+      }
+    },
+    {
+      "tag": "feed_scroll_intervention_20260701_222452_baseline_2",
+      "mode": "baseline",
+      "run_dir": "ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_baseline_2/capture",
+      "trace": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_baseline_2/capture/feed_scroll_intervention_20260701_222452_baseline_2.perfetto-trace",
+      "package": "com.android.chrome",
+      "source_filter": "package_filter",
+      "frames_csv": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_baseline_2/capture/feed_scroll_intervention_20260701_222452_baseline_2_perfetto_frametimeline_frames.csv",
+      "frame_count": 802,
+      "deadline_missed_count": 2,
+      "deadline_missed_rate": 0.0025,
+      "frame_time_avg_ms": 3.032,
+      "frame_time_p50_ms": 2.976,
+      "frame_time_p95_ms": 3.716,
+      "frame_time_p99_ms": 4.137,
+      "window_margin_ms": 2.0,
+      "top_threads": [
+        {
+          "rank": 1,
+          "comm": "Thread_3",
+          "on_cpu_ms": 2022.494,
+          "runnable_wait_ms": 451.889,
+          "runnable_wait_p95_ms": 5.495
+        },
+        {
+          "rank": 2,
+          "comm": "Compositor",
+          "on_cpu_ms": 992.778,
+          "runnable_wait_ms": 388.78,
+          "runnable_wait_p95_ms": 0.887
+        },
+        {
+          "rank": 3,
+          "comm": "VizCompositorTh",
+          "on_cpu_ms": 1034.345,
+          "runnable_wait_ms": 272.794,
+          "runnable_wait_p95_ms": 0.781
+        },
+        {
+          "rank": 4,
+          "comm": "CompositorGpuTh",
+          "on_cpu_ms": 1032.033,
+          "runnable_wait_ms": 143.315,
+          "runnable_wait_p95_ms": 0.391
+        },
+        {
+          "rank": 5,
+          "comm": "InputDispatcher",
+          "on_cpu_ms": 618.554,
+          "runnable_wait_ms": 321.026,
+          "runnable_wait_p95_ms": 1.58
+        },
+        {
+          "rank": 6,
+          "comm": ".android.chrome",
+          "on_cpu_ms": 780.775,
+          "runnable_wait_ms": 150.514,
+          "runnable_wait_p95_ms": 0.561
+        }
+      ],
+      "cpu_cluster_summary": {
+        "big": {
+          "avg_freq_khz": 2791530.2,
+          "jank_avg_freq_khz": 2802000.0,
+          "min_freq_khz": 500000.0,
+          "max_freq_khz": 2802000.0,
+          "sampled_time_ns": 33042400000
+        },
+        "little": {
+          "avg_freq_khz": 1495011.6,
+          "jank_avg_freq_khz": 1784263.7,
+          "min_freq_khz": 738000.0,
+          "max_freq_khz": 1803000.0,
+          "sampled_time_ns": 66084800000
+        },
+        "middle": {
+          "avg_freq_khz": 1287424.3,
+          "jank_avg_freq_khz": 2024115.9,
+          "min_freq_khz": 0.0,
+          "max_freq_khz": 2253000.0,
+          "sampled_time_ns": 33042400000
+        }
+      },
+      "intervention": {
+        "exists": false
+      }
+    },
+    {
+      "tag": "feed_scroll_intervention_20260701_222452_intervention_2",
+      "mode": "intervention",
+      "run_dir": "ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_intervention_2/capture",
+      "trace": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_intervention_2/capture/feed_scroll_intervention_20260701_222452_intervention_2.perfetto-trace",
+      "package": "com.android.chrome",
+      "source_filter": "package_filter",
+      "frames_csv": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_intervention_2/capture/feed_scroll_intervention_20260701_222452_intervention_2_perfetto_frametimeline_frames.csv",
+      "frame_count": 658,
+      "deadline_missed_count": 1,
+      "deadline_missed_rate": 0.0015,
+      "frame_time_avg_ms": 3.227,
+      "frame_time_p50_ms": 3.12,
+      "frame_time_p95_ms": 3.97,
+      "frame_time_p99_ms": 4.594,
+      "window_margin_ms": 2.0,
+      "top_threads": [
+        {
+          "rank": 1,
+          "comm": "earchbox:search",
+          "on_cpu_ms": 0.048,
+          "runnable_wait_ms": 6484.032,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 2,
+          "comm": "DefaultDispatch",
+          "on_cpu_ms": 0.05,
+          "runnable_wait_ms": 6481.091,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 3,
+          "comm": "MSF_StatReportT",
+          "on_cpu_ms": 0.036,
+          "runnable_wait_ms": 6480.076,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 4,
+          "comm": "DefaultDispatch",
+          "on_cpu_ms": 0.05,
+          "runnable_wait_ms": 6475.144,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 5,
+          "comm": "DefaultDispatch",
+          "on_cpu_ms": 0.042,
+          "runnable_wait_ms": 6475.102,
+          "runnable_wait_p95_ms": 20.6
+        },
+        {
+          "rank": 6,
+          "comm": "DefaultDispatch",
+          "on_cpu_ms": 0.046,
+          "runnable_wait_ms": 6475.063,
+          "runnable_wait_p95_ms": 20.6
+        }
+      ],
+      "cpu_cluster_summary": {
+        "big": {
+          "avg_freq_khz": 2792850.3,
+          "jank_avg_freq_khz": 2755455.3,
+          "min_freq_khz": 500000.0,
+          "max_freq_khz": 2802000.0,
+          "sampled_time_ns": 27109600000
+        },
+        "little": {
+          "avg_freq_khz": 1621100.1,
+          "jank_avg_freq_khz": 1489636.5,
+          "min_freq_khz": 738000.0,
+          "max_freq_khz": 1803000.0,
+          "sampled_time_ns": 54219200000
+        },
+        "middle": {
+          "avg_freq_khz": 1475851.5,
+          "jank_avg_freq_khz": 1355944.2,
+          "min_freq_khz": 400000.0,
+          "max_freq_khz": 2253000.0,
+          "sampled_time_ns": 27109600000
+        }
+      },
+      "intervention": {
+        "exists": true,
+        "apply_ticks": 100,
+        "unique_targets": 25,
+        "renice_success_count": 0,
+        "cpuset_success_count": 0
+      }
+    },
+    {
+      "tag": "feed_scroll_intervention_20260701_222452_baseline_3",
+      "mode": "baseline",
+      "run_dir": "ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_baseline_3/capture",
+      "trace": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_baseline_3/capture/feed_scroll_intervention_20260701_222452_baseline_3.perfetto-trace",
+      "package": "com.android.chrome",
+      "source_filter": "package_filter",
+      "frames_csv": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_baseline_3/capture/feed_scroll_intervention_20260701_222452_baseline_3_perfetto_frametimeline_frames.csv",
+      "frame_count": 1074,
+      "deadline_missed_count": 0,
+      "deadline_missed_rate": 0.0,
+      "frame_time_avg_ms": 3.024,
+      "frame_time_p50_ms": 2.905,
+      "frame_time_p95_ms": 3.762,
+      "frame_time_p99_ms": 5.157,
+      "window_margin_ms": 2.0,
+      "top_threads": [
+        {
+          "rank": 1,
+          "comm": "surfaceflinger",
+          "on_cpu_ms": 3320.666,
+          "runnable_wait_ms": 184.511,
+          "runnable_wait_p95_ms": 0.334
+        },
+        {
+          "rank": 2,
+          "comm": "VizCompositorTh",
+          "on_cpu_ms": 1477.669,
+          "runnable_wait_ms": 582.688,
+          "runnable_wait_p95_ms": 1.007
+        },
+        {
+          "rank": 3,
+          "comm": "Compositor",
+          "on_cpu_ms": 1342.683,
+          "runnable_wait_ms": 545.029,
+          "runnable_wait_p95_ms": 0.944
+        },
+        {
+          "rank": 4,
+          "comm": "CompositorGpuTh",
+          "on_cpu_ms": 1386.056,
+          "runnable_wait_ms": 213.116,
+          "runnable_wait_p95_ms": 0.472
+        },
+        {
+          "rank": 5,
+          "comm": "CrRendererMain",
+          "on_cpu_ms": 1016.811,
+          "runnable_wait_ms": 297.12,
+          "runnable_wait_p95_ms": 0.744
+        },
+        {
+          "rank": 6,
+          "comm": "binder:609_2",
+          "on_cpu_ms": 1222.957,
+          "runnable_wait_ms": 64.348,
+          "runnable_wait_p95_ms": 0.102
+        }
+      ],
+      "cpu_cluster_summary": {
+        "big": {
+          "avg_freq_khz": 2783544.3,
+          "jank_avg_freq_khz": 0,
+          "min_freq_khz": 500000.0,
+          "max_freq_khz": 2802000.0,
+          "sampled_time_ns": 44025732640
+        },
+        "little": {
+          "avg_freq_khz": 1513532.7,
+          "jank_avg_freq_khz": 0,
+          "min_freq_khz": 574000.0,
+          "max_freq_khz": 1803000.0,
+          "sampled_time_ns": 88051465280
+        },
+        "middle": {
+          "avg_freq_khz": 1244436.5,
+          "jank_avg_freq_khz": 0,
+          "min_freq_khz": 400000.0,
+          "max_freq_khz": 2253000.0,
+          "sampled_time_ns": 43984532640
+        }
+      },
+      "intervention": {
+        "exists": false
+      }
+    },
+    {
+      "tag": "feed_scroll_intervention_20260701_222452_intervention_3",
+      "mode": "intervention",
+      "run_dir": "ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_intervention_3/capture",
+      "trace": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_intervention_3/capture/feed_scroll_intervention_20260701_222452_intervention_3.perfetto-trace",
+      "package": "com.android.chrome",
+      "source_filter": "package_filter",
+      "frames_csv": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/feed_scroll/feed_scroll_intervention_20260701_222452/feed_scroll_intervention_20260701_222452_intervention_3/capture/feed_scroll_intervention_20260701_222452_intervention_3_perfetto_frametimeline_frames.csv",
+      "frame_count": 1009,
+      "deadline_missed_count": 2,
+      "deadline_missed_rate": 0.002,
+      "frame_time_avg_ms": 3.11,
+      "frame_time_p50_ms": 3.017,
+      "frame_time_p95_ms": 3.89,
+      "frame_time_p99_ms": 4.754,
+      "window_margin_ms": 2.0,
+      "top_threads": [
+        {
+          "rank": 1,
+          "comm": "surfaceflinger",
+          "on_cpu_ms": 3164.634,
+          "runnable_wait_ms": 166.308,
+          "runnable_wait_p95_ms": 0.303
+        },
+        {
+          "rank": 2,
+          "comm": "VizCompositorTh",
+          "on_cpu_ms": 1546.525,
+          "runnable_wait_ms": 436.748,
+          "runnable_wait_p95_ms": 1.018
+        },
+        {
+          "rank": 3,
+          "comm": "Compositor",
+          "on_cpu_ms": 1372.899,
+          "runnable_wait_ms": 514.91,
+          "runnable_wait_p95_ms": 0.937
+        },
+        {
+          "rank": 4,
+          "comm": "CompositorGpuTh",
+          "on_cpu_ms": 1316.779,
+          "runnable_wait_ms": 187.713,
+          "runnable_wait_p95_ms": 0.453
+        },
+        {
+          "rank": 5,
+          "comm": ".android.chrome",
+          "on_cpu_ms": 1098.12,
+          "runnable_wait_ms": 190.865,
+          "runnable_wait_p95_ms": 0.463
+        },
+        {
+          "rank": 6,
+          "comm": "CrRendererMain",
+          "on_cpu_ms": 999.104,
+          "runnable_wait_ms": 287.377,
+          "runnable_wait_p95_ms": 0.825
+        }
+      ],
+      "cpu_cluster_summary": {
+        "big": {
+          "avg_freq_khz": 2764448.8,
+          "jank_avg_freq_khz": 2799574.3,
+          "min_freq_khz": 500000.0,
+          "max_freq_khz": 2802000.0,
+          "sampled_time_ns": 41570800000
+        },
+        "little": {
+          "avg_freq_khz": 1640687.1,
+          "jank_avg_freq_khz": 1719833.7,
+          "min_freq_khz": 574000.0,
+          "max_freq_khz": 1803000.0,
+          "sampled_time_ns": 83141600000
+        },
+        "middle": {
+          "avg_freq_khz": 1302478.9,
+          "jank_avg_freq_khz": 1441435.7,
+          "min_freq_khz": 400000.0,
+          "max_freq_khz": 2253000.0,
+          "sampled_time_ns": 41570800000
+        }
+      },
+      "intervention": {
+        "exists": true,
+        "apply_ticks": 125,
+        "unique_targets": 25,
+        "renice_success_count": 0,
+        "cpuset_success_count": 0
+      }
+    }
+  ],
+  "actuator_note": "Uses repeated Chrome render-thread renice/top-app cpuset guard during the capture window. SurfaceFlinger sched_boost/uclamp/taskset/chrt are not assumed available.",
+  "aggregate": {
+    "baseline": {
+      "runs": 3,
+      "avg_frame_count": 962.0,
+      "avg_deadline_missed_count": 2.0,
+      "avg_deadline_missed_rate": 0.0022,
+      "avg_frame_time_p95_ms": 3.7353,
+      "avg_frame_time_p99_ms": 4.7803
+    },
+    "intervention": {
+      "runs": 3,
+      "avg_frame_count": 892.0,
+      "avg_deadline_missed_count": 1.6667,
+      "avg_deadline_missed_rate": 0.0018,
+      "avg_frame_time_p95_ms": 4.2443,
+      "avg_frame_time_p99_ms": 5.3727
+    },
+    "delta_intervention_minus_baseline": {
+      "deadline_missed_rate": -0.0004,
+      "frame_time_p95_ms": 0.509,
+      "frame_time_p99_ms": 0.5924
+    }
+  }
+}
