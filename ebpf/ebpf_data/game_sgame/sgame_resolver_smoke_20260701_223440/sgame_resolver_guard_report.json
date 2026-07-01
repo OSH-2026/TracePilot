@@ -1,0 +1,44 @@
+{
+  "created_at": "2026-07-01T22:34:49.618833+08:00",
+  "package": "com.tencent.tmgp.sgame",
+  "package_installed": true,
+  "package_uid": 10276,
+  "pm_output": "package:com.tencent.tmgp.sgame uid:10276",
+  "foreground_package": "com.tencent.tmgp.sgame",
+  "foreground_matches_target": true,
+  "pid_snapshot": [
+    {
+      "pid": 14178,
+      "uid": "10276",
+      "cmdline": "com.tencent.tmgp.sgame"
+    }
+  ],
+  "explicit_tracepilot_guard": "-p com.tencent.tmgp.sgame",
+  "hint_guard_status": "ready",
+  "notes": [
+    "Use the explicit -p package guard for any future SGame replay/intervention.",
+    "Do not apply hints if foreground_package differs from the requested package."
+  ],
+  "capture": {
+    "attempted": true,
+    "tag": "sgame_resolver_smoke_20260701_223440",
+    "path": "ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_20260701_223440/sgame_resolver_smoke_20260701_223440",
+    "stdout_path": "capture_stdout.txt",
+    "success": true,
+    "frametimeline_parse_stdout": "{\n  \"trace\": \"/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_20260701_223440/sgame_resolver_smoke_20260701_223440/sgame_resolver_smoke_20260701_223440.perfetto-trace\",\n  \"package\": \"com.tencent.tmgp.sgame\",\n  \"source_filter\": \"all_frametimeline_rows_fallback\",\n  \"frames_csv\": \"/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_20260701_223440/sgame_resolver_smoke_20260701_223440/sgame_resolver_smoke_20260701_223440_perfetto_frametimeline_frames.csv\",\n  \"frame_count\": 508,\n  \"deadline_missed_count\": 1,\n  \"deadline_missed_rate\": 0.002,\n  \"frame_time_avg_ms\": 14.177,\n  \"frame_time_p50_ms\": 16.191,\n  \"frame_time_p95_ms\": 16.377,\n  \"frame_time_p99_ms\": 16.486,\n  \"window_margin_ms\": 2.0\n}\n",
+    "frametimeline_summary": {
+      "trace": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_20260701_223440/sgame_resolver_smoke_20260701_223440/sgame_resolver_smoke_20260701_223440.perfetto-trace",
+      "package": "com.tencent.tmgp.sgame",
+      "source_filter": "all_frametimeline_rows_fallback",
+      "frames_csv": "/Users/scx/code/osh/TracePilot/ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_20260701_223440/sgame_resolver_smoke_20260701_223440/sgame_resolver_smoke_20260701_223440_perfetto_frametimeline_frames.csv",
+      "frame_count": 508,
+      "deadline_missed_count": 1,
+      "deadline_missed_rate": 0.002,
+      "frame_time_avg_ms": 14.177,
+      "frame_time_p50_ms": 16.191,
+      "frame_time_p95_ms": 16.377,
+      "frame_time_p99_ms": 16.486,
+      "window_margin_ms": 2.0
+    }
+  }
+}
