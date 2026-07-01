@@ -450,7 +450,7 @@ TracePilot dry-run hint 输出 1 条建议：
 
 ### 12.6 当前最终答辩口径
 
-当前王者荣耀场景可以表述为：**Step1/Step2 的离线分析链路已经跑通，且 2026-06-07 样本补齐了帧窗口级证据；但真实 hint 下发和严格因果证明仍未完成。**
+当前王者荣耀场景可以表述为：**Step1/Step2 的离线分析链路已经跑通，且 2026-06-07 样本补齐了帧窗口级证据；2026-07-01 已验证 `com.tencent.tmgp.sgame` 前台包名/UID/PID guard 可用，但由于游戏未更新、本轮场景质量不理想，不再继续硬采正式游戏性能场景。**
 
 可直接展示的完成项：
 
@@ -466,9 +466,42 @@ TracePilot dry-run hint 输出 1 条建议：
 - TracePilot 离线 graph 的 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边仍为 0，调度归因主要依赖 Perfetto crosscheck。
 - `hints.json` 的 package 继承了 `com.luna.music` 自动误判，不能直接用于真实下发。
 - Jank cause classifier 目前只是低置信度候选，2 个 jank frame 均为 `CPU_CONTENTION` 且 confidence=0.0。
-- 尚未做 baseline vs intervention 的真实干预效果对比。
+- 尚未做 baseline vs intervention 的真实干预效果对比；当前决策是停止继续硬采 SGame，把该场景保守定位为离线分析 + resolver/guard smoke。
 
-### 12.7 提交数据说明
+### 12.7 2026-07-01 resolver/guard smoke
+
+2026-07-01 连接 Pixel 6a 后额外跑了两轮短采样 smoke，目录为：
+
+- `ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_20260701_223440/`
+- `ebpf/ebpf_data/game_sgame/sgame_resolver_smoke_20260701_223749/`
+
+两轮共同结论：
+
+| 检查项 | 结果 |
+|---|---|
+| Package installed | true |
+| Package UID | 10276 |
+| Foreground package | `com.tencent.tmgp.sgame` |
+| PID snapshot | `14178 / com.tencent.tmgp.sgame` |
+| Explicit guard | `-p com.tencent.tmgp.sgame` |
+| Guard status | ready |
+
+短采样 FrameTimeline 结果：
+
+| Tag | source_filter | Frames | Deadline missed | Missed rate | p95 / p99 ms |
+|---|---|---:|---:|---:|---:|
+| `sgame_resolver_smoke_20260701_223440` | `all_frametimeline_rows_fallback` | 508 | 1 | 0.20% | 16.377 / 16.486 |
+| `sgame_resolver_smoke_20260701_223749` | `all_frametimeline_rows_fallback` | 463 | 1 | 0.22% | 16.352 / 16.408 |
+
+这两轮 smoke 的价值是修正此前 `com.luna.music` 误判风险：后续若需要下发任何 SGame hint，必须显式使用 `-p com.tencent.tmgp.sgame` 并在下发前检查前台包名一致。它们不应被写成正式游戏性能结果，原因是：
+
+- FrameTimeline 仍是 `all_frametimeline_rows_fallback`，不是游戏进程精确绑定。
+- 本轮游戏没有更新，实际场景可能停留在登录/静态/非对局状态。
+- 样本只有 10 s 左右，且 missed frame 很少，不能支撑 baseline vs intervention 因果对比。
+
+因此，当前提交口径建议写成：**SGame 已完成历史样本离线分析和 2026-07-01 resolver/guard smoke；正式游戏干预实验停止继续采集，不作为主结论。**
+
+### 12.8 提交数据说明
 
 为避免将几个 GB 的原始散文件直接提交，本轮将 raw/replay 输入打包为单个归档，并用 manifest 记录内容和 SHA256：
 
