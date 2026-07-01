@@ -1,4 +1,4 @@
-# 王者荣耀游戏场景 eBPF 采集分析记录
+# 游戏场景（王者荣耀） eBPF 采集分析记录
 
 ## 目录
 - [1. 采集对象与数据目录](#1-采集对象与数据目录)
@@ -126,7 +126,7 @@ ftrace 结果说明：对局窗口中 Binder 相关事件增加，符合游戏�
 
 ## 9. Step1：基础部分补齐（2026-06-01 旧样本状态）
 
-本节记录 2026-06-01 两组游戏样本的 Step1 补齐情况，属于早期旧样本状态。第 12 节已经用 2026-06-07 同步采集样本补充 Perfetto FrameTimeline、Perfetto sched/cpu frame-window 分析和 TracePilot dry-run 结果；因此当前最终口径以第 12.5 和第 12.6 节为准。
+本节记录 2026-06-01 两组游戏样本的 Step1 补齐情况，属于早期旧样本状态。第 12 节已经用 2026-06-07 同步采集样本补充 Perfetto FrameTimeline、Perfetto sched/cpu frame-window 分析和 TracePilot dry-run 结果；后续结果以第 12 节同步采集样本为准。
 
 本轮在现有两组游戏样本上补充生成了 Step1 汇总产物：
 
@@ -248,9 +248,9 @@ blocked_without_frame_ground_truth
 
 ## 11. 2026-06-01 旧样本 Step1/Step2 完成状态
 
-下表只描述 2026-06-01 两个早期游戏样本的状态，保留它的目的在于说明项目如何从“缺帧级 ground truth”推进到第 12 节的同步采集版本。答辩时应优先使用第 12 节的当前最终状态。
+下表只描述 2026-06-01 两个早期游戏样本的状态，保留它的目的在于说明项目如何从“缺帧级 ground truth”推进到第 12 节的同步采集版本。
 
-| 阶段 | 状态 | 可用于答辩的说法 |
+| 阶段 | 状态 | 结果说明 |
 |---|---|---|
 | Step1 基础调度采集 | 已完成 | 已在真实王者荣耀对局中采集 eBPF 调度事件，并输出线程级 runnable/wakeup/on-CPU 指标。 |
 | Step1 帧级 ground truth | 待补采 | 当前游戏样本缺 Perfetto FrameTimeline，不能做逐帧 jank 监督标签。 |
@@ -287,8 +287,8 @@ blocked_without_frame_ground_truth
 | `game_match_sgame_20260607_170754_graph_topology.json` | 完整依赖图拓扑 |
 | `game_match_sgame_20260607_170754_graph_subgraph.dot` | Top-K 子图 Graphviz DOT |
 | `game_match_sgame_20260607_170754_hints.json` | TracePilot dry-run hint 输出 |
-| `game_match_sgame_20260607_170754_step1_summary.json` | 修正目标包名口径后的 Step1 汇总 |
-| `game_match_sgame_20260607_170754_step2_summary.json` | 修正目标包名口径后的 Step2 汇总 |
+| `game_match_sgame_20260607_170754_step1_summary.json` | 修正目标包名后的 Step1 汇总 |
+| `game_match_sgame_20260607_170754_step2_summary.json` | 修正目标包名后的 Step2 汇总 |
 
 ### 12.2 Step1 补齐结果
 
@@ -417,7 +417,7 @@ Jank cause classifier 当前输出为：
 
 解释：本轮已经具备逐帧 jank 标签，因此 classifier 不再是 `blocked_without_frame_ground_truth`。但两个 jank frame 的推理 confidence 为 0.0，说明当前 tracepilot 的因果判定仍应视为“候选解释”，不能把 `CPU_CONTENTION` 说成已严格证明的唯一原因。
 
-### 12.4 Hint 结果与安全口径
+### 12.4 Hint 结果与安全说明
 
 TracePilot dry-run hint 输出 1 条建议：
 
@@ -438,7 +438,7 @@ TracePilot dry-run hint 输出 1 条建议：
 |---|---|---|
 | Step1 Perfetto FrameTimeline | 采集成功，SurfaceFlinger fallback 可用 | 923 帧、2 个 deadline missed；目标包过滤未命中，因此不是游戏进程精确绑定 |
 | Step1 eBPF 调度采集 | raw events 采集成功 | `*_events.bin` 约 1.03 GB；本轮没有 JSONL sched 后处理，离线图中 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边为 0 |
-| Step1 identity resolver | metadata 口径可用 | metadata 证明王者荣耀前台；tracepilot 自动包名误判已在 summary 中隔离 |
+| Step1 identity resolver | metadata 证据可用 | metadata 证明王者荣耀前台；tracepilot 自动包名误判已在 summary 中隔离 |
 | Step1 frame window 聚合 | Perfetto 侧已完成，TracePilot graph 侧待修 | `*_perfetto_sched_summary.json` 已输出帧窗口内 on-CPU / runnable wait；但 `result.json` 中 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边仍为 0 |
 | Step1 top-k critical threads | 候选排序可用，并有 Perfetto sched crosscheck | TracePilot Top-K 仍是候选；Perfetto 侧 Top 线程为 `UnityMain`、`CoreThread`、`surfaceflinger` 等 |
 | Step1 user-space hint | schema dry-run 可用，不可直接执行 | `hints.json` 输出 1 条 TTL 300 ms hint，但 package 为误判值 `com.luna.music` |
@@ -448,11 +448,11 @@ TracePilot dry-run hint 输出 1 条建议：
 | Step2 jank cause classifier | 低置信度候选分类 | 2 个 jank frame 均候选为 `CPU_CONTENTION`，但 confidence=0.0 且 evidence 为空 |
 | Step2 启发式策略对比 | smoke test 可用 | graph/heuristic AP@K 与 Top-K overlap 已输出，但样本只有 2 个 missed frame |
 
-### 12.6 当前最终答辩口径
+### 12.6 结果摘要
 
-当前王者荣耀场景可以表述为：**Step1/Step2 的离线分析链路已经跑通，且 2026-06-07 样本补齐了帧窗口级证据；2026-07-01 已验证 `com.tencent.tmgp.sgame` 前台包名/UID/PID guard 可用，但由于游戏未更新、本轮场景质量不理想，不再继续硬采正式游戏性能场景。**
+王者荣耀场景已经跑通 Step1/Step2 离线分析链路，2026-06-07 样本补齐了帧窗口级证据。2026-07-01 smoke 验证显示 `com.tencent.tmgp.sgame` 前台包名/UID/PID guard 可用；但由于游戏未更新、本轮场景质量不理想，后续不再继续采集正式游戏性能场景。
 
-可直接展示的完成项：
+已完成项：
 
 - Step1 已有 923 个 Perfetto FrameTimeline frame 和 2 个 deadline missed，可以作为本轮游戏前台窗口不变条件下的帧级标签。
 - Step1 已通过 Perfetto `thread_state` 完成 frame-window 内 Running/Runnable 聚合，Top 线程包括 `UnityMain`、`CoreThread`、`surfaceflinger`、`NativeThread`。
@@ -460,13 +460,13 @@ TracePilot dry-run hint 输出 1 条建议：
 - Step2 已完成 frame-window 级 CPU frequency / big-little 归因，`UnityMain` 和 `UnityGfxDeviceW` 在本轮帧窗口内全部运行在 middle/big cluster。
 - Hint Engine 已有 dry-run schema：`PROTECT_UI_CHAIN -> surfaceflinger`，TTL 300 ms，包含 rollback 字段。
 
-必须保守说明的限制：
+限制：
 
 - FrameTimeline 使用 `all_frametimeline_rows_fallback`，不是按游戏进程精确绑定。
 - TracePilot 离线 graph 的 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边仍为 0，调度归因主要依赖 Perfetto crosscheck。
 - `hints.json` 的 package 继承了 `com.luna.music` 自动误判，不能直接用于真实下发。
 - Jank cause classifier 目前只是低置信度候选，2 个 jank frame 均为 `CPU_CONTENTION` 且 confidence=0.0。
-- 尚未做 baseline vs intervention 的真实干预效果对比；当前决策是停止继续硬采 SGame，把该场景保守定位为离线分析 + resolver/guard smoke。
+- 尚未做 baseline vs intervention 的真实干预效果对比；该场景目前定位为离线分析 + resolver/guard smoke。
 
 ### 12.7 2026-07-01 resolver/guard smoke
 
@@ -499,7 +499,7 @@ TracePilot dry-run hint 输出 1 条建议：
 - 本轮游戏没有更新，实际场景可能停留在登录/静态/非对局状态。
 - 样本只有 10 s 左右，且 missed frame 很少，不能支撑 baseline vs intervention 因果对比。
 
-因此，当前提交口径建议写成：**SGame 已完成历史样本离线分析和 2026-07-01 resolver/guard smoke；正式游戏干预实验停止继续采集，不作为主结论。**
+因此，SGame 部分保留为历史样本离线分析和 2026-07-01 resolver/guard smoke；正式游戏干预实验不作为本报告主结论。
 
 ### 12.8 提交数据说明
 
