@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="800" viewBox="0 0 940 800">
+<rect width="100%" height="100%" fill="#fafafa"/>
+<text x="470" y="24" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold">Feed Scroll · 路径依赖图（Top 节点 + 2-hop）</text>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#555"/></marker></defs>
+<rect x="25.0" y="89.0" width="110" height="42" rx="6" fill="#e45756" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="106.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">surfaceflinger&#10;TID 682</text>
+<text x="80.0" y="122.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.242</text>
+<rect x="25.0" y="159.0" width="110" height="42" rx="6" fill="#f58518" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="176.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">CCodecWatchdog&#10;TID 18201</text>
+<text x="80.0" y="192.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.233</text>
+<rect x="25.0" y="229.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">VizCompositor…&#10;TID 5098</text>
+<text x="80.0" y="262.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.209</text>
+<rect x="25.0" y="299.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">s.nexuslaunch…&#10;TID 2286</text>
+<text x="80.0" y="332.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.067</text>
+<rect x="25.0" y="369.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">ndroid.system…&#10;TID 1971</text>
+<text x="80.0" y="402.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.035</text>
+<rect x="25.0" y="439.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="456.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">InputDispatch…&#10;TID 1823</text>
+<text x="80.0" y="472.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.035</text>
+<rect x="25.0" y="509.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="526.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_6091&#10;TID -7091</text>
+<rect x="25.0" y="579.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="596.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_679&#10;TID -1679</text>
+<rect x="25.0" y="649.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="80.0" y="666.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_675&#10;TID -1675</text>
+<rect x="245.0" y="159.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="176.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:609_2&#10;TID 609</text>
+<text x="300.0" y="192.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.234</text>
+<rect x="245.0" y="229.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:606_2&#10;TID 654</text>
+<text x="300.0" y="262.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.217</text>
+<rect x="245.0" y="299.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:606_4&#10;TID 2432</text>
+<text x="300.0" y="332.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.043</text>
+<rect x="245.0" y="369.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_682&#10;TID -1682</text>
+<rect x="245.0" y="439.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="456.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_2286&#10;TID -3286</text>
+<rect x="245.0" y="509.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="526.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_606&#10;TID -1606</text>
+<rect x="245.0" y="579.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="300.0" y="596.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_609&#10;TID -1609</text>
+<rect x="465.0" y="159.0" width="110" height="42" rx="6" fill="#e45756" stroke="#333" stroke-width="1"/>
+<text x="520.0" y="176.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">surfaceflinger&#10;TID 606</text>
+<text x="520.0" y="192.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.284</text>
+<rect x="465.0" y="229.0" width="110" height="42" rx="6" fill="#b279a2" stroke="#333" stroke-width="1"/>
+<text x="520.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">CompositorGpu…&#10;TID 5111</text>
+<text x="520.0" y="262.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.234</text>
+<rect x="465.0" y="299.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="520.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_6092&#10;TID -7092</text>
+<rect x="465.0" y="369.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="520.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_2432&#10;TID -3432</text>
+<rect x="465.0" y="439.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="520.0" y="456.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_654&#10;TID -1654</text>
+<rect x="465.0" y="509.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="520.0" y="526.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_6043&#10;TID -7043</text>
+<rect x="465.0" y="579.0" width="110" height="42" rx="6" fill="#bab0ac" stroke="#333" stroke-width="1"/>
+<text x="520.0" y="596.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">futex_653&#10;TID -1653</text>
+<rect x="685.0" y="369.0" width="110" height="42" rx="6" fill="#72b7b2" stroke="#333" stroke-width="1"/>
+<text x="740.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#111">binder:606_1&#10;TID 653</text>
+<text x="740.0" y="402.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#333">score 0.042</text>
+<line x1="520.0" y1="180.0" x2="300.0" y2="180.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="176.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL x4 0.24ms</text>
+<line x1="520.0" y1="180.0" x2="300.0" y2="530.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="351.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FUTEX_WAIT x7392 224.03ms</text>
+<line x1="80.0" y1="320.0" x2="300.0" y2="180.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.03ms</text>
+<line x1="80.0" y1="320.0" x2="300.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FUTEX_WAIT x8 0.78ms</text>
+<line x1="80.0" y1="390.0" x2="300.0" y2="320.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="351.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.10ms</text>
+<line x1="740.0" y1="390.0" x2="520.0" y2="250.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="630.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.05ms</text>
+<line x1="740.0" y1="390.0" x2="520.0" y2="600.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="630.0" y="491.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FUTEX_WAIT x74 2.25ms</text>
+<line x1="300.0" y1="180.0" x2="520.0" y2="180.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="176.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL x3 0.32ms</text>
+<line x1="300.0" y1="180.0" x2="300.0" y2="600.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="300.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FUTEX_WAIT x1736 56.80ms</text>
+<line x1="80.0" y1="110.0" x2="300.0" y2="390.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FUTEX_WAIT x94 9802.51ms</text>
+<line x1="80.0" y1="460.0" x2="300.0" y2="320.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="386.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.08ms</text>
+<line x1="300.0" y1="320.0" x2="520.0" y2="390.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="351.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FUTEX_WAIT x103 3.13ms</text>
+<line x1="300.0" y1="250.0" x2="520.0" y2="250.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL x2 0.08ms</text>
+<line x1="300.0" y1="250.0" x2="520.0" y2="460.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="351.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FUTEX_WAIT x77 1.99ms</text>
+<line x1="80.0" y1="250.0" x2="300.0" y2="320.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="281.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.05ms</text>
+<line x1="80.0" y1="250.0" x2="300.0" y2="250.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="246.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL x2 0.18ms</text>
+<line x1="520.0" y1="250.0" x2="520.0" y2="180.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="520.0" y="211.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.12ms</text>
+<line x1="520.0" y1="250.0" x2="740.0" y2="390.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="630.0" y="316.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL 0.04ms</text>
+<line x1="520.0" y1="250.0" x2="300.0" y2="320.0" stroke="#0077b6" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="281.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#0077b6">BINDER_CALL x3 0.13ms</text>
+<line x1="300.0" y1="530.0" x2="520.0" y2="530.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="526.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FRAME_DEPENDENCY</text>
+<line x1="80.0" y1="600.0" x2="300.0" y2="530.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="561.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FRAME_DEPENDENCY</text>
+<line x1="300.0" y1="600.0" x2="520.0" y2="600.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="596.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FRAME_DEPENDENCY</text>
+<line x1="80.0" y1="670.0" x2="300.0" y2="600.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="631.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FRAME_DEPENDENCY</text>
+<line x1="300.0" y1="390.0" x2="520.0" y2="320.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="410.0" y="351.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FRAME_DEPENDENCY</text>
+<line x1="80.0" y1="530.0" x2="300.0" y2="390.0" stroke="#6a4c93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="190.0" y="456.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#6a4c93">FRAME_DEPENDENCY</text>
+</svg>
