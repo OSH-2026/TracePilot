@@ -338,6 +338,14 @@ User Interaction
 
 ![视频浏览关键路径图](doc/images/video_critical.svg)
 
+**信息流滚动场景 — 路径依赖图：**
+
+![信息流滚动路径依赖图](doc/images/feed_scroll_path_dependency.svg)
+
+**游戏（王者荣耀）场景 — 路径依赖图：**
+
+![王者荣耀路径依赖图](doc/images/sgame_path_dependency.svg)
+
 > 更多图例见 [`doc/report/`](doc/report/) 目录下的分析报告。
 
 ### 关键线程评分模型
