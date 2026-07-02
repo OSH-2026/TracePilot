@@ -417,7 +417,24 @@ Jank cause classifier 当前输出为：
 
 解释：本轮已经具备逐帧 jank 标签，因此 classifier 不再是 `blocked_without_frame_ground_truth`。但两个 jank frame 的推理 confidence 为 0.0，说明当前 tracepilot 的因果判定仍应视为“候选解释”，不能把 `CPU_CONTENTION` 说成已严格证明的唯一原因。
 
-### 12.4 Hint 结果与安全说明
+### 12.4 游戏卡顿原因证据链
+
+本轮只有 2 个 deadline missed frame，因此“主要原因”只能写成受证据约束的候选解释：两个 missed frame 的窗口内都出现了较高的 frame-window on-CPU 与 runnable wait，且 `UnityMain`、`CoreThread`、`UnityGfxDeviceW`、`NativeThread`、`surfaceflinger` 等游戏/显示链路线程均在这些窗口内出现。最稳妥的结论是：本轮卡顿更像是游戏主循环/渲染线程与系统显示合成链路共同参与的 CPU 调度压力，而不是已经严格证明的单一 Binder、Futex 或 GPU 原因。
+
+两个 missed frame 的窗口级证据如下：
+
+| Frame token | 类型 | frame time | window on-CPU | window runnable wait | 观察 |
+|---:|---|---:|---:|---:|---|
+| 9449120 | App Deadline Missed | 54.031 ms | 287.256 ms | 71.423 ms | 窗口内 `UnityMain` on-CPU 24.027 ms，`UnityGfxDeviceW` on-CPU 12.633 ms / runnable 7.004 ms，`NativeThread` on-CPU 9.398 ms，`CoreThread` on-CPU 8.368 ms，`surfaceflinger` on-CPU 7.076 ms。 |
+| 9451827 | SurfaceFlinger CPU Deadline Missed | 99.663 ms | 453.188 ms | 326.696 ms | 窗口内 `UnityMain` on-CPU 15.018 ms / runnable 3.457 ms，`CoreThread` on-CPU 4.222 ms / runnable 4.246 ms，`NativeThread` on-CPU 11.675 ms，`surfaceflinger` on-CPU 2.201 ms；同时出现较多 system/binder/background runnable wait，归因更分散。 |
+
+CPU 频率侧没有支持“热降频导致卡顿”的直接证据：两个 missed frame 中 big cluster 平均频率约 2.187/2.188 GHz，middle cluster 平均频率约 2.093/1.944 GHz，`step2_summary.json` 中 `freq_throttle_ratio = 0.0`。因此 CPU frequency / big-little 结果更适合说明“关键线程运行在哪些 cluster 上”，不能写成已经证明的 thermal throttle。
+
+Binder/Futex 只能作为候选链路而不是严格原因。TracePilot graph 中有 36 条 `BINDER_CALL` 边、399 条 `FUTEX_WAIT` 边；debug ENH 摘要中有 42,250 次 Binder call 和 528,421 次 Futex wait，其中游戏/显示相关候选分别为 18,806 次和 316,186 次。Top 候选集中在 `UnityMain`、`UnityGfxDeviceW`、`surfaceflinger`、`InputProcessor`、`cent.tmgp.sgame` 等线程，但这些事件尚未被证明直接解释上述两个 missed frame。
+
+需要特别注意两点限制。第一，FrameTimeline 使用 `all_frametimeline_rows_fallback`，missed frame 行的进程字段并未精确绑定到 `com.tencent.tmgp.sgame`；它只能在“采集期间王者荣耀保持前台”的前提下作为该场景的帧级证据。第二，classifier 对两个 jank frame 都给出 `CPU_CONTENTION` 候选，但 `confidence=0.0` 且 evidence 数组为空，因此不能把该分类写成严格因果。
+
+### 12.5 Hint 结果与安全说明
 
 TracePilot dry-run hint 输出 1 条建议：
 
@@ -432,27 +449,31 @@ TracePilot dry-run hint 输出 1 条建议：
 - 温度/频率保护；
 - 与 baseline 对比 frame p95、deadline missed rate、功耗/温度副作用。
 
-### 12.5 更新后的完成状态
+### 12.6 Step1/Step2 完成度核准
 
-| 阶段 | 状态 | 证据与限制 |
+| Step1 子项 | 状态 | 证据与限制 |
 |---|---|---|
-| Step1 Perfetto FrameTimeline | 采集成功，SurfaceFlinger fallback 可用 | 923 帧、2 个 deadline missed；目标包过滤未命中，因此不是游戏进程精确绑定 |
-| Step1 eBPF 调度采集 | raw events 采集成功 | `*_events.bin` 约 1.03 GB；本轮没有 JSONL sched 后处理，离线图中 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边为 0 |
-| Step1 identity resolver | metadata 证据可用 | metadata 证明王者荣耀前台；tracepilot 自动包名误判已在 summary 中隔离 |
-| Step1 frame window 聚合 | Perfetto 侧已完成，TracePilot graph 侧待修 | `*_perfetto_sched_summary.json` 已输出帧窗口内 on-CPU / runnable wait；但 `result.json` 中 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边仍为 0 |
-| Step1 top-k critical threads | 候选排序可用，并有 Perfetto sched crosscheck | TracePilot Top-K 仍是候选；Perfetto 侧 Top 线程为 `UnityMain`、`CoreThread`、`surfaceflinger` 等 |
-| Step1 user-space hint | schema dry-run 可用，不可直接执行 | `hints.json` 输出 1 条 TTL 300 ms hint，但 package 为误判值 `com.luna.music` |
-| Step2 Binder graph | 候选图 + debug 归属可用，帧因果待修 | 36 条 Binder graph edge；debug ENH 中 42,250 次 Binder call，其中 18,806 次匹配游戏/显示相关线程 |
-| Step2 futex graph | 候选图 + debug 归属可用，帧因果待修 | 399 条 futex wait edge；debug ENH 中 528,421 次 futex wait，其中 316,186 次匹配游戏/显示相关线程 |
-| Step2 CPU frequency / big-little | 帧窗口级观测归因可用 | `*_perfetto_cpu_freq_summary.json` 输出每帧 cluster 频率与线程 cluster runtime；仍不是干预验证后的因果结论 |
-| Step2 jank cause classifier | 低置信度候选分类 | 2 个 jank frame 均候选为 `CPU_CONTENTION`，但 confidence=0.0 且 evidence 为空 |
-| Step2 启发式策略对比 | smoke test 可用 | graph/heuristic AP@K 与 Top-K overlap 已输出，但样本只有 2 个 missed frame |
+| Perfetto FrameTimeline jank ground truth | 受限完成 | 923 帧、2 个 deadline missed；但目标包过滤未命中，使用 SurfaceFlinger 侧 fallback，不是游戏进程精确绑定。 |
+| eBPF sched 采集与离线调度边 | 部分完成 | `events.bin` 已采集并可 replay；但本轮没有 JSONL sched 后处理，TracePilot graph 中 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边为 0。 |
+| UID/package/session/process resolver | 已完成 | capture metadata 显示前后台窗口均为 `com.tencent.tmgp.sgame/.SGameActivity`；TracePilot 自动包名误判为 `com.luna.music` 已隔离，不作为目标身份依据。 |
+| frame-window on-CPU / runnable wait 聚合 | 受限完成 | Perfetto `thread_state` 已按 FrameTimeline 窗口聚合，能看到 missed frame 窗口内的 on-CPU / runnable wait；但 TracePilot graph 内部调度边仍缺失。 |
+| UI / Render / game thread 角色识别 | 受限完成 | 能识别 `UnityMain`、`CoreThread`、`UnityGfxDeviceW`、`NativeThread`、`surfaceflinger` 等关键线程；部分 `pid/process_name` 字段为空，仍主要依赖线程名和 capture metadata。 |
+| top-k critical threads 输出 | 受限完成 | TracePilot Top-K 和 Perfetto sched crosscheck 都已输出；Top-K 只能作为候选排序，不能作为因果证明。 |
+| 用户态短时 hint、TTL、rollback | 部分完成 | `hints.json` 有 TTL 300 ms 和 rollback schema；但 target package 继承 `com.luna.music` 误判，且没有真实下发验证。 |
 
-### 12.6 结果摘要
+| Step2 子项 | 状态 | 证据与限制 |
+|---|---|---|
+| Binder dependency graph | 受限完成 | TracePilot graph 有 36 条 Binder edge；ENH 摘要有 42,250 次 Binder call，其中 18,806 次匹配游戏/显示相关线程。帧级因果仍偏弱。 |
+| Futex wait graph | 受限完成 | TracePilot graph 有 399 条 Futex edge；ENH 摘要有 528,421 次 Futex wait，其中 316,186 次匹配游戏/显示相关线程。尚未证明解释 2 个 missed frame。 |
+| CPU frequency / big-little 归因 | 已完成 | Perfetto `cpu_frequency` 已按帧窗口聚合，并输出线程 cluster runtime；结果支持 cluster 运行位置分析，但不是干预验证后的因果结论。 |
+| Jank cause classifier | 部分完成 | 2 个 jank frame 都被候选标为 `CPU_CONTENTION`；但 confidence=0.0、evidence 为空，只能作为候选分类。 |
+| 图方法与启发式策略对比 | 部分完成 | graph AP@K = 0.2、heuristic AP@K = 0.2、Top-K overlap = 2；样本只有 2 个 missed frame，只适合作 smoke test。 |
+
+### 12.7 结果摘要
 
 王者荣耀场景已经跑通 Step1/Step2 离线分析链路，2026-06-07 样本补齐了帧窗口级证据。2026-07-01 smoke 验证显示 `com.tencent.tmgp.sgame` 前台包名/UID/PID guard 可用；但由于游戏未更新、本轮场景质量不理想，后续不再继续采集正式游戏性能场景。
 
-已完成项：
+已有证据：
 
 - Step1 已有 923 个 Perfetto FrameTimeline frame 和 2 个 deadline missed，可以作为本轮游戏前台窗口不变条件下的帧级标签。
 - Step1 已通过 Perfetto `thread_state` 完成 frame-window 内 Running/Runnable 聚合，Top 线程包括 `UnityMain`、`CoreThread`、`surfaceflinger`、`NativeThread`。
@@ -468,7 +489,14 @@ TracePilot dry-run hint 输出 1 条建议：
 - Jank cause classifier 目前只是低置信度候选，2 个 jank frame 均为 `CPU_CONTENTION` 且 confidence=0.0。
 - 尚未做 baseline vs intervention 的真实干预效果对比；该场景目前定位为离线分析 + resolver/guard smoke。
 
-### 12.7 2026-07-01 resolver/guard smoke
+进入 Step3 前还需要补齐：
+
+- 修正 SGame 的 TracePilot 自动包名识别，确保 replay / hint target 明确使用 `com.tencent.tmgp.sgame`，不能沿用 `com.luna.music`。
+- 修复或补足 TracePilot graph 的 `WAKEUP/RUNNABLE_WAIT/CPU_RUN` 边，使 eBPF 调度边能够与 Perfetto frame window 相互校验。
+- 采集更多真实对局样本，并尽量让 FrameTimeline 命中目标进程；若仍只能 SurfaceFlinger fallback，需要在报告中继续保持该限制。
+- 在显式前台 guard、TTL rollback、温度/功耗保护下做 baseline vs intervention 对比，至少比较 missed rate、frame p95/p99、频率、温度和副作用。
+
+### 12.8 2026-07-01 resolver/guard smoke
 
 2026-07-01 连接 Pixel 6a 后额外跑了两轮短采样 smoke，目录为：
 
@@ -501,7 +529,7 @@ TracePilot dry-run hint 输出 1 条建议：
 
 因此，SGame 部分保留为历史样本离线分析和 2026-07-01 resolver/guard smoke；正式游戏干预实验不作为本报告主结论。
 
-### 12.8 提交数据说明
+### 12.9 提交数据说明
 
 为避免将几个 GB 的原始散文件直接提交，本轮将 raw/replay 输入打包为单个归档，并用 manifest 记录内容和 SHA256：
 
